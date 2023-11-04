@@ -8,10 +8,16 @@
  *
  * 1. Feladatresz
  *
- * Feladat leirasa: egy fájbol betolt egy 3d alakzatot. Ezt bizonyos idokozonkent egy-egy fuggoleges vonallal elmetszi es
+ * Feladat leirasa: egy fajbol betolt egy 3d alakzatot. Ezt bizonyos idokozonkent egy-egy fuggoleges vonallal elmetszi es
  * kiszamolja, hogy a vonal melyik ponokon metszi el. A bemeno és kimeno pontokat összekoti egy vonallal, ez megy a
  * kimeneti fileba. Tehat a vegeredmegy egy olyan fajl lesz, amiben függöleges vonalak vannak azokon a helyeken, ahol
  * az eredeti test belsejeben halad.
+ *
+ * 2. Feladatresz
+ *
+ * Feladat leirasa: a bemeneti pontokat a szomszedokkal ossze kell kotni, a szerint, hogy feljebb vannak-e.
+ * Mindegyik el gyakorlatilag egy iranyitott vektor, aminek sulya is van, aszerint, hogy milyen meredeken halad felfele.
+ * A kimenet egy elhalo a pontok kozott.
  *
  * Felhasznalt anyagok: OpenMesh Documentation, gpytoolbox.org, digitalocean.com, w3schools.com, stackoverflow.com,
  *                      geeksforgeeks.org, GitHub Copilot, ChatGTP
@@ -22,8 +28,10 @@
 
 #include <iostream>
 #include <fstream>
+#include <tuple>
 #include <OpenMesh/Core/IO/MeshIO.hh>
 #include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
+#include "auxiliary.h"
 
 /**
  * Makrok definialasa
@@ -32,138 +40,6 @@
 //#define TEST_CUBE
 #define TEST_BUNNY
 //#define TEST_DIAMOND
-/// A logolashoz
-#define LOG
-
-
-typedef OpenMesh::PolyMesh_ArrayKernelT<>  MyMesh;
-/**
- * Beolvassa a megadott filet
- * @param file a beolvasando file
- * @param mesh a mesh, amibe tarolni kell az adatokat
- */
- void readMesh(const std::string& file, MyMesh& mesh){
-    if(!OpenMesh::IO::read_mesh(mesh, file)){
-        std::cerr << "Error: Cannot read mesh from " << file << std::endl;
-        exit(1);
-    }
- }
-
-/**
- * A pontok koordinatainak tarolasara szolgalo struktura
- * [x, y, z]
- */
-struct Point{
-    double coordinates[3];
-};
-
-/**
- * Iranyitott elek tarolasara szolgalo struktura
- * p1 -> p2
- */
-struct Edge{
-    Point p1;
-    Point p2;
-    double weight;
-};
-
-/**
- * A parameterkent kapott tombot kiirja a .obj fileba
- * @param file_name a kimeneti file neve
- * @param intersect_points a metszespontok koordinatai
- */
-void writeVertices(const std::string& output_file_name, const std::string& input_file_name,std::vector<Point>& intersect_points){
-    std::ofstream file(output_file_name);
-    if(!file){
-        std::cout << "Error: The file " << output_file_name << " cannot be opened!" << std::endl;
-        exit(1);
-    }
-    /// A kimeneti file fejlece
-    file <<  "# Internal lines generated from " << input_file_name << " by peros\n";
-    int k = 1;
-    for(int i = 0; i < (int)intersect_points.size(); i++){
-        file << "v " << intersect_points[i].coordinates[0] << " " << intersect_points[i].coordinates[1] << " " << intersect_points[i].coordinates[2] << "\n";
-        i++;
-        file << "v " << intersect_points[i].coordinates[0] << " " << intersect_points[i].coordinates[1] << " " << intersect_points[i].coordinates[2] << "\n";
-        file << "l " << k << " " << k+1 << "\n";
-        k = k + 2;
-    }
-    file.close();
-#ifdef LOG
-    std::cout << "Log: The file " << output_file_name << " has been created!" << std::endl;
-#endif
-}
-
-/**
- * Kiszamolja a haromszog teruletet
- * @param x1 a kerdeses pont x koordinataja
- * @param y1 a kerdeses pont y koordinataja
- * @param z1 a kerdeses pont z koordinataja
- * @param x2 az masodik pont x koordinataja
- * @param y2 az masodik pont y koordinataja
- * @param z2 az masodik pont z koordinataja
- * @param x3 az harmadik pont x koordinataja
- * @param y3 az harmadik pont y koordinataja
- * @param z3 az harmadik pont z koordinataja
- * @return a haromszog terulete
- */
-double area(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3){
-    double v1[2];
-    v1[0] = x1 - x2;
-    v1[1] = z1 - z2;
-
-    double v2[2];
-    v2[0] = x1 - x3;
-    v2[1] = z1 - z3;
-
-    double A_2 = v1[0] * v2[1] - v2[0] * v1[1];
-    return A_2 / 2;
-}
-
-/**
- * Osszehasonlitja a ket kapott pont koordinatait es visszadja az elobbre levot
- * Elsonek az x koordinata alapjan, majd az z, majd az y koordinata alapjan
- * @param p1 az eslo pont
- * @param p2 a masodik pont
- * @return az elso elem elobbre valo-e vagy sem
- */
-bool comparePoints(const Point& p1, const Point& p2) {
-    if(p1.coordinates[0] < p2.coordinates[0]){
-        return true;
-    } else if(p1.coordinates[0] == p2.coordinates[0]){
-        if(p1.coordinates[2] < p2.coordinates[2]){
-            return true;
-        } else if(p1.coordinates[2] == p2.coordinates[2]){
-            if(p1.coordinates[1] < p2.coordinates[1]){
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-/**
- * Visszaadja a ket pont kozotti vektor sulyat
- * @param actualPoint aktualis pont
- * @param adjacentPoint szomszedos pont
- * @return 0 ha a ket pont kozti vektor szoge hatarerteken beluli, egyebkent a szog erteke lesz a suly, -1 ha alatta van
- */
-double thisEdgeLeadsToPoint(const Point& actualPoint, const Point& adjacentPoint){
-    if(actualPoint.coordinates[1] > adjacentPoint.coordinates[1]){
-        return -1;
-    }
-    //double phi0 = M_PI;
-    double phi0 = 1;
-    Point p{};
-    p.coordinates[0] = adjacentPoint.coordinates[0] - actualPoint.coordinates[0];
-    p.coordinates[1] = adjacentPoint.coordinates[1] - actualPoint.coordinates[1];
-    p.coordinates[2] = adjacentPoint.coordinates[2] - actualPoint.coordinates[2];
-    double phi = atan2(p.coordinates[2], p.coordinates[0]);
-    if(phi > phi0 || phi < -phi0){
-        return std::abs(phi);
-    }
-    return 0;
-}
 
 /**
  * A feladat megvalositasa
@@ -183,8 +59,8 @@ int main(){
 #endif
 
     std::string output_file = "output.obj";
-    /// A racspont osztas leptek merete es maximum kiterjedese
 
+    /// A racspont osztas leptek merete es maximum kiterjedese
 #ifdef TEST_BUNNY
     double l = 0.005;
     double max = 0.2;
@@ -291,32 +167,14 @@ int main(){
         }
 
     }
-#ifdef LOG
-    std::cout << "Log: Intersection points calculated!" << std::endl;
-#endif
 
     /// A metszespontok rendezese
     std::sort(intersect_points.begin(), intersect_points.end(), comparePoints);
-#ifdef LOG
-    std::cout << "Log: Coordinates arranged!" << std::endl;
-#endif
 
-    /// A hibas ponto torlese
-    for(int i = 0; i < (int)intersect_points.size()-1; i++){
-        if(intersect_points[i].coordinates[0] != intersect_points[i+1].coordinates[0] ||
-            intersect_points[i].coordinates[2] != intersect_points[i+1].coordinates[2]){
-            intersect_points.erase(intersect_points.begin() + i);
-            i--;
-        } else {
-            i++;
-        }
-    }
-#ifdef LOG
-    std::cout << "Log: Wrong points are deleted!" << std::endl;
-#endif
+    deleteWrongPoints(intersect_points);
 
     /// A bemeneti pontpok kozotti elek tarolasara szolgalo tomb
-    std::vector<Edge> edges((int)(max/l)*(int)(max/l)*4);
+/*    std::vector<Edge> edges((int)(max/l)*(int)(max/l)*4);
 
     int ii = 0;
     /// A bemeneti pontok kozotti elek kiszamitasa
@@ -363,8 +221,6 @@ int main(){
         }
     }
     //TODO fuggvenyekbe attenni mindent
-    //TODO a segedfuggvenyeket masik cpp fileba
-    //TODO github
 
     //TODO a pontokat ossze kell kotni es ki kell rajzolni
 
@@ -375,7 +231,7 @@ int main(){
         }
     }
 
-
+*/
 
 
     /// A kiiras a fileba

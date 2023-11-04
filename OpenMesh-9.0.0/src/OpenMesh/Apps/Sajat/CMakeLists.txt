@@ -6,6 +6,7 @@ include_directories (
 )
  
 set (targetName Sajat)
+
  
 # collect all header and source files
 vci_append_files (headers "*.hpp" .)

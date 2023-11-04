@@ -163,8 +163,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/BinaryHelper.cc.o: CXX_CO
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/IOManager.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/IOManager.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -173,8 +171,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/IOManager.cc.o: CXX_COMPI
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/OMFormat.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/OMFormat.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -183,8 +179,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/OMFormat.cc.o: CXX_COMPIL
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/BaseReader.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/reader/BaseReader.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -193,8 +187,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/BaseReader.cc.o: C
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OBJReader.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/reader/OBJReader.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -203,8 +195,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OBJReader.cc.o: CX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OFFReader.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/reader/OFFReader.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -213,8 +203,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OFFReader.cc.o: CX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OMReader.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/reader/OMReader.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -223,8 +211,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OMReader.cc.o: CXX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/PLYReader.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/reader/PLYReader.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -233,8 +219,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/PLYReader.cc.o: CX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/STLReader.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/reader/STLReader.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -243,8 +227,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/STLReader.cc.o: CX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/BaseWriter.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/BaseWriter.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -253,8 +235,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/BaseWriter.cc.o: C
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OBJWriter.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/OBJWriter.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -263,8 +243,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OBJWriter.cc.o: CX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OFFWriter.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/OFFWriter.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -273,8 +251,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OFFWriter.cc.o: CX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OMWriter.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/OMWriter.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -283,8 +259,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OMWriter.cc.o: CXX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/PLYWriter.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/PLYWriter.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -293,8 +267,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/PLYWriter.cc.o: CX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/STLWriter.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/STLWriter.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -303,8 +275,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/STLWriter.cc.o: CX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/VTKWriter.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/VTKWriter.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -313,8 +283,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/VTKWriter.cc.o: CX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/ArrayKernel.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Mesh/ArrayKernel.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -323,8 +291,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/ArrayKernel.cc.o: CXX_C
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/BaseKernel.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Mesh/BaseKernel.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -333,8 +299,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/BaseKernel.cc.o: CXX_CO
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/PolyConnectivity.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Mesh/PolyConnectivity.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -343,8 +307,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/PolyConnectivity.cc.o: 
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/TriConnectivity.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Mesh/TriConnectivity.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -353,8 +315,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/TriConnectivity.cc.o: C
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/System/omstream.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/System/omstream.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -363,8 +323,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/System/omstream.cc.o: CXX_CO
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/System
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/BaseProperty.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Utils/BaseProperty.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -373,8 +331,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/BaseProperty.cc.o: CXX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/Endian.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Utils/Endian.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -383,8 +339,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/Endian.cc.o: CXX_COMPI
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/PropertyCreator.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Utils/PropertyCreator.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -393,8 +347,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/PropertyCreator.cc.o: 
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/RandomNumberGenerator.cc.o: CXX_COMPILER__OpenMeshCore_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Utils/RandomNumberGenerator.cc || cmake_object_order_depends_target_OpenMeshCore
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshCore_EXPORTS
@@ -403,8 +355,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/RandomNumberGenerator.
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
 
 
 # =============================================================================
@@ -422,9 +372,8 @@ build Build/lib/libOpenMeshCored.so.9.0: CXX_SHARED_LIBRARY_LINKER__OpenMeshCore
   PRE_LINK = :
   SONAME = libOpenMeshCored.so.9.0
   SONAME_FLAG = -Wl,-soname,
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/
   TARGET_FILE = Build/lib/libOpenMeshCored.so.9.0
-  TARGET_PDB = Build/lib/libOpenMeshCored.pdb
+  TARGET_PDB = OpenMeshCored.so.dbg
 
 
 #############################################
@@ -450,8 +399,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o: 
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/IOManager.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -460,8 +407,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o: CXX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/OMFormat.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -470,8 +415,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o: CXX_
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/reader/BaseReader.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -480,8 +423,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.c
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/reader/OBJReader.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -490,8 +431,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/reader/OFFReader.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -500,8 +439,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/reader/OMReader.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -510,8 +447,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/reader/PLYReader.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -520,8 +455,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/reader/STLReader.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -530,8 +463,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/BaseWriter.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -540,8 +471,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.c
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/OBJWriter.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -550,8 +479,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/OFFWriter.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -560,8 +487,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/OMWriter.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -570,8 +495,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/PLYWriter.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -580,8 +503,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/STLWriter.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -590,8 +511,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/VTKWriter.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/IO/writer/VTKWriter.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -600,8 +519,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/VTKWriter.cc
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Mesh/ArrayKernel.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -610,8 +527,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o:
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Mesh/BaseKernel.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -620,8 +535,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o: 
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Mesh/PolyConnectivity.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -630,8 +543,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Mesh/TriConnectivity.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -640,8 +551,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.c
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/System/omstream.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -650,8 +559,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o: 
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Utils/BaseProperty.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -660,8 +567,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Utils/Endian.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -670,8 +575,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o: CXX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/PropertyCreator.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Utils/PropertyCreator.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -680,8 +583,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/PropertyCreator.
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o: CXX_COMPILER__OpenMeshCoreStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/Utils/RandomNumberGenerator.cc || cmake_object_order_depends_target_OpenMeshCoreStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -690,8 +591,6 @@ build src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGene
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
 
 
 # =============================================================================
@@ -706,9 +605,8 @@ build src/OpenMesh/Core/libOpenMeshCored.a: CXX_STATIC_LIBRARY_LINKER__OpenMeshC
   OBJECT_DIR = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
   POST_BUILD = cd /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Core && /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E copy_if_different /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Core/libOpenMeshCored.a /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/Build/lib/libOpenMeshCored.a
   PRE_LINK = :
-  TARGET_COMPILE_PDB = src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/OpenMeshCoreStatic.pdb
   TARGET_FILE = src/OpenMesh/Core/libOpenMeshCored.a
-  TARGET_PDB = src/OpenMesh/Core/libOpenMeshCored.pdb
+  TARGET_PDB = OpenMeshCored.a.dbg
 
 
 #############################################
@@ -820,8 +718,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Decimater/Observer.cc.o: C
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../..
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Decimater
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/
-  TARGET_PDB = Build/lib/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Gnuplot.cc.o: CXX_COMPILER__OpenMeshTools_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/Utils/Gnuplot.cc || cmake_object_order_depends_target_OpenMeshTools
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshTools_EXPORTS
@@ -830,8 +726,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Gnuplot.cc.o: CXX_CO
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../..
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/
-  TARGET_PDB = Build/lib/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Timer.cc.o: CXX_COMPILER__OpenMeshTools_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/Utils/Timer.cc || cmake_object_order_depends_target_OpenMeshTools
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshTools_EXPORTS
@@ -840,8 +734,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Timer.cc.o: CXX_COMP
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../..
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/
-  TARGET_PDB = Build/lib/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/conio.cc.o: CXX_COMPILER__OpenMeshTools_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/Utils/conio.cc || cmake_object_order_depends_target_OpenMeshTools
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshTools_EXPORTS
@@ -850,8 +742,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/conio.cc.o: CXX_COMP
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../..
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/
-  TARGET_PDB = Build/lib/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VFront.cc.o: CXX_COMPILER__OpenMeshTools_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/VDPM/VFront.cc || cmake_object_order_depends_target_OpenMeshTools
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshTools_EXPORTS
@@ -860,8 +750,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VFront.cc.o: CXX_COMP
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../..
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/
-  TARGET_PDB = Build/lib/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchy.cc.o: CXX_COMPILER__OpenMeshTools_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/VDPM/VHierarchy.cc || cmake_object_order_depends_target_OpenMeshTools
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshTools_EXPORTS
@@ -870,8 +758,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchy.cc.o: CXX_
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../..
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/
-  TARGET_PDB = Build/lib/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyNodeIndex.cc.o: CXX_COMPILER__OpenMeshTools_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/VDPM/VHierarchyNodeIndex.cc || cmake_object_order_depends_target_OpenMeshTools
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshTools_EXPORTS
@@ -880,8 +766,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyNodeIndex.c
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../..
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/
-  TARGET_PDB = Build/lib/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyWindow.cc.o: CXX_COMPILER__OpenMeshTools_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/VDPM/VHierarchyWindow.cc || cmake_object_order_depends_target_OpenMeshTools
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshTools_EXPORTS
@@ -890,8 +774,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyWindow.cc.o
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../..
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/
-  TARGET_PDB = Build/lib/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/ViewingParameters.cc.o: CXX_COMPILER__OpenMeshTools_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/VDPM/ViewingParameters.cc || cmake_object_order_depends_target_OpenMeshTools
   DEFINES = -DINCLUDE_TEMPLATES -DOpenMeshTools_EXPORTS
@@ -900,8 +782,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/ViewingParameters.cc.
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../..
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/
-  TARGET_PDB = Build/lib/libOpenMeshToolsd.pdb
 
 
 # =============================================================================
@@ -919,9 +799,8 @@ build Build/lib/libOpenMeshToolsd.so.9.0: CXX_SHARED_LIBRARY_LINKER__OpenMeshToo
   PRE_LINK = :
   SONAME = libOpenMeshToolsd.so.9.0
   SONAME_FLAG = -Wl,-soname,
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/
   TARGET_FILE = Build/lib/libOpenMeshToolsd.so.9.0
-  TARGET_PDB = Build/lib/libOpenMeshToolsd.pdb
+  TARGET_PDB = OpenMeshToolsd.so.dbg
 
 
 #############################################
@@ -947,8 +826,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Decimater/Observer.c
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Decimater
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/OpenMeshToolsStatic.pdb
-  TARGET_PDB = src/OpenMesh/Tools/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Gnuplot.cc.o: CXX_COMPILER__OpenMeshToolsStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/Utils/Gnuplot.cc || cmake_object_order_depends_target_OpenMeshToolsStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -957,8 +834,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Gnuplot.cc.o: 
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/OpenMeshToolsStatic.pdb
-  TARGET_PDB = src/OpenMesh/Tools/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Timer.cc.o: CXX_COMPILER__OpenMeshToolsStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/Utils/Timer.cc || cmake_object_order_depends_target_OpenMeshToolsStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -967,8 +842,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Timer.cc.o: CX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/OpenMeshToolsStatic.pdb
-  TARGET_PDB = src/OpenMesh/Tools/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/conio.cc.o: CXX_COMPILER__OpenMeshToolsStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/Utils/conio.cc || cmake_object_order_depends_target_OpenMeshToolsStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -977,8 +850,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/conio.cc.o: CX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/OpenMeshToolsStatic.pdb
-  TARGET_PDB = src/OpenMesh/Tools/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VFront.cc.o: CXX_COMPILER__OpenMeshToolsStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/VDPM/VFront.cc || cmake_object_order_depends_target_OpenMeshToolsStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -987,8 +858,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VFront.cc.o: CX
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/OpenMeshToolsStatic.pdb
-  TARGET_PDB = src/OpenMesh/Tools/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchy.cc.o: CXX_COMPILER__OpenMeshToolsStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/VDPM/VHierarchy.cc || cmake_object_order_depends_target_OpenMeshToolsStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -997,8 +866,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchy.cc.o
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/OpenMeshToolsStatic.pdb
-  TARGET_PDB = src/OpenMesh/Tools/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyNodeIndex.cc.o: CXX_COMPILER__OpenMeshToolsStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/VDPM/VHierarchyNodeIndex.cc || cmake_object_order_depends_target_OpenMeshToolsStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -1007,8 +874,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyNodeI
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/OpenMeshToolsStatic.pdb
-  TARGET_PDB = src/OpenMesh/Tools/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyWindow.cc.o: CXX_COMPILER__OpenMeshToolsStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/VDPM/VHierarchyWindow.cc || cmake_object_order_depends_target_OpenMeshToolsStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -1017,8 +882,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyWindo
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/OpenMeshToolsStatic.pdb
-  TARGET_PDB = src/OpenMesh/Tools/libOpenMeshToolsd.pdb
 
 build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/ViewingParameters.cc.o: CXX_COMPILER__OpenMeshToolsStatic_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/VDPM/ViewingParameters.cc || cmake_object_order_depends_target_OpenMeshToolsStatic
   DEFINES = -DINCLUDE_TEMPLATES
@@ -1027,8 +890,6 @@ build src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/ViewingParamete
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir
   OBJECT_FILE_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/OpenMeshToolsStatic.pdb
-  TARGET_PDB = src/OpenMesh/Tools/libOpenMeshToolsd.pdb
 
 
 # =============================================================================
@@ -1043,9 +904,8 @@ build src/OpenMesh/Tools/libOpenMeshToolsd.a: CXX_STATIC_LIBRARY_LINKER__OpenMes
   OBJECT_DIR = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir
   POST_BUILD = cd /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Tools && /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E copy_if_different /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Tools/libOpenMeshToolsd.a /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/Build/lib/libOpenMeshToolsd.a
   PRE_LINK = :
-  TARGET_COMPILE_PDB = src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/OpenMeshToolsStatic.pdb
   TARGET_FILE = src/OpenMesh/Tools/libOpenMeshToolsd.a
-  TARGET_PDB = src/OpenMesh/Tools/libOpenMeshToolsd.pdb
+  TARGET_PDB = OpenMeshToolsd.a.dbg
 
 
 #############################################
@@ -1251,8 +1111,6 @@ build src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/dualizer.cc.o: CXX_COMP
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Dualizer/../../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../..
   OBJECT_DIR = src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir
   OBJECT_FILE_DIR = src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/
-  TARGET_PDB = Build/bin/Dualizer.pdb
 
 
 # =============================================================================
@@ -1269,9 +1127,8 @@ build Build/bin/Dualizer: CXX_EXECUTABLE_LINKER__Dualizer_Debug src/OpenMesh/App
   OBJECT_DIR = src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/
   TARGET_FILE = Build/bin/Dualizer
-  TARGET_PDB = Build/bin/Dualizer.pdb
+  TARGET_PDB = Dualizer.dbg
 
 
 #############################################
@@ -1383,8 +1240,6 @@ build src/OpenMesh/Apps/Decimating/commandlineDecimater/CMakeFiles/commandlineDe
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Decimating/commandlineDecimater/../../../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Decimating/commandlineDecimater -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../..
   OBJECT_DIR = src/OpenMesh/Apps/Decimating/commandlineDecimater/CMakeFiles/commandlineDecimater.dir
   OBJECT_FILE_DIR = src/OpenMesh/Apps/Decimating/commandlineDecimater/CMakeFiles/commandlineDecimater.dir/__
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/Decimating/commandlineDecimater/CMakeFiles/commandlineDecimater.dir/
-  TARGET_PDB = Build/bin/commandlineDecimater.pdb
 
 
 # =============================================================================
@@ -1401,9 +1256,8 @@ build Build/bin/commandlineDecimater: CXX_EXECUTABLE_LINKER__commandlineDecimate
   OBJECT_DIR = src/OpenMesh/Apps/Decimating/commandlineDecimater/CMakeFiles/commandlineDecimater.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/Decimating/commandlineDecimater/CMakeFiles/commandlineDecimater.dir/
   TARGET_FILE = Build/bin/commandlineDecimater
-  TARGET_PDB = Build/bin/commandlineDecimater.pdb
+  TARGET_PDB = commandlineDecimater.dbg
 
 
 #############################################
@@ -1515,8 +1369,6 @@ build src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.o: CXX_COMP
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Smoothing/../../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Smoothing -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../..
   OBJECT_DIR = src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir
   OBJECT_FILE_DIR = src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/
-  TARGET_PDB = Build/bin/Smoothing.pdb
 
 
 # =============================================================================
@@ -1533,9 +1385,8 @@ build Build/bin/Smoothing: CXX_EXECUTABLE_LINKER__Smoothing_Debug src/OpenMesh/A
   OBJECT_DIR = src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/
   TARGET_FILE = Build/bin/Smoothing
-  TARGET_PDB = Build/bin/Smoothing.pdb
+  TARGET_PDB = Smoothing.dbg
 
 
 #############################################
@@ -1647,8 +1498,6 @@ build src/OpenMesh/Apps/Subdivider/commandlineSubdivider/CMakeFiles/commandlineS
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineSubdivider/../../../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineSubdivider -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../..
   OBJECT_DIR = src/OpenMesh/Apps/Subdivider/commandlineSubdivider/CMakeFiles/commandlineSubdivider.dir
   OBJECT_FILE_DIR = src/OpenMesh/Apps/Subdivider/commandlineSubdivider/CMakeFiles/commandlineSubdivider.dir/__
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/Subdivider/commandlineSubdivider/CMakeFiles/commandlineSubdivider.dir/
-  TARGET_PDB = Build/bin/commandlineSubdivider.pdb
 
 
 # =============================================================================
@@ -1665,9 +1514,8 @@ build Build/bin/commandlineSubdivider: CXX_EXECUTABLE_LINKER__commandlineSubdivi
   OBJECT_DIR = src/OpenMesh/Apps/Subdivider/commandlineSubdivider/CMakeFiles/commandlineSubdivider.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/Subdivider/commandlineSubdivider/CMakeFiles/commandlineSubdivider.dir/
   TARGET_FILE = Build/bin/commandlineSubdivider
-  TARGET_PDB = Build/bin/commandlineSubdivider.pdb
+  TARGET_PDB = commandlineSubdivider.dbg
 
 
 #############################################
@@ -1779,8 +1627,6 @@ build src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/CMakeFiles/comm
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/../../../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../..
   OBJECT_DIR = src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/CMakeFiles/commandlineAdaptiveSubdivider.dir
   OBJECT_FILE_DIR = src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/CMakeFiles/commandlineAdaptiveSubdivider.dir/__
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/CMakeFiles/commandlineAdaptiveSubdivider.dir/
-  TARGET_PDB = Build/bin/commandlineAdaptiveSubdivider.pdb
 
 
 # =============================================================================
@@ -1797,9 +1643,8 @@ build Build/bin/commandlineAdaptiveSubdivider: CXX_EXECUTABLE_LINKER__commandlin
   OBJECT_DIR = src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/CMakeFiles/commandlineAdaptiveSubdivider.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/CMakeFiles/commandlineAdaptiveSubdivider.dir/
   TARGET_FILE = Build/bin/commandlineAdaptiveSubdivider
-  TARGET_PDB = Build/bin/commandlineAdaptiveSubdivider.pdb
+  TARGET_PDB = commandlineAdaptiveSubdivider.dbg
 
 
 #############################################
@@ -1911,8 +1756,6 @@ build src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/mconvert.cc.o: CXX_COMP
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/mconvert/../../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../..
   OBJECT_DIR = src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir
   OBJECT_FILE_DIR = src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/
-  TARGET_PDB = Build/bin/mconvert.pdb
 
 
 # =============================================================================
@@ -1929,9 +1772,8 @@ build Build/bin/mconvert: CXX_EXECUTABLE_LINKER__mconvert_Debug src/OpenMesh/App
   OBJECT_DIR = src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/
   TARGET_FILE = Build/bin/mconvert
-  TARGET_PDB = Build/bin/mconvert.pdb
+  TARGET_PDB = mconvert.dbg
 
 
 #############################################
@@ -2043,8 +1885,6 @@ build src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/mkba
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/../../../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../..
   OBJECT_DIR = src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir
   OBJECT_FILE_DIR = src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/
-  TARGET_PDB = Build/bin/mkbalancedpm.pdb
 
 
 # =============================================================================
@@ -2061,9 +1901,8 @@ build Build/bin/mkbalancedpm: CXX_EXECUTABLE_LINKER__mkbalancedpm_Debug src/Open
   OBJECT_DIR = src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/
   TARGET_FILE = Build/bin/mkbalancedpm
-  TARGET_PDB = Build/bin/mkbalancedpm.pdb
+  TARGET_PDB = mkbalancedpm.dbg
 
 
 #############################################
@@ -2175,8 +2014,6 @@ build src/OpenMesh/Apps/VDProgMesh/Analyzer/CMakeFiles/Analyzer.dir/vdpmanalyzer
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/VDProgMesh/Analyzer/../../../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/VDProgMesh/Analyzer -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../..
   OBJECT_DIR = src/OpenMesh/Apps/VDProgMesh/Analyzer/CMakeFiles/Analyzer.dir
   OBJECT_FILE_DIR = src/OpenMesh/Apps/VDProgMesh/Analyzer/CMakeFiles/Analyzer.dir
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/VDProgMesh/Analyzer/CMakeFiles/Analyzer.dir/
-  TARGET_PDB = Build/bin/Analyzer.pdb
 
 
 # =============================================================================
@@ -2193,9 +2030,8 @@ build Build/bin/Analyzer: CXX_EXECUTABLE_LINKER__Analyzer_Debug src/OpenMesh/App
   OBJECT_DIR = src/OpenMesh/Apps/VDProgMesh/Analyzer/CMakeFiles/Analyzer.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/VDProgMesh/Analyzer/CMakeFiles/Analyzer.dir/
   TARGET_FILE = Build/bin/Analyzer
-  TARGET_PDB = Build/bin/Analyzer.pdb
+  TARGET_PDB = Analyzer.dbg
 
 
 #############################################
@@ -2300,6 +2136,14 @@ build src/OpenMesh/Apps/VDProgMesh/Analyzer/install/strip: phony src/OpenMesh/Ap
 
 build cmake_object_order_depends_target_Sajat: phony || cmake_object_order_depends_target_OpenMeshCore cmake_object_order_depends_target_OpenMeshTools
 
+build src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/auxiliary.cpp.o: CXX_COMPILER__Sajat_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/auxiliary.cpp || cmake_object_order_depends_target_Sajat
+  DEFINES = -DINCLUDE_TEMPLATES
+  DEP_FILE = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/auxiliary.cpp.o.d
+  FLAGS = -g -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG  -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG  -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG  -fdiagnostics-color=always -std=gnu++11
+  INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/../../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../..
+  OBJECT_DIR = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir
+  OBJECT_FILE_DIR = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir
+
 build src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/main.cpp.o: CXX_COMPILER__Sajat_Debug /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/main.cpp || cmake_object_order_depends_target_Sajat
   DEFINES = -DINCLUDE_TEMPLATES
   DEP_FILE = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/main.cpp.o.d
@@ -2307,8 +2151,6 @@ build src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/main.cpp.o: CXX_COMPILER__Saj
   INCLUDES = -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/../../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../..
   OBJECT_DIR = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir
   OBJECT_FILE_DIR = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/
-  TARGET_PDB = Build/bin/Sajat.pdb
 
 
 # =============================================================================
@@ -2318,16 +2160,15 @@ build src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/main.cpp.o: CXX_COMPILER__Saj
 #############################################
 # Link the executable Build/bin/Sajat
 
-build Build/bin/Sajat: CXX_EXECUTABLE_LINKER__Sajat_Debug src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/main.cpp.o | Build/lib/libOpenMeshToolsd.so.9.0 Build/lib/libOpenMeshCored.so.9.0 || Build/lib/libOpenMeshCored.so Build/lib/libOpenMeshToolsd.so Build/lib/libOpenMeshToolsd.so Build/lib/libOpenMeshCored.so
+build Build/bin/Sajat: CXX_EXECUTABLE_LINKER__Sajat_Debug src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/auxiliary.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/main.cpp.o | Build/lib/libOpenMeshToolsd.so.9.0 Build/lib/libOpenMeshCored.so.9.0 || Build/lib/libOpenMeshCored.so Build/lib/libOpenMeshToolsd.so Build/lib/libOpenMeshToolsd.so Build/lib/libOpenMeshCored.so
   FLAGS = -g -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG  -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG  -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG
   LINK_FLAGS = -rdynamic
   LINK_LIBRARIES = -Wl,-rpath,"\$$ORIGIN/../lib"  Build/lib/libOpenMeshToolsd.so.9.0  Build/lib/libOpenMeshCored.so.9.0
   OBJECT_DIR = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/
   TARGET_FILE = Build/bin/Sajat
-  TARGET_PDB = Build/bin/Sajat.pdb
+  TARGET_PDB = Sajat.dbg
 
 
 #############################################
@@ -2781,14 +2622,14 @@ build src/Unittests/all: phony
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/AddFileDependencies.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCCompiler.cmake.in /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCCompilerABI.c /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCXXCompiler.cmake.in /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCompilerIdDetection.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineCCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineCXXCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineCompileFeatures.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineCompilerABI.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineCompilerId.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineSystem.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeFindBinUtils.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeParseImplicitIncludeInfo.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeParseImplicitLinkInfo.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeParseLibraryArchitecture.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystem.cmake.in /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeTestCCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeTestCXXCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeTestCompilerCommon.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CPack.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CPackComponent.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/ADSP-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/ARMCC-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/ARMClang-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/AppleClang-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Borland-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Clang-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Cray-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GHS-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-C.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-FindBinUtils.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/HP-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/IAR-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Intel-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/LCC-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/MSVC-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/NVHPC-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/PGI-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/PathScale-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/SCO-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/TI-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Tasking-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Watcom-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/XL-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/zOS-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindDoxygen.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindLATEX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindOpenGL.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindPackageMessage.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/InstallRequiredSystemLibraries.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Internal/FeatureTesting.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-Determine-CXX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-C.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Templates/CPackConfig.cmake.in /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/Doc/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/Doc/doxy.config.in /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/MSVCMacros.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCICommon.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCICompiler.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIDoxygen.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIOutput.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIPaths.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIQt.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake/OpenMeshPackage.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/openmesh.pc.in /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Decimating/commandlineDecimater/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Dualizer/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Smoothing/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineSubdivider/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/VDProgMesh/Analyzer/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/mconvert/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/Unittests/CMakeLists.txt CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/AddFileDependencies.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CPack.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CPackComponent.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-C.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindDoxygen.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindLATEX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindOpenGL.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindPackageMessage.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/InstallRequiredSystemLibraries.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-C.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Templates/CPackConfig.cmake.in /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/Doc/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/Doc/doxy.config.in /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/MSVCMacros.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCICommon.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCICompiler.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIDoxygen.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIOutput.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIPaths.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIQt.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake/OpenMeshPackage.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/openmesh.pc.in /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Decimating/commandlineDecimater/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Dualizer/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Smoothing/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineSubdivider/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/VDProgMesh/Analyzer/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/mconvert/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/Unittests/CMakeLists.txt CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/AddFileDependencies.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCCompiler.cmake.in /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCCompilerABI.c /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCXXCompiler.cmake.in /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCompilerIdDetection.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineCCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineCXXCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineCompileFeatures.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineCompilerABI.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineCompilerId.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeDetermineSystem.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeFindBinUtils.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeParseImplicitIncludeInfo.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeParseImplicitLinkInfo.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeParseLibraryArchitecture.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystem.cmake.in /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeTestCCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeTestCXXCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeTestCompilerCommon.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CPack.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CPackComponent.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/ADSP-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/ARMCC-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/ARMClang-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/AppleClang-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Borland-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Clang-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Cray-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GHS-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-C.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-FindBinUtils.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/HP-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/IAR-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Intel-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/LCC-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/MSVC-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/NVHPC-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/PGI-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/PathScale-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/SCO-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/TI-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Tasking-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/Watcom-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/XL-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/zOS-C-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindDoxygen.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindLATEX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindOpenGL.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindPackageMessage.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/InstallRequiredSystemLibraries.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Internal/FeatureTesting.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-Determine-CXX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-C.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Templates/CPackConfig.cmake.in /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/Doc/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/Doc/doxy.config.in /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/MSVCMacros.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCICommon.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCICompiler.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIDoxygen.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIOutput.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIPaths.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIQt.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake/OpenMeshPackage.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/openmesh.pc.in /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Decimating/commandlineDecimater/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Dualizer/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Smoothing/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineSubdivider/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/VDProgMesh/Analyzer/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/mconvert/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/Unittests/CMakeLists.txt CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake: phony
+build /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/AddFileDependencies.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CPack.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/CPackComponent.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-C.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindDoxygen.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindLATEX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindOpenGL.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/FindPackageMessage.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/InstallRequiredSystemLibraries.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-C.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.25/Templates/CPackConfig.cmake.in /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/Doc/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/Doc/doxy.config.in /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/MSVCMacros.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCICommon.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCICompiler.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIDoxygen.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIOutput.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIPaths.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-library/VCI/VCIQt.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake/OpenMeshPackage.cmake /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/openmesh.pc.in /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Decimating/commandlineDecimater/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Dualizer/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Smoothing/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineSubdivider/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/VDProgMesh/Analyzer/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/mconvert/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/CMakeLists.txt /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/Unittests/CMakeLists.txt CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake: phony
 
 
 #############################################
