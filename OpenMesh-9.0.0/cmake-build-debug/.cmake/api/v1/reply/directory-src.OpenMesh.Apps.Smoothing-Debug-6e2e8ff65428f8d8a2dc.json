@@ -1,0 +1,53 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"vci_add_executable"
+		],
+		"files" : 
+		[
+			"cmake-library/VCI/VCICommon.cmake",
+			"src/OpenMesh/Apps/Smoothing/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 8,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 231,
+				"parent" : 1
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"Build/bin/Smoothing"
+			],
+			"targetId" : "Smoothing::@509c5d2bb07f7a358715",
+			"targetIndex" : 8,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "src/OpenMesh/Apps/Smoothing",
+		"source" : "src/OpenMesh/Apps/Smoothing"
+	}
+}
