@@ -38,8 +38,8 @@
  */
 /// A tesztelheto alakzatok
 //#define TEST_CUBE
-#define TEST_BUNNY
-//#define TEST_DIAMOND
+//#define TEST_BUNNY
+#define TEST_DIAMOND
 
 /**
  * A feladat megvalositasa
@@ -57,8 +57,6 @@ int main(){
 #ifdef TEST_DIAMOND
     std::string input_file = "diamond.obj";
 #endif
-
-    std::string output_file = "output.obj";
 
     /// A racspont osztas leptek merete es maximum kiterjedese
 #ifdef TEST_BUNNY
@@ -79,7 +77,7 @@ int main(){
 
 
     /// A metszespontok x, y, es z koordinatait tarolja
-    std::vector<Point> intersect_points((int)(max/l)*(int)(max/l)*4);
+    std::vector<Point> intersect_points;
 
     int count = 0;
 
@@ -87,6 +85,7 @@ int main(){
     for(MyMesh::FaceIter fi = mesh_object.faces_begin(); fi != mesh_object.faces_end(); fi++){
         MyMesh::FaceHandle fh = *fi;
 
+        //Ezt a reszt nem szettem ki kulon fuggvenybe, mert percekkel(!) novelte a lefutasi idot
         /// Az aktualis haromszog csucspontjai
         Point p1 = {0,0,0};
         Point p2 = {0,0,0};
@@ -112,6 +111,7 @@ int main(){
             }
             c++;
         }
+
 
         /// Kiszamoljuk a haromszog maximum x es z koordinatait
         double max_x = fmax(fmax(p1.coordinates[0], p2.coordinates[0]), p3.coordinates[0]);
@@ -147,9 +147,7 @@ int main(){
                     /// Ha nem negativ akkor a haromszogon belul van, tehat metszi
                     if (b1 > 0 && b2 > 0 && b3 > 0) {
                         double y = p1.coordinates[1] * b1 + p2.coordinates[1] * b2 + p3.coordinates[1] * b3;
-                        intersect_points[count].coordinates[0] = x;
-                        intersect_points[count].coordinates[1] = y;
-                        intersect_points[count].coordinates[2] = z;
+                        intersect_points.push_back(Point{x, y, z});
                         count++;
                     }
                 }
@@ -174,68 +172,66 @@ int main(){
     deleteWrongPoints(intersect_points);
 
     /// A bemeneti pontpok kozotti elek tarolasara szolgalo tomb
-/*    std::vector<Edge> edges((int)(max/l)*(int)(max/l)*4);
+    std::vector<Edge> edges;
 
-    int ii = 0;
     /// A bemeneti pontok kozotti elek kiszamitasa
     for(int i = 0; i < (int)intersect_points.size(); i = i+2){
-        int k;
-        /// Vegigmegyunk az osszes szomszedos ponton
-        for(int j = 0; j < 8; j++) {
-            // Ezt biztos lehetne szebben
-            switch (j) {
-                case 0:
-                    k = (int)(i-((max/l)-3));
-                    break;
-                case 1:
-                    k = (int)(i-((max/l)-2));
-                    break;
-                case 2:
-                    k = (int)(i-((max/l)-1));
-                    break;
-                case 3:
-                    k = (int)i-1;
-                    break;
-                case 4:
-                    k = (int)i+1;
-                    break;
-                case 5:
-                    k = (int)(i+((max/l)-1));
-                    break;
-                case 6:
-                    k = (int)(i+((max/l)));
-                    break;
-                case 7:
-                    k = (int)(i+((max/l)+1));
-                    break;
-                default:
-                    break;
-            }
-            if (thisEdgeLeadsToPoint(intersect_points[i], intersect_points[k]) != -1) {
-                edges[ii].p1 = intersect_points[i];
-                edges[ii].p2 = intersect_points[k];
-                edges[ii].weight = thisEdgeLeadsToPoint(intersect_points[i], intersect_points[k]);
-                //TODO valami malloc hiba van!
-                ii++;
-            }
+
+        /// Vegigmegyunk az osszes lehetseges szomszedos ponton
+        Point adjacentPoint{};
+        adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] - l;
+        adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
+        adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] - l;
+        if(isIncluded(intersect_points, adjacentPoint)) {
+            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+        }
+        adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0];
+        adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
+        adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] - l;
+        if(isIncluded(intersect_points, adjacentPoint)) {
+            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+        }
+        adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] + l;
+        adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
+        adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] - l;
+        if(isIncluded(intersect_points, adjacentPoint)) {
+            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+        }
+        adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] - l;
+        adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
+        adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2];
+        if(isIncluded(intersect_points, adjacentPoint)) {
+            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+        }
+        adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] + l;
+        adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
+        adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2];
+        if(isIncluded(intersect_points, adjacentPoint)) {
+            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+        }
+        adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] - l;
+        adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
+        adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] + l;
+        if(isIncluded(intersect_points, adjacentPoint)) {
+            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+        }
+        adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0];
+        adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
+        adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] + l;
+        if(isIncluded(intersect_points, adjacentPoint)) {
+            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+        }
+        adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] + l;
+        adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
+        adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] + l;
+        if(isIncluded(intersect_points, adjacentPoint)) {
+            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
         }
     }
-    //TODO fuggvenyekbe attenni mindent
-
-    //TODO a pontokat ossze kell kotni es ki kell rajzolni
-
-    //TODO a debuggolashoz
-    for (auto & edge : edges) {
-        if (edge.weight != 0) {
-            std::cout << edge.p1.coordinates[0] << " " << edge.p1.coordinates[1] << " " << edge.p1.coordinates[2] << " " << edge.p2.coordinates[0] << " " << edge.p2.coordinates[1] << " " << edge.p2.coordinates[2] << " " << edge.weight << std::endl;
-        }
-    }
-
-*/
-
 
     /// A kiiras a fileba
-    writeVertices("output.obj", input_file, intersect_points);
+    writeInternalLines("output1.obj", input_file, intersect_points);
+    writeInputEdges("output2.obj", input_file, edges);
 
     return 0;
 }

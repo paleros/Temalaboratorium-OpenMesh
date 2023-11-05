@@ -27,11 +27,11 @@ void readMesh(const std::string& file, MyMesh& mesh){
 }
 
 /**
- * A parameterkent kapott tombot kiirja a .obj fileba
+ * A parameterkent kapott bemeneti es kimeneti pontokat osszekoti fuggolegesen es kiirja a .obj fileba
  * @param file_name a kimeneti file neve
  * @param intersect_points a metszespontok koordinatai
  */
-void writeVertices(const std::string& output_file_name, const std::string& input_file_name,std::vector<Point>& intersect_points){
+void writeInternalLines(const std::string& output_file_name, const std::string& input_file_name, std::vector<Point>& intersect_points){
     std::ofstream file(output_file_name);
     if(!file){
         std::cout << "Error: The file " << output_file_name << " cannot be opened!" << std::endl;
@@ -138,3 +138,42 @@ void deleteWrongPoints(std::vector<Point>& intersect_points) {
     }
 }
 
+/**
+ * Megnezi, hogy a parameterkent kapott pont benne van-e a tombben (csal x-t es z-t vizsgalja)
+ * @param intersect_points a pontok tombje
+ * @param p a keresendo pont
+ * @return benne van-e a tombben
+ */
+bool isIncluded(std::vector<Point>& intersect_points, const Point& p){
+    for (auto & intersect_point : intersect_points){
+        if (intersect_point.coordinates[0] == p.coordinates[0] &&
+            intersect_point.coordinates[2] == p.coordinates[2]){
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * A parameterkent kapott eleket kiirja a .obj fileba
+ * @param output_file_name a kimeneti file neve
+ * @param input_file_name a bemeneti file neve
+ * @param edges a kiirando elek
+ */
+void writeInputEdges(const std::string& output_file_name, const std::string& input_file_name, std::vector<Edge>& edges){
+    std::ofstream file(output_file_name);
+    if(!file){
+        std::cout << "Error: The file " << output_file_name << " cannot be opened!" << std::endl;
+        exit(1);
+    }
+    /// A kimeneti file fejlece
+    file <<  "# Input edges generated from " << input_file_name << " by peros\n";
+    int k = 1;
+    for(auto & edge : edges){
+        file << "v " << edge.p1.coordinates[0] << " " << edge.p1.coordinates[1] << " " << edge.p1.coordinates[2] << "\n";
+        file << "v " << edge.p2.coordinates[0] << " " << edge.p2.coordinates[1] << " " << edge.p2.coordinates[2] << "\n";
+        file << "l " << k << " " << k+1 << "\n";
+        k = k + 2;
+    }
+    file.close();
+}

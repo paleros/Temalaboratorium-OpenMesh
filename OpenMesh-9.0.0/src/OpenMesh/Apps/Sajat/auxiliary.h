@@ -48,7 +48,7 @@ struct Edge{
  * @param file_name a kimeneti file neve
  * @param intersect_points a metszespontok koordinatai
  */
-void writeVertices(const std::string& output_file_name, const std::string& input_file_name,std::vector<Point>& intersect_points);
+void writeInternalLines(const std::string& output_file_name, const std::string& input_file_name, std::vector<Point>& intersect_points);
 
 /**
  * Kiszamolja a haromszog teruletet
@@ -89,3 +89,18 @@ double thisEdgeLeadsToPoint(const Point& actualPoint, const Point& adjacentPoint
  */
 void deleteWrongPoints(std::vector<Point>& intersect_points);
 
+/**
+ * Megnezi, hogy a parameterkent kapott pont benne van-e a parameterkent kapott tombben
+ * @param intersect_points a pontok tombje
+ * @param p a keresendo pont
+ * @return benne van-e a tombben
+ */
+bool isIncluded(std::vector<Point>& intersect_points, const Point& p);
+
+/**
+ * A parameterkent kapott eleket kiirja a .obj fileba
+ * @param output_file_name a kimeneti file neve
+ * @param input_file_name a bemeneti file neve
+ * @param edges a kiirando elek
+ */
+void writeInputEdges(const std::string& output_file_name, const std::string& input_file_name, std::vector<Edge>& edges);
