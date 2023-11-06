@@ -62,7 +62,6 @@ int main(){
 #ifdef TEST_BUNNY
     //double l = 0.005;
     double l = 0.002;
-    double max = 0.2;
 #endif
 #ifdef TEST_CUBE
     double l = 0.1;
@@ -186,7 +185,7 @@ int main(){
         if(isIncluded(intersect_points, adjacentPoint)){
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
-            if (weight != -1) {
+            if (weight != -1 && weight != 0) {
                 edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
             }
         }
@@ -196,7 +195,7 @@ int main(){
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
-            if (weight != -1) {
+            if (weight != -1 && weight != 0) {
                 edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
             }
         }
@@ -206,7 +205,7 @@ int main(){
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
-            if (weight != -1) {
+            if (weight != -1 && weight != 0) {
                 edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
             }
         }
@@ -216,7 +215,7 @@ int main(){
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
-            if (weight != -1) {
+            if (weight != -1 && weight != 0) {
                 edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
             }
         }
@@ -226,7 +225,7 @@ int main(){
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
-            if (weight != -1) {
+            if (weight != -1 && weight != 0) {
                 edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
             }
         }
@@ -236,7 +235,7 @@ int main(){
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
-            if (weight != -1) {
+            if (weight != -1 && weight != 0) {
                 edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
             }
         }
@@ -246,7 +245,7 @@ int main(){
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
-            if (weight != -1) {
+            if (weight != -1 && weight != 0) {
                 edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
             }
         }
@@ -256,7 +255,7 @@ int main(){
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
-            if (weight != -1) {
+            if (weight != -1 && weight != 0) {
                 edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
             }
         }

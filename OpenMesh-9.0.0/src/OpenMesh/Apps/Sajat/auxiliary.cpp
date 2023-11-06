@@ -108,16 +108,16 @@ double thisEdgeLeadsToPoint(const Point& actualPoint, const Point& adjacentPoint
     if(actualPoint.coordinates[1] > adjacentPoint.coordinates[1]){
         return -1;
     }
-    double theta0 = M_PI;
-    //double theta0 = 1;
+    double theta0 = M_PI / 2;
     Point p{};
     p.coordinates[0] = adjacentPoint.coordinates[0] - actualPoint.coordinates[0];
     p.coordinates[1] = adjacentPoint.coordinates[1] - actualPoint.coordinates[1];
     p.coordinates[2] = adjacentPoint.coordinates[2] - actualPoint.coordinates[2];
     double theta =  atan2(sqrt(pow(p.coordinates[0], 2) + pow(p.coordinates[2], 2)), p.coordinates[1]);
-    theta = 2 * M_PI - theta;
-    if(theta > theta0 || theta < -theta0){
-        return std::abs(theta);
+    theta = (2 * M_PI) - theta;
+    theta = std::abs(theta);
+    if(theta > theta0){
+        return theta;
     }
     return 0;
 }
@@ -146,6 +146,7 @@ void deleteWrongPoints(std::vector<Point>& intersect_points) {
  * @return benne van-e
  */
 bool isIncluded(std::vector<Point>& intersect_points, const Point& p){
+    /// A bemeneti pontokat es a kimeneti pontokat kulon valogatja
     std::vector<Point> inputPoints;
     std::vector<Point> outputPoints;
     for (int j = 0; j < (int)intersect_points.size(); j = j + 2){
@@ -162,6 +163,7 @@ bool isIncluded(std::vector<Point>& intersect_points, const Point& p){
     }
 
     if (!inputPoints.empty()){
+        /// Megkeresi a legkisebb y koordinataju bemeneti pontot, ami nagyobb mint a parameterkent kapott pont y koordinataja
         Point minYInputPoint{};
         for(auto & inputPoint : inputPoints){
             if(inputPoint.coordinates[1] > p.coordinates[1]){
@@ -236,6 +238,7 @@ void writeInputEdges(const std::string& output_file_name, const std::string& inp
  * @return visszaadja az y koordinatat, ha nincs benne, akkopr 0.0
  */
 double getY(std::vector<Point>& intersect_points, const Point& p){
+    /// A bemeneti pontokat es a kimeneti pontokat kulon valogatja
     std::vector<Point> inputPoints;
     std::vector<Point> outputPoints;
     for (int j = 0; j < (int)intersect_points.size(); j = j + 2){
@@ -252,6 +255,7 @@ double getY(std::vector<Point>& intersect_points, const Point& p){
     }
 
     if (!inputPoints.empty()){
+        /// Megkeresi a legkisebb y koordinataju bemeneti pontot, ami nagyobb mint a parameterkent kapott pont y koordinataja
         Point minYInputPoint{};
         for(auto & inputPoint : inputPoints){
             if(inputPoint.coordinates[1] > p.coordinates[1]){
