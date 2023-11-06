@@ -182,52 +182,63 @@ int main(){
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] - l;
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] - l;
-        if(isIncluded(intersect_points, adjacentPoint)) {
+        if(isIncluded(intersect_points, adjacentPoint)){
+            adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0];
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] - l;
         if(isIncluded(intersect_points, adjacentPoint)) {
+            adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] + l;
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] - l;
         if(isIncluded(intersect_points, adjacentPoint)) {
+            adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] - l;
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2];
         if(isIncluded(intersect_points, adjacentPoint)) {
+            adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] + l;
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2];
         if(isIncluded(intersect_points, adjacentPoint)) {
+            adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] - l;
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] + l;
         if(isIncluded(intersect_points, adjacentPoint)) {
+            adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0];
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] + l;
         if(isIncluded(intersect_points, adjacentPoint)) {
+            adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] + l;
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] + l;
         if(isIncluded(intersect_points, adjacentPoint)) {
+            adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
             edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
         }
     }
+    //TODO rossz pontokat kot ossze
+
+    //TODO kiszepiteni a kododt
 
     /// A kiiras a fileba
     writeInternalLines("output1.obj", input_file, intersect_points);

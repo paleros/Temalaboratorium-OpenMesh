@@ -90,10 +90,10 @@ double thisEdgeLeadsToPoint(const Point& actualPoint, const Point& adjacentPoint
 void deleteWrongPoints(std::vector<Point>& intersect_points);
 
 /**
- * Megnezi, hogy a parameterkent kapott pont benne van-e a parameterkent kapott tombben
+ * Megnezi, hogy a parameterkent kapott pont benne van-e a tombben (csal x-t es z-t vizsgalja)
  * @param intersect_points a pontok tombje
  * @param p a keresendo pont
- * @return benne van-e a tombben
+ * @returnbenne van-e
  */
 bool isIncluded(std::vector<Point>& intersect_points, const Point& p);
 
@@ -104,3 +104,11 @@ bool isIncluded(std::vector<Point>& intersect_points, const Point& p);
  * @param edges a kiirando elek
  */
 void writeInputEdges(const std::string& output_file_name, const std::string& input_file_name, std::vector<Edge>& edges);
+
+/**
+ * Megnezi, hogy a parameterkent kapott pont benne van-e a tombben (csal x-t es z-t vizsgalja)
+ * @param intersect_points a pontok tombje
+ * @param p a keresendo pont
+ * @return visszaadja az y koordinatat, ha nincs benne, akkopr 0.0
+ */
+double getY(std::vector<Point>& intersect_points, const Point& p);

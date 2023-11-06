@@ -142,7 +142,7 @@ void deleteWrongPoints(std::vector<Point>& intersect_points) {
  * Megnezi, hogy a parameterkent kapott pont benne van-e a tombben (csal x-t es z-t vizsgalja)
  * @param intersect_points a pontok tombje
  * @param p a keresendo pont
- * @return benne van-e a tombben
+ * @return benne van-e
  */
 bool isIncluded(std::vector<Point>& intersect_points, const Point& p){
     for (auto & intersect_point : intersect_points){
@@ -176,4 +176,20 @@ void writeInputEdges(const std::string& output_file_name, const std::string& inp
         k = k + 2;
     }
     file.close();
+}
+
+/**
+ * Megnezi, hogy a parameterkent kapott pont benne van-e a tombben (csal x-t es z-t vizsgalja)
+ * @param intersect_points a pontok tombje
+ * @param p a keresendo pont
+ * @return visszaadja az y koordinatat, ha nincs benne, akkopr 0.0
+ */
+double getY(std::vector<Point>& intersect_points, const Point& p){
+    for (auto & intersect_point : intersect_points){
+        if (intersect_point.coordinates[0] == p.coordinates[0] &&
+            intersect_point.coordinates[2] == p.coordinates[2]){
+            return intersect_point.coordinates[1];
+        }
+    }
+    return 0.0;
 }
