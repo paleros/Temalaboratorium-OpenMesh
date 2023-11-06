@@ -60,7 +60,6 @@ int main(){
 
     /// A racspont osztas leptek merete es maximum kiterjedese
 #ifdef TEST_BUNNY
-    //double l = 0.005;
     double l = 0.002;
 #endif
 #ifdef TEST_CUBE

@@ -108,14 +108,15 @@ double thisEdgeLeadsToPoint(const Point& actualPoint, const Point& adjacentPoint
     if(actualPoint.coordinates[1] > adjacentPoint.coordinates[1]){
         return -1;
     }
-    double theta0 = M_PI / 2;
+    /// A hatarertek
+    double theta0 = M_PI / 4; // 45 fok
+
     Point p{};
     p.coordinates[0] = adjacentPoint.coordinates[0] - actualPoint.coordinates[0];
     p.coordinates[1] = adjacentPoint.coordinates[1] - actualPoint.coordinates[1];
     p.coordinates[2] = adjacentPoint.coordinates[2] - actualPoint.coordinates[2];
-    double theta =  atan2(sqrt(pow(p.coordinates[0], 2) + pow(p.coordinates[2], 2)), p.coordinates[1]);
-    theta = (2 * M_PI) - theta;
-    theta = std::abs(theta);
+    double theta = atan(sqrt(pow(p.coordinates[0], 2) + pow(p.coordinates[2], 2)) / p.coordinates[1]);
+
     if(theta > theta0){
         return theta;
     }
