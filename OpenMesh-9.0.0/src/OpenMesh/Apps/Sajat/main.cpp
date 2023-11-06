@@ -38,8 +38,8 @@
  */
 /// A tesztelheto alakzatok
 //#define TEST_CUBE
-//#define TEST_BUNNY
-#define TEST_DIAMOND
+#define TEST_BUNNY
+//#define TEST_DIAMOND
 
 /**
  * A feladat megvalositasa
@@ -60,7 +60,8 @@ int main(){
 
     /// A racspont osztas leptek merete es maximum kiterjedese
 #ifdef TEST_BUNNY
-    double l = 0.005;
+    //double l = 0.005;
+    double l = 0.002;
     double max = 0.2;
 #endif
 #ifdef TEST_CUBE
@@ -175,7 +176,7 @@ int main(){
     std::vector<Edge> edges;
 
     /// A bemeneti pontok kozotti elek kiszamitasa
-    for(int i = 0; i < (int)intersect_points.size(); i = i+2){
+    for(int i = 0; i < (int)intersect_points.size(); i = i + 2){
 
         /// Vegigmegyunk az osszes lehetseges szomszedos ponton
         Point adjacentPoint{};
@@ -184,56 +185,80 @@ int main(){
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] - l;
         if(isIncluded(intersect_points, adjacentPoint)){
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
-            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+            double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
+            if (weight != -1) {
+                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+            }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0];
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] - l;
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
-            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+            double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
+            if (weight != -1) {
+                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+            }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] + l;
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] - l;
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
-            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+            double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
+            if (weight != -1) {
+                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+            }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] - l;
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2];
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
-            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+            double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
+            if (weight != -1) {
+                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+            }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] + l;
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2];
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
-            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+            double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
+            if (weight != -1) {
+                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+            }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] - l;
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] + l;
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
-            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+            double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
+            if (weight != -1) {
+                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+            }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0];
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] + l;
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
-            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+            double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
+            if (weight != -1) {
+                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+            }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] + l;
         adjacentPoint.coordinates[1] = intersect_points[i].coordinates[1];
         adjacentPoint.coordinates[2] = intersect_points[i].coordinates[2] + l;
         if(isIncluded(intersect_points, adjacentPoint)) {
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint);
-            edges.push_back(Edge{intersect_points[i], adjacentPoint, thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint)});
+            double weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint);
+            if (weight != -1) {
+                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+            }
         }
     }
     //TODO rossz pontokat kot ossze

@@ -108,15 +108,16 @@ double thisEdgeLeadsToPoint(const Point& actualPoint, const Point& adjacentPoint
     if(actualPoint.coordinates[1] > adjacentPoint.coordinates[1]){
         return -1;
     }
-    //double phi0 = M_PI;
-    double phi0 = 1;
+    double theta0 = M_PI;
+    //double theta0 = 1;
     Point p{};
     p.coordinates[0] = adjacentPoint.coordinates[0] - actualPoint.coordinates[0];
     p.coordinates[1] = adjacentPoint.coordinates[1] - actualPoint.coordinates[1];
     p.coordinates[2] = adjacentPoint.coordinates[2] - actualPoint.coordinates[2];
-    double phi = atan2(p.coordinates[2], p.coordinates[0]);
-    if(phi > phi0 || phi < -phi0){
-        return std::abs(phi);
+    double theta =  atan2(sqrt(pow(p.coordinates[0], 2) + pow(p.coordinates[2], 2)), p.coordinates[1]);
+    theta = 2 * M_PI - theta;
+    if(theta > theta0 || theta < -theta0){
+        return std::abs(theta);
     }
     return 0;
 }
@@ -145,12 +146,62 @@ void deleteWrongPoints(std::vector<Point>& intersect_points) {
  * @return benne van-e
  */
 bool isIncluded(std::vector<Point>& intersect_points, const Point& p){
-    for (auto & intersect_point : intersect_points){
-        if (intersect_point.coordinates[0] == p.coordinates[0] &&
-            intersect_point.coordinates[2] == p.coordinates[2]){
-            return true;
+    std::vector<Point> inputPoints;
+    std::vector<Point> outputPoints;
+    for (int j = 0; j < (int)intersect_points.size(); j = j + 2){
+        if (intersect_points[j].coordinates[0] == p.coordinates[0] &&
+            intersect_points[j].coordinates[2] == p.coordinates[2]) {
+            inputPoints.push_back(intersect_points[j]);
         }
     }
+    for (int j = 1; j < (int)intersect_points.size(); j = j + 2){
+        if (intersect_points[j].coordinates[0] == p.coordinates[0] &&
+            intersect_points[j].coordinates[2] == p.coordinates[2]) {
+            outputPoints.push_back(intersect_points[j]);
+        }
+    }
+
+    if (!inputPoints.empty()){
+        Point minYInputPoint{};
+        for(auto & inputPoint : inputPoints){
+            if(inputPoint.coordinates[1] > p.coordinates[1]){
+                minYInputPoint = inputPoint;
+                break;
+            } else {
+                minYInputPoint = inputPoint;
+            }
+        }
+
+        for (auto & inputPoint : inputPoints){
+            if (inputPoint.coordinates[1] < minYInputPoint.coordinates[1]
+                && inputPoint.coordinates[1] > p.coordinates[1]){
+                minYInputPoint = inputPoint;
+            }
+        }
+
+        Point minYOutputPoint{};
+        for(auto & outputPoint : outputPoints){
+            if(outputPoint.coordinates[1] > p.coordinates[1]){
+                minYOutputPoint = outputPoint;
+                break;
+            } else {
+                minYOutputPoint = outputPoint;
+            }
+        }
+
+        for (auto & outputPoint : outputPoints){
+            if (outputPoint.coordinates[1] < minYOutputPoint.coordinates[1]
+                && outputPoint.coordinates[1] > p.coordinates[1]){
+                minYOutputPoint = outputPoint;
+            }
+        }
+
+        if (minYInputPoint.coordinates[1] < minYOutputPoint.coordinates[1]){
+            return true;
+        }
+
+    }
+
     return false;
 }
 
@@ -185,11 +236,61 @@ void writeInputEdges(const std::string& output_file_name, const std::string& inp
  * @return visszaadja az y koordinatat, ha nincs benne, akkopr 0.0
  */
 double getY(std::vector<Point>& intersect_points, const Point& p){
-    for (auto & intersect_point : intersect_points){
-        if (intersect_point.coordinates[0] == p.coordinates[0] &&
-            intersect_point.coordinates[2] == p.coordinates[2]){
-            return intersect_point.coordinates[1];
+    std::vector<Point> inputPoints;
+    std::vector<Point> outputPoints;
+    for (int j = 0; j < (int)intersect_points.size(); j = j + 2){
+        if (intersect_points[j].coordinates[0] == p.coordinates[0] &&
+            intersect_points[j].coordinates[2] == p.coordinates[2]) {
+            inputPoints.push_back(intersect_points[j]);
         }
     }
+    for (int j = 1; j < (int)intersect_points.size(); j = j + 2){
+        if (intersect_points[j].coordinates[0] == p.coordinates[0] &&
+            intersect_points[j].coordinates[2] == p.coordinates[2]) {
+            outputPoints.push_back(intersect_points[j]);
+        }
+    }
+
+    if (!inputPoints.empty()){
+        Point minYInputPoint{};
+        for(auto & inputPoint : inputPoints){
+            if(inputPoint.coordinates[1] > p.coordinates[1]){
+                minYInputPoint = inputPoint;
+                break;
+            } else {
+                minYInputPoint = inputPoint;
+            }
+        }
+
+        for (auto & inputPoint : inputPoints){
+            if (inputPoint.coordinates[1] < minYInputPoint.coordinates[1]
+                && inputPoint.coordinates[1] > p.coordinates[1]){
+                minYInputPoint = inputPoint;
+            }
+        }
+
+        Point minYOutputPoint{};
+        for(auto & outputPoint : outputPoints){
+            if(outputPoint.coordinates[1] > p.coordinates[1]){
+                minYOutputPoint = outputPoint;
+                break;
+            } else {
+                minYOutputPoint = outputPoint;
+            }
+        }
+
+        for (auto & outputPoint : outputPoints){
+            if (outputPoint.coordinates[1] < minYOutputPoint.coordinates[1]
+                && outputPoint.coordinates[1] > p.coordinates[1]){
+                minYOutputPoint = outputPoint;
+            }
+        }
+
+        if (minYInputPoint.coordinates[1] < minYOutputPoint.coordinates[1]){
+            return minYInputPoint.coordinates[1];
+        }
+
+    }
+
     return 0.0;
 }
