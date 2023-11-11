@@ -10,7 +10,6 @@
 
 #include <string>
 #include <fstream>
-#include <tuple>
 #include "auxiliary.h"
 #include "OpenMesh/Core/IO/MeshIO.hh"
 
@@ -18,6 +17,7 @@
  * Beolvassa a megadott filet
  * @param file a beolvasando file
  * @param mesh a mesh, amibe tarolni kell az adatokat
+ * @since 1.1
  */
 void readMesh(const std::string& file, MyMesh& mesh){
     if(!OpenMesh::IO::read_mesh(mesh, file)){
@@ -30,6 +30,7 @@ void readMesh(const std::string& file, MyMesh& mesh){
  * A parameterkent kapott bemeneti es kimeneti pontokat osszekoti fuggolegesen es kiirja a .obj fileba
  * @param file_name a kimeneti file neve
  * @param intersect_points a metszespontok koordinatai
+ * @since 1.1
  */
 void writeInternalLines(const std::string& output_file_name, const std::string& input_file_name, std::vector<Point>& intersect_points){
     std::ofstream file(output_file_name);
@@ -53,17 +54,15 @@ void writeInternalLines(const std::string& output_file_name, const std::string& 
 /**
  * Kiszamolja a haromszog teruletet
  * @param x1 a kerdeses pont x koordinataja
- * @param y1 a kerdeses pont y koordinataja
  * @param z1 a kerdeses pont z koordinataja
  * @param x2 az masodik pont x koordinataja
- * @param y2 az masodik pont y koordinataja
  * @param z2 az masodik pont z koordinataja
  * @param x3 az harmadik pont x koordinataja
- * @param y3 az harmadik pont y koordinataja
  * @param z3 az harmadik pont z koordinataja
  * @return a haromszog terulete
+ * @since 1.1
  */
-double area(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3){
+double area(double x1, double z1, double x2, double z2, double x3, double z3) {
     double v1[2];
     v1[0] = x1 - x2;
     v1[1] = z1 - z2;
@@ -82,6 +81,7 @@ double area(double x1, double y1, double z1, double x2, double y2, double z2, do
  * @param p1 az eslo pont
  * @param p2 a masodik pont
  * @return az elso elem elobbre valo-e vagy sem
+ * @since 1.1
  */
 bool comparePoints(const Point& p1, const Point& p2) {
     if(p1.coordinates[0] < p2.coordinates[0]){
@@ -103,9 +103,11 @@ bool comparePoints(const Point& p1, const Point& p2) {
  * @param actualPoint aktualis pont
  * @param adjacentPoint szomszedos pont
  * @return 0 ha a ket pont kozti vektor szoge hatarerteken beluli, egyebkent a szog erteke lesz a suly, -1 ha alatta van
+ * @since 1.2
  */
-double thisEdgeLeadsToPoint(const Point& actualPoint, const Point& adjacentPoint){
-    if(actualPoint.coordinates[1] > adjacentPoint.coordinates[1]){
+double thisEdgeLeadsToPoint(const Point &actualPoint, const Point &adjacentPoint, double l) {
+    double e = l / 100;
+    if(actualPoint.coordinates[1] - adjacentPoint.coordinates[1] >= e){
         return -1;
     }
     /// A hatarertek
@@ -116,8 +118,8 @@ double thisEdgeLeadsToPoint(const Point& actualPoint, const Point& adjacentPoint
     p.coordinates[1] = adjacentPoint.coordinates[1] - actualPoint.coordinates[1];
     p.coordinates[2] = adjacentPoint.coordinates[2] - actualPoint.coordinates[2];
     double theta = atan(sqrt(pow(p.coordinates[0], 2) + pow(p.coordinates[2], 2)) / p.coordinates[1]);
-
-    if(theta > theta0){
+    theta = fabs(theta);
+    if(theta >= theta0){
         return theta;
     }
     return 0;
@@ -127,6 +129,7 @@ double thisEdgeLeadsToPoint(const Point& actualPoint, const Point& adjacentPoint
  * Kitorli a rossz, hibas pontokat (zajt)
  * (Egymast koveto pont paroknak meg kell egyeznie az x es z koordinatajuknak)
  * @param intersect_points a pontok listaja
+ * @since 1.1
  */
 void deleteWrongPoints(std::vector<Point>& intersect_points) {
     for (int i = 0; i < (int) intersect_points.size() - 1; i++) {
@@ -145,66 +148,41 @@ void deleteWrongPoints(std::vector<Point>& intersect_points) {
  * @param intersect_points a pontok tombje
  * @param p a keresendo pont
  * @return benne van-e
+ * @since 1.2
  */
-bool isIncluded(std::vector<Point>& intersect_points, const Point& p){
+bool isIncluded(std::vector<Point> &intersect_points, const Point &p, double l) {
     /// A bemeneti pontokat es a kimeneti pontokat kulon valogatja
-    std::vector<Point> inputPoints;
-    std::vector<Point> outputPoints;
-    for (int j = 0; j < (int)intersect_points.size(); j = j + 2){
-        if (intersect_points[j].coordinates[0] == p.coordinates[0] &&
-            intersect_points[j].coordinates[2] == p.coordinates[2]) {
-            inputPoints.push_back(intersect_points[j]);
-        }
-    }
-    for (int j = 1; j < (int)intersect_points.size(); j = j + 2){
-        if (intersect_points[j].coordinates[0] == p.coordinates[0] &&
-            intersect_points[j].coordinates[2] == p.coordinates[2]) {
-            outputPoints.push_back(intersect_points[j]);
+    std::vector<double> inputPointsY;
+    std::vector<double> outputPointsY;
+    double e = l / 100; /// A hibahatar
+
+    for(int i = 0; i < (int)intersect_points.size(); i++) {
+        if (std::abs(intersect_points[i].coordinates[0] - p.coordinates[0]) <= e &&
+            std::abs(intersect_points[i].coordinates[2] - p.coordinates[2]) <= e &&
+            (std::abs(intersect_points[i].coordinates[1] - p.coordinates[1]) <= e ||
+             intersect_points[i].coordinates[1]  - p.coordinates[1] >= -e)) {
+            if (i % 2 == 0) {
+                inputPointsY.push_back(intersect_points[i].coordinates[1]);
+            } else {
+                outputPointsY.push_back(intersect_points[i].coordinates[1]);
+            }
         }
     }
 
-    if (!inputPoints.empty()){
+    if (!inputPointsY.empty() && !outputPointsY.empty()){
         /// Megkeresi a legkisebb y koordinataju bemeneti pontot, ami nagyobb mint a parameterkent kapott pont y koordinataja
-        Point minYInputPoint{};
-        for(auto & inputPoint : inputPoints){
-            if(inputPoint.coordinates[1] > p.coordinates[1]){
-                minYInputPoint = inputPoint;
-                break;
-            } else {
-                minYInputPoint = inputPoint;
-            }
-        }
+        double minYInput;
+        std::sort(inputPointsY.begin(), inputPointsY.end());
+        minYInput = inputPointsY[0];
 
-        for (auto & inputPoint : inputPoints){
-            if (inputPoint.coordinates[1] < minYInputPoint.coordinates[1]
-                && inputPoint.coordinates[1] > p.coordinates[1]){
-                minYInputPoint = inputPoint;
-            }
-        }
+        double minYOutput;
+        std::sort(outputPointsY.begin(), outputPointsY.end());
+        minYOutput = outputPointsY[0];
 
-        Point minYOutputPoint{};
-        for(auto & outputPoint : outputPoints){
-            if(outputPoint.coordinates[1] > p.coordinates[1]){
-                minYOutputPoint = outputPoint;
-                break;
-            } else {
-                minYOutputPoint = outputPoint;
-            }
-        }
-
-        for (auto & outputPoint : outputPoints){
-            if (outputPoint.coordinates[1] < minYOutputPoint.coordinates[1]
-                && outputPoint.coordinates[1] > p.coordinates[1]){
-                minYOutputPoint = outputPoint;
-            }
-        }
-
-        if (minYInputPoint.coordinates[1] < minYOutputPoint.coordinates[1]){
+        if ((minYOutput - minYInput) >= -e){
             return true;
         }
-
     }
-
     return false;
 }
 
@@ -213,6 +191,7 @@ bool isIncluded(std::vector<Point>& intersect_points, const Point& p){
  * @param output_file_name a kimeneti file neve
  * @param input_file_name a bemeneti file neve
  * @param edges a kiirando elek
+ * @since 1.2
  */
 void writeInputEdges(const std::string& output_file_name, const std::string& input_file_name, std::vector<Edge>& edges){
     std::ofstream file(output_file_name);
@@ -233,69 +212,44 @@ void writeInputEdges(const std::string& output_file_name, const std::string& inp
 }
 
 /**
- * Megnezi, hogy a parameterkent kapott pont benne van-e a tombben (csal x-t es z-t vizsgalja)
+ * Kikeresi a parameterkent kapott pont a tombben (csal x-t es z-t vizsgalja)
  * @param intersect_points a pontok tombje
  * @param p a keresendo pont
- * @return visszaadja az y koordinatat, ha nincs benne, akkopr 0.0
+ * @return visszaadja az y koordinatat a legkisebb, de az aktualisnal magasabb pontrol, ha nincs benne, akkor 0.0
+ * @since 1.2
  */
-double getY(std::vector<Point>& intersect_points, const Point& p){
-    /// A bemeneti pontokat es a kimeneti pontokat kulon valogatja
-    std::vector<Point> inputPoints;
-    std::vector<Point> outputPoints;
-    for (int j = 0; j < (int)intersect_points.size(); j = j + 2){
-        if (intersect_points[j].coordinates[0] == p.coordinates[0] &&
-            intersect_points[j].coordinates[2] == p.coordinates[2]) {
-            inputPoints.push_back(intersect_points[j]);
-        }
-    }
-    for (int j = 1; j < (int)intersect_points.size(); j = j + 2){
-        if (intersect_points[j].coordinates[0] == p.coordinates[0] &&
-            intersect_points[j].coordinates[2] == p.coordinates[2]) {
-            outputPoints.push_back(intersect_points[j]);
+double getY(std::vector<Point> &intersect_points, const Point &p, double l) {
+    std::vector<double> inputPointsY;
+    std::vector<double> outputPointsY;
+    double e = l / 100; /// A hibahatar
+
+    for(int i = 0; i < (int)intersect_points.size(); i++) {
+        if ((std::abs(intersect_points[i].coordinates[0] - p.coordinates[0]) <= e &&
+            std::abs(intersect_points[i].coordinates[2] - p.coordinates[2]) <= e) &&
+            (std::abs(intersect_points[i].coordinates[1] - p.coordinates[1]) <= e ||
+            intersect_points[i].coordinates[1]  - p.coordinates[1] >= -e)) {
+
+            if (i % 2 == 0) {
+                inputPointsY.push_back(intersect_points[i].coordinates[1]);
+            } else {
+                outputPointsY.push_back(intersect_points[i].coordinates[1]);
+            }
         }
     }
 
-    if (!inputPoints.empty()){
+    if (!inputPointsY.empty() && !outputPointsY.empty()){
         /// Megkeresi a legkisebb y koordinataju bemeneti pontot, ami nagyobb mint a parameterkent kapott pont y koordinataja
-        Point minYInputPoint{};
-        for(auto & inputPoint : inputPoints){
-            if(inputPoint.coordinates[1] > p.coordinates[1]){
-                minYInputPoint = inputPoint;
-                break;
-            } else {
-                minYInputPoint = inputPoint;
-            }
-        }
+        double minYInput;
+        std::sort(inputPointsY.begin(), inputPointsY.end());
+        minYInput = inputPointsY[0];
 
-        for (auto & inputPoint : inputPoints){
-            if (inputPoint.coordinates[1] < minYInputPoint.coordinates[1]
-                && inputPoint.coordinates[1] > p.coordinates[1]){
-                minYInputPoint = inputPoint;
-            }
-        }
+        double minYOutput;
+        std::sort(outputPointsY.begin(), outputPointsY.end());
+        minYOutput = outputPointsY[0];
 
-        Point minYOutputPoint{};
-        for(auto & outputPoint : outputPoints){
-            if(outputPoint.coordinates[1] > p.coordinates[1]){
-                minYOutputPoint = outputPoint;
-                break;
-            } else {
-                minYOutputPoint = outputPoint;
-            }
+        if ((minYOutput - minYInput) >= -e){
+            return minYInput;
         }
-
-        for (auto & outputPoint : outputPoints){
-            if (outputPoint.coordinates[1] < minYOutputPoint.coordinates[1]
-                && outputPoint.coordinates[1] > p.coordinates[1]){
-                minYOutputPoint = outputPoint;
-            }
-        }
-
-        if (minYInputPoint.coordinates[1] < minYOutputPoint.coordinates[1]){
-            return minYInputPoint.coordinates[1];
-        }
-
     }
-
     return 0.0;
 }

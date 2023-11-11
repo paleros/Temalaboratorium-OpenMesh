@@ -53,17 +53,14 @@ void writeInternalLines(const std::string& output_file_name, const std::string& 
 /**
  * Kiszamolja a haromszog teruletet
  * @param x1 a kerdeses pont x koordinataja
- * @param y1 a kerdeses pont y koordinataja
  * @param z1 a kerdeses pont z koordinataja
  * @param x2 az masodik pont x koordinataja
- * @param y2 az masodik pont y koordinataja
  * @param z2 az masodik pont z koordinataja
  * @param x3 az harmadik pont x koordinataja
- * @param y3 az harmadik pont y koordinataja
  * @param z3 az harmadik pont z koordinataja
  * @return a haromszog terulete
  */
- double area(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3);
+double area(double x1, double z1, double x2, double z2, double x3, double z3);
 
 /**
 * Osszehasonlitja a ket kapott pont koordinatait es visszadja az elobbre levot
@@ -80,7 +77,7 @@ bool comparePoints(const Point& p1, const Point& p2);
  * @param adjacentPoint szomszedos pont
  * @return 0 ha a ket pont kozti vektor szoge hatarerteken beluli, egyebkent a szog erteke lesz a suly, -1 ha alatta van
  */
-double thisEdgeLeadsToPoint(const Point& actualPoint, const Point& adjacentPoint);
+double thisEdgeLeadsToPoint(const Point &actualPoint, const Point &adjacentPoint, double l);
 
 /**
  * Kitorli a rossz, hibas pontokat (zajt)
@@ -95,7 +92,7 @@ void deleteWrongPoints(std::vector<Point>& intersect_points);
  * @param p a keresendo pont
  * @returnbenne van-e
  */
-bool isIncluded(std::vector<Point>& intersect_points, const Point& p);
+bool isIncluded(std::vector<Point> &intersect_points, const Point &p, double l);
 
 /**
  * A parameterkent kapott eleket kiirja a .obj fileba
@@ -111,4 +108,4 @@ void writeInputEdges(const std::string& output_file_name, const std::string& inp
  * @param p a keresendo pont
  * @return visszaadja az y koordinatat, ha nincs benne, akkopr 0.0
  */
-double getY(std::vector<Point>& intersect_points, const Point& p);
+double getY(std::vector<Point> &intersect_points, const Point &p, double l);
