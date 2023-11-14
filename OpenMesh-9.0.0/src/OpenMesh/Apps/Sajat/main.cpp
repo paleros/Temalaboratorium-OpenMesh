@@ -70,16 +70,14 @@ int main(){
 #endif
 #ifdef TEST_CUBE
     double l = 0.1;
-    double max = 1;
 #endif
 #ifdef TEST_DIAMOND
     double l = 0.1;
-    double max = 2;
 #endif
 
     MyMesh mesh_object;
     readMesh(input_file, mesh_object);
-
+    double maxWeight = 3;
 
     /// A metszespontok x, y, es z koordinatait tarolja
     std::vector<Point> intersect_points;
@@ -92,9 +90,19 @@ int main(){
 
         //Ezt a reszt nem szettem ki kulon fuggvenybe, mert percekkel(!) novelte a lefutasi idot
         /// Az aktualis haromszog csucspontjai
-        Point p1 = {0,0,0};
-        Point p2 = {0,0,0};
-        Point p3 = {0,0,0};
+        Point p1, p2, p3;
+        p1.coordinates[0] = 0;
+        p1.coordinates[1] = 0;
+        p1.coordinates[2] = 0;
+        p1.e = l/100;
+        p2.coordinates[0] = 0;
+        p2.coordinates[1] = 0;
+        p2.coordinates[2] = 0;
+        p2.e = l/100;
+        p3.coordinates[0] = 0;
+        p3.coordinates[1] = 0;
+        p3.coordinates[2] = 0;
+        p3.e = l/100;
         int c =0;
 
         /// Kiaszamoljuk az aktualis haromszog csucspontjait
@@ -102,17 +110,17 @@ int main(){
             MyMesh::VertexHandle vh = *fvi;
             // Biztos van elegansabb megoldas, nekem ez jutott most eszembe
             if(c == 0) {
-                p1 = {mesh_object.point(vh)[0],
-                      mesh_object.point(vh)[1],
-                      mesh_object.point(vh)[2]};
+                p1.coordinates[0] = mesh_object.point(vh)[0];
+                p1.coordinates[1] = mesh_object.point(vh)[1];
+                p1.coordinates[2] = mesh_object.point(vh)[2];
             } else if(c == 1) {
-                p2 = {mesh_object.point(vh)[0],
-                      mesh_object.point(vh)[1],
-                      mesh_object.point(vh)[2]};
+                p2.coordinates[0] = mesh_object.point(vh)[0];
+                p2.coordinates[1] = mesh_object.point(vh)[1];
+                p2.coordinates[2] = mesh_object.point(vh)[2];
             } else if(c == 2) {
-                p3 = {mesh_object.point(vh)[0],
-                      mesh_object.point(vh)[1],
-                      mesh_object.point(vh)[2]};
+                p3.coordinates[0] = mesh_object.point(vh)[0];
+                p3.coordinates[1] = mesh_object.point(vh)[1];
+                p3.coordinates[2] = mesh_object.point(vh)[2];
             }
             c++;
         }
@@ -152,7 +160,11 @@ int main(){
                     /// Ha nem negativ akkor a haromszogon belul van, tehat metszi
                     if (b1 > 0 && b2 > 0 && b3 > 0) {
                         double y = p1.coordinates[1] * b1 + p2.coordinates[1] * b2 + p3.coordinates[1] * b3;
-                        intersect_points.push_back(Point{x, y, z});
+                        Point p;
+                        p.coordinates[0] = x;
+                        p.coordinates[1] = y;
+                        p.coordinates[2] = z;
+                        intersect_points.push_back(p);
                         count++;
                     }
                 }
@@ -267,6 +279,82 @@ int main(){
             }
         }
     }
+
+    std::vector<Point> inputPoints;
+    for(int i = 0; i < (int)intersect_points.size(); i = i + 2){
+        inputPoints.push_back(intersect_points[i]);
+    }
+
+
+    std::vector<Point> inputPoints2;
+    int c = 1;
+    //--------------------------------------------------------------------------------------------
+    inputPoints2 = setWeightAllPoint(edges, maxWeight, l/100);
+
+    ///Az eredeti listabol kitorli azokat a pontokat, amiket mar alatamasztottunk
+    for (const auto& point : inputPoints2) {
+        auto iterator = std::find(inputPoints.begin(), inputPoints.end(), point);
+        if (iterator != inputPoints.end()) {
+            inputPoints.erase(iterator);
+        }
+    }
+
+    std::string fileName = "output3";
+    std::string obj = ".obj";
+    fileName += std::to_string(c);
+    fileName += obj;
+    writePoints(fileName, input_file, c, inputPoints2);
+
+
+
+
+/*    std::sort(inputPoints.begin(), inputPoints.end(), compareInputPoints);
+    std::vector<Point> supportPoints;
+    //supportPoints = supportPointDetection(inputPoints, d,edges, l/100);
+    ///--------------------------------------------------------------------------------------------
+//ezt a reszt a masik file fuggvenybol hoztam at hogy gyorsabb legyen, de meg nem jo
+    std::vector<Point> B;
+    std::vector<double> dist(inputPoints.size());
+    std::set<int> Q;
+//TODO nem teljesen ertem mit csinal
+    for(int i = 0; i < (int)inputPoints.size(); i++){
+
+        if(!inputPoints[i].weight) {
+            continue;
+        }
+        B.push_back(inputPoints[i]);
+
+        Q.clear();
+        for(int j = 0; j < (int)inputPoints.size(); i++){
+            dist[j] = INFINITY;
+            Q.insert(j);
+        }
+
+        dist[i] = 0;
+
+        while (!Q.empty()) {
+            int u = *Q.begin();
+
+            if(dist[u] > d){
+                break;
+            }
+            Q.erase(u);
+
+            for(int v = 0; v < (int)inputPoints.size(); v++){
+                double d = dist[u] + penalty(inputPoints[u], inputPoints[v], edges, l/100);
+                if(d < dist[v]){
+                    Q.erase(v);
+                    dist[v] = d;
+                    Q.insert(v);
+                }
+            }
+
+            inputPoints[u].weight = false;
+        }
+    }
+*/
+
+
 
     //TODO kiszepiteni a kododt
 

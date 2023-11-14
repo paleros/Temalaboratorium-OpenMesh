@@ -10,6 +10,7 @@
 
 #include <string>
 #include <fstream>
+#include <queue>
 #include "auxiliary.h"
 #include "OpenMesh/Core/IO/MeshIO.hh"
 
@@ -252,4 +253,120 @@ double getY(std::vector<Point> &intersect_points, const Point &p, double l) {
         }
     }
     return 0.0;
+}
+
+/**
+ * Osszehasonlitja a ket kapott pont koordinatait es visszadja az elobbre levot
+ * Elsonek az y koordinata alapjan, majd az x, majd a z koordinata alapjan
+ * @param p1 az eslo pont
+ * @param p2 a masodik pont
+ * @return az elso elem elobbre valo-e vagy sem
+ * @since 1.3
+ */
+bool compareInputPoints(const Point& p1, const Point& p2) {
+    if(p1.coordinates[1] < p2.coordinates[1]){
+        return true;
+    } else if(p1.coordinates[1] == p2.coordinates[1]){
+        if(p1.coordinates[0] < p2.coordinates[0]){
+            return true;
+        } else if(p1.coordinates[0] == p2.coordinates[0]){
+            if(p1.coordinates[2] < p2.coordinates[2]){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+/**
+ * Osszehasonlitja a ket kapott el kezdopontjanak koordinatait es visszadja az elobbre levot
+ * Elsonek az y koordinata alapjan, majd az x, majd a z koordinata alapjan
+ * @param p1 az eslo pont
+ * @param p2 a masodik pont
+ * @return az elso elem elobbre valo-e vagy sem
+ * @since 1.3
+ */
+bool compareEdgesInputPoints(const Edge& e1, const Edge& e2) {
+    if(e1.p1.coordinates[1] < e2.p1.coordinates[1]){
+        return true;
+    } else if(e1.p1.coordinates[1] == e2.p1.coordinates[1]){
+        if(e1.p1.coordinates[0] < e2.p1.coordinates[0]){
+            return true;
+        } else if(e1.p1.coordinates[0] == e2.p1.coordinates[0]){
+            if(e1.p1.coordinates[2] < e2.p1.coordinates[2]){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+/**
+ * Beallitja a pontoknak, hogy milyen a sulyuk
+ * @param edges az elek
+ * @param maxWeight a maximalis suly
+ * @param e a kuszobertek
+ * @return a pontok listaja, aminke a sulyuk nem tul nagy
+ * @since 1.3
+ */
+std::vector<Point> setWeightAllPoint(std::vector<Edge> edges, double maxWeight, double e){
+    std::sort(edges.begin(), edges.end(), compareEdgesInputPoints);
+    for(auto & edge : edges){
+        double w0 = edge.p2.weight;
+        double w2 = edge.p1.weight + edge.weight;
+        if(w0 == -1.0){
+            edge.p2.weight = w2;
+        }else{
+            if (w2 < w0){
+                edge.p2.weight = w2;
+            }
+        }
+    }
+    std::vector<Point> points;
+    for(auto & edge : edges){
+        points.push_back(edge.p1);
+        points.push_back(edge.p2);
+    }
+    std::sort(points.begin(), points.end(), compareInputPoints);
+    for (int i = 0; i < (int)points.size(); i++){
+        if (points[i] == points[i+1]){
+            points.erase(points.begin() + i);
+            i--;
+        }
+    }
+    for (int j = 0; j < (int)points.size(); j++){
+        if (points[j].weight > maxWeight){
+            points.erase(points.begin() + j);
+        }
+    }
+
+    return points;
+}
+
+/**
+ * A parameterkent kapott pontokat kiirja a .obj fileba
+ * @param file_name a kimeneti file neve
+ * @param input_file_name az eredeti alakzat neve
+ * @param count a szamlalo erteke
+ * @param points a pontok
+ * @since 1.3
+ */
+void writePoints(const std::string& output_file_name, const std::string& input_file_name, int count, std::vector<Point>& points){
+    std::ofstream file(output_file_name);
+    if(!file){
+        std::cout << "Error: The file " << output_file_name << " cannot be opened!" << std::endl;
+        exit(1);
+    }
+    /// A kimeneti file fejlece
+    file <<  "# Supported points No. " << count << " from " << input_file_name << " by peros\n";
+    int k = 1;
+    for(int i = 0; i < (int)points.size(); i++){
+        file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] << " " << points[i].coordinates[2] << "\n";
+        i++;
+        file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] << " " << points[i].coordinates[2] << "\n";
+        file << "l " << k << " " << k+1 << "\n";
+        k = k + 2;
+
+    }
+    file.close();
 }
