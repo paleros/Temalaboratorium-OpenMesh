@@ -103,6 +103,7 @@ bool comparePoints(const Point& p1, const Point& p2) {
  * Visszaadja a ket pont kozotti vektor sulyat
  * @param actualPoint aktualis pont
  * @param adjacentPoint szomszedos pont
+ * @param l a hibahatarhoz az osztas
  * @return 0 ha a ket pont kozti vektor szoge hatarerteken beluli, egyebkent a szog erteke lesz a suly, -1 ha alatta van
  * @since 1.2
  */
@@ -281,8 +282,8 @@ bool compareInputPoints(const Point& p1, const Point& p2) {
 /**
  * Osszehasonlitja a ket kapott el kezdopontjanak koordinatait es visszadja az elobbre levot
  * Elsonek az y koordinata alapjan, majd az x, majd a z koordinata alapjan
- * @param p1 az eslo pont
- * @param p2 a masodik pont
+ * @param e1 az eslo el
+ * @param e2 a masodik el
  * @return az elso elem elobbre valo-e vagy sem
  * @since 1.3
  */
@@ -295,6 +296,14 @@ bool compareEdgesInputPoints(const Edge& e1, const Edge& e2) {
         } else if(e1.p1.coordinates[0] == e2.p1.coordinates[0]){
             if(e1.p1.coordinates[2] < e2.p1.coordinates[2]){
                 return true;
+            } else if(e1.p2.coordinates[1] == e2.p2.coordinates[1]){
+                if(e1.p2.coordinates[0] < e2.p2.coordinates[0]){
+                    return true;
+                } else if(e1.p2.coordinates[0] == e2.p2.coordinates[0]){
+                    if(e1.p2.coordinates[2] < e2.p2.coordinates[2]){
+                        return true;
+                    }
+                }
             }
         }
     }
@@ -302,45 +311,95 @@ bool compareEdgesInputPoints(const Edge& e1, const Edge& e2) {
 }
 
 /**
+ * Kikeresi az elek kozul a pontot és visszaadja az indexet
+ * @param points a pontok halmaza
+ * @param p a keresett pont
+ * @return
+ */
+int findPoint(std::vector<Point>& points, const Point& p){
+    for(int i = 0; i < (int)points.size(); i++){
+        if(points[i] == p){
+            return i;
+        }
+    }
+    return -1;
+}
+
+/**
  * Beallitja a pontoknak, hogy milyen a sulyuk
  * @param edges az elek
+ * @param inputPoints a pontok
  * @param maxWeight a maximalis suly
- * @param e a kuszobertek
  * @return a pontok listaja, aminke a sulyuk nem tul nagy
  * @since 1.3
  */
-std::vector<Point> setWeightAllPoint(std::vector<Edge> edges, double maxWeight, double e){
+std::vector<Point> setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Point> &inputPoints, double maxWeight) {
     std::sort(edges.begin(), edges.end(), compareEdgesInputPoints);
+    /// Kiszamolja minden pontra a sulyt
     for(auto & edge : edges){
-        double w0 = edge.p2.weight;
-        double w2 = edge.p1.weight + edge.weight;
-        if(w0 == -1.0){
-            edge.p2.weight = w2;
+        if(findPoint(inputPoints, edge.p2) == -1 || findPoint(inputPoints, edge.p2) == -1){
+            continue;
+            //TODO mindig ide fut be, miert?
+        }
+        double weightP2Actual = inputPoints[findPoint(inputPoints, edge.p2)].weight;
+        double weightP1Actual = inputPoints[findPoint(inputPoints, edge.p1)].weight;
+        double weightP2New = inputPoints[findPoint(inputPoints, edge.p1)].weight + edge.weight;
+        double weightEdge = edge.weight;
+        if(weightP2Actual == -1){
+            if(weightP1Actual == -1){
+                inputPoints[findPoint(inputPoints, edge.p2)].weight = weightEdge;
+            }else{
+                inputPoints[findPoint(inputPoints, edge.p2)].weight = weightP2New;
+            }
         }else{
-            if (w2 < w0){
-                edge.p2.weight = w2;
+            if(weightP1Actual == -1) {
+                inputPoints[findPoint(inputPoints, edge.p2)].weight = weightEdge;
+            }else {
+                if (weightP2Actual > weightP2New) {
+                    inputPoints[findPoint(inputPoints, edge.p2)].weight = weightP2New;
+                }
             }
         }
     }
-    std::vector<Point> points;
+
+    /// Felveszi a csucspontokat a listaba
+    std::vector<Point> supportPoints;
     for(auto & edge : edges){
-        points.push_back(edge.p1);
-        points.push_back(edge.p2);
+        supportPoints.push_back(inputPoints[findPoint(inputPoints, edge.p1)]);
+        supportPoints.push_back(inputPoints[findPoint(inputPoints, edge.p2)]);
     }
-    std::sort(points.begin(), points.end(), compareInputPoints);
-    for (int i = 0; i < (int)points.size(); i++){
-        if (points[i] == points[i+1]){
-            points.erase(points.begin() + i);
-            i--;
-        }
-    }
-    for (int j = 0; j < (int)points.size(); j++){
-        if (points[j].weight > maxWeight){
-            points.erase(points.begin() + j);
+    /// Kitorli a duplikatumokat
+    std::sort(supportPoints.begin(), supportPoints.end(), compareInputPoints);
+    for (int i = 0; i < (int)supportPoints.size(); i++){
+        if (supportPoints[i] == supportPoints[i + 1]){
+            if (supportPoints[i].weight == -1){
+                supportPoints.erase(supportPoints.begin() + i);
+                i--;
+            } else {
+                if (supportPoints[i + 1].weight == -1){
+                    supportPoints.erase(supportPoints.begin() + i + 1);
+                    i--;
+                } else {
+                    if (supportPoints[i].weight < supportPoints[i + 1].weight){
+                        supportPoints.erase(supportPoints.begin() + i + 1);
+                        i--;
+                    } else {
+                        supportPoints.erase(supportPoints.begin() + i);
+                        i--;
+                    }
+                }
+            }
         }
     }
 
-    return points;
+    /// Kitorli azokat a pontokat, amiknek mar tul nagy a sulya
+    for (int j = 0; j < (int)supportPoints.size(); j++){
+        if (supportPoints[j].weight > maxWeight){
+            supportPoints.erase(supportPoints.begin() + j);
+        }
+    }
+
+    return supportPoints;
 }
 
 /**
@@ -359,14 +418,45 @@ void writePoints(const std::string& output_file_name, const std::string& input_f
     }
     /// A kimeneti file fejlece
     file <<  "# Supported points No. " << count << " from " << input_file_name << " by peros\n";
-    int k = 1;
-    for(int i = 0; i < (int)points.size(); i++){
-        file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] << " " << points[i].coordinates[2] << "\n";
-        i++;
-        file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] << " " << points[i].coordinates[2] << "\n";
-        file << "l " << k << " " << k+1 << "\n";
-        k = k + 2;
-
+    for(auto & point : points){
+        file << "v " << point.coordinates[0] << " " << point.coordinates[1] << " " << point.coordinates[2] << "\n";
     }
     file.close();
 }
+
+/*
+std::vector<Point> Algorithm(std::vector<Point> A, double D){
+    std::vector<Point> B;
+
+    for(int i = 0; i < (int)A.size(); i++){
+        if(!A[i].floatable){
+            continue;
+        }
+
+        B.push_back(A[i]);
+        std::vector<double> dist;
+        std::queue<double> Q;
+
+        for(int j = 0; j < (int)A.size(); j++){
+            dist[j] = INFINITY;
+            Q.push(A[j]);
+        }
+        dist[A[i]] = 0;
+        while(Q.empty() == false){
+            u = FindMinDist(dist[]);
+            if(dist[u] > D){
+                break;
+            }
+            Q.Delete(u);
+            for(minden v eleme u){
+                d = dist[u] + penalty(u, v);
+                if(d < dist[v]){
+                    dist[v] = d;
+                }
+            }
+            u.floatable = false;
+        }
+    }
+
+    return B;
+}*/

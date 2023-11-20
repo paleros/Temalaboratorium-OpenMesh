@@ -183,14 +183,22 @@ std::vector<Point> supportPointDetection(std::vector<Point> &A, double D, std::v
 bool compareEdgesInputPoints(const Edge& e1, const Edge& e2);
 
 /**
+ * Kikeresi az elek kozul a pontot és visszaadja az indexet
+ * @param points a pontok halmaza
+ * @param p a keresett pont
+ * @return
+ */
+int findPoint(std::vector<Point>& points, const Point& p);
+
+/**
  * Beallitja a pontoknak, hogy milyen a sulyuk
  * @param edges az elek
+ * @param inputPoints a pontok
  * @param maxWeight a maximalis suly
- * @param e a kuszobertek
  * @return a pontok listaja, aminke a sulyuk nem tul nagy
  * @since 1.3
  */
-std::vector<Point> setWeightAllPoint(std::vector<Edge> edges, double maxWeight, double e);
+std::vector<Point> setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Point> &inputPoints, double maxWeight);
 
 /**
  * A parameterkent kapott pontokat kiirja a .obj fileba

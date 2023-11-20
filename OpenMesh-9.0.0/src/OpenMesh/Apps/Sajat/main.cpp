@@ -77,7 +77,7 @@ int main(){
 
     MyMesh mesh_object;
     readMesh(input_file, mesh_object);
-    double maxWeight = 3;
+    double maxWeight = M_PI / 4 * 3;
 
     /// A metszespontok x, y, es z koordinatait tarolja
     std::vector<Point> intersect_points;
@@ -286,73 +286,50 @@ int main(){
     }
 
 
-    std::vector<Point> inputPoints2;
+
     int c = 1;
-    //--------------------------------------------------------------------------------------------
-    inputPoints2 = setWeightAllPoint(edges, maxWeight, l/100);
+    while ((int)edges.size() > 0) {
+        std::vector<Point> supportPoints;
+        supportPoints = setWeightAllPointsAndGetSupportPoints(edges, inputPoints, maxWeight);
 
-    ///Az eredeti listabol kitorli azokat a pontokat, amiket mar alatamasztottunk
-    for (const auto& point : inputPoints2) {
-        auto iterator = std::find(inputPoints.begin(), inputPoints.end(), point);
-        if (iterator != inputPoints.end()) {
-            inputPoints.erase(iterator);
-        }
-    }
-
-    std::string fileName = "output3";
-    std::string obj = ".obj";
-    fileName += std::to_string(c);
-    fileName += obj;
-    writePoints(fileName, input_file, c, inputPoints2);
-
-
-
-
-/*    std::sort(inputPoints.begin(), inputPoints.end(), compareInputPoints);
-    std::vector<Point> supportPoints;
-    //supportPoints = supportPointDetection(inputPoints, d,edges, l/100);
-    ///--------------------------------------------------------------------------------------------
-//ezt a reszt a masik file fuggvenybol hoztam at hogy gyorsabb legyen, de meg nem jo
-    std::vector<Point> B;
-    std::vector<double> dist(inputPoints.size());
-    std::set<int> Q;
-//TODO nem teljesen ertem mit csinal
-    for(int i = 0; i < (int)inputPoints.size(); i++){
-
-        if(!inputPoints[i].weight) {
-            continue;
-        }
-        B.push_back(inputPoints[i]);
-
-        Q.clear();
-        for(int j = 0; j < (int)inputPoints.size(); i++){
-            dist[j] = INFINITY;
-            Q.insert(j);
-        }
-
-        dist[i] = 0;
-
-        while (!Q.empty()) {
-            int u = *Q.begin();
-
-            if(dist[u] > d){
-                break;
-            }
-            Q.erase(u);
-
-            for(int v = 0; v < (int)inputPoints.size(); v++){
-                double d = dist[u] + penalty(inputPoints[u], inputPoints[v], edges, l/100);
-                if(d < dist[v]){
-                    Q.erase(v);
-                    dist[v] = d;
-                    Q.insert(v);
+        /// Az elek listajabol kitorli azokat, amelyeket alatamasztottunk mar
+        for (int i = 0; i < (int) edges.size(); i++) {
+            for (const auto & supportPoint : supportPoints) {
+                if (std::abs(edges[i].p2.coordinates[0] - supportPoint.coordinates[0]) <= l/100 &&
+                        std::abs(edges[i].p2.coordinates[1] - supportPoint.coordinates[1]) <= l/100 &&
+                        std::abs(edges[i].p2.coordinates[2] - supportPoint.coordinates[2]) <= l/100){
+                    edges.erase(edges.begin() + i);
+                    i--;
                 }
             }
-
-            inputPoints[u].weight = false;
         }
+
+        for(int i = 0; i < (int) supportPoints.size(); i++){
+            if(supportPoints[i].weight != -1){
+                supportPoints.erase(supportPoints.begin() + i);
+                i--;
+            }
+        }
+
+        /// Az el lista sulyait nullazza (illetve -1-eli)
+        for (auto &edge: edges) {
+            edge.weight = -1;
+        }
+
+        std::cout << "Alatamasztando pontok szintje: " << c << std::endl;//TODO teszthez
+
+        std::string fileName = "output3";
+        std::string obj = ".obj";
+        fileName += std::to_string(c);
+        fileName += obj;
+        writePoints(fileName, input_file, c, supportPoints);
+        c++;
     }
-*/
+
+
+
+
+
 
 
 
