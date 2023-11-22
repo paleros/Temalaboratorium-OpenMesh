@@ -53,6 +53,8 @@ struct Edge{
     Point p1;
     Point p2;
     double weight;
+
+    Edge(Point p1, Point p2, double weight) : p1(p1), p2(p2), weight(weight) {}
 };
 
 /**
@@ -143,37 +145,6 @@ double getY(std::vector<Point> &intersect_points, const Point &p, double l);
  * @since 1.3
  */
 bool compareInputPoints(const Point &p1, const Point &p2);
-
-/**
- * Kikeresi az elek kozul a szomszedosakat
- * @param p a kiindulopont
- * @param edges az elek
- * @param e a kuszobertek
- * @return a szomszedos pontokhoz vezeto elek
- * @since 1.3
- */
-std::vector<Edge> findAdjacentPoints(Point& p, const std::vector<Edge>& edges, double e);
-
-/**
- * Visszaadja a ket pont kozott levo el sulyat
- * @param p1 az eslo pont
- * @param p2 a szomszedos pont
- * @param edges az elek
- * @param e a kuszobertek
- * @return az el sulya
- */
-double penalty(const Point &p1, const Point &p2, std::vector<Edge> &edges, double e);
-
-/**
- * Visszaadja az alatamsaztando pontokat
- * @param A a rendezett bemeno pontok
- * @param D a tavolsag vagy suly kuszoberteke
- * @param edges az elek
- * @param e a kuszobertek
- * @return az alatamsaztando pontok listaja
- * @since 1.3
- */
-std::vector<Point> supportPointDetection(std::vector<Point> &A, double D, std::vector<Edge> &edges, double e);
 
 /**
  * Osszehasonlitja a ket kapott el kezdopontjanak koordinatait es visszadja az elobbre levot

@@ -2,9 +2,9 @@
  * ---------------------------------------------------------------------------------------------------------------------
  * Created by peros on 2023.10.23..
  *
- * Budapesti Muszaki es Gazdasagtudomanyi Egyetem
- * Villamosmernoki es Informatikai Kar
- * Itanyitastechnika es Informatika Tanszek
+ * Budapesti Muszaki es Gazdasagtudomanyi Egyetem (BME)
+ * Villamosmernoki es Informatikai Kar (VIK)
+ * Itanyitastechnika es Informatika Tanszek (IIT)
  * Temalaboratorium: 3D nyomtatas kulso alatamasztas
  *
  * 1. Feladatresz
@@ -206,7 +206,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+                edges.emplace_back(intersect_points[i], adjacentPoint, weight);
             }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0];
@@ -216,7 +216,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+                edges.emplace_back(intersect_points[i], adjacentPoint, weight);
             }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] + l;
@@ -226,7 +226,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+                edges.emplace_back(intersect_points[i], adjacentPoint, weight);
             }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] - l;
@@ -236,7 +236,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+                edges.emplace_back(intersect_points[i], adjacentPoint, weight);
             }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] + l;
@@ -246,7 +246,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+                edges.emplace_back(intersect_points[i], adjacentPoint, weight);
             }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] - l;
@@ -256,7 +256,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+                edges.emplace_back(intersect_points[i], adjacentPoint, weight);
             }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0];
@@ -266,7 +266,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+                edges.emplace_back(intersect_points[i], adjacentPoint, weight);
             }
         }
         adjacentPoint.coordinates[0] = intersect_points[i].coordinates[0] + l;
@@ -276,7 +276,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersect_points, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersect_points[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.push_back(Edge{intersect_points[i], adjacentPoint, weight});
+                edges.emplace_back(intersect_points[i], adjacentPoint, weight);
             }
         }
     }
@@ -331,12 +331,6 @@ int main(){
         if((int)supportPoints.size() == 0){
             break;
         }
-
-        /*std::string fileName = "output3";
-        std::string obj = ".obj";
-        fileName += std::to_string(c);
-        fileName += obj;
-        writePoints(fileName, input_file, c, supportPoints);*/
         c++;
         for (const auto & supportPoint : supportPoints) {
             supportPointsAll.push_back(supportPoint);
@@ -348,6 +342,7 @@ int main(){
 
     /// Az alatamasztando pontokbol egyeneseket huzunk a legalso pont y koordinataja szerinti sikra
     /// @since 1.4
+
     std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPoints);
     std::vector<Point> supportLines;
     /// Kiszamoljuk, hogy meddig kell az egyeneseket huzni
@@ -377,19 +372,10 @@ int main(){
                 }
             }
         }
-
         supportLines.push_back(p);
     }
+
     writeInternalLines("output4.obj", input_file, supportLines, "# Support lines generated from ");
-
-
-
-
-
-
-    //TODO kiszepiteni a kododt
-
-
 
     return 0;
 }
