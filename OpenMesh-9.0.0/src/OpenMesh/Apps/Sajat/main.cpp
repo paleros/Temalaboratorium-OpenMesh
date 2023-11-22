@@ -43,9 +43,9 @@
  */
 /// A tesztelheto alakzatok
 //#define TEST_CUBE
-//#define TEST_BUNNY
+#define TEST_BUNNY
 //#define TEST_DIAMOND
-#define TEST_SPHERE
+//#define TEST_SPHERE
 
 /**
  * A feladat megvalositasa
@@ -141,15 +141,15 @@ int main(){
 
         /// Vegigmegyunk a potencialis racspontokon
         double x = std::floor(min_x/l)*l;
-        while(x - max_x <= l/100){
+        while(x <= max_x){
             double z = std::floor(min_z/l)*l;
-            while(z - max_z <= l/100) {
+            while(z <= max_z) {
                 /// Kiszamoljuk a haromszogek teruleteit
                 double A = area(p1.coordinates[0], p1.coordinates[2],
                                 p2.coordinates[0], p2.coordinates[2],
                                 p3.coordinates[0], p3.coordinates[2]);
 
-                if (std::abs(A) > l/100) {
+                if (A != 0) {
                     double A1 = area(x, z,
                                      p2.coordinates[0], p2.coordinates[2],
                                      p3.coordinates[0], p3.coordinates[2]);
@@ -165,7 +165,7 @@ int main(){
                     double b2 = A2 / A;
                     double b3 = A3 / A;
                     /// Ha nem negativ akkor a haromszogon belul van, tehat metszi
-                    if (b1 > l/100 && b2 > l/100 && b3 > l/100) {
+                    if (b1 > 0 && b2 > 0 && b3 > 0) {
                         double y = p1.coordinates[1] * b1 + p2.coordinates[1] * b2 + p3.coordinates[1] * b3;
                         Point p;
                         p.coordinates[0] = x;
@@ -317,7 +317,7 @@ int main(){
         }
 
         for(int i = 0; i < (int) supportPoints.size(); i++){
-            if(supportPoints[i].weight != -1){
+            if(supportPoints[i].weight != 0){
                 supportPoints.erase(supportPoints.begin() + i);
                 i--;
             }

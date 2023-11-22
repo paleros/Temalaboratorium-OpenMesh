@@ -342,7 +342,6 @@ setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Poin
     for(auto & edge : edges){
         if(findPoint(inputPoints, edge.p1) == -1 || findPoint(inputPoints, edge.p2) == -1){
             continue;
-            //TODO egy ido utan ide befut es a vegtelensegig megy...
         }
         double weightP2Actual = inputPoints[findPoint(inputPoints, edge.p2)].weight;
         double weightP1Actual = inputPoints[findPoint(inputPoints, edge.p1)].weight;
@@ -351,12 +350,14 @@ setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Poin
         if(weightP2Actual == -1){
             if(weightP1Actual == -1){
                 inputPoints[findPoint(inputPoints, edge.p2)].weight = weightEdge;
+                inputPoints[findPoint(inputPoints, edge.p1)].weight = 0;
             }else{
                 inputPoints[findPoint(inputPoints, edge.p2)].weight = weightP2New;
             }
         }else{
             if(weightP1Actual == -1) {
                 inputPoints[findPoint(inputPoints, edge.p2)].weight = weightEdge;
+                inputPoints[findPoint(inputPoints, edge.p1)].weight = 0;
             }else {
                 if (weightP2Actual - weightP2New > edge.p1.e) {
                     inputPoints[findPoint(inputPoints, edge.p2)].weight = weightP2New;
