@@ -278,7 +278,7 @@ rule CXX_EXECUTABLE_LINKER__Sajat_Debug
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0 -B/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug
+  command = /home/peros/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0 -B/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug
   description = Re-running CMake...
   generator = 1
 

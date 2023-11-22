@@ -37,10 +37,9 @@ struct Point{
     double e;
 
     bool operator==(const Point& other) const {
-        return std::abs(coordinates[0] - other.coordinates[0]) <= e &&
+        return  std::abs(coordinates[0] - other.coordinates[0]) <= e &&
                 std::abs(coordinates[1] - other.coordinates[1]) <= e &&
-                std::abs(coordinates[2] - other.coordinates[2]) <= e &&
-                std::abs(weight - other.weight) <= e;
+                std::abs(coordinates[2] - other.coordinates[2]) <= e;
     }
 };
 
@@ -100,9 +99,10 @@ double thisEdgeLeadsToPoint(const Point &actualPoint, const Point &adjacentPoint
  * Kitorli a rossz, hibas pontokat (zajt)
  * (Egymast koveto pont paroknak meg kell egyeznie az x es z koordinatajuknak)
  * @param intersect_points a pontok listaja
+ * @param e a kuszobertek
  * @since 1.1
  */
-void deleteWrongPoints(std::vector<Point>& intersect_points);
+void deleteWrongPoints(std::vector<Point> &intersect_points, double e);
 
 /**
  * Megnezi, hogy a parameterkent kapott pont benne van-e a tombben (csal x-t es z-t vizsgalja)
@@ -139,7 +139,7 @@ double getY(std::vector<Point> &intersect_points, const Point &p, double l);
  * @return az elso elem elobbre valo-e vagy sem
  * @since 1.3
  */
-bool compareInputPoints(const Point& p1, const Point& p2);
+bool compareInputPoints(const Point &p1, const Point &p2);
 
 /**
  * Kikeresi az elek kozul a szomszedosakat
@@ -188,7 +188,7 @@ bool compareEdgesInputPoints(const Edge& e1, const Edge& e2);
  * @param p a keresett pont
  * @return
  */
-int findPoint(std::vector<Point>& points, const Point& p);
+int findPoint(std::vector<Point> &points, const Point &p);
 
 /**
  * Beallitja a pontoknak, hogy milyen a sulyuk
@@ -198,7 +198,8 @@ int findPoint(std::vector<Point>& points, const Point& p);
  * @return a pontok listaja, aminke a sulyuk nem tul nagy
  * @since 1.3
  */
-std::vector<Point> setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Point> &inputPoints, double maxWeight);
+std::vector<Point>
+setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Point> &inputPoints, double maxWeight);
 
 /**
  * A parameterkent kapott pontokat kiirja a .obj fileba

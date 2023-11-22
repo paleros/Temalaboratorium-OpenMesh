@@ -50,28 +50,28 @@ unset(_cmake_expected_targets)
 add_library(OpenMeshCore SHARED IMPORTED)
 
 set_target_properties(OpenMeshCore PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.."
+  INTERFACE_INCLUDE_DIRECTORIES "/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Core/../.."
 )
 
 # Create imported target OpenMeshTools
 add_library(OpenMeshTools SHARED IMPORTED)
 
 set_target_properties(OpenMeshTools PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.."
+  INTERFACE_INCLUDE_DIRECTORIES "/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Tools/../.."
   INTERFACE_LINK_LIBRARIES "OpenMeshCore"
 )
 
 # Import target "OpenMeshCore" for configuration "Debug"
 set_property(TARGET OpenMeshCore APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(OpenMeshCore PROPERTIES
-  IMPORTED_LOCATION_DEBUG "/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/Build/lib/libOpenMeshCored.so.9.0"
+  IMPORTED_LOCATION_DEBUG "/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/Build/lib/libOpenMeshCored.so.9.0"
   IMPORTED_SONAME_DEBUG "libOpenMeshCored.so.9.0"
   )
 
 # Import target "OpenMeshTools" for configuration "Debug"
 set_property(TARGET OpenMeshTools APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(OpenMeshTools PROPERTIES
-  IMPORTED_LOCATION_DEBUG "/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/Build/lib/libOpenMeshToolsd.so.9.0"
+  IMPORTED_LOCATION_DEBUG "/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/Build/lib/libOpenMeshToolsd.so.9.0"
   IMPORTED_SONAME_DEBUG "libOpenMeshToolsd.so.9.0"
   )
 

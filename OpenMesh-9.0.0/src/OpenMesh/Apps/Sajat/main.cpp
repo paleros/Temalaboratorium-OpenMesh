@@ -8,22 +8,22 @@
  * Temalaboratorium: 3D nyomtatas kulso alatamasztas
  *
  * 1. Feladatresz
- *
  * Feladat leirasa: egy fajbol betolt egy 3d alakzatot. Ezt bizonyos idokozonkent egy-egy fuggoleges vonallal elmetszi
  * es kiszamolja, hogy a vonal melyik ponokon metszi el. A bemeno és kimeno pontokat összekoti egy vonallal, ez megy a
  * kimeneti fileba. Tehat a vegeredmegy egy olyan fajl lesz, amiben függöleges vonalak vannak azokon a helyeken, ahol
  * az eredeti test belsejeben halad.
  *
  * 2. Feladatresz
- *
  * Feladat leirasa: a bemeneti pontokat a szomszedokkal ossze kell kotni, a szerint, hogy feljebb vannak-e.
  * Mindegyik el gyakorlatilag egy iranyitott vektor, aminek sulya is van, aszerint, hogy milyen meredeken halad felfele.
  * A kimenet egy elhalo a pontok kozott.
  *
  * 3. Feladatresz
- *
  * Feladat leirasa: az eleknel sulyt szamolunk a pontokra rekurzivan. A tamasz csak bizonyos sulyig tartja meg
  * utana uj pont kell. Ezeket a megtartott ponthalmazokat irjuk ki a tamaszponttal.
+ *
+ * 4. Feladatresz
+ * Feladat leirasa: a tamaszpontokból fuggoleges egyeneseket huzunk az aljaig.
  *
  * Felhasznalt anyagok: OpenMesh Documentation, gpytoolbox.org, digitalocean.com, w3schools.com, stackoverflow.com,
  *                      geeksforgeeks.org, GitHub Copilot, ChatGTP,
@@ -43,8 +43,9 @@
  */
 /// A tesztelheto alakzatok
 //#define TEST_CUBE
-#define TEST_BUNNY
+//#define TEST_BUNNY
 //#define TEST_DIAMOND
+#define TEST_SPHERE
 
 /**
  * A feladat megvalositasa
@@ -63,6 +64,9 @@ int main(){
 #ifdef TEST_DIAMOND
     std::string input_file = "diamond.obj";
 #endif
+#ifdef TEST_SPHERE
+    std::string input_file = "sphere.obj";
+#endif
 
     /// A racspont osztas leptek merete es maximum kiterjedese
 #ifdef TEST_BUNNY
@@ -72,6 +76,9 @@ int main(){
     double l = 0.1;
 #endif
 #ifdef TEST_DIAMOND
+    double l = 0.1;
+#endif
+#ifdef TEST_SPHERE
     double l = 0.1;
 #endif
 
@@ -134,15 +141,15 @@ int main(){
 
         /// Vegigmegyunk a potencialis racspontokon
         double x = std::floor(min_x/l)*l;
-        while(x <= max_x){
+        while(x - max_x <= l/100){
             double z = std::floor(min_z/l)*l;
-            while(z <= max_z) {
+            while(z - max_z <= l/100) {
                 /// Kiszamoljuk a haromszogek teruleteit
                 double A = area(p1.coordinates[0], p1.coordinates[2],
                                 p2.coordinates[0], p2.coordinates[2],
                                 p3.coordinates[0], p3.coordinates[2]);
 
-                if (A != 0) {
+                if (std::abs(A) > l/100) {
                     double A1 = area(x, z,
                                      p2.coordinates[0], p2.coordinates[2],
                                      p3.coordinates[0], p3.coordinates[2]);
@@ -158,7 +165,7 @@ int main(){
                     double b2 = A2 / A;
                     double b3 = A3 / A;
                     /// Ha nem negativ akkor a haromszogon belul van, tehat metszi
-                    if (b1 > 0 && b2 > 0 && b3 > 0) {
+                    if (b1 > l/100 && b2 > l/100 && b3 > l/100) {
                         double y = p1.coordinates[1] * b1 + p2.coordinates[1] * b2 + p3.coordinates[1] * b3;
                         Point p;
                         p.coordinates[0] = x;
@@ -169,24 +176,18 @@ int main(){
                     }
                 }
                 z = z + l;
-                /// Ha 0, akkor tenyleg legyen nulla
-                if (std::abs(z) < 1e-10) {
-                    z = 0.0;
-                }
             }
             x = x + l;
-            /// Ha 0, akkor tenyleg legyen nulla
-            if (std::abs(x) < 1e-10) {
-                x = 0.0;
-            }
         }
 
     }
 
     /// A metszespontok rendezese
     std::sort(intersect_points.begin(), intersect_points.end(), comparePoints);
+    deleteWrongPoints(intersect_points, l / 100);
 
-    deleteWrongPoints(intersect_points);
+    /// A kiiras a fileba
+    writeInternalLines("output1.obj", input_file, intersect_points);
 
     /// A bemeneti pontpok kozotti elek tarolasara szolgalo tomb
     /// @since 1.2
@@ -280,26 +281,37 @@ int main(){
         }
     }
 
+    writeInputEdges("output2.obj", input_file, edges);
+
+    /// Az alatamasztando pontok kiszamitasa
+    /// @since 1.3
     std::vector<Point> inputPoints;
-    for(int i = 0; i < (int)intersect_points.size(); i = i + 2){
-        inputPoints.push_back(intersect_points[i]);
+    for(auto & edge : edges){
+        inputPoints.push_back(edge.p1);
+        inputPoints.push_back(edge.p2);
+    }
+    std::sort(inputPoints.begin(), inputPoints.end(), comparePoints);
+    for(int i = 0; i < (int)inputPoints.size(); i++){
+        if(std::abs(inputPoints[i].coordinates[0] - inputPoints[i+1].coordinates[0]) <= l/100 &&
+            std::abs(inputPoints[i].coordinates[1] - inputPoints[i+1].coordinates[1]) <= l/100 &&
+            std::abs(inputPoints[i].coordinates[2] - inputPoints[i+1].coordinates[2]) <= l/100){
+            inputPoints.erase(inputPoints.begin() + i);
+            i--;
+        }
     }
 
-
-
+    std::vector<Point> supportPointsAll;
     int c = 1;
     while ((int)edges.size() > 0) {
         std::vector<Point> supportPoints;
         supportPoints = setWeightAllPointsAndGetSupportPoints(edges, inputPoints, maxWeight);
 
         /// Az elek listajabol kitorli azokat, amelyeket alatamasztottunk mar
-        for (int i = 0; i < (int) edges.size(); i++) {
-            for (const auto & supportPoint : supportPoints) {
-                if (std::abs(edges[i].p2.coordinates[0] - supportPoint.coordinates[0]) <= l/100 &&
-                        std::abs(edges[i].p2.coordinates[1] - supportPoint.coordinates[1]) <= l/100 &&
-                        std::abs(edges[i].p2.coordinates[2] - supportPoint.coordinates[2]) <= l/100){
-                    edges.erase(edges.begin() + i);
-                    i--;
+        for (const auto & supportPoint : supportPoints){
+            for(int j = 0; j < (int)edges.size(); j++){
+                if(supportPoint == edges[j].p1){
+                    edges.erase(edges.begin() + j);
+                    j--;
                 }
             }
         }
@@ -311,22 +323,43 @@ int main(){
             }
         }
 
-        /// Az el lista sulyait nullazza (illetve -1-eli)
-        for (auto &edge: edges) {
-            edge.weight = -1;
+        /// A pontok sulyait nullazza (illetve -1-eli)
+        for (auto &inputPoint : inputPoints) {
+            inputPoint.weight = -1;
         }
 
-        std::cout << "Alatamasztando pontok szintje: " << c << std::endl;//TODO teszthez
+        if((int)supportPoints.size() == 0){
+            break;
+        }
 
-        std::string fileName = "output3";
+        /*std::string fileName = "output3";
         std::string obj = ".obj";
         fileName += std::to_string(c);
         fileName += obj;
-        writePoints(fileName, input_file, c, supportPoints);
+        writePoints(fileName, input_file, c, supportPoints);*/
         c++;
+        for (const auto & supportPoint : supportPoints) {
+            supportPointsAll.push_back(supportPoint);
+        }
     }
 
+    /// Kiirjuk az alatamasztando pontokat
+    writePoints("output3.obj", input_file, 0, supportPointsAll);
 
+    /// Az alatamasztando pontokbol egyeneseket huzunk a legalso pont y koordinataja szerinti sikra
+    std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPoints);
+    std::vector<Point> supportLines;
+    for (const auto & supportPoint : supportPointsAll) {
+        Point p;
+        p.coordinates[0] = supportPoint.coordinates[0];
+        p.coordinates[1] = supportPoint.coordinates[1];
+        p.coordinates[2] = supportPoint.coordinates[2];
+        p.e = supportPoint.e;
+        supportLines.push_back(p);
+        p.coordinates[1] = supportPointsAll[0].coordinates[1];
+        supportLines.push_back(p);
+    }
+    writeInternalLines("output4.obj", input_file, supportLines);
 
 
 
@@ -335,9 +368,7 @@ int main(){
 
     //TODO kiszepiteni a kododt
 
-    /// A kiiras a fileba
-    writeInternalLines("output1.obj", input_file, intersect_points);
-    writeInputEdges("output2.obj", input_file, edges);
+
 
     return 0;
 }

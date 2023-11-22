@@ -1,4 +1,4 @@
-# Install script for directory: /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0
+# Install script for directory: /home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -43,14 +43,14 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/libdata/pkgconfig" TYPE FILE FILES "/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/openmesh.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/libdata/pkgconfig" TYPE FILE FILES "/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/openmesh.pc")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/OpenMesh/cmake/OpenMeshConfig.cmake")
     file(DIFFERENT _cmake_export_file_changed FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/OpenMesh/cmake/OpenMeshConfig.cmake"
-         "/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/CMakeFiles/Export/14b769bc31fd504a15bc5c93136aeb1f/OpenMeshConfig.cmake")
+         "/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/CMakeFiles/Export/14b769bc31fd504a15bc5c93136aeb1f/OpenMeshConfig.cmake")
     if(_cmake_export_file_changed)
       file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/OpenMesh/cmake/OpenMeshConfig-*.cmake")
       if(_cmake_old_config_files)
@@ -63,19 +63,19 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     endif()
     unset(_cmake_export_file_changed)
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/OpenMesh/cmake" TYPE FILE FILES "/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/CMakeFiles/Export/14b769bc31fd504a15bc5c93136aeb1f/OpenMeshConfig.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/OpenMesh/cmake" TYPE FILE FILES "/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/CMakeFiles/Export/14b769bc31fd504a15bc5c93136aeb1f/OpenMeshConfig.cmake")
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/OpenMesh/cmake" TYPE FILE FILES "/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/CMakeFiles/Export/14b769bc31fd504a15bc5c93136aeb1f/OpenMeshConfig-debug.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/OpenMesh/cmake" TYPE FILE FILES "/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/CMakeFiles/Export/14b769bc31fd504a15bc5c93136aeb1f/OpenMeshConfig-debug.cmake")
   endif()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Core/cmake_install.cmake")
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Tools/cmake_install.cmake")
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/cmake_install.cmake")
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/Unittests/cmake_install.cmake")
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/Doc/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Core/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Tools/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/Unittests/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/Doc/cmake_install.cmake")
 
 endif()
 
@@ -87,5 +87,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

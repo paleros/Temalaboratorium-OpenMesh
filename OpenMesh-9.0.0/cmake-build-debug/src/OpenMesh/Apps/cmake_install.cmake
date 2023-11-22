@@ -1,4 +1,4 @@
-# Install script for directory: /home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps
+# Install script for directory: /home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,15 +44,15 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/Dualizer/cmake_install.cmake")
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/Decimating/commandlineDecimater/cmake_install.cmake")
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/Smoothing/cmake_install.cmake")
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/Subdivider/commandlineSubdivider/cmake_install.cmake")
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/cmake_install.cmake")
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/mconvert/cmake_install.cmake")
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/cmake_install.cmake")
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/VDProgMesh/Analyzer/cmake_install.cmake")
-  include("/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/Sajat/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/Dualizer/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/Decimating/commandlineDecimater/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/Smoothing/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/Subdivider/commandlineSubdivider/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/mconvert/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/VDProgMesh/Analyzer/cmake_install.cmake")
+  include("/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/src/OpenMesh/Apps/Sajat/cmake_install.cmake")
 
 endif()
 

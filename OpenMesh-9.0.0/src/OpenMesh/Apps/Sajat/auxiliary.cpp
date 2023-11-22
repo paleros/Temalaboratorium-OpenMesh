@@ -40,7 +40,7 @@ void writeInternalLines(const std::string& output_file_name, const std::string& 
         exit(1);
     }
     /// A kimeneti file fejlece
-    file <<  "# Internal lines generated from " << input_file_name << " by peros\n";
+    file <<  "# Internal lines generated from " << input_file_name << " by BTMLYV\n";
     int k = 1;
     for(int i = 0; i < (int)intersect_points.size(); i++){
         file << "v " << intersect_points[i].coordinates[0] << " " << intersect_points[i].coordinates[1] << " " << intersect_points[i].coordinates[2] << "\n";
@@ -85,17 +85,18 @@ double area(double x1, double z1, double x2, double z2, double x3, double z3) {
  * @since 1.1
  */
 bool comparePoints(const Point& p1, const Point& p2) {
-    if(p1.coordinates[0] < p2.coordinates[0]){
+    if(p2.coordinates[0] - p1.coordinates[0] > p1.e){
         return true;
-    } else if(p1.coordinates[0] == p2.coordinates[0]){
-        if(p1.coordinates[2] < p2.coordinates[2]){
+    } else if(std::abs(p1.coordinates[0] - p2.coordinates[0]) <= p1.e){
+        if(p2.coordinates[2] - p1.coordinates[2] > p1.e){
             return true;
-        } else if(p1.coordinates[2] == p2.coordinates[2]){
-            if(p1.coordinates[1] < p2.coordinates[1]){
+        } else if(std::abs(p1.coordinates[2] - p2.coordinates[2]) <= p1.e){
+            if(p2.coordinates[1] - p1.coordinates[1] > p1.e){
                 return true;
             }
         }
     }
+
     return false;
 }
 
@@ -131,12 +132,13 @@ double thisEdgeLeadsToPoint(const Point &actualPoint, const Point &adjacentPoint
  * Kitorli a rossz, hibas pontokat (zajt)
  * (Egymast koveto pont paroknak meg kell egyeznie az x es z koordinatajuknak)
  * @param intersect_points a pontok listaja
+ * @param e a hibahatar
  * @since 1.1
  */
-void deleteWrongPoints(std::vector<Point>& intersect_points) {
+void deleteWrongPoints(std::vector<Point> &intersect_points, double e) {
     for (int i = 0; i < (int) intersect_points.size() - 1; i++) {
-        if (intersect_points[i].coordinates[0] != intersect_points[i + 1].coordinates[0] ||
-            intersect_points[i].coordinates[2] != intersect_points[i + 1].coordinates[2]) {
+        if (std::abs(intersect_points[i].coordinates[0] - intersect_points[i + 1].coordinates[0]) > e ||
+            std::abs(intersect_points[i].coordinates[2] - intersect_points[i + 1].coordinates[2]) > e) {
             intersect_points.erase(intersect_points.begin() + i);
             i--;
         } else {
@@ -202,7 +204,7 @@ void writeInputEdges(const std::string& output_file_name, const std::string& inp
         exit(1);
     }
     /// A kimeneti file fejlece
-    file <<  "# Input edges generated from " << input_file_name << " by peros\n";
+    file <<  "# Input edges generated from " << input_file_name << " by BTMLYV\n";
     int k = 1;
     for(auto & edge : edges){
         file << "v " << edge.p1.coordinates[0] << " " << edge.p1.coordinates[1] << " " << edge.p1.coordinates[2] << "\n";
@@ -264,14 +266,14 @@ double getY(std::vector<Point> &intersect_points, const Point &p, double l) {
  * @return az elso elem elobbre valo-e vagy sem
  * @since 1.3
  */
-bool compareInputPoints(const Point& p1, const Point& p2) {
-    if(p1.coordinates[1] < p2.coordinates[1]){
+bool compareInputPoints(const Point &p1, const Point &p2) {
+    if((p1.coordinates[1] - p2.coordinates[1]) < -p1.e){
         return true;
-    } else if(p1.coordinates[1] == p2.coordinates[1]){
-        if(p1.coordinates[0] < p2.coordinates[0]){
+    } else if(std::abs(p1.coordinates[1] - p2.coordinates[1]) <= p1.e){
+        if((p1.coordinates[0] - p2.coordinates[0]) < -p1.e){
             return true;
-        } else if(p1.coordinates[0] == p2.coordinates[0]){
-            if(p1.coordinates[2] < p2.coordinates[2]){
+        } else if(std::abs(p1.coordinates[0] - p2.coordinates[0]) <= p1.e){
+            if((p1.coordinates[2] - p2.coordinates[2]) < -p1.e){
                 return true;
             }
         }
@@ -288,19 +290,19 @@ bool compareInputPoints(const Point& p1, const Point& p2) {
  * @since 1.3
  */
 bool compareEdgesInputPoints(const Edge& e1, const Edge& e2) {
-    if(e1.p1.coordinates[1] < e2.p1.coordinates[1]){
+    if((e1.p1.coordinates[1] - e2.p1.coordinates[1]) < -e1.p1.e){
         return true;
-    } else if(e1.p1.coordinates[1] == e2.p1.coordinates[1]){
-        if(e1.p1.coordinates[0] < e2.p1.coordinates[0]){
+    } else if(std::abs(e1.p1.coordinates[1] - e2.p1.coordinates[1]) <= -e1.p1.e){
+        if((e1.p1.coordinates[0] - e2.p1.coordinates[0]) < -e1.p1.e){
             return true;
-        } else if(e1.p1.coordinates[0] == e2.p1.coordinates[0]){
-            if(e1.p1.coordinates[2] < e2.p1.coordinates[2]){
+        } else if(std::abs(e1.p1.coordinates[0] - e2.p1.coordinates[0]) <= -e1.p1.e){
+            if((e1.p1.coordinates[2] - e2.p1.coordinates[2]) < -e1.p1.e){
                 return true;
-            } else if(e1.p2.coordinates[1] == e2.p2.coordinates[1]){
-                if(e1.p2.coordinates[0] < e2.p2.coordinates[0]){
+            } else if(std::abs(e1.p2.coordinates[1] - e2.p2.coordinates[1]) <= -e1.p1.e){
+                if((e1.p2.coordinates[0] - e2.p2.coordinates[0]) < -e1.p1.e){
                     return true;
-                } else if(e1.p2.coordinates[0] == e2.p2.coordinates[0]){
-                    if(e1.p2.coordinates[2] < e2.p2.coordinates[2]){
+                } else if(std::abs(e1.p2.coordinates[0] - e2.p2.coordinates[0]) <= -e1.p1.e){
+                    if((e1.p2.coordinates[2] - e2.p2.coordinates[2]) < -e1.p1.e){
                         return true;
                     }
                 }
@@ -316,7 +318,7 @@ bool compareEdgesInputPoints(const Edge& e1, const Edge& e2) {
  * @param p a keresett pont
  * @return
  */
-int findPoint(std::vector<Point>& points, const Point& p){
+int findPoint(std::vector<Point> &points, const Point &p) {
     for(int i = 0; i < (int)points.size(); i++){
         if(points[i] == p){
             return i;
@@ -333,13 +335,14 @@ int findPoint(std::vector<Point>& points, const Point& p){
  * @return a pontok listaja, aminke a sulyuk nem tul nagy
  * @since 1.3
  */
-std::vector<Point> setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Point> &inputPoints, double maxWeight) {
+std::vector<Point>
+setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Point> &inputPoints, double maxWeight) {
     std::sort(edges.begin(), edges.end(), compareEdgesInputPoints);
     /// Kiszamolja minden pontra a sulyt
     for(auto & edge : edges){
-        if(findPoint(inputPoints, edge.p2) == -1 || findPoint(inputPoints, edge.p2) == -1){
+        if(findPoint(inputPoints, edge.p1) == -1 || findPoint(inputPoints, edge.p2) == -1){
             continue;
-            //TODO mindig ide fut be, miert?
+            //TODO egy ido utan ide befut es a vegtelensegig megy...
         }
         double weightP2Actual = inputPoints[findPoint(inputPoints, edge.p2)].weight;
         double weightP1Actual = inputPoints[findPoint(inputPoints, edge.p1)].weight;
@@ -355,7 +358,7 @@ std::vector<Point> setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edge
             if(weightP1Actual == -1) {
                 inputPoints[findPoint(inputPoints, edge.p2)].weight = weightEdge;
             }else {
-                if (weightP2Actual > weightP2New) {
+                if (weightP2Actual - weightP2New > edge.p1.e) {
                     inputPoints[findPoint(inputPoints, edge.p2)].weight = weightP2New;
                 }
             }
@@ -365,12 +368,15 @@ std::vector<Point> setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edge
     /// Felveszi a csucspontokat a listaba
     std::vector<Point> supportPoints;
     for(auto & edge : edges){
+        if(findPoint(inputPoints, edge.p1) == -1 || findPoint(inputPoints, edge.p2) == -1){
+            continue;
+        }
         supportPoints.push_back(inputPoints[findPoint(inputPoints, edge.p1)]);
         supportPoints.push_back(inputPoints[findPoint(inputPoints, edge.p2)]);
     }
     /// Kitorli a duplikatumokat
     std::sort(supportPoints.begin(), supportPoints.end(), compareInputPoints);
-    for (int i = 0; i < (int)supportPoints.size(); i++){
+    for (int i = 0; i < (int)supportPoints.size() -1; i++){
         if (supportPoints[i] == supportPoints[i + 1]){
             if (supportPoints[i].weight == -1){
                 supportPoints.erase(supportPoints.begin() + i);
@@ -417,7 +423,7 @@ void writePoints(const std::string& output_file_name, const std::string& input_f
         exit(1);
     }
     /// A kimeneti file fejlece
-    file <<  "# Supported points No. " << count << " from " << input_file_name << " by peros\n";
+    file <<  "# Supported points No. " << count << " from " << input_file_name << " by BTMLYV\n";
     for(auto & point : points){
         file << "v " << point.coordinates[0] << " " << point.coordinates[1] << " " << point.coordinates[2] << "\n";
     }
