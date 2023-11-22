@@ -29,18 +29,21 @@ void readMesh(const std::string& file, MyMesh& mesh){
 
 /**
  * A parameterkent kapott bemeneti es kimeneti pontokat osszekoti fuggolegesen es kiirja a .obj fileba
- * @param file_name a kimeneti file neve
+ * @param output_file_name a kimeneti file neve
+ * @param input_file_name a bemeneti file neve
  * @param intersect_points a metszespontok koordinatai
+ * @param desc a leiras
  * @since 1.1
  */
-void writeInternalLines(const std::string& output_file_name, const std::string& input_file_name, std::vector<Point>& intersect_points){
+void writeInternalLines(const std::string &output_file_name, const std::string &input_file_name,
+                        std::vector<Point> &intersect_points, const std::string &desc) {
     std::ofstream file(output_file_name);
     if(!file){
         std::cout << "Error: The file " << output_file_name << " cannot be opened!" << std::endl;
         exit(1);
     }
     /// A kimeneti file fejlece
-    file <<  "# Internal lines generated from " << input_file_name << " by BTMLYV\n";
+    file <<  desc << input_file_name << " by BTMLYV\n";
     int k = 1;
     for(int i = 0; i < (int)intersect_points.size(); i++){
         file << "v " << intersect_points[i].coordinates[0] << " " << intersect_points[i].coordinates[1] << " " << intersect_points[i].coordinates[2] << "\n";

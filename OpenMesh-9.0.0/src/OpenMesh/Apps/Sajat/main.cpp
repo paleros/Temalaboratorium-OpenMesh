@@ -23,7 +23,7 @@
  * utana uj pont kell. Ezeket a megtartott ponthalmazokat irjuk ki a tamaszponttal.
  *
  * 4. Feladatresz
- * Feladat leirasa: a tamaszpontokból fuggoleges egyeneseket huzunk az aljaig.
+ * Feladat leirasa: a tamaszpontokból fuggoleges egyeneseket huzunk az elekzet aljaig.
  *
  * Felhasznalt anyagok: OpenMesh Documentation, gpytoolbox.org, digitalocean.com, w3schools.com, stackoverflow.com,
  *                      geeksforgeeks.org, GitHub Copilot, ChatGTP,
@@ -187,7 +187,7 @@ int main(){
     deleteWrongPoints(intersect_points, l / 100);
 
     /// A kiiras a fileba
-    writeInternalLines("output1.obj", input_file, intersect_points);
+    writeInternalLines("output1.obj", input_file, intersect_points, "# Internal lines generated from ");
 
     /// A bemeneti pontpok kozotti elek tarolasara szolgalo tomb
     /// @since 1.2
@@ -347,8 +347,18 @@ int main(){
     writePoints("output3.obj", input_file, 0, supportPointsAll);
 
     /// Az alatamasztando pontokbol egyeneseket huzunk a legalso pont y koordinataja szerinti sikra
+    /// @since 1.4
     std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPoints);
     std::vector<Point> supportLines;
+    /// Kiszamoljuk, hogy meddig kell az egyeneseket huzni
+    double minY = std::numeric_limits<double>::max(); // Kezdeti érték a minimális y koordinátának
+    for (MyMesh::VertexIter v_it = mesh_object.vertices_begin(); v_it != mesh_object.vertices_end(); ++v_it) {
+        MyMesh::Point p = mesh_object.point(*v_it);
+        if (p[1] < minY) {
+            minY = p[1];
+        }
+    }
+
     for (const auto & supportPoint : supportPointsAll) {
         Point p;
         p.coordinates[0] = supportPoint.coordinates[0];
@@ -356,10 +366,21 @@ int main(){
         p.coordinates[2] = supportPoint.coordinates[2];
         p.e = supportPoint.e;
         supportLines.push_back(p);
-        p.coordinates[1] = supportPointsAll[0].coordinates[1];
+        p.coordinates[1] = minY;
+
+        /// Ha a metszespontok kozott van olyan kimeno pont, amelyik alacsonyabb, akkor azt a pontot csak addig huzzuk le
+        for(int i = 1; i < (int)intersect_points.size(); i = i+2){
+            if(std::abs(intersect_points[i].coordinates[0] - supportPoint.coordinates[0]) <= l/100 &&
+               std::abs(intersect_points[i].coordinates[2] - supportPoint.coordinates[2]) <= l/100){
+                if(intersect_points[i].coordinates[1] > p.coordinates[1] && intersect_points[i].coordinates[1] < supportPoint.coordinates[1]){
+                    p.coordinates[1] = intersect_points[i].coordinates[1];
+                }
+            }
+        }
+
         supportLines.push_back(p);
     }
-    writeInternalLines("output4.obj", input_file, supportLines);
+    writeInternalLines("output4.obj", input_file, supportLines, "# Support lines generated from ");
 
 
 
