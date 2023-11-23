@@ -29,26 +29,26 @@ void readMesh(const std::string& file, MyMesh& mesh){
 
 /**
  * A parameterkent kapott bemeneti es kimeneti pontokat osszekoti fuggolegesen es kiirja a .obj fileba
- * @param output_file_name a kimeneti file neve
- * @param input_file_name a bemeneti file neve
- * @param intersect_points a metszespontok koordinatai
+ * @param outputFileName a kimeneti file neve
+ * @param inputFileName a bemeneti file neve
+ * @param intersectPoints a metszespontok koordinatai
  * @param desc a leiras
  * @since 1.1
  */
-void writeInternalLines(const std::string &output_file_name, const std::string &input_file_name,
-                        std::vector<Point> &intersect_points, const std::string &desc) {
-    std::ofstream file(output_file_name);
+void writeInternalLines(const std::string &outputFileName, const std::string &inputFileName,
+                        std::vector<Point> &intersectPoints, const std::string &desc) {
+    std::ofstream file(outputFileName);
     if(!file){
-        std::cout << "Error: The file " << output_file_name << " cannot be opened!" << std::endl;
+        std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
         exit(1);
     }
     /// A kimeneti file fejlece
-    file <<  desc << input_file_name << " by BTMLYV\n";
+    file << desc << inputFileName << " by BTMLYV\n";
     int k = 1;
-    for(int i = 0; i < (int)intersect_points.size(); i++){
-        file << "v " << intersect_points[i].coordinates[0] << " " << intersect_points[i].coordinates[1] << " " << intersect_points[i].coordinates[2] << "\n";
+    for(int i = 0; i < (int)intersectPoints.size(); i++){
+        file << "v " << intersectPoints[i].coordinates[0] << " " << intersectPoints[i].coordinates[1] << " " << intersectPoints[i].coordinates[2] << "\n";
         i++;
-        file << "v " << intersect_points[i].coordinates[0] << " " << intersect_points[i].coordinates[1] << " " << intersect_points[i].coordinates[2] << "\n";
+        file << "v " << intersectPoints[i].coordinates[0] << " " << intersectPoints[i].coordinates[1] << " " << intersectPoints[i].coordinates[2] << "\n";
         file << "l " << k << " " << k+1 << "\n";
         k = k + 2;
     }
@@ -134,15 +134,15 @@ double thisEdgeLeadsToPoint(const Point &actualPoint, const Point &adjacentPoint
 /**
  * Kitorli a rossz, hibas pontokat (zajt)
  * (Egymast koveto pont paroknak meg kell egyeznie az x es z koordinatajuknak)
- * @param intersect_points a pontok listaja
+ * @param intersectPoints a pontok listaja
  * @param e a hibahatar
  * @since 1.1
  */
-void deleteWrongPoints(std::vector<Point> &intersect_points, double e) {
-    for (int i = 0; i < (int) intersect_points.size() - 1; i++) {
-        if (std::abs(intersect_points[i].coordinates[0] - intersect_points[i + 1].coordinates[0]) > e ||
-            std::abs(intersect_points[i].coordinates[2] - intersect_points[i + 1].coordinates[2]) > e) {
-            intersect_points.erase(intersect_points.begin() + i);
+void deleteWrongPoints(std::vector<Point> &intersectPoints, double e) {
+    for (int i = 0; i < (int) intersectPoints.size() - 1; i++) {
+        if (std::abs(intersectPoints[i].coordinates[0] - intersectPoints[i + 1].coordinates[0]) > e ||
+            std::abs(intersectPoints[i].coordinates[2] - intersectPoints[i + 1].coordinates[2]) > e) {
+            intersectPoints.erase(intersectPoints.begin() + i);
             i--;
         } else {
             i++;
@@ -152,26 +152,26 @@ void deleteWrongPoints(std::vector<Point> &intersect_points, double e) {
 
 /**
  * Megnezi, hogy a parameterkent kapott pont benne van-e a tombben (csal x-t es z-t vizsgalja)
- * @param intersect_points a pontok tombje
+ * @param intersectPoints a pontok tombje
  * @param p a keresendo pont
  * @return benne van-e
  * @since 1.2
  */
-bool isIncluded(std::vector<Point> &intersect_points, const Point &p, double l) {
+bool isIncluded(std::vector<Point> &intersectPoints, const Point &p, double l) {
     /// A bemeneti pontokat es a kimeneti pontokat kulon valogatja
     std::vector<double> inputPointsY;
     std::vector<double> outputPointsY;
     double e = l / 100; /// A hibahatar
 
-    for(int i = 0; i < (int)intersect_points.size(); i++) {
-        if (std::abs(intersect_points[i].coordinates[0] - p.coordinates[0]) <= e &&
-            std::abs(intersect_points[i].coordinates[2] - p.coordinates[2]) <= e &&
-            (std::abs(intersect_points[i].coordinates[1] - p.coordinates[1]) <= e ||
-             intersect_points[i].coordinates[1]  - p.coordinates[1] >= -e)) {
+    for(int i = 0; i < (int)intersectPoints.size(); i++) {
+        if (std::abs(intersectPoints[i].coordinates[0] - p.coordinates[0]) <= e &&
+            std::abs(intersectPoints[i].coordinates[2] - p.coordinates[2]) <= e &&
+            (std::abs(intersectPoints[i].coordinates[1] - p.coordinates[1]) <= e ||
+             intersectPoints[i].coordinates[1] - p.coordinates[1] >= -e)) {
             if (i % 2 == 0) {
-                inputPointsY.push_back(intersect_points[i].coordinates[1]);
+                inputPointsY.push_back(intersectPoints[i].coordinates[1]);
             } else {
-                outputPointsY.push_back(intersect_points[i].coordinates[1]);
+                outputPointsY.push_back(intersectPoints[i].coordinates[1]);
             }
         }
     }
@@ -195,19 +195,19 @@ bool isIncluded(std::vector<Point> &intersect_points, const Point &p, double l) 
 
 /**
  * A parameterkent kapott eleket kiirja a .obj fileba
- * @param output_file_name a kimeneti file neve
- * @param input_file_name a bemeneti file neve
+ * @param outputFileName a kimeneti file neve
+ * @param inputFileName a bemeneti file neve
  * @param edges a kiirando elek
  * @since 1.2
  */
-void writeInputEdges(const std::string& output_file_name, const std::string& input_file_name, std::vector<Edge>& edges){
-    std::ofstream file(output_file_name);
+void writeInputEdges(const std::string& outputFileName, const std::string& inputFileName, std::vector<Edge>& edges){
+    std::ofstream file(outputFileName);
     if(!file){
-        std::cout << "Error: The file " << output_file_name << " cannot be opened!" << std::endl;
+        std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
         exit(1);
     }
     /// A kimeneti file fejlece
-    file <<  "# Input edges generated from " << input_file_name << " by BTMLYV\n";
+    file << "# Input edges generated from " << inputFileName << " by BTMLYV\n";
     int k = 1;
     for(auto & edge : edges){
         file << "v " << edge.p1.coordinates[0] << " " << edge.p1.coordinates[1] << " " << edge.p1.coordinates[2] << "\n";
@@ -220,26 +220,27 @@ void writeInputEdges(const std::string& output_file_name, const std::string& inp
 
 /**
  * Kikeresi a parameterkent kapott pont a tombben (csal x-t es z-t vizsgalja)
- * @param intersect_points a pontok tombje
+ * @param intersectPoints a pontok tombje
  * @param p a keresendo pont
+ * @param l a hibahatarhoz az osztas egysege
  * @return visszaadja az y koordinatat a legkisebb, de az aktualisnal magasabb pontrol, ha nincs benne, akkor 0.0
  * @since 1.2
  */
-double getY(std::vector<Point> &intersect_points, const Point &p, double l) {
+double getY(std::vector<Point> &intersectPoints, const Point &p, double l) {
     std::vector<double> inputPointsY;
     std::vector<double> outputPointsY;
     double e = l / 100; /// A hibahatar
 
-    for(int i = 0; i < (int)intersect_points.size(); i++) {
-        if ((std::abs(intersect_points[i].coordinates[0] - p.coordinates[0]) <= e &&
-            std::abs(intersect_points[i].coordinates[2] - p.coordinates[2]) <= e) &&
-            (std::abs(intersect_points[i].coordinates[1] - p.coordinates[1]) <= e ||
-            intersect_points[i].coordinates[1]  - p.coordinates[1] >= -e)) {
+    for(int i = 0; i < (int)intersectPoints.size(); i++) {
+        if ((std::abs(intersectPoints[i].coordinates[0] - p.coordinates[0]) <= e &&
+             std::abs(intersectPoints[i].coordinates[2] - p.coordinates[2]) <= e) &&
+            (std::abs(intersectPoints[i].coordinates[1] - p.coordinates[1]) <= e ||
+             intersectPoints[i].coordinates[1] - p.coordinates[1] >= -e)) {
 
             if (i % 2 == 0) {
-                inputPointsY.push_back(intersect_points[i].coordinates[1]);
+                inputPointsY.push_back(intersectPoints[i].coordinates[1]);
             } else {
-                outputPointsY.push_back(intersect_points[i].coordinates[1]);
+                outputPointsY.push_back(intersectPoints[i].coordinates[1]);
             }
         }
     }
@@ -414,20 +415,20 @@ setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Poin
 
 /**
  * A parameterkent kapott pontokat kiirja a .obj fileba
- * @param file_name a kimeneti file neve
- * @param input_file_name az eredeti alakzat neve
+ * @param outputFileName a kimeneti file neve
+ * @param inputFileName az eredeti alakzat neve
  * @param count a szamlalo erteke
  * @param points a pontok
  * @since 1.3
  */
-void writePoints(const std::string& output_file_name, const std::string& input_file_name, int count, std::vector<Point>& points){
-    std::ofstream file(output_file_name);
+void writePoints(const std::string& outputFileName, const std::string& inputFileName, int count, std::vector<Point>& points){
+    std::ofstream file(outputFileName);
     if(!file){
-        std::cout << "Error: The file " << output_file_name << " cannot be opened!" << std::endl;
+        std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
         exit(1);
     }
     /// A kimeneti file fejlece
-    file <<  "# Supported points No. " << count << " from " << input_file_name << " by BTMLYV\n";
+    file << "# Supported points No. " << count << " generated from " << inputFileName << " by BTMLYV\n";
     for(auto & point : points){
         file << "v " << point.coordinates[0] << " " << point.coordinates[1] << " " << point.coordinates[2] << "\n";
     }

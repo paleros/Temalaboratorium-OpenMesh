@@ -59,14 +59,14 @@ struct Edge{
 
 /**
  * A parameterkent kapott bemeneti es kimeneti pontokat osszekoti fuggolegesen es kiirja a .obj fileba
- * @param output_file_name a kimeneti file neve
- * @param input_file_name a bemeneti file neve
- * @param intersect_points a metszespontok koordinatai
+ * @param outputFileName a kimeneti file neve
+ * @param inputFileName a bemeneti file neve
+ * @param intersectPoints a metszespontok koordinatai
  * @param desc a leiras
  * @since 1.1
  */
-void writeInternalLines(const std::string &output_file_name, const std::string &input_file_name,
-                        std::vector<Point> &intersect_points, const std::string &desc);
+void writeInternalLines(const std::string &outputFileName, const std::string &inputFileName,
+                        std::vector<Point> &intersectPoints, const std::string &desc);
 
 /**
  * Kiszamolja a haromszog teruletet
@@ -103,38 +103,38 @@ double thisEdgeLeadsToPoint(const Point &actualPoint, const Point &adjacentPoint
 /**
  * Kitorli a rossz, hibas pontokat (zajt)
  * (Egymast koveto pont paroknak meg kell egyeznie az x es z koordinatajuknak)
- * @param intersect_points a pontok listaja
+ * @param intersectPoints a pontok listaja
  * @param e a kuszobertek
  * @since 1.1
  */
-void deleteWrongPoints(std::vector<Point> &intersect_points, double e);
+void deleteWrongPoints(std::vector<Point> &intersectPoints, double e);
 
 /**
  * Megnezi, hogy a parameterkent kapott pont benne van-e a tombben (csal x-t es z-t vizsgalja)
- * @param intersect_points a pontok tombje
+ * @param intersectPoints a pontok tombje
  * @param p a keresendo pont
  * @returnbenne van-e
  * @since 1.2
  */
-bool isIncluded(std::vector<Point> &intersect_points, const Point &p, double l);
+bool isIncluded(std::vector<Point> &intersectPoints, const Point &p, double l);
 
 /**
  * A parameterkent kapott eleket kiirja a .obj fileba
- * @param output_file_name a kimeneti file neve
- * @param input_file_name a bemeneti file neve
+ * @param outputFileName a kimeneti file neve
+ * @param inputFileName a bemeneti file neve
  * @param edges a kiirando elek
  * @since 1.2
  */
-void writeInputEdges(const std::string& output_file_name, const std::string& input_file_name, std::vector<Edge>& edges);
+void writeInputEdges(const std::string& outputFileName, const std::string& inputFileName, std::vector<Edge>& edges);
 
 /**
  * Megnezi, hogy a parameterkent kapott pont benne van-e a tombben (csal x-t es z-t vizsgalja)
- * @param intersect_points a pontok tombje
+ * @param intersectPoints a pontok tombje
  * @param p a keresendo pont
  * @return visszaadja az y koordinatat, ha nincs benne, akkopr 0.0
  * @since 1.2
  */
-double getY(std::vector<Point> &intersect_points, const Point &p, double l);
+double getY(std::vector<Point> &intersectPoints, const Point &p, double l);
 
 /**
  * Osszehasonlitja a ket kapott pont koordinatait es visszadja az elobbre levot
@@ -178,9 +178,9 @@ setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Poin
 /**
  * A parameterkent kapott pontokat kiirja a .obj fileba
  * @param file_name a kimeneti file neve
- * @param input_file_name az eredeti alakzat neve
+ * @param inputFileName az eredeti alakzat neve
  * @param count a szamlalo erteke
  * @param points a pontok
  * @since 1.3
  */
-void writePoints(const std::string& output_file_name, const std::string& input_file_name, int count, std::vector<Point>& points);
+void writePoints(const std::string& outputFileName, const std::string& inputFileName, int count, std::vector<Point>& points);
