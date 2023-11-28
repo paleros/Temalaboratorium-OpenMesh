@@ -27,6 +27,14 @@ typedef OpenMesh::PolyMesh_ArrayKernelT<>  MyMesh;
 void readMesh(const std::string& file, MyMesh& mesh);
 
 /**
+ * Kiirja a megadott filet
+ * @param file a kiirando file
+ * @param mesh a mesh, amibe taroljuk az adatokat
+ * @since 1.5
+ */
+void writeMesh(const std::string& file, MyMesh& mesh);
+
+/**
  * A pontok koordinatainak tarolasara szolgalo struktura
  * [x, y, z]
  * @since 1.1
@@ -184,3 +192,22 @@ setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Poin
  * @since 1.3
  */
 void writePoints(const std::string& outputFileName, const std::string& inputFileName, int count, std::vector<Point>& points);
+
+/**
+ * A kapott mesh-ben minden pontnal az y es a z koordinatat felcsereli
+ * @param mesh a mesh
+ * @since 1.5
+*/
+void swapYZ(MyMesh& mesh);
+
+/**
+ * A parameterkent kapott pontok kozott haromszog alapu hasabokat csinal es kiirja a .obj fileba
+ * @param outputFileName a kimeneti file neve
+ * @param inputFileName a bemeneti file neve
+ * @param points a pontok
+ * @param epsilon a haromszog merete
+ * @param minY a legkisebb y koordinata
+ * @since 1.5
+ */
+void generateAndWriteSupportLines(const std::string &outputFileName, const std::string &inputFileName,
+                                  std::vector<Point> &points, double epsilon, double minY);

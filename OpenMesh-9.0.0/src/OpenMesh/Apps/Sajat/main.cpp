@@ -25,6 +25,9 @@
  * 4. Feladatresz
  * Feladat leirasa: a tamaszpontokból fuggoleges egyeneseket huzunk az elekzet aljaig.
  *
+ * 5. Feladatresz
+ * Feladat leirasa: a tamasz egyeneseket atalakitjuk alazatta, hogy nyomtathato legyen.
+ *
  * Felhasznalt anyagok: OpenMesh Documentation, gpytoolbox.org, digitalocean.com, w3schools.com, stackoverflow.com,
  *                      geeksforgeeks.org, GitHub Copilot, ChatGTP,
  *                      [2020, Jang et al] Free-floating support structure generation
@@ -43,9 +46,10 @@
  */
 /// A tesztelheto alakzatok
 //#define TEST_CUBE
-#define TEST_BUNNY
+//#define TEST_BUNNY
 //#define TEST_DIAMOND
 //#define TEST_SPHERE
+#define TEST_LUCY
 
 /**
  * A feladat megvalositasa
@@ -56,17 +60,25 @@ int main(){
 
     /// A be es kimeneti fileok nevei
 #ifdef TEST_BUNNY
-    std::string inputFile = "bunny.obj";
+    std::string inputFile = "models/bunny.obj";
 #endif
 #ifdef TEST_CUBE
-    std::string inputFile = "cube.obj";
+    std::string inputFile = "models/cube.obj";
 #endif
 #ifdef TEST_DIAMOND
-    std::string inputFile = "diamond.obj";
+    std::string inputFile = "models/diamond.obj";
 #endif
 #ifdef TEST_SPHERE
-    std::string inputFile = "sphere.obj";
+    std::string inputFile = "models/sphere.obj";
 #endif
+#ifdef TEST_LUCY
+    std::string inputFile = "models/lucy.obj";
+#endif
+
+    /// A fajl beolvasasa
+    MyMesh meshObject;
+    readMesh(inputFile, meshObject);
+    double epsilon = 0.001;
 
     /// A racspont osztas leptek merete es maximum kiterjedese
 #ifdef TEST_BUNNY
@@ -81,10 +93,14 @@ int main(){
 #ifdef TEST_SPHERE
     double l = 0.1;
 #endif
+#ifdef TEST_LUCY
+    double l = 20;
+    epsilon = 4;
+    //swapYZ(meshObject);
+    //writeMesh("models/lucy.obj", meshObject);
+#endif
 
-    MyMesh meshObject;
-    readMesh(inputFile, meshObject);
-    double maxWeight = M_PI / 4 * 3;
+    double maxWeight = M_PI / 4 * 3 *2;
 
     /// A metszespontok x, y, es z koordinatait tarolja
     std::vector<Point> intersectPoints;
@@ -187,7 +203,7 @@ int main(){
     deleteWrongPoints(intersectPoints, l / 100);
 
     /// A kiiras a fileba
-    writeInternalLines("output1.obj", inputFile, intersectPoints, "# Internal lines generated from ");
+    writeInternalLines("outputs/output1.obj", inputFile, intersectPoints, "# Internal lines generated from ");
 
     /// A bemeneti pontpok kozotti elek tarolasara szolgalo tomb
     /// @since 1.2
@@ -281,7 +297,7 @@ int main(){
         }
     }
 
-    writeInputEdges("output2.obj", inputFile, edges);
+    writeInputEdges("outputs/output2.obj", inputFile, edges);
 
     /// Az alatamasztando pontok kiszamitasa
     /// @since 1.3
@@ -338,7 +354,7 @@ int main(){
     }
 
     /// Kiirjuk az alatamasztando pontokat
-    writePoints("output3.obj", inputFile, 0, supportPointsAll);
+    writePoints("outputs/output3.obj", inputFile, 0, supportPointsAll);
 
     /// Az alatamasztando pontokbol egyeneseket huzunk a legalso pont y koordinataja szerinti sikra
     /// @since 1.4
@@ -375,7 +391,11 @@ int main(){
         supportLines.push_back(p);
     }
 
-    writeInternalLines("output4.obj", inputFile, supportLines, "# Support lines generated from ");
+    writeInternalLines("outputs/output4.obj", inputFile, supportLines, "# Support lines generated from ");
+
+    /// Az alatamasztando pontokat atalakitjuk alazatta, hogy nyomtathato legyen
+    /// @since 1.5
+    generateAndWriteSupportLines("outputs/output5.obj", inputFile, supportLines, epsilon, minY);
 
     return 0;
 }

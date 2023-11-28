@@ -28,6 +28,19 @@ void readMesh(const std::string& file, MyMesh& mesh){
 }
 
 /**
+ * Kiirja a megadott filet
+ * @param file a kiirando file
+ * @param mesh a mesh, amibe taroljuk az adatokat
+ * @since 1.5
+ */
+void writeMesh(const std::string& file, MyMesh& mesh){
+    if(!OpenMesh::IO::write_mesh(mesh, file)){
+        std::cerr << "Error: Cannot write mesh to " << file << std::endl;
+        exit(1);
+    }
+}
+
+/**
  * A parameterkent kapott bemeneti es kimeneti pontokat osszekoti fuggolegesen es kiirja a .obj fileba
  * @param outputFileName a kimeneti file neve
  * @param inputFileName a bemeneti file neve
@@ -431,6 +444,110 @@ void writePoints(const std::string& outputFileName, const std::string& inputFile
     file << "# Supported points No. " << count << " generated from " << inputFileName << " by BTMLYV\n";
     for(auto & point : points){
         file << "v " << point.coordinates[0] << " " << point.coordinates[1] << " " << point.coordinates[2] << "\n";
+    }
+    file.close();
+}
+
+/**
+ * A kapott mesh-ben minden pontnal az y es a z koordinatat felcsereli
+ * @param mesh a mesh
+ * @since 1.5
+*/
+void swapYZ(MyMesh& mesh){
+    for(auto & vertex : mesh.vertices()){
+        float y = mesh.point(vertex)[1];
+        mesh.point(vertex)[1] = mesh.point(vertex)[2];
+        mesh.point(vertex)[2] = y;
+    }
+}
+
+/**
+ * A parameterkent kapott pontok kozott haromszog alapu hasabokat csinal es kiirja a .obj fileba
+ * @param outputFileName a kimeneti file neve
+ * @param inputFileName a bemeneti file neve
+ * @param points a pontok
+ * @param epsilon a haromszog merete
+ * @param minY a legkisebb y koordinata
+ * @since 1.5
+ */
+void generateAndWriteSupportLines(const std::string &outputFileName, const std::string &inputFileName,
+                                  std::vector<Point> &points, double epsilon, double minY) {
+    std::ofstream file(outputFileName);
+    if(!file){
+        std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
+        exit(1);
+    }
+    /// A kimeneti file fejlece
+    file << "# Support objects generated from " << inputFileName << " by BTMLYV\n";
+
+    int n = 1;
+    double a2 = std::cos(M_PI/6) * epsilon;
+    double k = std::sin(M_PI/6) * epsilon;
+    for (int i = 0; i < (int)points.size(); i++){
+        if(i % 2 != 0){
+            if (points[i].coordinates[1] >= minY + a2*2) {
+                file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] + a2 * 2 << " "
+                     << points[i].coordinates[2] - epsilon << "\n";
+                file << "v " << points[i].coordinates[0] + a2 << " " << points[i].coordinates[1] + a2 * 2 << " "
+                     << points[i].coordinates[2] + k << "\n";
+                file << "v " << points[i].coordinates[0] - a2 << " " << points[i].coordinates[1] + a2 * 2 << " "
+                     << points[i].coordinates[2] + k << "\n";
+            } else {
+                file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] << " "
+                     << points[i].coordinates[2] - epsilon << "\n";
+                file << "v " << points[i].coordinates[0] + a2 << " " << points[i].coordinates[1] << " "
+                     << points[i].coordinates[2] + k << "\n";
+                file << "v " << points[i].coordinates[0] - a2 << " " << points[i].coordinates[1] << " "
+                     << points[i].coordinates[2] + k << "\n";
+            }
+
+            /// Sok szamolas es probalkozas eredmenye
+            file << "f " << n-4 << " " << n-3 << " " << n+1 << "\n";
+            file << "f " << n-4 << " " << n+1 << " " << n << "\n";
+            file << "f " << n-3 << " " << n-2 << " " << n+2 << "\n";
+            file << "f " << n-3 << " " << n+2 << " " << n+1 << "\n";
+            file << "f " << n-4 << " " << n-2 << " " << n+2 << "\n";
+            file << "f " << n-4 << " " << n+2 << " " << n << "\n";
+            n = n + 3;
+
+            file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] << " " << points[i].coordinates[2] << "\n";
+            if (points[i].coordinates[1] >= minY + a2*2) {
+
+                file << "f " << n-3 << " " << n-2 << " " << n << "\n";
+                file << "f " << n-2 << " " << n-1 << " " << n << "\n";
+                file << "f " << n-1 << " " << n-3 << " " << n << "\n";
+            }
+            n = n + 1;
+
+        } else {
+            if (points[i].coordinates[1] >= minY + a2*2){
+                file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] - a2*2 << " "
+                     << points[i].coordinates[2] - epsilon << "\n";
+                file << "v " << points[i].coordinates[0] + a2 << " " << points[i].coordinates[1] - a2*2 << " "
+                     << points[i].coordinates[2] + k << "\n";
+                file << "v " << points[i].coordinates[0] - a2 << " " << points[i].coordinates[1] - a2*2 << " "
+                     << points[i].coordinates[2] + k << "\n";
+            } else {
+                file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] << " "
+                     << points[i].coordinates[2] - epsilon << "\n";
+                file << "v " << points[i].coordinates[0] + a2 << " " << points[i].coordinates[1] << " "
+                     << points[i].coordinates[2] + k << "\n";
+                file << "v " << points[i].coordinates[0] - a2 << " " << points[i].coordinates[1] << " "
+                     << points[i].coordinates[2] + k << "\n";
+            }
+
+            n = n + 3;
+
+            file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] << " " << points[i].coordinates[2] << "\n";
+            if (points[i].coordinates[1] >= minY + a2*2) {
+
+                file << "f " << n-3 << " " << n-2 << " " << n << "\n";
+                file << "f " << n-2 << " " << n-1 << " " << n << "\n";
+                file << "f " << n-1 << " " << n-3 << " " << n << "\n";
+            }
+            n = n + 1;
+
+        }
     }
     file.close();
 }
