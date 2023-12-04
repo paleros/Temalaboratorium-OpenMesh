@@ -4,7 +4,7 @@
  *
  * Budapesti Muszaki es Gazdasagtudomanyi Egyetem (BME)
  * Villamosmernoki es Informatikai Kar (VIK)
- * Itanyitastechnika es Informatika Tanszek (IIT)
+ * Iranyitastechnika es Informatika Tanszek (IIT)
  * Temalaboratorium: 3D nyomtatas kulso alatamasztas
  *
  * 1. Feladatresz
@@ -33,7 +33,7 @@
  *                      [2020, Jang et al] Free-floating support structure generation
  *
  * @author Eros Pal
- * @since 2023.10.23.
+ * @since 2023.12.02.
  * ---------------------------------------------------------------------------------------------------------------------
 */
 
@@ -47,9 +47,10 @@
 /// A tesztelheto alakzatok
 //#define TEST_CUBE
 //#define TEST_BUNNY
-//#define TEST_DIAMOND
+#define TEST_DIAMOND
 //#define TEST_SPHERE
-#define TEST_LUCY
+//#define TEST_LUCY
+//#define TEST_ARMADILLO
 
 /**
  * A feladat megvalositasa
@@ -74,6 +75,9 @@ int main(){
 #ifdef TEST_LUCY
     std::string inputFile = "models/lucy.obj";
 #endif
+#ifdef TEST_ARMADILLO
+    std::string inputFile = "models/armadillo.obj";
+#endif
 
     /// A fajl beolvasasa
     MyMesh meshObject;
@@ -88,10 +92,18 @@ int main(){
     double l = 0.1;
 #endif
 #ifdef TEST_DIAMOND
-    double l = 0.1;
+    double l = 0.098;
+    epsilon = 0.08;
+    //swapYZ(meshObject);
+    //writeMesh("models/diamond.obj", meshObject);
 #endif
 #ifdef TEST_SPHERE
-    double l = 0.1;
+    double l = 0.2;
+    epsilon = 0.05;
+#endif
+#ifdef TEST_ARMADILLO
+    double l = 3;
+    epsilon = 3;
 #endif
 #ifdef TEST_LUCY
     double l = 20;
