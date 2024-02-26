@@ -28,19 +28,6 @@ void readMesh(const std::string& file, MyMesh& mesh){
 }
 
 /**
- * Kiirja a megadott filet
- * @param file a kiirando file
- * @param mesh a mesh, amibe taroljuk az adatokat
- * @since 1.5
- */
-void writeMesh(const std::string& file, MyMesh& mesh){
-    if(!OpenMesh::IO::write_mesh(mesh, file)){
-        std::cerr << "Error: Cannot write mesh to " << file << std::endl;
-        exit(1);
-    }
-}
-
-/**
  * A parameterkent kapott bemeneti es kimeneti pontokat osszekoti fuggolegesen es kiirja a .obj fileba
  * @param outputFileName a kimeneti file neve
  * @param inputFileName a bemeneti file neve
@@ -466,12 +453,12 @@ void swapYZ(MyMesh& mesh){
  * @param outputFileName a kimeneti file neve
  * @param inputFileName a bemeneti file neve
  * @param points a pontok
- * @param epsilon a haromszog merete
+ * @param diameter a haromszog merete
  * @param minY a legkisebb y koordinata
  * @since 1.5
  */
 void generateAndWriteSupportLines(const std::string &outputFileName, const std::string &inputFileName,
-                                  std::vector<Point> &points, double epsilon, double minY) {
+                                  std::vector<Point> &points, double diameter, double minY) {
     std::ofstream file(outputFileName);
     if(!file){
         std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
@@ -481,20 +468,20 @@ void generateAndWriteSupportLines(const std::string &outputFileName, const std::
     file << "# Support objects generated from " << inputFileName << " by BTMLYV\n";
 
     int n = 1;
-    double a2 = std::cos(M_PI/6) * epsilon;
-    double k = std::sin(M_PI/6) * epsilon;
+    double a2 = std::cos(M_PI/6) * diameter;
+    double k = std::sin(M_PI/6) * diameter;
     for (int i = 0; i < (int)points.size(); i++){
         if(i % 2 != 0){
             if (points[i].coordinates[1] >= minY + a2*2) {
                 file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] + a2 * 2 << " "
-                     << points[i].coordinates[2] - epsilon << "\n";
+                     << points[i].coordinates[2] - diameter << "\n";
                 file << "v " << points[i].coordinates[0] + a2 << " " << points[i].coordinates[1] + a2 * 2 << " "
                      << points[i].coordinates[2] + k << "\n";
                 file << "v " << points[i].coordinates[0] - a2 << " " << points[i].coordinates[1] + a2 * 2 << " "
                      << points[i].coordinates[2] + k << "\n";
             } else {
                 file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] << " "
-                     << points[i].coordinates[2] - epsilon << "\n";
+                     << points[i].coordinates[2] - diameter << "\n";
                 file << "v " << points[i].coordinates[0] + a2 << " " << points[i].coordinates[1] << " "
                      << points[i].coordinates[2] + k << "\n";
                 file << "v " << points[i].coordinates[0] - a2 << " " << points[i].coordinates[1] << " "
@@ -522,14 +509,14 @@ void generateAndWriteSupportLines(const std::string &outputFileName, const std::
         } else {
             if (points[i].coordinates[1] >= minY + a2*2){
                 file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] - a2*2 << " "
-                     << points[i].coordinates[2] - epsilon << "\n";
+                     << points[i].coordinates[2] - diameter << "\n";
                 file << "v " << points[i].coordinates[0] + a2 << " " << points[i].coordinates[1] - a2*2 << " "
                      << points[i].coordinates[2] + k << "\n";
                 file << "v " << points[i].coordinates[0] - a2 << " " << points[i].coordinates[1] - a2*2 << " "
                      << points[i].coordinates[2] + k << "\n";
             } else {
                 file << "v " << points[i].coordinates[0] << " " << points[i].coordinates[1] << " "
-                     << points[i].coordinates[2] - epsilon << "\n";
+                     << points[i].coordinates[2] - diameter << "\n";
                 file << "v " << points[i].coordinates[0] + a2 << " " << points[i].coordinates[1] << " "
                      << points[i].coordinates[2] + k << "\n";
                 file << "v " << points[i].coordinates[0] - a2 << " " << points[i].coordinates[1] << " "
@@ -546,6 +533,205 @@ void generateAndWriteSupportLines(const std::string &outputFileName, const std::
                 file << "f " << n-1 << " " << n-3 << " " << n << "\n";
             }
             n = n + 1;
+
+        }
+    }
+    file.close();
+}
+
+/**
+ * A parameterkent kapott mesht kiirja a .obj fileba
+ * @param outputFileName a kimeneti file neve
+ * @param mesh a mesh
+ */
+void writeMesh(const std::string& outputFileName, MyMesh& mesh){
+    if(!OpenMesh::IO::write_mesh(mesh, outputFileName)){
+        std::cerr << "Error: Cannot write mesh to " << outputFileName << std::endl;
+        exit(1);
+    }
+}
+
+/**
+ * A parameterkent kapott pontok kozott hengereket csinal es kiirja a .obj fileba
+ * @param outputFileName a kimeneti file neve
+ * @param inputFileName a bemeneti file neve
+ * @param points a pontok
+ * @param diameter a henger atmeroje
+ * @param minY a legkisebb y koordinata
+ * @since 2.1
+ */
+void generateAndWriteSupportCylinder(const std::string &outputFileName, const std::string &inputFileName,
+                                     std::vector<Point> &points, double diameter, double minY) {
+    std::ofstream file(outputFileName);
+    if(!file){
+        std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
+        exit(1);
+    }
+    /// A kimeneti file fejlece
+    file << "# Support objects generated from " << inputFileName << " by BTMLYV\n";
+
+    int n = 0;
+    /// A henger felso csucsanak magassaga
+    double a1 = std::cos(M_PI / 6) * diameter;
+    /// A henger also kiszelesedesenek magassaganak kilogo resze
+    double a2 = std::cos(M_PI/6) * diameter;
+    /// A henger sugara
+    double r = diameter/2;
+    /// A korlep pontjainak koordinata elterese a kozepponthoz kepest (elso negyed)
+    double deltaX1, deltaX2, deltaX3, deltaX4, deltaZ1, deltaZ2, deltaZ3, deltaZ4;
+    /// A masodik korlap pont
+    double xNull, zNull;
+    /// A korlap kozeppontja
+    double x, y, z;
+
+    for (int i = 0; i < (int)points.size(); i++){
+        /// Az also es felso pontok kulonvalasztasa
+        if(i % 2 != 0){
+            /// Az also pontok
+
+            x = points[i].coordinates[0];
+            y = points[i].coordinates[1] + a1*2;
+            z = points[i].coordinates[2];
+
+            /// Kiszamoljuk a henger alapjanak szamito alos "kort", ami egy 16 szog lesz
+            zNull = points[i].coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 1))*r;
+            xNull = points[i].coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 1))*r;
+            deltaX1 = xNull - x;
+            deltaZ1 = zNull - z;
+            zNull = points[i].coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 2))*r;
+            xNull = points[i].coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 2))*r;
+            deltaX2 = xNull - x;
+            deltaZ2 = zNull - z;
+            zNull = points[i].coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 3))*r;
+            xNull = points[i].coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 3))*r;
+            deltaX3 = xNull - x;
+            deltaZ3 = zNull - z;
+
+            /// Elso negyed pontjai
+            file << "v " << x + r << " " << y << " " << z << "\n"; /// 1
+            file << "v " << x + deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 2
+            file << "v " << x + deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 3
+            file << "v " << x + deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 4
+            /// Masodik negyed pontjai
+            file << "v " << x << " " << y << " " << z + r << "\n"; /// 5
+            file << "v " << x - deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 6
+            file << "v " << x - deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 7
+            file << "v " << x - deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 8
+            /// Harmadik negyed pontjai
+            file << "v " << x - r << " " << y << " " << z << "\n"; /// 9
+            file << "v " << x - deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 10
+            file << "v " << x - deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 11
+            file << "v " << x - deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 12
+            /// Negyedik negyed pontjai
+            file << "v " << x << " " << y << " " << z - r << "\n"; /// 13
+            file << "v " << x + deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 14
+            file << "v " << x + deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 15
+            file << "v " << x + deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 16
+
+            /// A henger oldalanak kirajzolasa
+            for (int j = 1; j < 16; j++){
+                file << "f " << j + n << " " << j + n + 16 << " " << j + n + 1 << "\n";
+                file << "f " << j + n + 1 + 16 << " " << j + n + 16 << " " << j + n + 1 << "\n";
+            }
+            file << "f " << 16 + n << " " << 16 + n + 16 << " " << 1 + n << "\n";
+            file << "f " << 1 + 16 + n << " " << 16 + 16 + n << " " << 1 + n << "\n";
+
+            /// A tamasz csucs kirajzolasa
+            file << "v " << points[i-1].coordinates[0] << " " << points[i-1].coordinates[1] << " " << points[i-1].coordinates[2] << "\n";
+            if (points[i-1].coordinates[1] >= minY + a2*2) {
+                for (int j = 1; j < 16; j++) {
+                    file << "f " << j + n << " " << 16 + n + 17 << " " << j + n + 1 << "\n";
+                }
+                file << "f " << 16 + n << " " << 16 + n + 17 << " " << 1 + n << "\n";
+            }
+
+            /// A tamasz also szelesitesenek kirajzolasa
+
+            /// Kiszamoljuk a henger alapjanak szamito legalso, szelesebb "kort", ami egy 16 szog lesz
+            zNull = points[i].coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 1))*r*2;
+            xNull = points[i].coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 1))*r*2;
+            deltaX1 = xNull - x;
+            deltaZ1 = zNull - z;
+            zNull = points[i].coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 2))*r*2;
+            xNull = points[i].coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 2))*r*2;
+            deltaX2 = xNull - x;
+            deltaZ2 = zNull - z;
+            zNull = points[i].coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 3))*r*2;
+            xNull = points[i].coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 3))*r*2;
+            deltaX3 = xNull - x;
+            deltaZ3 = zNull - z;
+
+            /// Elso negyed pontjai
+            file << "v " << x + r*2 << " " << y -a1*2 << " " << z << "\n"; /// 1
+            file << "v " << x + deltaX1 << " " << y -a1*2 << " " << z + deltaZ1 << "\n"; /// 2
+            file << "v " << x + deltaX2 << " " << y -a1*2 << " " << z + deltaZ2 << "\n"; /// 3
+            file << "v " << x + deltaX3 << " " << y -a1*2 << " " << z + deltaZ3 << "\n"; /// 4
+            /// Masodik negyed pontjai
+            file << "v " << x << " " << y -a1*2 << " " << z + r*2 << "\n"; /// 5
+            file << "v " << x - deltaX3 << " " << y -a1*2 << " " << z + deltaZ3 << "\n"; /// 6
+            file << "v " << x - deltaX2 << " " << y -a1*2 << " " << z + deltaZ2 << "\n"; /// 7
+            file << "v " << x - deltaX1 << " " << y -a1*2 << " " << z + deltaZ1 << "\n"; /// 8
+            /// Harmadik negyed pontjai
+            file << "v " << x - r*2 << " " << y -a1*2 << " " << z << "\n"; /// 9
+            file << "v " << x - deltaX1 << " " << y -a1*2 << " " << z - deltaZ1 << "\n"; /// 10
+            file << "v " << x - deltaX2 << " " << y -a1*2 << " " << z - deltaZ2 << "\n"; /// 11
+            file << "v " << x - deltaX3 << " " << y -a1*2 << " " << z - deltaZ3 << "\n"; /// 12
+            /// Negyedik negyed pontjai
+            file << "v " << x << " " << y -a1*2 << " " << z - r*2 << "\n"; /// 13
+            file << "v " << x + deltaX3 << " " << y -a1*2 << " " << z - deltaZ3 << "\n"; /// 14
+            file << "v " << x + deltaX2 << " " << y -a1*2 << " " << z - deltaZ2 << "\n"; /// 15
+            file << "v " << x + deltaX1 << " " << y -a1*2 << " " << z - deltaZ1 << "\n"; /// 16
+
+            /// A kiszelesites oldalanak kirajzolasa
+            for (int j = 1; j < 16; j++){
+                file << "f " << j + n + 16 + 17 << " " << j + n + 16 << " " << j + n + 1 + 16 + 17 << "\n";
+                file << "f " << j + n + 1 + 16 << " " << j + n + 16 << " " << j + n + 1 + 16 + 17 << "\n";
+            }
+            file << "f " << 16 + n + 16 + 17 << " " << 16 + n + 16 << " " << 1 + n + 16 + 17 << "\n";
+            file << "f " << 1 + 16 + n << " " << 16 + 16 + n << " " << 1 + n + 16 + 17 << "\n";
+
+            n = n + 16*2 + 1 + 16;
+        } else {
+            /// A felso pontok
+
+            x = points[i].coordinates[0];
+            y = points[i].coordinates[1] - a1*2;
+            z = points[i].coordinates[2];
+
+            /// Kiszamoljuk a henger alapjanak szamito felso "kort", ami egy 16 szog lesz
+            zNull = points[i].coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 1))*r;
+            xNull = points[i].coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 1))*r;
+            deltaX1 = xNull - x;
+            deltaZ1 = zNull - z;
+            zNull = points[i].coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 2))*r;
+            xNull = points[i].coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 2))*r;
+            deltaX2 = xNull - x;
+            deltaZ2 = zNull - z;
+            zNull = points[i].coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 3))*r;
+            xNull = points[i].coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 3))*r;
+            deltaX3 = xNull - x;
+            deltaZ3 = zNull - z;
+
+            /// Elso negyed pontjai
+            file << "v " << x + r << " " << y << " " << z << "\n"; /// 1
+            file << "v " << x + deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 2
+            file << "v " << x + deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 3
+            file << "v " << x + deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 4
+            /// Masodik negyed pontjai
+            file << "v " << x << " " << y << " " << z + r << "\n"; /// 5
+            file << "v " << x - deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 6
+            file << "v " << x - deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 7
+            file << "v " << x - deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 8
+            /// Harmadik negyed pontjai
+            file << "v " << x - r << " " << y << " " << z << "\n"; /// 9
+            file << "v " << x - deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 10
+            file << "v " << x - deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 11
+            file << "v " << x - deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 12
+            /// Negyedik negyed pontjai
+            file << "v " << x << " " << y << " " << z - r << "\n"; /// 13
+            file << "v " << x + deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 14
+            file << "v " << x + deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 15
+            file << "v " << x + deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 16
 
         }
     }

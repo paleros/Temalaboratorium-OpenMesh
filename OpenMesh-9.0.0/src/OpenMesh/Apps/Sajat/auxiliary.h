@@ -27,14 +27,6 @@ typedef OpenMesh::PolyMesh_ArrayKernelT<>  MyMesh;
 void readMesh(const std::string& file, MyMesh& mesh);
 
 /**
- * Kiirja a megadott filet
- * @param file a kiirando file
- * @param mesh a mesh, amibe taroljuk az adatokat
- * @since 1.5
- */
-void writeMesh(const std::string& file, MyMesh& mesh);
-
-/**
  * A pontok koordinatainak tarolasara szolgalo struktura
  * [x, y, z]
  * @since 1.1
@@ -205,9 +197,28 @@ void swapYZ(MyMesh& mesh);
  * @param outputFileName a kimeneti file neve
  * @param inputFileName a bemeneti file neve
  * @param points a pontok
- * @param epsilon a haromszog merete
+ * @param diameter a haromszog merete
  * @param minY a legkisebb y koordinata
  * @since 1.5
  */
 void generateAndWriteSupportLines(const std::string &outputFileName, const std::string &inputFileName,
-                                  std::vector<Point> &points, double epsilon, double minY);
+                                  std::vector<Point> &points, double diameter, double minY);
+
+/**
+ * A parameterkent kapott mesht kiirja a .obj fileba
+ * @param outputFileName a kimeneti file neve
+ * @param mesh a mesh
+ */
+void writeMesh(const std::string& outputFileName, MyMesh& mesh);
+
+/**
+ * A parameterkent kapott pontok kozott hengereket csinal es kiirja a .obj fileba
+ * @param outputFileName a kimeneti file neve
+ * @param inputFileName a bemeneti file neve
+ * @param points a pontok
+ * @param diameter a henger atmeroje
+ * @param minY a legkisebb y koordinata
+ * @since 2.1
+ */
+void generateAndWriteSupportCylinder(const std::string &outputFileName, const std::string &inputFileName,
+                                     std::vector<Point> &points, double diameter, double minY);

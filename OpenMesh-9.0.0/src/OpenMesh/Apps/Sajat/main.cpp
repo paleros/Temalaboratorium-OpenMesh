@@ -5,52 +5,58 @@
  * Budapesti Muszaki es Gazdasagtudomanyi Egyetem (BME)
  * Villamosmernoki es Informatikai Kar (VIK)
  * Iranyitastechnika es Informatika Tanszek (IIT)
- * Temalaboratorium: 3D nyomtatas kulso alatamasztas
+ * 1. Temalaboratorium: 3D nyomtatas kulso alatamasztas
+ * 2. Onallo laboratorium: 3D nyomtatas - tartostrukturak generalasa es mas gyakorlati problemak
  *
- * 1. Feladatresz
+ * 1.1. Feladatresz
  * Feladat leirasa: egy fajbol betolt egy 3d alakzatot. Ezt bizonyos idokozonkent egy-egy fuggoleges vonallal elmetszi
  * es kiszamolja, hogy a vonal melyik ponokon metszi el. A bemeno és kimeno pontokat összekoti egy vonallal, ez megy a
  * kimeneti fileba. Tehat a vegeredmegy egy olyan fajl lesz, amiben függöleges vonalak vannak azokon a helyeken, ahol
  * az eredeti test belsejeben halad.
  *
- * 2. Feladatresz
+ * 1.2. Feladatresz
  * Feladat leirasa: a bemeneti pontokat a szomszedokkal ossze kell kotni, a szerint, hogy feljebb vannak-e.
  * Mindegyik el gyakorlatilag egy iranyitott vektor, aminek sulya is van, aszerint, hogy milyen meredeken halad felfele.
  * A kimenet egy elhalo a pontok kozott.
  *
- * 3. Feladatresz
+ * 1.3. Feladatresz
  * Feladat leirasa: az eleknel sulyt szamolunk a pontokra rekurzivan. A tamasz csak bizonyos sulyig tartja meg
  * utana uj pont kell. Ezeket a megtartott ponthalmazokat irjuk ki a tamaszponttal.
  *
- * 4. Feladatresz
+ * 1.4. Feladatresz
  * Feladat leirasa: a tamaszpontokból fuggoleges egyeneseket huzunk az elekzet aljaig.
  *
- * 5. Feladatresz
- * Feladat leirasa: a tamasz egyeneseket atalakitjuk alazatta, hogy nyomtathato legyen.
+ * 1.5. Feladatresz
+ * Feladat leirasa: a tamasz egyeneseket atalakitjuk harpmszog hasab alakzatta, hogy nyomtathato legyen.
+ *
+ * 2.1. Feladatresz
+ * Feladat leirasa: a tamasz egyeneseket atalakitjuk henger alakzatta, hogy nyomtathato legyen. Ezt kovetoen a
+ * tamaszokat osszekotjuk a stabilitas erdekeben.
  *
  * Felhasznalt anyagok: OpenMesh Documentation, gpytoolbox.org, digitalocean.com, w3schools.com, stackoverflow.com,
  *                      geeksforgeeks.org, GitHub Copilot, ChatGTP,
  *                      [2020, Jang et al] Free-floating support structure generation
  *
  * @author Eros Pal
- * @since 2023.12.02.
+ * @consulant Dr. Salvi Peter
+ * @since 2024.02.17.
  * ---------------------------------------------------------------------------------------------------------------------
 */
 
 #include <OpenMesh/Core/IO/MeshIO.hh>
 #include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
+#include <fstream>
 #include "auxiliary.h"
 
 /**
  * Makrok definialasa
  */
 /// A tesztelheto alakzatok
-//#define TEST_CUBE
 //#define TEST_BUNNY
-#define TEST_DIAMOND
-//#define TEST_SPHERE
+//#define TEST_DIAMOND
+#define TEST_SPHERE
 //#define TEST_LUCY
-//#define TEST_ARMADILLO
+//#define TEST_GYMNAST
 
 /**
  * A feladat megvalositasa
@@ -63,9 +69,6 @@ int main(){
 #ifdef TEST_BUNNY
     std::string inputFile = "models/bunny.obj";
 #endif
-#ifdef TEST_CUBE
-    std::string inputFile = "models/cube.obj";
-#endif
 #ifdef TEST_DIAMOND
     std::string inputFile = "models/diamond.obj";
 #endif
@@ -75,39 +78,41 @@ int main(){
 #ifdef TEST_LUCY
     std::string inputFile = "models/lucy.obj";
 #endif
-#ifdef TEST_ARMADILLO
-    std::string inputFile = "models/armadillo.obj";
+#ifdef TEST_GYMNAST
+    std::string inputFile = "models/gymnast.obj";
 #endif
+
 
     /// A fajl beolvasasa
     MyMesh meshObject;
     readMesh(inputFile, meshObject);
-    double epsilon = 0.001;
+    /// Az alatamasztas oszlopanak vastagsagahoz
+    double diameter = 0.001;
 
     /// A racspont osztas leptek merete es maximum kiterjedese
 #ifdef TEST_BUNNY
-    double l = 0.002;
-#endif
-#ifdef TEST_CUBE
-    double l = 0.1;
+    double l = 0.006;
 #endif
 #ifdef TEST_DIAMOND
-    double l = 0.098;
-    epsilon = 0.08;
+    double l = 0.098; /// A sugarak kozti tavolsag
+    diameter = 0.08;
     //swapYZ(meshObject);
     //writeMesh("models/diamond.obj", meshObject);
 #endif
 #ifdef TEST_SPHERE
-    double l = 0.2;
-    epsilon = 0.05;
+    double l = 0.1;
+    diameter = 0.05;
 #endif
-#ifdef TEST_ARMADILLO
-    double l = 3;
-    epsilon = 3;
-#endif
+
 #ifdef TEST_LUCY
     double l = 20;
-    epsilon = 4;
+    diameter = 4;
+    //swapYZ(meshObject);
+    //writeMesh("models/lucy.obj", meshObject);
+#endif
+#ifdef TEST_GYMNAST
+    double l = 0.2;
+    diameter = 0.06;
     //swapYZ(meshObject);
     //writeMesh("models/lucy.obj", meshObject);
 #endif
@@ -407,7 +412,8 @@ int main(){
 
     /// Az alatamasztando pontokat atalakitjuk alazatta, hogy nyomtathato legyen
     /// @since 1.5
-    generateAndWriteSupportLines("outputs/output5.obj", inputFile, supportLines, epsilon, minY);
+    //generateAndWriteSupportLines("outputs/output5.obj", inputFile, supportLines, diameter, minY);
+    generateAndWriteSupportCylinder("outputs/output6.obj", inputFile, supportLines, diameter, minY);
 
     return 0;
 }
