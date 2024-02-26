@@ -414,6 +414,7 @@ int main(){
     /// @since 1.5
     //generateAndWriteSupportLines("outputs/output5.obj", inputFile, supportLines, diameter, minY);
     generateAndWriteSupportCylinder("outputs/output6.obj", inputFile, supportLines, diameter, minY);
+    generateAndWriteSupportCrossBrace("outputs/output7.obj", inputFile, supportLines, diameter, minY, l);
 
     return 0;
 }

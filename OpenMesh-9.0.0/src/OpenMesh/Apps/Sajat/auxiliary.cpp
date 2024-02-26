@@ -154,6 +154,7 @@ void deleteWrongPoints(std::vector<Point> &intersectPoints, double e) {
  * Megnezi, hogy a parameterkent kapott pont benne van-e a tombben (csal x-t es z-t vizsgalja)
  * @param intersectPoints a pontok tombje
  * @param p a keresendo pont
+ * @param l a hibahatarhoz az osztas egysege
  * @return benne van-e
  * @since 1.2
  */
@@ -593,7 +594,7 @@ void generateAndWriteSupportCylinder(const std::string &outputFileName, const st
             y = points[i].coordinates[1] + a1*2;
             z = points[i].coordinates[2];
 
-            /// Kiszamoljuk a henger alapjanak szamito alos "kort", ami egy 16 szog lesz
+            /// Kiszamoljuk a henger alapjanak szamito also "kort", ami egy 16 szog lesz
             zNull = points[i].coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 1))*r;
             xNull = points[i].coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 1))*r;
             deltaX1 = xNull - x;
@@ -736,4 +737,191 @@ void generateAndWriteSupportCylinder(const std::string &outputFileName, const st
         }
     }
     file.close();
+}
+
+/**
+ * A parameterkent kapott pontok kozotti alatamasztasok kozott generalja a keresztmerevitoket
+ * @param outputFileName a kimeneti file neve
+ * @param inputFileName a bemeneti file neve
+ * @param points a pontok
+ * @param diameter az alatamasztas atmeroje
+ * @param minY a legkisebb y koordinata
+ * @param l a kuszobertek
+ * @since 2.1.2
+ */
+void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const std::string &inputFileName,
+                                     std::vector<Point> &points, double diameter, double minY, double l) {
+
+    double a1 = std::cos(M_PI / 6) * diameter;
+    double e = l / 100;
+
+    /// A keresztmerevitok lehetseges kozeppontjai
+    std::vector<Point> crossBraceEndPoints;
+    /// Az aktualis vizsgalando pont
+    Point p;
+    /// A magassag novelese
+    double epsilon = 0;
+
+    /// A keresztmerevitok lehetseges kozeppontjainak kiszamitasa
+    for (int i = 1; i < (int)points.size(); i = i + 2){
+        p.coordinates[0] = points[i].coordinates[0];
+        p.coordinates[1] = points[i].coordinates[1] + a1*2 + epsilon;
+        p.coordinates[2] = points[i].coordinates[2];
+
+        /// A keresztmerevitok kozeppontjai benne vannak e az egyenes szakaszban
+        while(p.coordinates[1] >= (minY + a1*2) && p.coordinates[1] <= (points[i-1].coordinates[1] - a1*2)){
+            crossBraceEndPoints.push_back(p);
+            epsilon = epsilon + l;
+            p.coordinates[0] = points[i].coordinates[0];
+            p.coordinates[1] = points[i].coordinates[1] + a1*2 + epsilon;
+            p.coordinates[2] = points[i].coordinates[2];
+        }
+        epsilon = 0;
+    }
+
+    /// A keresztmerevitok egyenesekke alakitasa, ahova kell
+    std::vector<Edge> crossBraceEdges;
+    /*for(int i = 0; i < (int)crossBraceEndPoints.size(); i++){
+        for(int j = 0; j < (int)crossBraceEndPoints.size(); j++){
+            if(i != j){
+                if(std::abs(crossBraceEndPoints[i].coordinates[1] - crossBraceEndPoints[j].coordinates[1] + l) <= e){
+                    if(std::abs(crossBraceEndPoints[i].coordinates[0] - crossBraceEndPoints[j].coordinates[0] + l) <= e
+                        || std::abs(crossBraceEndPoints[i].coordinates[0] - crossBraceEndPoints[j].coordinates[0] - l) <= e){
+                        if(std::abs(crossBraceEndPoints[i].coordinates[2] - crossBraceEndPoints[j].coordinates[2] + l) <= e
+                            || std::abs(crossBraceEndPoints[i].coordinates[2] - crossBraceEndPoints[j].coordinates[2] - l) <= e){
+                            crossBraceEdges.emplace_back(crossBraceEndPoints[i], crossBraceEndPoints[j], 0);
+                        }
+                    }
+                }
+            }
+        }
+    }*/
+
+    for(int i = 0; i < (int)crossBraceEndPoints.size(); i++){
+        for(int j = 0; j < (int)crossBraceEndPoints.size(); j++){
+            if(i != j){
+                double h = std::abs(crossBraceEndPoints[i].coordinates[1] - crossBraceEndPoints[j].coordinates[1]);
+                double d1 = std::abs(crossBraceEndPoints[i].coordinates[0] - crossBraceEndPoints[j].coordinates[0]);
+                double d2 = std::abs(crossBraceEndPoints[i].coordinates[2] - crossBraceEndPoints[j].coordinates[2]);
+                if(((h / d1 == 1) && (d2 == 0)) || ((h / d2 == 1) && (d1 == 0))){
+                    crossBraceEdges.emplace_back(crossBraceEndPoints[i], crossBraceEndPoints[j], 0);
+                }
+            }
+        }
+    }
+
+    //writeInputEdges(outputFileName, inputFileName, crossBraceEdges);
+
+    /// A keresztmerevito hengerek kirajzolasa
+
+    std::ofstream file(outputFileName);
+    if(!file){
+        std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
+        exit(1);
+    }
+    /// A kimeneti file fejlece
+    file << "# Support objects generated from " << inputFileName << " by BTMLYV\n";
+
+    int n = 0;
+    /// A henger sugara
+    double r = diameter/2;
+    /// A korlep pontjainak koordinata elterese a kozepponthoz kepest (elso negyed)
+    double deltaX1, deltaX2, deltaX3, deltaX4, deltaZ1, deltaZ2, deltaZ3, deltaZ4;
+    /// A masodik korlap pont
+    double xNull, zNull;
+    /// A korlap kozeppontja
+    double x, y, z;
+    for(int i = 0; i < (int)crossBraceEdges.size(); i++){
+        /// Az also pontok
+
+        x = crossBraceEdges[i].p1.coordinates[0];
+        y = crossBraceEdges[i].p1.coordinates[1];
+        z = crossBraceEdges[i].p1.coordinates[2];
+
+        /// Kiszamoljuk a henger alapjanak szamito felso "kort", ami egy 16 szog lesz
+        zNull = crossBraceEdges[i].p1.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 1))*r;
+        xNull = crossBraceEdges[i].p1.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 1))*r;
+        deltaX1 = xNull - x;
+        deltaZ1 = zNull - z;
+        zNull = crossBraceEdges[i].p1.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 2))*r;
+        xNull = crossBraceEdges[i].p1.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 2))*r;
+        deltaX2 = xNull - x;
+        deltaZ2 = zNull - z;
+        zNull = crossBraceEdges[i].p1.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 3))*r;
+        xNull = crossBraceEdges[i].p1.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 3))*r;
+        deltaX3 = xNull - x;
+        deltaZ3 = zNull - z;
+
+        /// Elso negyed pontjai
+        file << "v " << x + r << " " << y << " " << z << "\n"; /// 1
+        file << "v " << x + deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 2
+        file << "v " << x + deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 3
+        file << "v " << x + deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 4
+        /// Masodik negyed pontjai
+        file << "v " << x << " " << y << " " << z + r << "\n"; /// 5
+        file << "v " << x - deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 6
+        file << "v " << x - deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 7
+        file << "v " << x - deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 8
+        /// Harmadik negyed pontjai
+        file << "v " << x - r << " " << y << " " << z << "\n"; /// 9
+        file << "v " << x - deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 10
+        file << "v " << x - deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 11
+        file << "v " << x - deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 12
+        /// Negyedik negyed pontjai
+        file << "v " << x << " " << y << " " << z - r << "\n"; /// 13
+        file << "v " << x + deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 14
+        file << "v " << x + deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 15
+        file << "v " << x + deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 16
+
+        /// A felso pontok
+
+        x = crossBraceEdges[i].p2.coordinates[0];
+        y = crossBraceEdges[i].p2.coordinates[1];
+        z = crossBraceEdges[i].p2.coordinates[2];
+
+        /// Kiszamoljuk a henger alapjanak szamito also "kort", ami egy 16 szog lesz
+        zNull = crossBraceEdges[i].p2.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 1))*r;
+        xNull = crossBraceEdges[i].p2.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 1))*r;
+        deltaX1 = xNull - x;
+        deltaZ1 = zNull - z;
+        zNull = crossBraceEdges[i].p2.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 2))*r;
+        xNull = crossBraceEdges[i].p2.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 2))*r;
+        deltaX2 = xNull - x;
+        deltaZ2 = zNull - z;
+        zNull = crossBraceEdges[i].p2.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 3))*r;
+        xNull = crossBraceEdges[i].p2.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 3))*r;
+        deltaX3 = xNull - x;
+        deltaZ3 = zNull - z;
+
+        /// Elso negyed pontjai
+        file << "v " << x + r << " " << y << " " << z << "\n"; /// 1
+        file << "v " << x + deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 2
+        file << "v " << x + deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 3
+        file << "v " << x + deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 4
+        /// Masodik negyed pontjai
+        file << "v " << x << " " << y << " " << z + r << "\n"; /// 5
+        file << "v " << x - deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 6
+        file << "v " << x - deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 7
+        file << "v " << x - deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 8
+        /// Harmadik negyed pontjai
+        file << "v " << x - r << " " << y << " " << z << "\n"; /// 9
+        file << "v " << x - deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 10
+        file << "v " << x - deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 11
+        file << "v " << x - deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 12
+        /// Negyedik negyed pontjai
+        file << "v " << x << " " << y << " " << z - r << "\n"; /// 13
+        file << "v " << x + deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 14
+        file << "v " << x + deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 15
+        file << "v " << x + deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 16
+
+        /// A henger oldalanak kirajzolasa
+        for (int j = 1; j < 16; j++){
+            file << "f " << j + n << " " << j + n + 16 << " " << j + n + 1 << "\n";
+            file << "f " << j + n + 1 + 16 << " " << j + n + 16 << " " << j + n + 1 << "\n";
+        }
+        file << "f " << 16 + n << " " << 16 + n + 16 << " " << 1 + n << "\n";
+        file << "f " << 1 + 16 + n << " " << 16 + 16 + n << " " << 1 + n << "\n";
+        n = n + 16*2;
+    }
+
 }

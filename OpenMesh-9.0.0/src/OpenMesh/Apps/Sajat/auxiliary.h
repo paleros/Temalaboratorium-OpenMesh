@@ -113,7 +113,8 @@ void deleteWrongPoints(std::vector<Point> &intersectPoints, double e);
  * Megnezi, hogy a parameterkent kapott pont benne van-e a tombben (csal x-t es z-t vizsgalja)
  * @param intersectPoints a pontok tombje
  * @param p a keresendo pont
- * @returnbenne van-e
+ * @param l a kuszobertek
+ * @return benne van-e
  * @since 1.2
  */
 bool isIncluded(std::vector<Point> &intersectPoints, const Point &p, double l);
@@ -222,3 +223,16 @@ void writeMesh(const std::string& outputFileName, MyMesh& mesh);
  */
 void generateAndWriteSupportCylinder(const std::string &outputFileName, const std::string &inputFileName,
                                      std::vector<Point> &points, double diameter, double minY);
+
+/**
+ * A parameterkent kapott pontok kozotti alatamasztasok kozott generalja a keresztmerevitoket
+ * @param outputFileName a kimeneti file neve
+ * @param inputFileName a bemeneti file neve
+ * @param points a pontok
+ * @param diameter az alatamasztas atmeroje
+ * @param minY a legkisebb y koordinata
+ * @param l a kuszobertek
+ * @since 2.1.2
+ */
+void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const std::string &inputFileName,
+                                       std::vector<Point> &points, double diameter, double minY, double l);
