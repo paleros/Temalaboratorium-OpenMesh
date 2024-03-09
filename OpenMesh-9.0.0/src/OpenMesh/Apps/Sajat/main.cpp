@@ -239,7 +239,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0];
@@ -249,7 +249,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] + l;
@@ -259,7 +259,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] - l;
@@ -269,7 +269,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] + l;
@@ -279,7 +279,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] - l;
@@ -289,7 +289,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0];
@@ -299,7 +299,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] + l;
@@ -309,7 +309,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
             }
         }
     }

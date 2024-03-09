@@ -752,67 +752,63 @@ void generateAndWriteSupportCylinder(const std::string &outputFileName, const st
 void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const std::string &inputFileName,
                                      std::vector<Point> &points, double diameter, double minY, double l) {
 
+    /// @since 2.1.3
+    /// A tamaszok csucsa
     double a1 = std::cos(M_PI / 6) * diameter;
+    /// A hibahatar
     double e = l / 100;
 
     /// A keresztmerevitok lehetseges kozeppontjai
     std::vector<Point> crossBraceEndPoints;
-    /// Az aktualis vizsgalando pont
-    Point p;
-    /// A magassag novelese
-    double epsilon = 0;
-
-    /// A keresztmerevitok lehetseges kozeppontjainak kiszamitasa
-    for (int i = 1; i < (int)points.size(); i = i + 2){
-        p.coordinates[0] = points[i].coordinates[0];
-        p.coordinates[1] = points[i].coordinates[1] + a1*2 + epsilon;
-        p.coordinates[2] = points[i].coordinates[2];
-
-        /// A keresztmerevitok kozeppontjai benne vannak e az egyenes szakaszban
-        while(p.coordinates[1] >= (minY + a1*2) && p.coordinates[1] <= (points[i-1].coordinates[1] - a1*2)){
-            crossBraceEndPoints.push_back(p);
-            epsilon = epsilon + l;
-            p.coordinates[0] = points[i].coordinates[0];
-            p.coordinates[1] = points[i].coordinates[1] + a1*2 + epsilon;
-            p.coordinates[2] = points[i].coordinates[2];
-        }
-        epsilon = 0;
-    }
 
     /// A keresztmerevitok egyenesekke alakitasa, ahova kell
     std::vector<Edge> crossBraceEdges;
-    /*for(int i = 0; i < (int)crossBraceEndPoints.size(); i++){
-        for(int j = 0; j < (int)crossBraceEndPoints.size(); j++){
-            if(i != j){
-                if(std::abs(crossBraceEndPoints[i].coordinates[1] - crossBraceEndPoints[j].coordinates[1] + l) <= e){
-                    if(std::abs(crossBraceEndPoints[i].coordinates[0] - crossBraceEndPoints[j].coordinates[0] + l) <= e
-                        || std::abs(crossBraceEndPoints[i].coordinates[0] - crossBraceEndPoints[j].coordinates[0] - l) <= e){
-                        if(std::abs(crossBraceEndPoints[i].coordinates[2] - crossBraceEndPoints[j].coordinates[2] + l) <= e
-                            || std::abs(crossBraceEndPoints[i].coordinates[2] - crossBraceEndPoints[j].coordinates[2] - l) <= e){
-                            crossBraceEdges.emplace_back(crossBraceEndPoints[i], crossBraceEndPoints[j], 0);
-                        }
+
+    /// A tamaszok ket vegpontjabol elek generalasa a konnyebb hasznalathoz
+    std::vector<Edge> supportEdges;
+    for (int i = 1; i < (int)points.size(); i++){
+        Point p1;
+        Point p2;
+        p1.coordinates[0] = points[i].coordinates[0];
+        p1.coordinates[1] = points[i].coordinates[1] + a1*2;
+        p1.coordinates[2] = points[i].coordinates[2];
+        p2.coordinates[0] = points[i-1].coordinates[0];
+        p2.coordinates[1] = points[i-1].coordinates[1] - a1*2;
+        p2.coordinates[2] = points[i-1].coordinates[2];
+        supportEdges.emplace_back(p1, p2, 0, l/100);
+    }
+
+    /// A keresztmerevizok kiszamitasa
+    for(int i = 0; i < (int)supportEdges.size(); i++){ /// Vegig megy az osszes tamaszon
+        for(int j = 0; j < (int)supportEdges.size(); j++){
+            double epsilon = 0;
+            double distance,dX, dY;
+            dX = std::abs(supportEdges[i].p1.coordinates[0] - supportEdges[j].p1.coordinates[0]);
+            dY = std::abs(supportEdges[i].p1.coordinates[2] - supportEdges[j].p1.coordinates[2]);
+            distance = dX + dY;
+            /// Ha a ket tamasz nincs tul messze, illetve ha parhuzamosak az x es z tengelyre az atlok
+            if (distance <= 6 * l && ((dX != 0 && dY == 0) || (dX == 0 && dY != 0))) {
+                /// Felfele mozog a tamaszok tavolsaga alapjan, hogy ne legyen felesleges kereszt merevito
+                while ((supportEdges[i].p1.coordinates[1] + epsilon - supportEdges[i].p2.coordinates[1]) <= e) {
+                    if ((supportEdges[j].p1.coordinates[1] + epsilon + distance - supportEdges[j].p2.coordinates[1]) <= e) {
+                        Point actualPoint = supportEdges[i].p1;
+                        actualPoint.coordinates[1] = actualPoint.coordinates[1] + epsilon;
+                        Point neighbourPoint = supportEdges[j].p1;
+                        neighbourPoint.coordinates[1] = neighbourPoint.coordinates[1] + epsilon + distance;
+
+                        crossBraceEdges.emplace_back(actualPoint, neighbourPoint, 0, l / 100);
+
+                        epsilon = epsilon + distance;
+                    } else {
+                        epsilon = epsilon + l;
                     }
                 }
             }
         }
-    }*/
-
-    for(int i = 0; i < (int)crossBraceEndPoints.size(); i++){
-        for(int j = 0; j < (int)crossBraceEndPoints.size(); j++){
-            if(i != j){
-                double h = std::abs(crossBraceEndPoints[i].coordinates[1] - crossBraceEndPoints[j].coordinates[1]);
-                double d1 = std::abs(crossBraceEndPoints[i].coordinates[0] - crossBraceEndPoints[j].coordinates[0]);
-                double d2 = std::abs(crossBraceEndPoints[i].coordinates[2] - crossBraceEndPoints[j].coordinates[2]);
-                if(((h / d1 == 1) && (d2 == 0)) || ((h / d2 == 1) && (d1 == 0))){
-                    crossBraceEdges.emplace_back(crossBraceEndPoints[i], crossBraceEndPoints[j], 0);
-                }
-            }
-        }
     }
 
-    //writeInputEdges(outputFileName, inputFileName, crossBraceEdges);
-
     /// A keresztmerevito hengerek kirajzolasa
+    /// @since 2.1.2
 
     std::ofstream file(outputFileName);
     if(!file){
@@ -831,24 +827,24 @@ void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const 
     double xNull, zNull;
     /// A korlap kozeppontja
     double x, y, z;
-    for(int i = 0; i < (int)crossBraceEdges.size(); i++){
+    for(auto & crossBraceEdge : crossBraceEdges){
         /// Az also pontok
 
-        x = crossBraceEdges[i].p1.coordinates[0];
-        y = crossBraceEdges[i].p1.coordinates[1];
-        z = crossBraceEdges[i].p1.coordinates[2];
+        x = crossBraceEdge.p1.coordinates[0];
+        y = crossBraceEdge.p1.coordinates[1];
+        z = crossBraceEdge.p1.coordinates[2];
 
         /// Kiszamoljuk a henger alapjanak szamito felso "kort", ami egy 16 szog lesz
-        zNull = crossBraceEdges[i].p1.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 1))*r;
-        xNull = crossBraceEdges[i].p1.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 1))*r;
+        zNull = crossBraceEdge.p1.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 1))*r;
+        xNull = crossBraceEdge.p1.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 1))*r;
         deltaX1 = xNull - x;
         deltaZ1 = zNull - z;
-        zNull = crossBraceEdges[i].p1.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 2))*r;
-        xNull = crossBraceEdges[i].p1.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 2))*r;
+        zNull = crossBraceEdge.p1.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 2))*r;
+        xNull = crossBraceEdge.p1.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 2))*r;
         deltaX2 = xNull - x;
         deltaZ2 = zNull - z;
-        zNull = crossBraceEdges[i].p1.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 3))*r;
-        xNull = crossBraceEdges[i].p1.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 3))*r;
+        zNull = crossBraceEdge.p1.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 3))*r;
+        xNull = crossBraceEdge.p1.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 3))*r;
         deltaX3 = xNull - x;
         deltaZ3 = zNull - z;
 
@@ -875,21 +871,21 @@ void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const 
 
         /// A felso pontok
 
-        x = crossBraceEdges[i].p2.coordinates[0];
-        y = crossBraceEdges[i].p2.coordinates[1];
-        z = crossBraceEdges[i].p2.coordinates[2];
+        x = crossBraceEdge.p2.coordinates[0];
+        y = crossBraceEdge.p2.coordinates[1];
+        z = crossBraceEdge.p2.coordinates[2];
 
         /// Kiszamoljuk a henger alapjanak szamito also "kort", ami egy 16 szog lesz
-        zNull = crossBraceEdges[i].p2.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 1))*r;
-        xNull = crossBraceEdges[i].p2.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 1))*r;
+        zNull = crossBraceEdge.p2.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 1))*r;
+        xNull = crossBraceEdge.p2.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 1))*r;
         deltaX1 = xNull - x;
         deltaZ1 = zNull - z;
-        zNull = crossBraceEdges[i].p2.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 2))*r;
-        xNull = crossBraceEdges[i].p2.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 2))*r;
+        zNull = crossBraceEdge.p2.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 2))*r;
+        xNull = crossBraceEdge.p2.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 2))*r;
         deltaX2 = xNull - x;
         deltaZ2 = zNull - z;
-        zNull = crossBraceEdges[i].p2.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 3))*r;
-        xNull = crossBraceEdges[i].p2.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 3))*r;
+        zNull = crossBraceEdge.p2.coordinates[2] + std::cos(M_PI/2 - (M_PI/8 * 3))*r;
+        xNull = crossBraceEdge.p2.coordinates[0] + std::sin(M_PI/2 - (M_PI/8 * 3))*r;
         deltaX3 = xNull - x;
         deltaZ3 = zNull - z;
 

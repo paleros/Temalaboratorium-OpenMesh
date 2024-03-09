@@ -53,8 +53,30 @@ struct Edge{
     Point p1;
     Point p2;
     double weight;
+    double e;
 
-    Edge(Point p1, Point p2, double weight) : p1(p1), p2(p2), weight(weight) {}
+    Edge(Point p1, Point p2, double weight, double e) : p1(p1), p2(p2), weight(weight), e(e) {}
+
+    bool operator==(const Edge& other) const {
+        return  std::abs(p1.coordinates[0] - other.p1.coordinates[0]) <= e &&
+                std::abs(p1.coordinates[1] - other.p1.coordinates[1]) <= e &&
+                std::abs(p1.coordinates[2] - other.p1.coordinates[2]) <= e &&
+                std::abs(p2.coordinates[0] - other.p2.coordinates[0]) <= e &&
+                std::abs(p2.coordinates[1] - other.p2.coordinates[1]) <= e &&
+                std::abs(p2.coordinates[2] - other.p2.coordinates[2]) <= e &&
+                std::abs(weight - other.weight) <= e;
+    }
+
+    bool operator!=(const Edge& other) const {
+        return  !(std::abs(p1.coordinates[0] - other.p1.coordinates[0]) <= e &&
+                std::abs(p1.coordinates[1] - other.p1.coordinates[1]) <= e &&
+                std::abs(p1.coordinates[2] - other.p1.coordinates[2]) <= e &&
+                std::abs(p2.coordinates[0] - other.p2.coordinates[0]) <= e &&
+                std::abs(p2.coordinates[1] - other.p2.coordinates[1]) <= e &&
+                std::abs(p2.coordinates[2] - other.p2.coordinates[2]) <= e &&
+                std::abs(weight - other.weight) <= e);
+    }
+
 };
 
 /**
