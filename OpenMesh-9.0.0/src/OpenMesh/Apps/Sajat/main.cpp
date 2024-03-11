@@ -54,8 +54,8 @@
 /// A tesztelheto alakzatok
 //#define TEST_BUNNY
 //#define TEST_DIAMOND
-#define TEST_SPHERE
-//#define TEST_LUCY
+//#define TEST_SPHERE
+#define TEST_LUCY
 //#define TEST_GYMNAST
 
 /**
@@ -94,7 +94,7 @@ int main(){
     double l = 0.006;
 #endif
 #ifdef TEST_DIAMOND
-    double l = 0.098; /// A sugarak kozti tavolsag
+    double l = 0.15; /// A sugarak kozti tavolsag
     diameter = 0.08;
     //swapYZ(meshObject);
     //writeMesh("models/diamond.obj", meshObject);
@@ -105,8 +105,8 @@ int main(){
 #endif
 
 #ifdef TEST_LUCY
-    double l = 20;
-    diameter = 4;
+    double l = 40;
+    diameter = 20;
     //swapYZ(meshObject);
     //writeMesh("models/lucy.obj", meshObject);
 #endif
