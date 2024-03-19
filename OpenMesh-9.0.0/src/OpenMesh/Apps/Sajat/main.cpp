@@ -45,7 +45,6 @@
 
 #include <OpenMesh/Core/IO/MeshIO.hh>
 #include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
-#include <fstream>
 #include "auxiliary.h"
 
 /**
@@ -54,8 +53,8 @@
 /// A tesztelheto alakzatok
 //#define TEST_BUNNY
 //#define TEST_DIAMOND
-//#define TEST_SPHERE
-#define TEST_LUCY
+#define TEST_SPHERE
+//#define TEST_LUCY
 //#define TEST_GYMNAST
 
 /**
@@ -92,6 +91,7 @@ int main(){
     /// A racspont osztas leptek merete es maximum kiterjedese
 #ifdef TEST_BUNNY
     double l = 0.006;
+    diameter = 0.002;
 #endif
 #ifdef TEST_DIAMOND
     double l = 0.15; /// A sugarak kozti tavolsag
@@ -117,6 +117,7 @@ int main(){
     //writeMesh("models/lucy.obj", meshObject);
 #endif
 
+    writeStartLog(inputFile);
     double maxWeight = M_PI / 4 * 3 *2;
 
     /// A metszespontok x, y, es z koordinatait tarolja
@@ -124,6 +125,7 @@ int main(){
 
     int count = 0;
 
+    writeLog("\tBasic parameters set");
     /// Vegigmegy az osszes tarolt haromszogon
     for(MyMesh::FaceIter fi = meshObject.faces_begin(); fi != meshObject.faces_end(); fi++){
         MyMesh::FaceHandle fh = *fi;
@@ -220,11 +222,13 @@ int main(){
     deleteWrongPoints(intersectPoints, l / 100);
 
     /// A kiiras a fileba
-    writeInternalLines("outputs/output1.obj", inputFile, intersectPoints, "# Internal lines generated from ");
+    writeInternalLines("outputs/1-internalLines.obj", inputFile, intersectPoints, "# Internal lines generated from ");
+    writeLog("\tInternal lines written to file");
 
     /// A bemeneti pontpok kozotti elek tarolasara szolgalo tomb
     /// @since 1.2
     std::vector<Edge> edges;
+
 
     /// A bemeneti pontok kozotti elek kiszamitasa
     for(int i = 0; i < (int)intersectPoints.size(); i = i + 2){
@@ -314,7 +318,8 @@ int main(){
         }
     }
 
-    writeInputEdges("outputs/output2.obj", inputFile, edges);
+    writeInputEdges("outputs/2-inputEdges.obj", inputFile, edges);
+    writeLog("\tInput edges written to file");
 
     /// Az alatamasztando pontok kiszamitasa
     /// @since 1.3
@@ -371,7 +376,9 @@ int main(){
     }
 
     /// Kiirjuk az alatamasztando pontokat
-    writePoints("outputs/output3.obj", inputFile, 0, supportPointsAll);
+    writePoints("outputs/3-supportedPoints.obj", inputFile, 0, supportPointsAll);
+    writeLog("\tSupportedPoints written to file");
+
 
     /// Az alatamasztando pontokbol egyeneseket huzunk a legalso pont y koordinataja szerinti sikra
     /// @since 1.4
@@ -408,14 +415,21 @@ int main(){
         supportLines.push_back(p);
     }
 
-    writeInternalLines("outputs/output4.obj", inputFile, supportLines, "# Support lines generated from ");
+    writeInternalLines("outputs/4-supportLines.obj", inputFile, supportLines, "# Support lines generated from ");
+    writeLog("\tSupportLines written to file");
+
 
     /// Az alatamasztando pontokat atalakitjuk alazatta, hogy nyomtathato legyen
     /// @since 1.5
-    //generateAndWriteSupportLines("outputs/output5.obj", inputFile, supportLines, diameter, minY);
-    generateAndWriteSupportCylinder("outputs/output6.obj", inputFile, supportLines, diameter, minY);
-    generateAndWriteSupportCrossBrace("outputs/output7.obj", inputFile, supportLines, diameter, minY, l);
+    generateAndWriteSupportLines("outputs/5-triangleSupportObjects.obj", inputFile, supportLines, diameter, minY);
+    writeLog("\tTriangleSupportObjects written to file");
+    /// @since 2.1
+    generateAndWriteSupportCylinder("outputs/6-cylinderSupportObjects.obj", inputFile, supportLines, diameter, minY);
+    writeLog("\tCylinderSupportObjects written to file");
+    generateAndWriteSupportCrossBrace("outputs/7-diagonalSupportObjects.obj", inputFile, supportLines, diameter, l, meshObject);
+    writeLog("\tDiagonalsupportObjects written to file");
 
+    writeEndLog();
     return 0;
 }
 

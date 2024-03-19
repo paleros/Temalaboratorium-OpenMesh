@@ -1,5 +1,5 @@
 //
-// Created by peros on 2023.11.04..
+// Created by peros on 2023.11.04.
 //
 /**
  * A segedfuggvenyeket tarolo header file
@@ -75,6 +75,13 @@ struct Edge{
                 std::abs(p2.coordinates[1] - other.p2.coordinates[1]) <= e &&
                 std::abs(p2.coordinates[2] - other.p2.coordinates[2]) <= e &&
                 std::abs(weight - other.weight) <= e);
+    }
+
+    /**
+     * Az elek kezdopont magassag szerinti rendezesehez szukseges fuggveny
+     */
+    public: static bool sort(Edge e1, Edge e2) {
+        return e1.p1.coordinates[1] > e2.p1.coordinates[1];
     }
 
 };
@@ -247,14 +254,41 @@ void generateAndWriteSupportCylinder(const std::string &outputFileName, const st
                                      std::vector<Point> &points, double diameter, double minY);
 
 /**
+ * Ha egy atlo metszi az alakzatot, akkor azt torli
+ * @param edges az atlok
+ * @param meshObject az alakzat
+ * @param l hibahatar
+ * @since 2.1.3
+ */
+void deleteWrongDiagonals(std::vector<Edge>& edges, OpenMesh::PolyMesh_ArrayKernelT<> meshObject, double l);
+
+/**
  * A parameterkent kapott pontok kozotti alatamasztasok kozott generalja a keresztmerevitoket
  * @param outputFileName a kimeneti file neve
  * @param inputFileName a bemeneti file neve
  * @param points a pontok
  * @param diameter az alatamasztas atmeroje
- * @param minY a legkisebb y koordinata
  * @param l a kuszobertek
+ * @param meshObject az alakzat
  * @since 2.1.2
  */
 void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const std::string &inputFileName,
-                                       std::vector<Point> &points, double diameter, double minY, double l);
+                                       std::vector<Point> &points, double diameter, double l,
+                                       OpenMesh::PolyMesh_ArrayKernelT<> meshObject);
+
+/**
+ * Kiirja a futtatas adatait a konzolra
+ * @param inputFileName
+ */
+void writeStartLog(const std::string &inputFileName);
+
+/**
+ * Kiirja hogy keszen van
+ */
+void writeEndLog();
+
+/**
+ * Kiirja a logot a konsolra
+ * @param log a kiirando szoveg
+ */
+void writeLog(const std::string &log);

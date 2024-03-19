@@ -11,6 +11,7 @@
 #include <string>
 #include <fstream>
 #include <queue>
+#include <utility>
 #include "auxiliary.h"
 #include "OpenMesh/Core/IO/MeshIO.hh"
 
@@ -580,7 +581,7 @@ void generateAndWriteSupportCylinder(const std::string &outputFileName, const st
     /// A henger sugara
     double r = diameter/2;
     /// A korlep pontjainak koordinata elterese a kozepponthoz kepest (elso negyed)
-    double deltaX1, deltaX2, deltaX3, deltaX4, deltaZ1, deltaZ2, deltaZ3, deltaZ4;
+    double deltaX1, deltaX2, deltaX3, deltaZ1, deltaZ2, deltaZ3;
     /// A masodik korlap pont
     double xNull, zNull;
     /// A korlap kozeppontja
@@ -608,9 +609,6 @@ void generateAndWriteSupportCylinder(const std::string &outputFileName, const st
                 xNull = points[i].coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * r;
                 deltaX3 = xNull - x;
                 deltaZ3 = zNull - z;
-                if (y > points[i - 1].coordinates[1]) {
-                    //y = y - a1 * 2;
-                }
 
                 /// Elso negyed pontjai
                 file << "v " << x + r << " " << y << " " << z << "\n"; /// 1
@@ -763,17 +761,113 @@ void generateAndWriteSupportCylinder(const std::string &outputFileName, const st
 }
 
 /**
+ * Ha egy atlo metszi az alakzatot, akkor azt torli
+ * @param edges az atlok
+ * @param meshObject az alakzat
+ * @param l hibahatar
+ * @since 2.1.3
+ */
+void deleteWrongDiagonals(std::vector<Edge>& edges, OpenMesh::PolyMesh_ArrayKernelT<> meshObject, double l){
+    double e = l / 100;
+    /// Vegigmegyunk az eleken
+    for (int i = 0; i < (int)edges.size(); i++){
+        /// A haromszog csucspontjai es az atlo ket vegpontja
+        Point A, B, C, P, Q;
+        /// Vegigmegyunk az alakzatot alkoto haromszogeken
+        for(MyMesh::FaceIter fi = meshObject.faces_begin(); fi != meshObject.faces_end(); fi++){
+            MyMesh::FaceHandle fh = *fi;
+            int c = 0;
+            /// Vegigmegyunk a haromszog csucspontjain
+            for (MyMesh::FaceVertexIter fvi = meshObject.fv_iter(fh); fvi.is_valid(); ++fvi) {
+                MyMesh::VertexHandle vh = *fvi;
+
+                if(c == 0) {
+                    A.coordinates[0] = meshObject.point(vh)[0];
+                    A.coordinates[1] = meshObject.point(vh)[1];
+                    A.coordinates[2] = meshObject.point(vh)[2];
+                } else if(c == 1) {
+                    B.coordinates[0] = meshObject.point(vh)[0];
+                    B.coordinates[1] = meshObject.point(vh)[1];
+                    B.coordinates[2] = meshObject.point(vh)[2];
+                } else if(c == 2) {
+                    C.coordinates[0] = meshObject.point(vh)[0];
+                    C.coordinates[1] = meshObject.point(vh)[1];
+                    C.coordinates[2] = meshObject.point(vh)[2];
+                }
+                c++;
+            }
+            P.coordinates[0] = edges[i].p1.coordinates[0];
+            P.coordinates[1] = edges[i].p1.coordinates[1];
+            P.coordinates[2] = edges[i].p1.coordinates[2];
+            Q.coordinates[0] = edges[i].p2.coordinates[0];
+            Q.coordinates[1] = edges[i].p2.coordinates[1];
+            Q.coordinates[2] = edges[i].p2.coordinates[2];
+
+            /// Kiszamoljuk a haromszog normalvektorat
+            Point normal;
+            normal.coordinates[0] = (B.coordinates[1] - A.coordinates[1]) * (C.coordinates[2] - A.coordinates[2]) -
+                                    (B.coordinates[2] - A.coordinates[2]) * (C.coordinates[1] - A.coordinates[1]);
+            normal.coordinates[1] = (B.coordinates[2] - A.coordinates[2]) * (C.coordinates[0] - A.coordinates[0]) -
+                                    (B.coordinates[0] - A.coordinates[0]) * (C.coordinates[2] - A.coordinates[2]);
+            normal.coordinates[2] = (B.coordinates[0] - A.coordinates[0]) * (C.coordinates[1] - A.coordinates[1]) -
+                                    (B.coordinates[1] - A.coordinates[1]) * (C.coordinates[0] - A.coordinates[0]);
+
+            /// Kiszamoljuk az egyenes iranyvektorat
+            Point direction;
+            direction.coordinates[0] = Q.coordinates[0] - P.coordinates[0];
+            direction.coordinates[1] = Q.coordinates[1] - P.coordinates[1];
+            direction.coordinates[2] = Q.coordinates[2] - P.coordinates[2];
+
+            /// A nevezo nem lehet 0
+            double denominator = normal.coordinates[0] * direction.coordinates[0]
+                                + normal.coordinates[1] * direction.coordinates[1]
+                                + normal.coordinates[2] * direction.coordinates[2];
+
+            double t = (normal.coordinates[0] * (A.coordinates[0] - P.coordinates[0])
+                        + normal.coordinates[1] * (A.coordinates[1] - P.coordinates[1])
+                        + normal.coordinates[2] * (A.coordinates[2] - P.coordinates[2])) / denominator;
+
+            Point intersectionPoint;
+            intersectionPoint.coordinates[0] = P.coordinates[0] + t * direction.coordinates[0];
+            intersectionPoint.coordinates[1] = P.coordinates[1] + t * direction.coordinates[1];
+            intersectionPoint.coordinates[2] = P.coordinates[2] + t * direction.coordinates[2];
+
+            double maxX = std::max(P.coordinates[0], Q.coordinates[0]);
+            double minX = std::min(P.coordinates[0], Q.coordinates[0]);
+            double maxY = std::max(P.coordinates[1], Q.coordinates[1]);
+            double minY = std::min(P.coordinates[1], Q.coordinates[1]);
+            double maxZ = std::max(P.coordinates[2], Q.coordinates[2]);
+            double minZ = std::min(P.coordinates[2], Q.coordinates[2]);
+
+            /// Ha az atlo nem parhuzamos a haromszog normalvektoral es nem a szakaszon van
+            if (std::abs(denominator - 0) > e &&
+                intersectionPoint.coordinates[0] > maxX &&
+                intersectionPoint.coordinates[0] < minX &&
+                intersectionPoint.coordinates[1] > maxY &&
+                intersectionPoint.coordinates[1] < minY &&
+                intersectionPoint.coordinates[2] > maxZ &&
+                intersectionPoint.coordinates[2] < minZ) {
+                edges.erase(edges.begin() + i);
+                i--;
+                break;
+            }
+        }
+    }
+}
+
+/**
  * A parameterkent kapott pontok kozotti alatamasztasok kozott generalja a keresztmerevitoket
  * @param outputFileName a kimeneti file neve
  * @param inputFileName a bemeneti file neve
  * @param points a pontok
  * @param diameter az alatamasztas atmeroje
- * @param minY a legkisebb y koordinata
  * @param l a kuszobertek
+ * @param meshObject az alakzat
  * @since 2.1.2
  */
 void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const std::string &inputFileName,
-                                     std::vector<Point> &points, double diameter, double minY, double l) {
+                                     std::vector<Point> &points, double diameter, double l,
+                                     OpenMesh::PolyMesh_ArrayKernelT<> meshObject) {
 
     /// @since 2.1.3
     /// A tamaszok csucsa
@@ -800,8 +894,9 @@ void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const 
         p2.coordinates[2] = points[i-1].coordinates[2];
         supportEdges.emplace_back(p1, p2, 0, l/100);
     }
+    std::sort(supportEdges.begin(), supportEdges.end(), Edge::sort);
 
-    /// A keresztmerevizok kiszamitasa
+    /// A keresztmerevitok kiszamitasa
     for(int i = 0; i < (int)supportEdges.size(); i++){ /// Vegig megy az osszes tamaszon
         for(int j = 0; j < (int)supportEdges.size(); j++){
 
@@ -810,18 +905,27 @@ void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const 
             dX = std::abs(supportEdges[i].p1.coordinates[0] - supportEdges[j].p1.coordinates[0]);
             dY = std::abs(supportEdges[i].p1.coordinates[2] - supportEdges[j].p1.coordinates[2]);
             distance = dX + dY;
+            double startY;
+            if (supportEdges[i].p1.coordinates[1] > supportEdges[j].p1.coordinates[1]) {
+                startY = supportEdges[i].p1.coordinates[1];
+            } else {
+                startY = supportEdges[j].p1.coordinates[1];
+            }
 
             /// Ha a ket tamasz nincs tul messze, illetve ha parhuzamosak az x es z tengelyre az atlok
             if (distance <= 6 * l && ((dX != 0 && dY == 0) || (dX == 0 && dY != 0))) {
                 /// Felfele mozog a tamaszok tavolsaga alapjan, hogy ne legyen felesleges kereszt merevito
-                while ((supportEdges[i].p1.coordinates[1] + epsilon - supportEdges[i].p2.coordinates[1]) <= e) {
-                    if ((supportEdges[j].p1.coordinates[1] + epsilon + distance - supportEdges[j].p2.coordinates[1]) <= e) {
+                while ((startY + epsilon - supportEdges[i].p2.coordinates[1]) <= e) {
+
+                    if (((startY + epsilon + distance - supportEdges[j].p2.coordinates[1]) <= e) &&
+                        ((startY + epsilon + distance - supportEdges[j].p1.coordinates[1]) >= e)) {
+
 
                         Point actualPoint = supportEdges[i].p1;
-                        actualPoint.coordinates[1] = actualPoint.coordinates[1] + epsilon;
+                        actualPoint.coordinates[1] = startY + epsilon;
 
                         Point neighbourPoint = supportEdges[j].p1;
-                        neighbourPoint.coordinates[1] = neighbourPoint.coordinates[1] + epsilon + distance;
+                        neighbourPoint.coordinates[1] = startY + epsilon + distance;
 
                         double storagedDistance;
                         if(dX != 0) {
@@ -841,27 +945,28 @@ void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const 
 
     /// Kitoroljuk azokat az atlokat, amik elmetszenek tamaszokat
     for(int i = 0; i < (int)crossBraceEdges.size(); i++){
-        for(int j = 0; j < (int)supportEdges.size(); j++){
+        for(auto & supportEdge : supportEdges){
             double a1X = crossBraceEdges[i].p1.coordinates[0];
             double a1Y = crossBraceEdges[i].p1.coordinates[1];
             double a1Z = crossBraceEdges[i].p1.coordinates[2];
             double a2X = crossBraceEdges[i].p2.coordinates[0];
             double a2Y = crossBraceEdges[i].p2.coordinates[1];
             double a2Z = crossBraceEdges[i].p2.coordinates[2];
-            double t1X = supportEdges[j].p1.coordinates[0];
-            double t1Y = supportEdges[j].p1.coordinates[1];
-            double t1Z = supportEdges[j].p1.coordinates[2];
-            double t2X = supportEdges[j].p2.coordinates[0];
-            double t2Y = supportEdges[j].p2.coordinates[1];
-            double t2Z = supportEdges[j].p2.coordinates[2];
+            double t1X = supportEdge.p1.coordinates[0];
+            double t1Z = supportEdge.p1.coordinates[2];
+            double t2X = supportEdge.p2.coordinates[0];
+            double t2Y = supportEdge.p2.coordinates[1];
+            double t2Z = supportEdge.p2.coordinates[2];
+
             /// Ha az atlo ket vege kozott van egy tamasz
+//TODO nem minden esetben torli ki a felesleges atlokat neha meg tul sokat is
             if(((((a1X - t1X < -e) && (t1X - a2X < -e)) ||
                  ((a2X - t1X < -e) && (t1X - a1X < -e))) &&
                  ((std::abs(a1Z - t1Z) <= e) && (std::abs(a1Z - a2Z) <= e))) ||
                ((((a1Z - t1Z < -e) && (t1Z - a2Z < -e)) ||
                  ((a2Z - t1Z < -e) && (t1Z - a1X < -e))) &&
                  ((std::abs(a1X - t1X) <= e) && (std::abs(a1X - a2X) <= e)))) {
-//TODO nem minden esetben torli ki a felesleges atlokat
+
                 if( (((a2Y - a1Y) * (t2X - a1X)) / (a2X - a1X) + a1Y - t2Y) <= e ||
                     (((a1Y - a2Y) * (t2X - a2X)) / (a1X - a2X) + a2Y - t2Y) <= e ||
                     (((a2Y - a1Y) * (t2Z - a1Z)) / (a2Z - a1Z) + a1Y - t2Y) <= e ||
@@ -875,7 +980,7 @@ void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const 
         }
     }
 
-//TODO a merevito belelog e az alakzatba
+    deleteWrongDiagonals(crossBraceEdges, std::move(meshObject), l);
 
     /// A keresztmerevito hengerek kirajzolasa
     /// @since 2.1.2
@@ -886,13 +991,13 @@ void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const 
         exit(1);
     }
     /// A kimeneti file fejlece
-    file << "# Support objects generated from " << inputFileName << " by BTMLYV\n";
+    file << "# Diagonal support objects generated from " << inputFileName << " by BTMLYV\n";
 
     int n = 0;
     /// A henger sugara
     double r = diameter/2;
     /// A korlep pontjainak koordinata elterese a kozepponthoz kepest (elso negyed)
-    double deltaX1, deltaX2, deltaX3, deltaX4, deltaZ1, deltaZ2, deltaZ3, deltaZ4;
+    double deltaX1, deltaX2, deltaX3, deltaZ1, deltaZ2, deltaZ3;
     /// A masodik korlap pont
     double xNull, zNull;
     /// A korlap kozeppontja
@@ -989,6 +1094,51 @@ void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const 
         file << "f " << 1 + 16 + n << " " << 16 + 16 + n << " " << 1 + n << "\n";
         n = n + 16*2;
     }
-    //TODO ha tul kicsi a tamasz
+}
 
+/**
+ * Kiirja a futtatas adatait a konzolra
+ * @param inputFileName
+ */
+void writeStartLog(const std::string &inputFileName) {
+    std::cout << "   _____                              _      _____                           _   _             \n"
+                 "  / ____|                            | |    / ____|                         | | (_)            \n"
+                 " | (___  _   _ _ __  _ __   ___  _ __| |_  | |  __  ___ _ __   ___ _ __ __ _| |_ _  ___  _ __  \n"
+                 "  \\___ \\| | | | '_ \\| '_ \\ / _ \\| '__| __| | | |_ |/ _ \\ '_ \\ / _ \\ '__/ _` | __| |/ _ \\| '_ \\ \n"
+                 "  ____) | |_| | |_) | |_) | (_) | |  | |_  | |__| |  __/ | | |  __/ | | (_| | |_| | (_) | | | |\n"
+                 " |_____/ \\__,_| .__/| .__/ \\___/|_|   \\__|  \\_____|\\___|_| |_|\\___|_|  \\__,_|\\__|_|\\___/|_| |_|\n"
+                 "              | |   | |                                                                        \n"
+                 "              |_|   |_|                                                                        " << std::endl;
+    std::cout << " for 3D printing" << std::endl;
+    std::cout << "-----------------------------------------------------------------------------------------------" << std::endl;
+    std::cout << "\nThe input file is: " << inputFileName << std::endl;
+    std::cout << "Log:-------------------------------------------------------------------------------------------" << std::endl;
+}
+
+/**
+ * Kiirja hogy keszen van
+ */
+void writeEndLog() {
+    std::cout << "-----------------------------------------------------------------------------------------------\n" << std::endl;
+    std::cout << "\x1B[32m   _____                      _      _           _ \n"
+                 "  / ____|                    | |    | |         | |\n"
+                 " | |     ___  _ __ ___  _ __ | | ___| |_ ___  __| |\n"
+                 " | |    / _ \\| '_ ` _ \\| '_ \\| |/ _ \\ __/ _ \\/ _` |\n"
+                 " | |___| (_) | | | | | | |_) | |  __/ ||  __/ (_| |\n"
+                 "  \\_____\\___/|_| |_| |_| .__/|_|\\___|\\__\\___|\\__,_|\n"
+                 "                       | |                         \n"
+                 "                       |_|                         \033[0m" << std::endl;
+}
+
+/**
+ * Kiirja a logot a konsolra
+ * @param log a kiirando szoveg
+ */
+void writeLog(const std::string &log) {
+    /// Az aktuális idő lekérdezése
+    auto now = std::chrono::system_clock::now();
+    std::time_t nowC = std::chrono::system_clock::to_time_t(now);
+    std::tm* localNow = std::localtime(&nowC);
+
+    std::cout << std::put_time(localNow, "%Y/%m/%d %H:%M:%S") << log << std::endl;
 }
