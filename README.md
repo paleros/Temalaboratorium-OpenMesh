@@ -59,6 +59,11 @@ A main.cpp fájlban a következő sorokat kell módosítani:
 //#define TEST_SPHERE
 //#define TEST_LUCY
 ```
+
+## Eredmények
+Az egyik demó fájl végeredménye:
+![Bunny](Eredmeny.png)
+
 ## Demó
 Lehetőség van demózni a programot. A demózható alakzatok a következők:
 * Nyuszi (Bunny)
