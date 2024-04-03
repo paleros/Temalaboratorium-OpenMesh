@@ -1,0 +1,8 @@
+//
+// Created by peros on 2024.04.03.
+//
+
+#ifndef OPENMESH_SUPPORTPOINTS_H
+#define OPENMESH_SUPPORTPOINTS_H
+
+#endif //OPENMESH_SUPPORTPOINTS_H

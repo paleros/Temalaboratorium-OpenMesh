@@ -1,4 +1,4 @@
-# Install script for directory: /home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineSubdivider
+# Install script for directory: /mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Subdivider/commandlineSubdivider
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -43,7 +43,7 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/cmake-build-debug/Build/bin/commandlineSubdivider")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/cmake-build-debug/Build/bin/commandlineSubdivider")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/commandlineSubdivider" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/commandlineSubdivider")
     if(CMAKE_INSTALL_DO_STRIP)

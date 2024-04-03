@@ -8,13 +8,10 @@
  * @since 2023.11.04.
  */
 
-#include <string>
-#include "OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh"
-
 #ifndef OPENMESH_AUXILIARY_H
 #define OPENMESH_AUXILIARY_H
-
-#endif //OPENMESH_AUXILIARY_H
+#include <string>
+#include "OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh"
 
 typedef OpenMesh::PolyMesh_ArrayKernelT<>  MyMesh;
 
@@ -292,3 +289,5 @@ void writeEndLog();
  * @param log a kiirando szoveg
  */
 void writeLog(const std::string &log);
+
+#endif //OPENMESH_AUXILIARY_H

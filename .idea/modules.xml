@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/OpenMeshTest.iml" filepath="$PROJECT_DIR$/.idea/OpenMeshTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Temalaboratorium-OpenMesh.iml" filepath="$PROJECT_DIR$/.idea/Temalaboratorium-OpenMesh.iml" />
     </modules>
   </component>
 </project>

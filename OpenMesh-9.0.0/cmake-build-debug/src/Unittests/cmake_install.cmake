@@ -1,4 +1,4 @@
-# Install script for directory: /home/peros/Documents/CLionProjects/C++/Temalaboratorium/OpenMeshTest/OpenMesh-9.0.0/src/Unittests
+# Install script for directory: /mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/Unittests
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -45,13 +45,19 @@
 
 #include <OpenMesh/Core/IO/MeshIO.hh>
 #include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
-//#include "auxiliary.h"
-#include "column.h"
-#include "tree.h"
+#include "auxiliary.h"
+#include "columnAuxiliary.h"
+#include "treeAuxiliary.h"
 
 /**
- * Makrok definialasa
+ * Makrok definialasa --------------------------------------------------------------------------------------------------
  */
+/**
+ * Az alatamasztas tipusanak beallitasa
+ */
+#define COLUMN_SUPPORT
+//#define TREE_SUPPORT
+
 
 /**
  * A demozhato alakzatok
@@ -61,7 +67,9 @@
 //#define TEST_DIAMOND
 //#define TEST_SPHERE
 //#define TEST_LUCY
-
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
 
 /**
  * A feladat megvalositasa
@@ -84,21 +92,16 @@ int main(){
     std::string inputFile = "models/lucy.obj";
 #endif
 
-
-    /// A fajl beolvasasa
-    MyMesh meshObject;
-    readMesh(inputFile, meshObject);
-
     /// Az alatamasztas oszlopanak vastagsagahoz
     double diameter;
 
-    /// A racspont osztas leptek merete es maximum kiterjedese
+/// A racspont osztas leptek merete es maximum kiterjedese
 #ifdef TEST_BUNNY
-    double l = 0.005;
+    double l = 0.005; /// A sugarak kozti tavolsag
     diameter = 0.002;
 #endif
 #ifdef TEST_DIAMOND
-    double l = 0.15; /// A sugarak kozti tavolsag
+    double l = 0.15;
     diameter = 0.08;
 #endif
 #ifdef TEST_SPHERE
@@ -112,6 +115,10 @@ int main(){
     //swapYZ(meshObject);
     //writeMesh("models/lucy.obj", meshObject);
 #endif
+
+    /// A fajl beolvasasa
+    MyMesh meshObject;
+    readMesh(inputFile, meshObject);
 
     writeStartLog(inputFile);
     double maxWeight = M_PI / 4 * 3 *2;

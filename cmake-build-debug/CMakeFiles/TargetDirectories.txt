@@ -1,3 +1,3 @@
-/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/cmake-build-debug/CMakeFiles/OpenMeshTest.dir
-/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/peros/Documents/CLion/C++/Temalabor/OpenMeshTest/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/cmake-build-debug/CMakeFiles/OpenMeshTest.dir
+/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/cmake-build-debug/CMakeFiles/rebuild_cache.dir
