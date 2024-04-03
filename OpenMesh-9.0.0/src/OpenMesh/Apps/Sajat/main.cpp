@@ -1,6 +1,6 @@
 /**
  * ---------------------------------------------------------------------------------------------------------------------
- * Created by peros on 2023.10.23..
+ * Created by peros on 2023.10.23.
  *
  * Budapesti Muszaki es Gazdasagtudomanyi Egyetem (BME)
  * Villamosmernoki es Informatikai Kar (VIK)
@@ -39,23 +39,29 @@
  *
  * @author Eros Pal
  * @consulant Dr. Salvi Peter
- * @since 2024.02.17.
+ * @since 2024.04.03.
  * ---------------------------------------------------------------------------------------------------------------------
 */
 
 #include <OpenMesh/Core/IO/MeshIO.hh>
 #include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
-#include "auxiliary.h"
+//#include "auxiliary.h"
+#include "column.h"
+#include "tree.h"
 
 /**
  * Makrok definialasa
  */
-/// A tesztelheto alakzatok
-//#define TEST_BUNNY
+
+/**
+ * A demozhato alakzatok
+ * FONTOS: csak akkor mukodik, ha az alakzat haromszogekbol epul fel!
+ */
+#define TEST_BUNNY
 //#define TEST_DIAMOND
-#define TEST_SPHERE
+//#define TEST_SPHERE
 //#define TEST_LUCY
-//#define TEST_GYMNAST
+
 
 /**
  * A feladat megvalositasa
@@ -77,42 +83,32 @@ int main(){
 #ifdef TEST_LUCY
     std::string inputFile = "models/lucy.obj";
 #endif
-#ifdef TEST_GYMNAST
-    std::string inputFile = "models/gymnast.obj";
-#endif
 
 
     /// A fajl beolvasasa
     MyMesh meshObject;
     readMesh(inputFile, meshObject);
+
     /// Az alatamasztas oszlopanak vastagsagahoz
-    double diameter = 0.001;
+    double diameter;
 
     /// A racspont osztas leptek merete es maximum kiterjedese
 #ifdef TEST_BUNNY
-    double l = 0.006;
+    double l = 0.005;
     diameter = 0.002;
 #endif
 #ifdef TEST_DIAMOND
     double l = 0.15; /// A sugarak kozti tavolsag
     diameter = 0.08;
-    //swapYZ(meshObject);
-    //writeMesh("models/diamond.obj", meshObject);
 #endif
 #ifdef TEST_SPHERE
-    double l = 0.1;
-    diameter = 0.05;
+    double l = 0.3;
+    diameter = 0.15;
 #endif
 
 #ifdef TEST_LUCY
     double l = 40;
     diameter = 20;
-    //swapYZ(meshObject);
-    //writeMesh("models/lucy.obj", meshObject);
-#endif
-#ifdef TEST_GYMNAST
-    double l = 0.2;
-    diameter = 0.06;
     //swapYZ(meshObject);
     //writeMesh("models/lucy.obj", meshObject);
 #endif
@@ -124,6 +120,7 @@ int main(){
     std::vector<Point> intersectPoints;
 
     int count = 0;
+    double e = l / 100;
 
     writeLog("\tBasic parameters set");
     /// Vegigmegy az osszes tarolt haromszogon
@@ -136,15 +133,15 @@ int main(){
         p1.coordinates[0] = 0;
         p1.coordinates[1] = 0;
         p1.coordinates[2] = 0;
-        p1.e = l/100;
+        p1.e = e;
         p2.coordinates[0] = 0;
         p2.coordinates[1] = 0;
         p2.coordinates[2] = 0;
-        p2.e = l/100;
+        p2.e = e;
         p3.coordinates[0] = 0;
         p3.coordinates[1] = 0;
         p3.coordinates[2] = 0;
-        p3.e = l/100;
+        p3.e = e;
         int c =0;
 
         /// Kiaszamoljuk az aktualis haromszog csucspontjait
@@ -175,9 +172,9 @@ int main(){
         double minZ = fmin(fmin(p1.coordinates[2], p2.coordinates[2]), p3.coordinates[2]);
 
         /// Vegigmegyunk a potencialis racspontokon
-        double x = std::floor(minX / l) * l;
+        double x = std::floor(minX / l) * l + e;
         while(x <= maxX){
-            double z = std::floor(minZ / l) * l;
+            double z = std::floor(minZ / l) * l + e;
             while(z <= maxZ) {
                 /// Kiszamoljuk a haromszogek teruleteit
                 double A = area(p1.coordinates[0], p1.coordinates[2],
@@ -200,7 +197,7 @@ int main(){
                     double b2 = A2 / A;
                     double b3 = A3 / A;
                     /// Ha nem negativ akkor a haromszogon belul van, tehat metszi
-                    if (b1 > 0 && b2 > 0 && b3 > 0) {
+                    if (b1 >= 0 && b2 >= 0 && b3 >= 0) {
                         double y = p1.coordinates[1] * b1 + p2.coordinates[1] * b2 + p3.coordinates[1] * b3;
                         Point p;
                         p.coordinates[0] = x;
@@ -219,7 +216,7 @@ int main(){
 
     /// A metszespontok rendezese
     std::sort(intersectPoints.begin(), intersectPoints.end(), comparePoints);
-    deleteWrongPoints(intersectPoints, l / 100);
+    deleteWrongPoints(intersectPoints, e);
 
     /// A kiiras a fileba
     writeInternalLines("outputs/1-internalLines.obj", inputFile, intersectPoints, "# Internal lines generated from ");
@@ -243,7 +240,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0];
@@ -253,7 +250,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] + l;
@@ -263,7 +260,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] - l;
@@ -273,7 +270,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] + l;
@@ -283,7 +280,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] - l;
@@ -293,7 +290,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0];
@@ -303,7 +300,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
         adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] + l;
@@ -313,7 +310,7 @@ int main(){
             adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
-                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, l/100);
+                edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
     }
@@ -330,9 +327,9 @@ int main(){
     }
     std::sort(inputPoints.begin(), inputPoints.end(), comparePoints);
     for(int i = 0; i < (int)inputPoints.size(); i++){
-        if(std::abs(inputPoints[i].coordinates[0] - inputPoints[i+1].coordinates[0]) <= l/100 &&
-            std::abs(inputPoints[i].coordinates[1] - inputPoints[i+1].coordinates[1]) <= l/100 &&
-            std::abs(inputPoints[i].coordinates[2] - inputPoints[i+1].coordinates[2]) <= l/100){
+        if(std::abs(inputPoints[i].coordinates[0] - inputPoints[i+1].coordinates[0]) <= e &&
+           std::abs(inputPoints[i].coordinates[1] - inputPoints[i+1].coordinates[1]) <= e &&
+           std::abs(inputPoints[i].coordinates[2] - inputPoints[i+1].coordinates[2]) <= e){
             inputPoints.erase(inputPoints.begin() + i);
             i--;
         }
@@ -405,8 +402,8 @@ int main(){
 
         /// Ha a metszespontok kozott van olyan kimeno pont, amelyik alacsonyabb, akkor azt a pontot csak addig huzzuk le
         for(int i = 1; i < (int)intersectPoints.size(); i = i + 2){
-            if(std::abs(intersectPoints[i].coordinates[0] - supportPoint.coordinates[0]) <= l / 100 &&
-               std::abs(intersectPoints[i].coordinates[2] - supportPoint.coordinates[2]) <= l / 100){
+            if(std::abs(intersectPoints[i].coordinates[0] - supportPoint.coordinates[0]) <= e &&
+               std::abs(intersectPoints[i].coordinates[2] - supportPoint.coordinates[2]) <= e){
                 if(intersectPoints[i].coordinates[1] > p.coordinates[1] && intersectPoints[i].coordinates[1] < supportPoint.coordinates[1]){
                     p.coordinates[1] = intersectPoints[i].coordinates[1];
                 }
