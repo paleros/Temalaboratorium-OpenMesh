@@ -10,5 +10,21 @@
 
 #ifndef OPENMESH_COLUMNMAIN_H
 #define OPENMESH_COLUMNMAIN_H
+#include "auxiliary.h"
+#include "columnAuxiliary.h"
+
+/**
+ * Legeneralja a az alatamasztast
+ * @param meshObject az alakzat
+ * @param inputFile a bemeneti file
+ * @param supportPointsAll az alatamasztando pontok
+ * @param intersectPoints a metszespontok
+ * @param diameter az oszlop atmeroje
+ * @param l a racs tavolsaga
+ * @param e a hibahatar
+ * @since 2.2
+ */
+void columnSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll,
+                            std::vector<Point> &intersectPoints, double diameter, double l, double e);
 
 #endif //OPENMESH_COLUMNMAIN_H

@@ -46,9 +46,9 @@
 #include <OpenMesh/Core/IO/MeshIO.hh>
 #include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
 #include "auxiliary.h"
-#include "columnAuxiliary.h"
-#include "treeAuxiliary.h"
 #include "supportPoints.h"
+#include "columnMain.h"
+#include "treeMain.h"
 
 /**
  * Makrok definialasa --------------------------------------------------------------------------------------------------
@@ -56,8 +56,8 @@
 /**
  * Az alatamasztas tipusanak beallitasa
  */
-#define COLUMN_SUPPORT
-//#define TREE_SUPPORT
+#define COLUMN_SUPPORT /// Oszlop alatamasztas
+//#define TREE_SUPPORT /// Fa alatamasztas
 
 
 /**
@@ -150,62 +150,15 @@ int main(){
     supportPointsGenerated(diameter, l, e, inputFile, intersectPoints, count, meshObject, edges,
                            inputPoints, supportPointsAll, maxWeight);
 
+    /// Az alatamasztas tipusa "oszlop"
+#ifdef COLUMN_SUPPORT
+    columnSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e);
+#endif //COLUMN_SUPPORT
 
-
-
-
-
-
-
-
-    /// Az alatamasztando pontokbol egyeneseket huzunk a legalso pont y koordinataja szerinti sikra
-    /// @since 1.4
-
-    std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPoints);
-    std::vector<Point> supportLines;
-    /// Kiszamoljuk, hogy meddig kell az egyeneseket huzni
-    double minY = std::numeric_limits<double>::max(); // Kezdeti érték a minimális y koordinátának
-    for (MyMesh::VertexIter v_it = meshObject.vertices_begin(); v_it != meshObject.vertices_end(); ++v_it) {
-        MyMesh::Point p = meshObject.point(*v_it);
-        if (p[1] < minY) {
-            minY = p[1];
-        }
-    }
-
-    for (const auto & supportPoint : supportPointsAll) {
-        Point p;
-        p.coordinates[0] = supportPoint.coordinates[0];
-        p.coordinates[1] = supportPoint.coordinates[1];
-        p.coordinates[2] = supportPoint.coordinates[2];
-        p.e = supportPoint.e;
-        supportLines.push_back(p);
-        p.coordinates[1] = minY;
-
-        /// Ha a metszespontok kozott van olyan kimeno pont, amelyik alacsonyabb, akkor azt a pontot csak addig huzzuk le
-        for(int i = 1; i < (int)intersectPoints.size(); i = i + 2){
-            if(std::abs(intersectPoints[i].coordinates[0] - supportPoint.coordinates[0]) <= e &&
-               std::abs(intersectPoints[i].coordinates[2] - supportPoint.coordinates[2]) <= e){
-                if(intersectPoints[i].coordinates[1] > p.coordinates[1] && intersectPoints[i].coordinates[1] < supportPoint.coordinates[1]){
-                    p.coordinates[1] = intersectPoints[i].coordinates[1];
-                }
-            }
-        }
-        supportLines.push_back(p);
-    }
-
-    writeInternalLines("outputs/4-supportLines.obj", inputFile, supportLines, "# Support lines generated from ");
-    writeLog("\tSupportLines written to file");
-
-
-    /// Az alatamasztando pontokat atalakitjuk alazatta, hogy nyomtathato legyen
-    /// @since 1.5
-    generateAndWriteSupportLines("outputs/5-triangleSupportObjects.obj", inputFile, supportLines, diameter, minY);
-    writeLog("\tTriangleSupportObjects written to file");
-    /// @since 2.1
-    generateAndWriteSupportCylinder("outputs/6-cylinderSupportObjects.obj", inputFile, supportLines, diameter, minY);
-    writeLog("\tCylinderSupportObjects written to file");
-    generateAndWriteSupportCrossBrace("outputs/7-diagonalSupportObjects.obj", inputFile, supportLines, diameter, l, meshObject);
-    writeLog("\tDiagonalsupportObjects written to file");
+    /// Az alatamasztas tipusa "fa"
+#ifdef TREE_SUPPORT
+    treeSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e);
+#endif //TREE_SUPPORT
 
     writeEndLog();
     return 0;
