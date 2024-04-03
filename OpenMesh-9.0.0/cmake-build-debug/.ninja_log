@@ -52,3 +52,7 @@
 9	2641	1712157186932906000	src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/columnAuxiliary.cpp.o	c59ddaa2a3113ff9
 9	3092	1712157187381075300	src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/main.cpp.o	530ae813d61be805
 3092	3470	1712157187761487600	Build/bin/Sajat	35b371064f0513d5
+18	59	1712158215536700900	src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/columnMain.cpp.o	9a8eb11d49068f53
+22	1847	1712158217324021300	src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/supportPoints.cpp.o	26847a0be2858713
+19	3105	1712158218578059600	src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/main.cpp.o	530ae813d61be805
+3105	3470	1712158218944083500	Build/bin/Sajat	35b371064f0513d5
