@@ -26,7 +26,7 @@ void columnSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vec
 
     /// Az alatamasztando pontokbol egyeneseket huzunk a legalso pont y koordinataja szerinti sikra
     /// @since 1.4
-    std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPoints);
+    std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPointsYXZ);
     std::vector<Point> supportLines;
     /// Kiszamoljuk, hogy meddig kell az egyeneseket huzni
     double minY = std::numeric_limits<double>::max(); // Kezdeti érték a minimális y koordinátának

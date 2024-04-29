@@ -64,12 +64,13 @@ double getY(std::vector<Point> &intersectPoints, const Point &p, double l);
 /**
  * Osszehasonlitja a ket kapott pont koordinatait es visszadja az elobbre levot
  * Elsonek az y koordinata alapjan, majd az x, majd a z koordinata alapjan
+ * Elorebb a kisebb y koordinataju pontok kerulnek
  * @param p1 az eslo pont
  * @param p2 a masodik pont
  * @return az elso elem elobbre valo-e vagy sem
  * @since 1.3
  */
-bool compareInputPoints(const Point &p1, const Point &p2);
+bool compareInputPointsYXZ(const Point &p1, const Point &p2);
 
 /**
  * Osszehasonlitja a ket kapott el kezdopontjanak koordinatait es visszadja az elobbre levot
@@ -146,5 +147,15 @@ void deleteWrongDiagonals(std::vector<Edge>& edges, OpenMesh::PolyMesh_ArrayKern
 void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const std::string &inputFileName,
                                        std::vector<Point> &points, double diameter, double l,
                                        OpenMesh::PolyMesh_ArrayKernelT<> meshObject);
+
+/**
+ * Osszehasonlitja a ket kapott pont koordinatait es visszadja az elobbre levot
+ * Elsonek az x koordinata alapjan, majd az y, majd a z koordinata alapjan
+ * @param p1 az eslo pont
+ * @param p2 a masodik pont
+ * @return az elso elem elobbre valo-e vagy sem
+ * @since 3.1
+ */
+bool compareInputPointsXYZ(const Point &p1, const Point &p2);
 
 #endif //OPENMESH_COLUMNAUXILIARY_H

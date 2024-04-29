@@ -33,9 +33,14 @@
  * Feladat leirasa: a tamasz egyeneseket atalakitjuk henger alakzatta, hogy nyomtathato legyen. Ezt kovetoen a
  * tamaszokat osszekotjuk a stabilitas erdekeben.
  *
+ * 3.1. Feladatresz
+ * Feladat leirasa: Fentrol indulva lefele huzunk tamaszokat ha bizonyos szogben metszik egymast, akkor osszekotjuk.
+ * Csoportositani kell valahogyan.
+ *
  * Felhasznalt anyagok: OpenMesh Documentation, gpytoolbox.org, digitalocean.com, w3schools.com, stackoverflow.com,
- *                      geeksforgeeks.org, GitHub Copilot, ChatGTP,
+ *                      geeksforgeeks.org, GitHub Copilot, ChatGTP, Microsoft Copilot
  *                      [2020, Jang et al] Free-floating support structure generation
+ *                      [2019, Zhang et al] Local barycenter based efficient tree-support generation for 3D printing
  *
  * @author Eros Pal
  * @consulant Dr. Salvi Peter
@@ -56,18 +61,20 @@
 /**
  * Az alatamasztas tipusanak beallitasa
  */
-#define COLUMN_SUPPORT /// Oszlop alatamasztas
-//#define TREE_SUPPORT /// Fa alatamasztas
+//#define COLUMN_SUPPORT /// Oszlop alatamasztas
+#define TREE_SUPPORT /// Fa alatamasztas
 
 
 /**
  * A demozhato alakzatok
  * FONTOS: csak akkor mukodik, ha az alakzat haromszogekbol epul fel!
  */
-#define TEST_BUNNY
+//#define TEST_BUNNY
 //#define TEST_DIAMOND
 //#define TEST_SPHERE
 //#define TEST_LUCY
+//#define TEST_FANDISK
+#define TEST_T
 /**
  * ---------------------------------------------------------------------------------------------------------------------
  */
@@ -92,6 +99,12 @@ int main(){
 #ifdef TEST_LUCY
     std::string inputFile = "models/lucy.obj";
 #endif
+#ifdef TEST_FANDISK
+    std::string inputFile = "models/fandisk.obj";
+#endif
+#ifdef TEST_T
+    std::string inputFile = "models/t.obj";
+#endif
 
     /// Az alatamasztas oszlopanak vastagsagahoz
     double diameter;
@@ -115,6 +128,14 @@ int main(){
     diameter = 20;
     //swapYZ(meshObject);
     //writeMesh("models/lucy.obj", meshObject);
+#endif
+#ifdef TEST_FANDISK
+    double l = 0.1;
+    diameter = 0.05;
+#endif
+#ifdef TEST_T
+    double l = 0.1;
+    diameter = 0.05;
 #endif
 
     /// Valtozok inicializalasa
@@ -157,6 +178,24 @@ int main(){
 
     /// Az alatamasztas tipusa "fa"
 #ifdef TREE_SUPPORT
+
+// TODO ez csak teszteléshez kell --------------------------------------------------------------------------------------
+/*    supportPointsAll.clear();
+    for(int x = 0; x < 9; x++){
+        for(int z = 0; z < 9; z++){
+            int y = 5;
+            Point p;
+            p.coordinates[0] = x;
+            p.coordinates[1] = y;
+            p.coordinates[2] = z;
+            p.e = 0;
+            supportPointsAll.push_back(p);
+        }
+    }
+    l = 1;
+    writePoints("outputs/TEST-supportPointsAll.obj","test", 0, supportPointsAll);*/
+//TODO END------------------------------------------------------------------------------------------------------------------
+
     treeSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e);
 #endif //TREE_SUPPORT
 

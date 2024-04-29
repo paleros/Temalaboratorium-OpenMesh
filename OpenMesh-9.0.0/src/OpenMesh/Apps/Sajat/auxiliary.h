@@ -38,6 +38,7 @@ struct Point{
                 std::abs(coordinates[1] - other.coordinates[1]) <= e &&
                 std::abs(coordinates[2] - other.coordinates[2]) <= e;
     }
+
 };
 
 /**
@@ -171,7 +172,7 @@ double getY(std::vector<Point> &intersectPoints, const Point &p, double l);
  * @return az elso elem elobbre valo-e vagy sem
  * @since 1.3
  */
-bool compareInputPoints(const Point &p1, const Point &p2);
+bool compareInputPointsYXZ(const Point &p1, const Point &p2);
 
 /**
  * Osszehasonlitja a ket kapott el kezdopontjanak koordinatait es visszadja az elobbre levot
