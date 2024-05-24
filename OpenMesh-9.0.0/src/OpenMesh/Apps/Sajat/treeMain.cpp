@@ -19,14 +19,15 @@
  * @param diameter az oszlop atmeroje
  * @param l a racs tavolsaga
  * @param e a hibahatar
+ * @param groupingValue a csoportositasi ertek
  * @since 3.1
  */
 void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll,
-                            std::vector<Point> &intersectPoints, double diameter, double l, double e){
+                            std::vector<Point> &intersectPoints, double diameter, double l, double e, int groupingValue){
 
     /// Az aktualis ponnak minden iranyban az ennyi l -lel odébb lévő szomszédjai
-    int groupingValue = 2; //TODO ha nem tudja csoportositani, akkor egyedul marad a pont, ezt le kell kezelni
     double angle = M_PI / 5;
+    double minY = getMinY(supportPointsAll);
 
     std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPointsYXZAll);
 
@@ -44,8 +45,7 @@ void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vecto
         }
 
         /// Kikeressuk a szomszedos pontokat
-    getNeigbourPoints(supportPointsAll, supportPointsAll[k], neighbourPoints, l,
-                      groupingValue);
+        getNeigbourPoints(supportPointsAll, supportPointsAll[k], neighbourPoints, l, groupingValue);
 
         for (auto &actualNeighbourPoint : neighbourPoints) {
             for (auto &neighbourPoint : neighbourPoints) {
@@ -84,7 +84,7 @@ void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vecto
                 /// A metszespont kiszamitasa
                 double a = dot(ADx, ADy, ADz, ADx, ADy, ADz);
                 double b = dot(ADx, ADy, ADz, BDx, BDy, BDz);
-                double c = dot(BDx, BDy, BDz, BDx, BDy, BDz);;
+                double c = dot(BDx, BDy, BDz, BDx, BDy, BDz);
                 double d = dot(ADx, ADy, ADz, Ax-Bx, Ay-By, Az-Bz);
                 double f = dot(BDx, BDy, BDz, Ax-Bx, Ay-By, Az-Bz);
                 if (a * c - b * b < 1.0e-7) {
@@ -126,19 +126,37 @@ void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vecto
         if(!intersectPs.empty()){
             std::sort(intersectPs.begin(), intersectPs.end(), compareInputPointsYXZ);
             lowestPoint = intersectPs[0];
-            supportPointsAll.push_back(lowestPoint);
-            k = -1;
+            /// Ha nem log ki alul az alatamasztas
+            if(lowestPoint.coordinates[1] >= minY){
+                supportPointsAll.push_back(lowestPoint);
+                k = -1;
 
-            /// Osszekoti a megfelelo pontokat, majd kitorli a mar alatamasztott pontokat
-            for (auto &neighbourPoint: neighbourPoints) {
-                supportTree.emplace_back(neighbourPoint, lowestPoint, 0, e);
-                for(auto it = supportPointsAll.begin(); it != supportPointsAll.end();){
-                    if(*it == neighbourPoint){
-                        it = supportPointsAll.erase(it);
-                    }else{
-                        ++it;
+                //bool usedOriginalLowPoint = false;
+                /// Osszekoti a megfelelo pontokat, majd kitorli a mar alatamasztott pontokat
+                for (auto &neighbourPoint: neighbourPoints) {
+                    Point nextPoint;
+                    nextPoint = lowestPoint;
+
+                    /// Ha nem metszi az alakzatot, akkor hasznalja az eredeti also pontot
+                    //if(!doesItPassTeModel(neighbourPoint, nextPoint, meshObject, e)){
+                    //    usedOriginalLowPoint = true;
+                    //}
+
+                    supportTree.emplace_back(neighbourPoint, nextPoint, 0, e);
+                    for (auto it = supportPointsAll.begin(); it != supportPointsAll.end();){
+                        if (*it == neighbourPoint) {
+                            it = supportPointsAll.erase(it);
+                        } else {
+                            ++it;
+                        }
                     }
                 }
+                /// Ha nem hasznaljuk a regi also pontot, akkor toroljuk
+                //if (!usedOriginalLowPoint) {
+                //    supportPointsAll.erase(std::remove(supportPointsAll.begin(),
+                //                                            supportPointsAll.end(), lowestPoint),
+                //                                            supportPointsAll.end());
+                //}
             }
         }
 
@@ -147,6 +165,17 @@ void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vecto
 
         std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPointsYXZAll);
     }
+
+    /// A tamaszfa vegpontjaibol egyeneseket huzuk a legalso pontig
+    for (auto & i : supportPointsAll) {
+        Point nextPoint;
+        nextPoint.coordinates[0] = i.coordinates[0];
+        nextPoint.coordinates[1] = minY;
+        nextPoint.coordinates[2] = i.coordinates[2];
+        nextPoint.e = e;
+        supportTree.emplace_back(i,nextPoint, 0, e);
+    }
+
 
     writeInputEdges("outputs/6-supportTree.obj", inputFile, supportTree);
     writeLog("\tTreeSupportObjects written to file");

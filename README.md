@@ -46,7 +46,7 @@ A main.cpp fájlban a következő sorokat kell módosítani:
 /**
  * Az alatamasztas tipusanak beallitasa
  */
-#define COLUMN_SUPPORT /// Oszlop alatamasztas
+#define GRID_SUPPORT /// Oszlop alatamasztas
 //#define TREE_SUPPORT /// Fa alatamasztas
 
 

@@ -61,7 +61,7 @@
 /**
  * Az alatamasztas tipusanak beallitasa
  */
-//#define COLUMN_SUPPORT /// Oszlop alatamasztas
+//#define GRID_SUPPORT /// Oszlop alatamasztas
 #define TREE_SUPPORT /// Fa alatamasztas
 
 
@@ -108,6 +108,8 @@ int main(){
 
     /// Az alatamasztas oszlopanak vastagsagahoz
     double diameter;
+    /// A fa csoporitasi erteke
+    int groupingValue;
 
 /// A racspont osztas leptek merete es maximum kiterjedese
 #ifdef TEST_BUNNY
@@ -132,10 +134,12 @@ int main(){
 #ifdef TEST_FANDISK
     double l = 0.1;
     diameter = 0.05;
+    groupingValue = 5;
 #endif
 #ifdef TEST_T
     double l = 0.1;
     diameter = 0.05;
+    groupingValue = 5;
 #endif
 
     /// Valtozok inicializalasa
@@ -172,9 +176,9 @@ int main(){
                            inputPoints, supportPointsAll, maxWeight);
 
     /// Az alatamasztas tipusa "oszlop"
-#ifdef COLUMN_SUPPORT
+#ifdef GRID_SUPPORT
     columnSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e);
-#endif //COLUMN_SUPPORT
+#endif //GRID_SUPPORT
 
     /// Az alatamasztas tipusa "fa"
 #ifdef TREE_SUPPORT
@@ -193,10 +197,11 @@ int main(){
         }
     }
     l = 1;
-    writePoints("outputs/TEST-supportPointsAll.obj","test", 0, supportPointsAll);*/
+    writePoints("outputs/TEST-supportPointsAll.obj","test", 0, supportPointsAll);
+    groupingValue = 2; //TODO ha nem tudja csoportositani, akkor egyedul marad a pont, ezt le kell kezelni*/
 //TODO END------------------------------------------------------------------------------------------------------------------
 
-    treeSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e);
+    treeSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e, groupingValue);
 #endif //TREE_SUPPORT
 
     writeEndLog();

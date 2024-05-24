@@ -37,7 +37,6 @@ void supportPointsGenerated(double diameter, double l, double e, const std::stri
     for(MyMesh::FaceIter fi = meshObject.faces_begin(); fi != meshObject.faces_end(); fi++){
         MyMesh::FaceHandle fh = *fi;
 
-        //Ezt a reszt nem szettem ki kulon fuggvenybe, mert percekkel(!) novelte a lefutasi idot
         /// Az aktualis haromszog csucspontjai
         Point p1, p2, p3;
         p1.coordinates[0] = 0;

@@ -16,9 +16,10 @@
  * @param diameter az oszlop atmeroje
  * @param l a racs tavolsaga
  * @param e a hibahatar
+ * @param groupingValue a csoportositasi ertek
  * @since 3.0
  */
 void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll,
-                          std::vector<Point> &intersectPoints, double diameter, double l, double e);
+                          std::vector<Point> &intersectPoints, double diameter, double l, double e, int groupingValue);
 
 #endif //OPENMESH_TREEMAIN_H

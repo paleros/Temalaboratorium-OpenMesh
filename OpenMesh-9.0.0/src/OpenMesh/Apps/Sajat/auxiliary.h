@@ -31,12 +31,43 @@ void readMesh(const std::string& file, MyMesh& mesh);
 struct Point{
     double coordinates[3]{};
     double weight = -1.0;
-    double e;
+    double e{};
 
     bool operator==(const Point& other) const {
         return  std::abs(coordinates[0] - other.coordinates[0]) <= e &&
                 std::abs(coordinates[1] - other.coordinates[1]) <= e &&
                 std::abs(coordinates[2] - other.coordinates[2]) <= e;
+    }
+
+    /// @since 3.1
+    bool operator!=(const Point& other) const {
+        return  !(std::abs(coordinates[0] - other.coordinates[0]) <= e &&
+                std::abs(coordinates[1] - other.coordinates[1]) <= e &&
+                std::abs(coordinates[2] - other.coordinates[2]) <= e);
+    }
+
+    Point operator-(const Point& other) const {
+        Point p;
+        p.coordinates[0] = coordinates[0] - other.coordinates[0];
+        p.coordinates[1] = coordinates[1] - other.coordinates[1];
+        p.coordinates[2] = coordinates[2] - other.coordinates[2];
+        return p;
+    }
+
+    Point operator+(const Point& other) const {
+        Point p;
+        p.coordinates[0] = coordinates[0] + other.coordinates[0];
+        p.coordinates[1] = coordinates[1] + other.coordinates[1];
+        p.coordinates[2] = coordinates[2] + other.coordinates[2];
+        return p;
+    }
+
+    Point operator*(const double& other) const {
+        Point p;
+        p.coordinates[0] = coordinates[0] * other;
+        p.coordinates[1] = coordinates[1] * other;
+        p.coordinates[2] = coordinates[2] * other;
+        return p;
     }
 
 };

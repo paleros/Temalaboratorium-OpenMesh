@@ -27,6 +27,7 @@
  * @param l a racs tavolsaga
  * @param angle a szog
  * @return a szomszedos pont
+ * @since 3.1
  */
 Point* getNeighbour(int x, int y, int z, Point* p, std::vector<Point> &supportPointsAll, double l, double angle);
 
@@ -35,6 +36,7 @@ Point* getNeighbour(int x, int y, int z, Point* p, std::vector<Point> &supportPo
  * @param p1 az elso pont
  * @param p2 a masodik pont
  * @return a ket pont kozotti tavolsag
+ * @since 3.1
  */
 double getDistance(Point &p1, Point &p2);
 
@@ -77,6 +79,7 @@ bool compareInputPointsZXYAll(const Point &p1, const Point &p2);
  * @param By B pont y koordinataja
  * @param Bz B pont z koordinataja
  * @return a szorzat
+ * @since 3.1
  */
 double dot(double Ax, double Ay, double Az, double Bx, double By, double Bz);
 
@@ -84,6 +87,7 @@ double dot(double Ax, double Ay, double Az, double Bx, double By, double Bz);
  * Visszaadja a legnagyobb x erteket
  * @param supportPointsAll a pontok
  * @return a legnagyobb x erteke
+ * @since 3.1
  */
 double getMaxX(std::vector<Point> &supportPointsAll);
 
@@ -91,6 +95,7 @@ double getMaxX(std::vector<Point> &supportPointsAll);
  * Visszaadja a legnagyobb z erteket
  * @param supportPointsAll a pontok
  * @return a legnagyobb z erteke
+ * @since 3.1
  */
 double getMaxZ(std::vector<Point> &supportPointsAll);
 
@@ -98,8 +103,17 @@ double getMaxZ(std::vector<Point> &supportPointsAll);
  * Visszaadja a legnagyobb y erteket
  * @param supportPointsAll a pontok
  * @return a legnagyobb y erteke
+ * @since 3.1
  */
 double getMaxY(std::vector<Point> &supportPointsAll);
+
+/**
+* Visszaadja a legkisebb y erteket
+* @param supportPointsAll a pontok
+* @return a legkisebb y erteke
+ * @since 3.1
+*/
+double getMinY(std::vector<Point> &supportPointsAll);
 
 /**
  * Az aktualis ponnak minden negativ iranyban az l -lel odébb lévő szomszédjai adja vissza
@@ -108,9 +122,20 @@ double getMaxY(std::vector<Point> &supportPointsAll);
  * @param neighbourPoints a szomszedos pontok
  * @param l a racs tavolsaga
  * @param groupingValue a szomszedos pontok szama
+ * @since 3.1
  */
 void getNeigbourPoints(std::vector<Point> &supportPointsAll, Point &actualPoint, std::vector<Point> &neighbourPoints,
                        double l, double groupingValue);
 
+/**
+ * A ket pont altam meghatarozott szakasz metszi-e az alakzatot
+ * @param neighbourPoint a szakasz egyik pontja
+ * @param lowestPoint a szakasz masik, also pontja
+ * @param meshObject az alakzat
+ * @param e a hibahatar
+ * return igaz, ha metszi az alakzatot
+ * @since 3.1
+ */
+bool doesItPassTeModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject, double e);
 
 #endif //OPENMESH_TREEAUXILIARY_H
