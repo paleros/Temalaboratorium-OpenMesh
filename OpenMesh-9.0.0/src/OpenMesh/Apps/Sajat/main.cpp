@@ -7,6 +7,7 @@
  * Iranyitastechnika es Informatika Tanszek (IIT)
  * 1. Temalaboratorium: 3D nyomtatas kulso alatamasztas
  * 2. Onallo laboratorium: 3D nyomtatas - tartostrukturak generalasa es mas gyakorlati problemak
+ * 3. Szakdolgozat: 3D nyomtatas - tartostrukturak generalasa es mas gyakorlati problemak
  *
  * 1.1. Feladatresz
  * Feladat leirasa: egy fajbol betolt egy 3d alakzatot. Ezt bizonyos idokozonkent egy-egy fuggoleges vonallal elmetszi
@@ -182,24 +183,6 @@ int main(){
 
     /// Az alatamasztas tipusa "fa"
 #ifdef TREE_SUPPORT
-
-// TODO ez csak teszteléshez kell --------------------------------------------------------------------------------------
-/*    supportPointsAll.clear();
-    for(int x = 0; x < 9; x++){
-        for(int z = 0; z < 9; z++){
-            int y = 5;
-            Point p;
-            p.coordinates[0] = x;
-            p.coordinates[1] = y;
-            p.coordinates[2] = z;
-            p.e = 0;
-            supportPointsAll.push_back(p);
-        }
-    }
-    l = 1;
-    writePoints("outputs/TEST-supportPointsAll.obj","test", 0, supportPointsAll);
-    groupingValue = 2; //TODO ha nem tudja csoportositani, akkor egyedul marad a pont, ezt le kell kezelni*/
-//TODO END------------------------------------------------------------------------------------------------------------------
 
     treeSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e, groupingValue);
 #endif //TREE_SUPPORT

@@ -133,9 +133,9 @@ void getNeigbourPoints(std::vector<Point> &supportPointsAll, Point &actualPoint,
  * @param lowestPoint a szakasz masik, also pontja
  * @param meshObject az alakzat
  * @param e a hibahatar
- * return igaz, ha metszi az alakzatot
+ * return a metszespont
  * @since 3.1
  */
-bool doesItPassTeModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject, double e);
+Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject, double e);
 
 #endif //OPENMESH_TREEAUXILIARY_H

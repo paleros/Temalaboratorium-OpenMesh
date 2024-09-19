@@ -538,7 +538,7 @@ void generateAndWriteSupportCylinder(const std::string &outputFileName, const st
                 n = n + 16 * 2 + 1;
 
                 /// A tamasz also szelesitesenek kirajzolasa
-                if (std::abs(points[i].coordinates[1] - minY) < e) {
+                if (std::abs(points[i].coordinates[1] - minY) <= e) {
                     /// Kiszamoljuk a henger alapjanak szamito legalso, szelesebb "kort", ami egy 16 szog lesz
                     zNull = points[i].coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 1)) * r * 2;
                     xNull = points[i].coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 1)) * r * 2;

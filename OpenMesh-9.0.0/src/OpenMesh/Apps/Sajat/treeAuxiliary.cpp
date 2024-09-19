@@ -218,10 +218,10 @@ void getNeigbourPoints(std::vector<Point> &supportPointsAll, Point &actualPoint,
  * @param lowestPoint a szakasz masik, also pontja
  * @param meshObject az alakzat
  * @param e a hibahatar
- * return igaz, ha metszi az alakzatot
+ * return a metszespont
  * @since 3.1
  */
-bool doesItPassTeModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject, double e){
+Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject, double e){
     neighbourPoint.e = e;
     lowestPoint.e = e;
 
@@ -232,107 +232,98 @@ bool doesItPassTeModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshOb
         MyMesh::FaceHandle fh = *fi;
 
         /// Az aktualis haromszog csucspontjai
-        Point t1, t2, t3;
-        int c = 0;
+        Point a;
+        Point b;
+        Point c;
+        int counter = 0;
 
         /// Kiaszamoljuk az aktualis haromszog csucspontjait
         for (MyMesh::FaceVertexIter fvi = meshObject.fv_iter(fh); fvi.is_valid(); ++fvi) {
             MyMesh::VertexHandle vh = *fvi;
             // Biztos van elegansabb megoldas, nekem ez jutott most eszembe
-            if (c == 0) {
-                t1.coordinates[0] = meshObject.point(vh)[0];
-                t1.coordinates[1] = meshObject.point(vh)[1];
-                t1.coordinates[2] = meshObject.point(vh)[2];
-                t1.e = e;
-            } else if (c == 1) {
-                t2.coordinates[0] = meshObject.point(vh)[0];
-                t2.coordinates[1] = meshObject.point(vh)[1];
-                t2.coordinates[2] = meshObject.point(vh)[2];
-                t2.e = e;
-            } else if (c == 2) {
-                t3.coordinates[0] = meshObject.point(vh)[0];
-                t3.coordinates[1] = meshObject.point(vh)[1];
-                t3.coordinates[2] = meshObject.point(vh)[2];
-                t3.e = e;
+            if (counter == 0) {
+                a.coordinates[0] = meshObject.point(vh)[0];
+                a.coordinates[1] = meshObject.point(vh)[1];
+                a.coordinates[2] = meshObject.point(vh)[2];
+                a.e = e;
+            } else if (counter == 1) {
+                b.coordinates[0] = meshObject.point(vh)[0];
+                b.coordinates[1] = meshObject.point(vh)[1];
+                b.coordinates[2] = meshObject.point(vh)[2];
+                b.e = e;
+            } else if (counter == 2) {
+                c.coordinates[0] = meshObject.point(vh)[0];
+                c.coordinates[1] = meshObject.point(vh)[1];
+                c.coordinates[2] = meshObject.point(vh)[2];
+                c.e = e;
             }
-            c++;
+            counter++;
         }
 
-        /// Az aktualis haromszog es az el metszespontjanak kiszamitasa, ha letezik
-
-        Point s1, s2;
-        s1 = neighbourPoint;
-        s2 = lowestPoint;
+        /// Az aktualis haromszog es a szakasz metszespontjanak kiszamitasa, ha letezik
 
         /// A haromszog normalvektora
         Point normal;
-        normal.coordinates[0] = (t2.coordinates[1] - t1.coordinates[1]) * (t3.coordinates[2] - t1.coordinates[2]) -
-                                (t2.coordinates[2] - t1.coordinates[2]) * (t3.coordinates[1] - t1.coordinates[1]);
-        normal.coordinates[1] = (t2.coordinates[2] - t1.coordinates[2]) * (t3.coordinates[0] - t1.coordinates[0]) -
-                                (t2.coordinates[0] - t1.coordinates[0]) * (t3.coordinates[2] - t1.coordinates[2]);
-        normal.coordinates[2] = (t2.coordinates[0] - t1.coordinates[0]) * (t3.coordinates[1] - t1.coordinates[1]) -
-                                (t2.coordinates[1] - t1.coordinates[1]) * (t3.coordinates[0] - t1.coordinates[0]);
-        normal.e = e;
+        normal = crossProduct(b - a, c - a);
+
+        double d = dotProduct(normal, a);
 
         /// A szakasz iranyvektora
         Point direction;
-        direction = s2 - s1;
+        direction = lowestPoint - neighbourPoint;
         direction.e = e;
 
         /// Az egyenes parametere ahol metszi a haromszog sikjat
-        double t = (normal.coordinates[0] * (t1.coordinates[0] - s1.coordinates[0]) +
-                    normal.coordinates[1] * (t1.coordinates[1] - s1.coordinates[1]) +
-                    normal.coordinates[2] * (t1.coordinates[2] - s1.coordinates[2])) /
-                   (normal.coordinates[0] * direction.coordinates[0] +
-                    normal.coordinates[1] * direction.coordinates[1] +
-                    normal.coordinates[2] * direction.coordinates[2]);
+        double t = (d - dotProduct(normal, neighbourPoint)) / dotProduct(normal, direction);
 
         /// Ha a szakasz ket vegpontja kozott van az egyenesen a metszespont
-        if (0 - t < -e && t - 1 < -e){
+        if (t >= 0 && t <= 1) {
 
             /// Az metszespont kiszamitasa
             Point intersection;
-            intersection = s1 + (direction * t);
+            intersection = neighbourPoint + (direction * t);
             intersection.e = e;
 
-            /*/// A metszespont a haromszogon belul van-e
-            Point AB, BC, CA, AP, BP, CP;
-            AB = t2 - t1;
-            AB.e = e;
-            BC = t3 - t2;
-            BC.e = e;
-            CA = t1 - t3;
-            CA.e = e;
-            AP = intersection - t1;
-            AP.e = e;
-            BP = intersection - t2;
-            BP.e = e;
-            CP = intersection - t3;
-            CP.e = e;
+            /// A metszespont a haromszogon belul van-e
+            Point AB = b - a;
+            Point BC = c - b;
+            Point CA = a - c;
 
-            double dotAB = AB.coordinates[0] * AP.coordinates[0] + AB.coordinates[1] * AP.coordinates[1] +
-                           AB.coordinates[2] * AP.coordinates[2];
-            double dotBC = BC.coordinates[0] * BP.coordinates[0] + BC.coordinates[1] * BP.coordinates[1] +
-                           BC.coordinates[2] * BP.coordinates[2];
-            double dotCA = CA.coordinates[0] * CP.coordinates[0] + CA.coordinates[1] * CP.coordinates[1] +
-                           CA.coordinates[2] * CP.coordinates[2];
-*/
-            //if (dotAB >= 0 && dotBC >= 0 && dotCA >= 0) {
-                //TODO idonkent detektal egy hibas metszespontot
-                if (intersection != lowestPoint /*&& intersection != neighbourPoint*/) {
+            Point AI = intersection - a;
+            Point BI = intersection - b;
+            Point CI = intersection - c;
+
+            Point cross1 = crossProduct(AB, AI);
+            Point cross2 = crossProduct(BC, BI);
+            Point cross3 = crossProduct(CA, CI);
+
+            //TODO ez nem jelez jól?
+            if (dotProduct(normal, cross1) >= 0 && dotProduct(normal, cross2) >= 0 && dotProduct(normal, cross3) >= 0) {
+                if (intersection.coordinates[1] > lowestPoint.coordinates[1]) {
                     intersectPoints.push_back(intersection);
                 }
-            //}
+            }
 
         }
     }
-    bool ret = false;
+
+    // TODO ez csak tesztekeshez kell
+    if (intersectPoints.size() > 0){
+        printf("Metszespontok szama: %d\n", intersectPoints.size());
+    }
+
     /// A legkozelebbi metszespont kell nekunk
     for(auto &intersectPoint : intersectPoints){
         if(getDistance(neighbourPoint, intersectPoint) < getDistance(neighbourPoint, lowestPoint)){
             lowestPoint = intersectPoint;
-            ret = true;
+            return intersectPoint;
         }
     }
-    return ret;
+    Point badPoint;
+    badPoint.coordinates[0] = 0;
+    badPoint.coordinates[1] = 0;
+    badPoint.coordinates[2] = 0;
+    badPoint.e = -1;
+    return badPoint;
+
 }

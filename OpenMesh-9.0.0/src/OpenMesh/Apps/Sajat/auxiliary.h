@@ -322,4 +322,22 @@ void writeEndLog();
  */
 void writeLog(const std::string &log);
 
+/**
+ * Keresztszorzatot szamol ket pont kozott
+ * @param p1 az elso pont
+ * @param p2 a masodik pont
+ * @return a keresztszorzat
+ * @since 3.1
+ */
+Point crossProduct(Point p1, Point p2);
+
+/**
+ * Skalaris szorzatot szamol ket pont kozott
+ * @param p1 az elso pont
+ * @param p2 a masodik pont
+ * @return a skalaris szorzat
+ * @since 3.1
+ */
+double dotProduct(Point &p1, Point &p2);
+
 #endif //OPENMESH_AUXILIARY_H

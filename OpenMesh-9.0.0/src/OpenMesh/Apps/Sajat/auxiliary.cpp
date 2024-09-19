@@ -197,3 +197,31 @@ void writeLog(const std::string &log) {
 
     std::cout << std::put_time(localNow, "%Y/%m/%d %H:%M:%S") << log << std::endl;
 }
+
+/**
+ * Keresztszorzatot szamol ket pont kozott
+ * @param p1 az elso pont
+ * @param p2 a masodik pont
+ * @return a keresztszorzat
+ * @since 3.1
+ */
+Point crossProduct(Point p1, Point p2){
+    Point p;
+    p.coordinates[0] = p1.coordinates[1] * p2.coordinates[2] - p1.coordinates[2] * p2.coordinates[1];
+    p.coordinates[1] = p1.coordinates[2] * p2.coordinates[0] - p1.coordinates[0] * p2.coordinates[2];
+    p.coordinates[2] = p1.coordinates[0] * p2.coordinates[1] - p1.coordinates[1] * p2.coordinates[0];
+    return p;
+}
+
+/**
+ * Skalaris szorzatot szamol ket pont kozott
+ * @param p1 az elso pont
+ * @param p2 a masodik pont
+ * @return a skalaris szorzat
+ * @since 3.1
+ */
+double dotProduct(Point &p1, Point &p2){
+    return p1.coordinates[0] * p2.coordinates[0] +
+            p1.coordinates[1] * p2.coordinates[1] +
+            p1.coordinates[2] * p2.coordinates[2];
+}

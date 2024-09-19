@@ -52,7 +52,7 @@ void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vecto
                 if (actualNeighbourPoint == neighbourPoint) {
                     continue;
                 }
-                /// Az alatamasztando szonszedos ket pont
+                /// Az alatamasztando szomszedos ket pont
                 double Ax = actualNeighbourPoint.coordinates[0];
                 double Ay = actualNeighbourPoint.coordinates[1];
                 double Az = actualNeighbourPoint.coordinates[2];
@@ -130,17 +130,23 @@ void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vecto
             if(lowestPoint.coordinates[1] >= minY){
                 supportPointsAll.push_back(lowestPoint);
                 k = -1;
+                bool usedOriginalLowPoint = true;
 
-                //bool usedOriginalLowPoint = false;
                 /// Osszekoti a megfelelo pontokat, majd kitorli a mar alatamasztott pontokat
                 for (auto &neighbourPoint: neighbourPoints) {
                     Point nextPoint;
                     nextPoint = lowestPoint;
 
                     /// Ha nem metszi az alakzatot, akkor hasznalja az eredeti also pontot
-                    //if(!doesItPassTeModel(neighbourPoint, nextPoint, meshObject, e)){
-                    //    usedOriginalLowPoint = true;
-                    //}
+                    Point intersectPoint;
+                    intersectPoint = passTheModel(neighbourPoint, nextPoint, meshObject, e);
+                    /// Ha metszi az alakzatot, akkor hasznalja a metszespontot
+                    if(intersectPoint.e == -1){
+                        usedOriginalLowPoint = true;
+                    }else{
+                        nextPoint = intersectPoint;
+                        usedOriginalLowPoint = false;
+                    }
 
                     supportTree.emplace_back(neighbourPoint, nextPoint, 0, e);
                     for (auto it = supportPointsAll.begin(); it != supportPointsAll.end();){
@@ -152,11 +158,11 @@ void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vecto
                     }
                 }
                 /// Ha nem hasznaljuk a regi also pontot, akkor toroljuk
-                //if (!usedOriginalLowPoint) {
-                //    supportPointsAll.erase(std::remove(supportPointsAll.begin(),
-                //                                            supportPointsAll.end(), lowestPoint),
-                //                                            supportPointsAll.end());
-                //}
+                if (!usedOriginalLowPoint) {
+                    supportPointsAll.erase(std::remove(supportPointsAll.begin(),
+                                                            supportPointsAll.end(), lowestPoint),
+                                                            supportPointsAll.end());
+                }
             }
         }
 
@@ -180,3 +186,9 @@ void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vecto
     writeInputEdges("outputs/6-supportTree.obj", inputFile, supportTree);
     writeLog("\tTreeSupportObjects written to file");
 }
+
+//TODO readmi frissitese
+//TODO sonarcloud
+//TODO hibajavitas
+//TODO alakzathoz tamasztas megvalositasa
+//TODO oszlopvastagsag megvalositasa
