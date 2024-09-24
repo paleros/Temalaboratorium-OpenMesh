@@ -277,7 +277,7 @@ Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject
         double t = (d - dotProduct(normal, neighbourPoint)) / dotProduct(normal, direction);
 
         /// Ha a szakasz ket vegpontja kozott van az egyenesen a metszespont
-        if (t >= 0 && t <= 1) {
+        if (t > 0 && t <= 1) {  // Azert felemas a feltetel, hogy a fenti vege ne befolyasolja
 
             /// Az metszespont kiszamitasa
             Point intersection;
@@ -297,7 +297,6 @@ Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject
             Point cross2 = crossProduct(BC, BI);
             Point cross3 = crossProduct(CA, CI);
 
-            //TODO ez nem jelez jól?
             if (dotProduct(normal, cross1) >= 0 && dotProduct(normal, cross2) >= 0 && dotProduct(normal, cross3) >= 0) {
                 if (intersection.coordinates[1] > lowestPoint.coordinates[1]) {
                     intersectPoints.push_back(intersection);
@@ -305,11 +304,6 @@ Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject
             }
 
         }
-    }
-
-    // TODO ez csak tesztekeshez kell
-    if (intersectPoints.size() > 0){
-        printf("Metszespontok szama: %d\n", intersectPoints.size());
     }
 
     /// A legkozelebbi metszespont kell nekunk
