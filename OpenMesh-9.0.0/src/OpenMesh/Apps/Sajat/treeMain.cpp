@@ -183,7 +183,10 @@ void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vecto
     }
 
 
-    writeInputEdges("outputs/6-supportTree.obj", inputFile, supportTree);
+    writeInputEdges("outputs/6-supportLineTree.obj", inputFile, supportTree);
+    writeLog("\tTreeLineSupportObjects written to file");
+
+    writeSupportTree("outputs/7-supportTree.obj", inputFile, supportTree, diameter, minY);
     writeLog("\tTreeSupportObjects written to file");
 }
 
@@ -191,4 +194,5 @@ void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vecto
 //TODO sonarcloud
 //TODO hibajavitas
 //TODO alakzathoz tamasztas megvalositasa
+//TODO alakzathoz taasztas alul is?
 //TODO oszlopvastagsag megvalositasa

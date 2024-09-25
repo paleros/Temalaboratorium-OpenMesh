@@ -321,3 +321,130 @@ Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject
     return badPoint;
 
 }
+
+/**
+ * A fa tamasz eleit megvastagitja es kiirja a fajlba
+ * @param outputFileName a kimeneti fajl neve
+ * @param inputFileName a bemeneti fajl neve
+ * @param supportTree a tamasz fa elei
+ * @param diameter a tamasz vastagsaga
+ * @param minY a legkisebb y ertek
+ * @since 3.1
+ */
+void writeSupportTree(const std::string &outputFileName, const std::string &inputFileName,
+                      std::vector<Edge> &supportTree, double diameter, double minY){
+
+    double D = diameter;    /// Az also vastagsag
+    double H = supportTree[0].p1.coordinates[1] - minY;     /// A fa maximum magassaga
+    double del = diameter/10;   /// A minimalis atmero
+
+    std::ofstream file(outputFileName);
+    if(!file){
+        std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
+        exit(1);
+    }
+    /// A kimeneti file fejlece
+    file << "# Support objects generated from " << inputFileName << " by BTMLYV\n";
+
+    int n = 0;
+
+    for (int i = 0; i < (int)supportTree.size(); i++){
+        double dUp = del + D - D * (supportTree[i].p1.coordinates[1] - minY) / H; //TODO kell valami minimu ertek, hogy ne 0 legyen
+        double dDown = del + D - D * (supportTree[i].p2.coordinates[1] - minY) / H;
+//double dUp = D;
+//double dDown = D;
+
+        /// A korlap pontjainak koordinata elterese a kozepponthoz kepest (elso negyed)
+        double deltaX1, deltaX2, deltaX3, deltaZ1, deltaZ2, deltaZ3;
+        /// A masodik korlap pont
+        double xNull, zNull;
+        /// A korlap kozeppontja
+        double x, y, z;
+//TODO nem jó a hengerszámítás
+        /// Kiszamoljuk a henger alapjanak szamito also "kort", ami egy 16 szog lesz
+        x = supportTree[i].p2.coordinates[0];
+        z = supportTree[i].p2.coordinates[2];
+        zNull = supportTree[i].p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 1)) * (dDown / 2);
+        xNull = supportTree[i].p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 1)) * (dDown / 2);
+        deltaX1 = xNull - x;
+        deltaZ1 = zNull - z;
+        zNull = supportTree[i].p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 2)) * (dDown / 2);
+        xNull = supportTree[i].p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 2)) * (dDown / 2);
+        deltaX2 = xNull - x;
+        deltaZ2 = zNull - z;
+        zNull = supportTree[i].p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 3)) * (dDown / 2);
+        xNull = supportTree[i].p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dDown / 2);
+        deltaX3 = xNull - x;
+        deltaZ3 = zNull - z;
+        y = supportTree[i].p2.coordinates[1];
+
+        /// Elso negyed pontjai
+        file << "v " << x + (dDown / 2) << " " << y << " " << z << "\n"; /// 1
+        file << "v " << x + deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 2
+        file << "v " << x + deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 3
+        file << "v " << x + deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 4
+        /// Masodik negyed pontjai
+        file << "v " << x << " " << y << " " << z + (dDown / 2) << "\n"; /// 5
+        file << "v " << x - deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 6
+        file << "v " << x - deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 7
+        file << "v " << x - deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 8
+        /// Harmadik negyed pontjai
+        file << "v " << x - (dDown / 2) << " " << y << " " << z << "\n"; /// 9
+        file << "v " << x - deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 10
+        file << "v " << x - deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 11
+        file << "v " << x - deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 12
+        /// Negyedik negyed pontjai
+        file << "v " << x << " " << y << " " << z - (dDown / 2) << "\n"; /// 13
+        file << "v " << x + deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 14
+        file << "v " << x + deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 15
+        file << "v " << x + deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 16
+
+        /// Kiszamoljuk a henger alapjanak szamito felso "kort", ami egy 16 szog lesz
+        x = supportTree[i].p1.coordinates[0];
+        z = supportTree[i].p1.coordinates[2];
+        zNull = supportTree[i].p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 1)) * (dUp / 2);
+        xNull = supportTree[i].p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 1)) * (dUp / 2);
+        deltaX1 = xNull - x;
+        deltaZ1 = zNull - z;
+        zNull = supportTree[i].p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 2)) * (dUp / 2);
+        xNull = supportTree[i].p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 2)) * (dUp / 2);
+        deltaX2 = xNull - x;
+        deltaZ2 = zNull - z;
+        zNull = supportTree[i].p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 3)) * (dUp / 2);
+        xNull = supportTree[i].p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dUp / 2);
+        deltaX3 = xNull - x;
+        deltaZ3 = zNull - z;
+        y = supportTree[i].p1.coordinates[1];
+
+        /// Elso negyed pontjai
+        file << "v " << x + (dUp / 2) << " " << y << " " << z << "\n"; /// 1
+        file << "v " << x + deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 2
+        file << "v " << x + deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 3
+        file << "v " << x + deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 4
+        /// Masodik negyed pontjai
+        file << "v " << x << " " << y << " " << z + (dUp / 2) << "\n"; /// 5
+        file << "v " << x - deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 6
+        file << "v " << x - deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 7
+        file << "v " << x - deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 8
+        /// Harmadik negyed pontjai
+        file << "v " << x - (dUp / 2) << " " << y << " " << z << "\n"; /// 9
+        file << "v " << x - deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 10
+        file << "v " << x - deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 11
+        file << "v " << x - deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 12
+        /// Negyedik negyed pontjai
+        file << "v " << x << " " << y << " " << z - (dUp / 2) << "\n"; /// 13
+        file << "v " << x + deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 14
+        file << "v " << x + deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 15
+        file << "v " << x + deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 16
+
+        for (int j = 1; j < 16; j++) {
+            file << "f " << j + n << " " << j + n + 16 << " " << j + n + 1 << "\n";
+            file << "f " << j + n + 1 + 16 << " " << j + n + 16 << " " << j + n + 1 << "\n";
+        }
+        file << "f " << n + 16 << " " << n + 32 << " " << n + 1 << "\n";
+        file << "f " << n + 1 + 16 << " " << n + 32 << " " << n + 1 << "\n";
+
+        n = n + 32;
+    }
+    file.close();
+}

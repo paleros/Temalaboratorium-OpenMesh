@@ -138,4 +138,16 @@ void getNeigbourPoints(std::vector<Point> &supportPointsAll, Point &actualPoint,
  */
 Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject, double e);
 
+/**
+ * A fa tamasz eleit megvastagitja es kiirja a fajlba
+ * @param outputFileName a kimeneti fajl neve
+ * @param inputFileName a bemeneti fajl neve
+ * @param supportTree a tamasz fa elei
+ * @param diameter a tamasz vastagsaga
+ * @param minY a legkisebb y ertek
+ * @since 3.1
+ */
+void writeSupportTree(const std::string &outputFileName, const std::string &inputFileName,
+                      std::vector<Edge> &supportTree, double diameter, double minY);
+
 #endif //OPENMESH_TREEAUXILIARY_H

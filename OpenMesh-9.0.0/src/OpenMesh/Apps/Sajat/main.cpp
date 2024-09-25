@@ -139,7 +139,7 @@ int main(){
 #endif
 #ifdef TEST_T
     double l = 0.1;
-    diameter = 0.05;
+    diameter = 0.2;
     groupingValue = 5;
 #endif
 
