@@ -5,9 +5,9 @@
  * Budapesti Muszaki es Gazdasagtudomanyi Egyetem (BME)
  * Villamosmernoki es Informatikai Kar (VIK)
  * Iranyitastechnika es Informatika Tanszek (IIT)
- * 1. Temalaboratorium: 3D nyomtatas kulso alatamasztas
- * 2. Onallo laboratorium: 3D nyomtatas - tartostrukturak generalasa es mas gyakorlati problemak
- * 3. Szakdolgozat: 3D nyomtatas - tartostrukturak generalasa es mas gyakorlati problemak
+ * I. Temalaboratorium: 3D nyomtatas kulso alatamasztas
+ * II. Onallo laboratorium: 3D nyomtatas - tartostrukturak generalasa es mas gyakorlati problemak
+ * III. Szakdolgozat: 3D nyomtatas - tartostrukturak generalasa es mas gyakorlati problemak
  *
  * 1.1. Feladatresz
  * Feladat leirasa: egy fajbol betolt egy 3d alakzatot. Ezt bizonyos idokozonkent egy-egy fuggoleges vonallal elmetszi
@@ -74,8 +74,8 @@
 //#define TEST_DIAMOND
 //#define TEST_SPHERE
 //#define TEST_LUCY
-//#define TEST_FANDISK
-#define TEST_T
+#define TEST_FANDISK
+//#define TEST_T
 /**
  * ---------------------------------------------------------------------------------------------------------------------
  */
@@ -134,7 +134,7 @@ int main(){
 #endif
 #ifdef TEST_FANDISK
     double l = 0.1;
-    diameter = 0.05;
+    diameter = 0.2;
     groupingValue = 5;
 #endif
 #ifdef TEST_T

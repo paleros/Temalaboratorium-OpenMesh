@@ -127,31 +127,6 @@ void writePoints(const std::string& outputFileName, const std::string& inputFile
 }
 
 /**
- * A kapott mesh-ben minden pontnal az y es a z koordinatat felcsereli
- * @param mesh a mesh
- * @since 1.5
-*/
-void swapYZ(MyMesh& mesh){
-    for(auto & vertex : mesh.vertices()){
-        float y = mesh.point(vertex)[1];
-        mesh.point(vertex)[1] = mesh.point(vertex)[2];
-        mesh.point(vertex)[2] = y;
-    }
-}
-
-/**
- * A parameterkent kapott mesht kiirja a .obj fileba
- * @param outputFileName a kimeneti file neve
- * @param mesh a mesh
- */
-void writeMesh(const std::string& outputFileName, MyMesh& mesh){
-    if(!OpenMesh::IO::write_mesh(mesh, outputFileName)){
-        std::cerr << "Error: Cannot write mesh to " << outputFileName << std::endl;
-        exit(1);
-    }
-}
-
-/**
  * Kiirja a futtatas adatait a konzolra
  * @param inputFileName
  */

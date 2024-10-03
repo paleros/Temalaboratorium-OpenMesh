@@ -245,13 +245,6 @@ setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Poin
 void writePoints(const std::string& outputFileName, const std::string& inputFileName, int count, std::vector<Point>& points);
 
 /**
- * A kapott mesh-ben minden pontnal az y es a z koordinatat felcsereli
- * @param mesh a mesh
- * @since 1.5
-*/
-void swapYZ(MyMesh& mesh);
-
-/**
  * A parameterkent kapott pontok kozott haromszog alapu hasabokat csinal es kiirja a .obj fileba
  * @param outputFileName a kimeneti file neve
  * @param inputFileName a bemeneti file neve
@@ -262,13 +255,6 @@ void swapYZ(MyMesh& mesh);
  */
 void generateAndWriteSupportLines(const std::string &outputFileName, const std::string &inputFileName,
                                   std::vector<Point> &points, double diameter, double minY);
-
-/**
- * A parameterkent kapott mesht kiirja a .obj fileba
- * @param outputFileName a kimeneti file neve
- * @param mesh a mesh
- */
-void writeMesh(const std::string& outputFileName, MyMesh& mesh);
 
 /**
  * A parameterkent kapott pontok kozott hengereket csinal es kiirja a .obj fileba

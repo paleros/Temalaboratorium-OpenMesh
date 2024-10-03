@@ -16,22 +16,6 @@
 #include "OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh"
 
 /**
- * Az alatamasztando pontok kozul visszaadja a szomszedosat ha van
- * @param x ezen a tengelyen ennyi a tavolsag l szorzoja
- * @param y ezen a tengelyen ennyi a tavolsag l szorzoja
- * @param z ezen a tengelyen ennyi a tavolsag l szorzoja
- * @param coordinates ezen a tengelyen keressuk a szomszedot ('x', 'y', 'z')
- * @param polarity a tengelyen az iranya a szomszednak ('+', '-')
- * @param p a pont, aminek a szomszedjat keressuk
- * @param supportPointsAll az osszes alatamasztando pont
- * @param l a racs tavolsaga
- * @param angle a szog
- * @return a szomszedos pont
- * @since 3.1
- */
-Point* getNeighbour(int x, int y, int z, Point* p, std::vector<Point> &supportPointsAll, double l, double angle);
-
-/**
  * A ket kapott pont kozotti tavolsagot adja vissza
  * @param p1 az elso pont
  * @param p2 a masodik pont
@@ -51,26 +35,6 @@ double getDistance(Point &p1, Point &p2);
 bool compareInputPointsYXZAll(const Point &p1, const Point &p2);
 
 /**
- * A parameterkent kapott pontokat osszehasonlitja az x, y es z koordinatak alapjan
- * A nagyobb kerul elore
- * @param p1 az egyik pont
- * @param p2 a masik pont
- * @return igaz, ha az elso pont a nagyobb
- * @since 3.1
- */
-bool compareInputPointsXYZAll(const Point &p1, const Point &p2);
-
-/**
- * A parameterkent kapott pontokat osszehasonlitja az z, x es y koordinatak alapjan
- * A nagyobb kerul elore
- * @param p1 az egyik pont
- * @param p2 a masik pont
- * @return igaz, ha az elso pont a nagyobb
- * @since 3.1
- */
-bool compareInputPointsZXYAll(const Point &p1, const Point &p2);
-
-/**
  * Vektorok koordinatainak szorzata
  * @param Ax A pont x koordinataja
  * @param Ay A pont y koordinataja
@@ -82,22 +46,6 @@ bool compareInputPointsZXYAll(const Point &p1, const Point &p2);
  * @since 3.1
  */
 double dot(double Ax, double Ay, double Az, double Bx, double By, double Bz);
-
-/**
- * Visszaadja a legnagyobb x erteket
- * @param supportPointsAll a pontok
- * @return a legnagyobb x erteke
- * @since 3.1
- */
-double getMaxX(std::vector<Point> &supportPointsAll);
-
-/**
- * Visszaadja a legnagyobb z erteket
- * @param supportPointsAll a pontok
- * @return a legnagyobb z erteke
- * @since 3.1
- */
-double getMaxZ(std::vector<Point> &supportPointsAll);
 
 /**
  * Visszaadja a legnagyobb y erteket

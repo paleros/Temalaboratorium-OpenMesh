@@ -11,45 +11,8 @@
 #include <string>
 #include <fstream>
 #include <queue>
-#include <utility>
 #include "OpenMesh/Core/IO/MeshIO.hh"
 #include "treeAuxiliary.h"
-
-/**
- * Az alatamasztando pontok kozul visszaadja a szomszedosat ha van
- * @param x ezen a tengelyen ennyi a tavolsag l szorzoja
- * @param y ezen a tengelyen ennyi a tavolsag l szorzoja
- * @param z ezen a tengelyen ennyi a tavolsag l szorzoja
- * @param coordinates ezen a tengelyen keressuk a szomszedot ('x', 'y', 'z')
- * @param polarity a tengelyen az iranya a szomszednak ('+', '-')
- * @param p a pont, aminek a szomszedjat keressuk
- * @param supportPointsAll az osszes alatamasztando pont
- * @param l a racs tavolsaga
- * @param angle a szog
- * @return a szomszedos pont
- * @since 3.1
- */
-Point* getNeighbour(int x, int y, int z, Point* p, std::vector<Point> &supportPointsAll, double l, double angle){
-    Point actualPoint;
-    actualPoint.coordinates[0] = p->coordinates[0] - x * l;
-    actualPoint.coordinates[1] = p->coordinates[1];
-    actualPoint.coordinates[2] = p->coordinates[2] - z * l;
-    
-    for (auto &supportPoint : supportPointsAll) {
-        double distance = sqrt(pow(actualPoint.coordinates[0] - supportPoint.coordinates[0], 2) + 0 +
-                                    pow(actualPoint.coordinates[2] - supportPoint.coordinates[2], 2));
-        double h = std::round((distance / tan(angle)) * 1e10) / 1e10;
-
-        if (supportPoint.coordinates[0] <= actualPoint.coordinates[0] &&
-            supportPoint.coordinates[1] >= actualPoint.coordinates[1] - h &&
-            supportPoint.coordinates[1] <= actualPoint.coordinates[1] &&
-            supportPoint.coordinates[2] <= actualPoint.coordinates[2]) {
-            return &supportPoint;
-        }
-    }
-
-    return nullptr;
-}
 
 /**
  * A ket kapott pont kozotti tavolsagot adja vissza
@@ -86,48 +49,6 @@ bool compareInputPointsYXZAll(const Point &p1, const Point &p2){
 }
 
 /**
- * A parameterkent kapott pontokat osszehasonlitja az x, y es z koordinatak alapjan
- * A nagyobb kerul elore
- * @param p1 az egyik pont
- * @param p2 a masik pont
- * @return igaz, ha az elso pont a nagyobb
- * @since 3.1
- */
-bool compareInputPointsXYZAll(const Point &p1, const Point &p2){
-    if (p1.coordinates[0] > p2.coordinates[0]) {
-        return true;
-    } else if (p1.coordinates[0] == p2.coordinates[0]) {
-        if (p1.coordinates[1] > p2.coordinates[1]) {
-            return true;
-        } else if (p1.coordinates[1] == p2.coordinates[1]) {
-            return p1.coordinates[2] > p2.coordinates[2];
-        }
-    }
-    return false;
-}
-
-/**
- * A parameterkent kapott pontokat osszehasonlitja az z, x es y koordinatak alapjan
- * A nagyobb kerul elore
- * @param p1 az egyik pont
- * @param p2 a masik pont
- * @return igaz, ha az elso pont a nagyobb
- * @since 3.1
- */
-bool compareInputPointsZXYAll(const Point &p1, const Point &p2){
-    if (p1.coordinates[2] > p2.coordinates[2]) {
-        return true;
-    } else if (p1.coordinates[2] == p2.coordinates[2]) {
-        if (p1.coordinates[0] > p2.coordinates[0]) {
-            return true;
-        } else if (p1.coordinates[0] == p2.coordinates[0]) {
-            return p1.coordinates[1] > p2.coordinates[1];
-        }
-    }
-    return false;
-}
-
-/**
  * Vektorok koordinatainak szorzata
  * @param Ax A pont x koordinataja
  * @param Ay A pont y koordinataja
@@ -140,28 +61,6 @@ bool compareInputPointsZXYAll(const Point &p1, const Point &p2){
  */
 double dot(double Ax, double Ay, double Az, double Bx, double By, double Bz){
     return Ax*Bx+ Ay*By+Az*Bz;
-}
-
-/**
- * Visszaadja a legnagyobb x erteket
- * @param supportPointsAll a pontok
- * @return a legnagyobb x erteke
- * @since 3.1
- */
-double getMaxX(std::vector<Point> &supportPointsAll){
-    std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPointsXYZAll);
-    return supportPointsAll[0].coordinates[0];
-}
-
-/**
- * Visszaadja a legnagyobb z erteket
- * @param supportPointsAll a pontok
- * @return a legnagyobb z erteke
- * @since 3.1
- */
-double getMaxZ(std::vector<Point> &supportPointsAll){
-    std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPointsZXYAll);
-    return supportPointsAll[0].coordinates[2];
 }
 
 /**
@@ -308,7 +207,8 @@ Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject
 
     /// A legkozelebbi metszespont kell nekunk
     for(auto &intersectPoint : intersectPoints){
-        if(getDistance(neighbourPoint, intersectPoint) < getDistance(neighbourPoint, lowestPoint)){
+        if(getDistance(neighbourPoint, intersectPoint) < getDistance(neighbourPoint, lowestPoint)
+           && getDistance(neighbourPoint, intersectPoint) >= 2 * e){
             lowestPoint = intersectPoint;
             return intersectPoint;
         }
@@ -348,11 +248,9 @@ void writeSupportTree(const std::string &outputFileName, const std::string &inpu
 
     int n = 0;
 
-    for (int i = 0; i < (int)supportTree.size(); i++){
-        double dUp = del + D - D * (supportTree[i].p1.coordinates[1] - minY) / H; //TODO kell valami minimu ertek, hogy ne 0 legyen
-        double dDown = del + D - D * (supportTree[i].p2.coordinates[1] - minY) / H;
-//double dUp = D;
-//double dDown = D;
+    for (auto & i : supportTree){
+        double dUp = del + D - D * (i.p1.coordinates[1] - minY) / H;
+        double dDown = del + D - D * (i.p2.coordinates[1] - minY) / H;
 
         /// A korlap pontjainak koordinata elterese a kozepponthoz kepest (elso negyed)
         double deltaX1, deltaX2, deltaX3, deltaZ1, deltaZ2, deltaZ3;
@@ -360,23 +258,23 @@ void writeSupportTree(const std::string &outputFileName, const std::string &inpu
         double xNull, zNull;
         /// A korlap kozeppontja
         double x, y, z;
-//TODO nem jó a hengerszámítás
+
         /// Kiszamoljuk a henger alapjanak szamito also "kort", ami egy 16 szog lesz
-        x = supportTree[i].p2.coordinates[0];
-        z = supportTree[i].p2.coordinates[2];
-        zNull = supportTree[i].p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 1)) * (dDown / 2);
-        xNull = supportTree[i].p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 1)) * (dDown / 2);
+        x = i.p2.coordinates[0];
+        z = i.p2.coordinates[2];
+        zNull = i.p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 1)) * (dDown / 2);
+        xNull = i.p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 1)) * (dDown / 2);
         deltaX1 = xNull - x;
         deltaZ1 = zNull - z;
-        zNull = supportTree[i].p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 2)) * (dDown / 2);
-        xNull = supportTree[i].p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 2)) * (dDown / 2);
+        zNull = i.p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 2)) * (dDown / 2);
+        xNull = i.p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 2)) * (dDown / 2);
         deltaX2 = xNull - x;
         deltaZ2 = zNull - z;
-        zNull = supportTree[i].p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 3)) * (dDown / 2);
-        xNull = supportTree[i].p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dDown / 2);
+        zNull = i.p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 3)) * (dDown / 2);
+        xNull = i.p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dDown / 2);
         deltaX3 = xNull - x;
         deltaZ3 = zNull - z;
-        y = supportTree[i].p2.coordinates[1];
+        y = i.p2.coordinates[1];
 
         /// Elso negyed pontjai
         file << "v " << x + (dDown / 2) << " " << y << " " << z << "\n"; /// 1
@@ -400,21 +298,21 @@ void writeSupportTree(const std::string &outputFileName, const std::string &inpu
         file << "v " << x + deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 16
 
         /// Kiszamoljuk a henger alapjanak szamito felso "kort", ami egy 16 szog lesz
-        x = supportTree[i].p1.coordinates[0];
-        z = supportTree[i].p1.coordinates[2];
-        zNull = supportTree[i].p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 1)) * (dUp / 2);
-        xNull = supportTree[i].p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 1)) * (dUp / 2);
+        x = i.p1.coordinates[0];
+        z = i.p1.coordinates[2];
+        zNull = i.p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 1)) * (dUp / 2);
+        xNull = i.p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 1)) * (dUp / 2);
         deltaX1 = xNull - x;
         deltaZ1 = zNull - z;
-        zNull = supportTree[i].p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 2)) * (dUp / 2);
-        xNull = supportTree[i].p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 2)) * (dUp / 2);
+        zNull = i.p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 2)) * (dUp / 2);
+        xNull = i.p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 2)) * (dUp / 2);
         deltaX2 = xNull - x;
         deltaZ2 = zNull - z;
-        zNull = supportTree[i].p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 3)) * (dUp / 2);
-        xNull = supportTree[i].p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dUp / 2);
+        zNull = i.p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 3)) * (dUp / 2);
+        xNull = i.p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dUp / 2);
         deltaX3 = xNull - x;
         deltaZ3 = zNull - z;
-        y = supportTree[i].p1.coordinates[1];
+        y = i.p1.coordinates[1];
 
         /// Elso negyed pontjai
         file << "v " << x + (dUp / 2) << " " << y << " " << z << "\n"; /// 1
