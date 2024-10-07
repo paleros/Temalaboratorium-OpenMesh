@@ -70,6 +70,16 @@ struct Point{
         return p;
     }
 
+    bool operator<(const Point& other) const {
+        if (std::abs(coordinates[0] - other.coordinates[0]) > e) {
+            return coordinates[0] < other.coordinates[0];
+        }
+        if (std::abs(coordinates[1] - other.coordinates[1]) > e) {
+            return coordinates[1] < other.coordinates[1];
+        }
+        return coordinates[2] < other.coordinates[2];
+    }
+
 };
 
 /**
@@ -325,5 +335,14 @@ Point crossProduct(Point p1, Point p2);
  * @since 3.1
  */
 double dotProduct(Point &p1, Point &p2);
+
+/**
+ * Az alatamasztas fait tarolja el
+ * @since 3.1
+ */
+struct Tree{
+    std::vector<Edge> edges;
+    double height;
+};
 
 #endif //OPENMESH_AUXILIARY_H

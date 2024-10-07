@@ -98,4 +98,22 @@ Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject
 void writeSupportTree(const std::string &outputFileName, const std::string &inputFileName,
                       std::vector<Edge> &supportTree, double diameter, double minY);
 
+/**
+ * DFS algoritmus, ami bejarja a grafot
+ * @param node a kezdo csucs
+ * @param graph a graf
+ * @param visited a mar latogatott pontok
+ * @param tree a fa
+ * @since 3.1
+ */
+void dfs(const Point& node, const std::map<Point, std::vector<Edge>>& graph, std::set<Point>& visited, Tree& tree);
+
+/**
+ * Szetvalasztja a tamasz fakat
+ * @param supportTree a tamasz fal elei
+ * @param trees a tamasz fakra bontva
+ * @since 3.1
+ */
+void separateTree(std::vector<Edge>& supportTree, std::vector<Tree>& trees);
+
 #endif //OPENMESH_TREEAUXILIARY_H

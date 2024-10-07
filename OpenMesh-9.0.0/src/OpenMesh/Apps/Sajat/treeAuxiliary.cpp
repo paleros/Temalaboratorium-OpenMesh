@@ -11,6 +11,8 @@
 #include <string>
 #include <fstream>
 #include <queue>
+#include <map>
+#include <set>
 #include "OpenMesh/Core/IO/MeshIO.hh"
 #include "treeAuxiliary.h"
 
@@ -249,6 +251,7 @@ void writeSupportTree(const std::string &outputFileName, const std::string &inpu
     int n = 0;
 
     for (auto & i : supportTree){
+        //TODO a henger aljanak szelessege fuggjon a maximalis aktualis magassagtol
         double dUp = del + D - D * (i.p1.coordinates[1] - minY) / H;
         double dDown = del + D - D * (i.p2.coordinates[1] - minY) / H;
 
@@ -345,4 +348,67 @@ void writeSupportTree(const std::string &outputFileName, const std::string &inpu
         n = n + 32;
     }
     file.close();
+}
+
+/**
+ * DFS algoritmus, ami bejarja a grafot
+ * @param node a kezdo csucs
+ * @param graph a graf
+ * @param visited a mar latogatott pontok
+ * @param tree a fa
+ * @since 3.1
+ */
+void dfs(const Point& node, const std::map<Point, std::vector<Edge>>& graph, std::set<Point>& visited, Tree& tree){
+    visited.insert(node);
+
+    for (const auto& edge : graph.at(node)) {
+        const Point& neighbor = (edge.p1 == node) ? edge.p2 : edge.p1;
+
+        if (visited.find(neighbor) == visited.end()) {
+            tree.edges.push_back(edge);
+            dfs(neighbor, graph, visited, tree);
+        }
+    }
+}
+
+/**
+ * Szetvalasztja a tamasz fakat
+ * @param supportTree a tamasz fal elei
+ * @param trees a tamasz fakra bontva
+ * @since 3.1
+ */
+void separateTree(std::vector<Edge>& supportTree, std::vector<Tree>& trees){
+
+    /// Felepiti a grafot
+    std::map<Point, std::vector<Edge>> graph;
+    for (const auto& edge : supportTree) {
+        graph[edge.p1].push_back(edge);
+        graph[edge.p2].push_back(edge);
+    }
+
+    /// A mar meglatogatott pontok
+    std::set<Point> visited;
+
+    /// DFS algoritmus, ami bejarja a grafot
+    for (const auto& edge : supportTree) {
+
+        /// Szakasz kezdopont eseteben
+        if (visited.find(edge.p1) == visited.end()) {
+            Tree tree;
+            tree.height = 0;        //TODO a magassag kiszamitasa kesobb
+
+            dfs(edge.p1, graph, visited, tree);
+
+            trees.push_back(tree);
+        }
+
+        /// Szakasz vegpont eseteben
+        if (visited.find(edge.p2) == visited.end()) {
+            Tree tree;
+            tree.height = 0;
+            dfs(edge.p2, graph, visited, tree);
+            trees.push_back(tree);
+        }
+    }
+
 }
