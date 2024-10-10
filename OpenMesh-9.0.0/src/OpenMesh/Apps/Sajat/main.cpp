@@ -5,9 +5,10 @@
  * Budapesti Muszaki es Gazdasagtudomanyi Egyetem (BME)
  * Villamosmernoki es Informatikai Kar (VIK)
  * Iranyitastechnika es Informatika Tanszek (IIT)
+ *
  * I. Temalaboratorium: 3D nyomtatas kulso alatamasztas
  * II. Onallo laboratorium: 3D nyomtatas - tartostrukturak generalasa es mas gyakorlati problemak
- * III. Szakdolgozat: 3D nyomtatas - tartostrukturak generalasa es mas gyakorlati problemak
+ * III. Szakdolgozat: Tamaszstruktura generalasa additiv megmunkalashoz
  *
  * 1.1. Feladatresz
  * Feladat leirasa: egy fajbol betolt egy 3d alakzatot. Ezt bizonyos idokozonkent egy-egy fuggoleges vonallal elmetszi
@@ -76,6 +77,7 @@
 //#define TEST_LUCY
 #define TEST_FANDISK
 //#define TEST_T
+//#define TEST_TESTOBJECT
 /**
  * ---------------------------------------------------------------------------------------------------------------------
  */
@@ -105,6 +107,9 @@ int main(){
 #endif
 #ifdef TEST_T
     std::string inputFile = "models/t.obj";
+#endif
+#ifdef TEST_TESTOBJECT
+    std::string inputFile = "models/testObject.obj";
 #endif
 
     /// Az alatamasztas oszlopanak vastagsagahoz
@@ -142,6 +147,11 @@ int main(){
     diameter = 0.2;
     groupingValue = 5;
 #endif
+#ifdef TEST_TESTOBJECT
+    double l = 1.0;
+    diameter = 2.0;
+    groupingValue = 5;
+#endif
 
     /// Valtozok inicializalasa
 
@@ -173,7 +183,7 @@ int main(){
 
     /// Beolvassuk az alakzatot es kiszamoljuk az alatamasztando pontokat
     /// @since 2.2
-    supportPointsGenerated(diameter, l, e, inputFile, intersectPoints, count, meshObject, edges,
+    supportPointsGenerated(l, e, inputFile, intersectPoints, count, meshObject, edges,
                            inputPoints, supportPointsAll, maxWeight);
 
     /// Az alatamasztas tipusa "oszlop"
@@ -184,7 +194,7 @@ int main(){
     /// Az alatamasztas tipusa "fa"
 #ifdef TREE_SUPPORT
 
-    treeSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e, groupingValue);
+    treeSupportGenerated(meshObject, inputFile, supportPointsAll, diameter, l, e, groupingValue);
 #endif //TREE_SUPPORT
 
     writeEndLog();

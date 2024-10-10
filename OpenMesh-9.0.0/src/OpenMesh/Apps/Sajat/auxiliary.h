@@ -255,53 +255,6 @@ setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Poin
 void writePoints(const std::string& outputFileName, const std::string& inputFileName, int count, std::vector<Point>& points);
 
 /**
- * A parameterkent kapott pontok kozott haromszog alapu hasabokat csinal es kiirja a .obj fileba
- * @param outputFileName a kimeneti file neve
- * @param inputFileName a bemeneti file neve
- * @param points a pontok
- * @param diameter a haromszog merete
- * @param minY a legkisebb y koordinata
- * @since 1.5
- */
-void generateAndWriteSupportLines(const std::string &outputFileName, const std::string &inputFileName,
-                                  std::vector<Point> &points, double diameter, double minY);
-
-/**
- * A parameterkent kapott pontok kozott hengereket csinal es kiirja a .obj fileba
- * @param outputFileName a kimeneti file neve
- * @param inputFileName a bemeneti file neve
- * @param points a pontok
- * @param diameter a henger atmeroje
- * @param minY a legkisebb y koordinata
- * @since 2.1
- */
-void generateAndWriteSupportCylinder(const std::string &outputFileName, const std::string &inputFileName,
-                                     std::vector<Point> &points, double diameter, double minY);
-
-/**
- * Ha egy atlo metszi az alakzatot, akkor azt torli
- * @param edges az atlok
- * @param meshObject az alakzat
- * @param l hibahatar
- * @since 2.1.3
- */
-void deleteWrongDiagonals(std::vector<Edge>& edges, OpenMesh::PolyMesh_ArrayKernelT<> meshObject, double l);
-
-/**
- * A parameterkent kapott pontok kozotti alatamasztasok kozott generalja a keresztmerevitoket
- * @param outputFileName a kimeneti file neve
- * @param inputFileName a bemeneti file neve
- * @param points a pontok
- * @param diameter az alatamasztas atmeroje
- * @param l a kuszobertek
- * @param meshObject az alakzat
- * @since 2.1.2
- */
-void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const std::string &inputFileName,
-                                       std::vector<Point> &points, double diameter, double l,
-                                       OpenMesh::PolyMesh_ArrayKernelT<> meshObject);
-
-/**
  * Kiirja a futtatas adatait a konzolra
  * @param inputFileName
  */

@@ -395,7 +395,7 @@ void separateTree(std::vector<Edge>& supportTree, std::vector<Tree>& trees){
         /// Szakasz kezdopont eseteben
         if (visited.find(edge.p1) == visited.end()) {
             Tree tree;
-            tree.height = 0;        //TODO a magassag kiszamitasa kesobb
+            tree.height = 0;
 
             dfs(edge.p1, graph, visited, tree);
 
@@ -411,4 +411,205 @@ void separateTree(std::vector<Edge>& supportTree, std::vector<Tree>& trees){
         }
     }
 
+    /// A fa magassaganak kiszamitasa
+    for (auto & tree : trees){
+        if (tree.edges.empty()){
+            tree.height = 0;
+            continue;
+        }
+        double max = tree.edges[0].p1.coordinates[1];
+        double min = tree.edges[0].p2.coordinates[1];
+
+        for (auto & edge : tree.edges){
+            if (edge.p1.coordinates[1] > max){
+                max = edge.p1.coordinates[1];
+            }
+            if (edge.p2.coordinates[1] < min){
+                min = edge.p2.coordinates[1];
+            }
+        }
+        tree.height = max - min;
+        //TODO a magassagot szerintem nem jol szamolja
+    }
+}
+
+/**
+ * A f atamasz henger elemeit generalja le es irja ki a fajlba
+ * @param file a kimeneti fajl
+ * @param i az aktualis el
+ * @param dUp a henger felso atmeroje
+ * @param dDown a henger also atmeroje
+ * @param n a mar kiirt pontok szama
+ * @param yUpCorrection a felso korlap pontjainak y koordinata korrigalasa
+ * @param yDownCorrection  az also korlap pontjainak y koordinata korrigalasa
+ * @param minY a targyasztal szintje
+ * @return a mar kiirt pontok szama
+ * @since 3.1
+ */
+int calculateAndWriteCylinder(std::ofstream &file, Edge i, double dUp, double dDown, int n,
+                              double yUpCorrection, double yDownCorrection, double minY){
+/// A korlap pontjainak koordinata elterese a kozepponthoz kepest (elso negyed)
+    double deltaX1, deltaX2, deltaX3, deltaZ1, deltaZ2, deltaZ3;
+    /// A masodik korlap pont
+    double xNull, zNull;
+    /// A korlap kozeppontja
+    double x, y, z;
+
+    /// Kiszamoljuk a henger alapjanak szamito also "kort", ami egy 16 szog lesz
+    x = i.p2.coordinates[0];
+    z = i.p2.coordinates[2];
+    zNull = i.p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 1)) * (dDown / 2);
+    xNull = i.p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 1)) * (dDown / 2);
+    deltaX1 = xNull - x;
+    deltaZ1 = zNull - z;
+    zNull = i.p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 2)) * (dDown / 2);
+    xNull = i.p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 2)) * (dDown / 2);
+    deltaX2 = xNull - x;
+    deltaZ2 = zNull - z;
+    zNull = i.p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 3)) * (dDown / 2);
+    xNull = i.p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dDown / 2);
+    deltaX3 = xNull - x;
+    deltaZ3 = zNull - z;
+    y = i.p2.coordinates[1] + yDownCorrection;
+
+    /// Ha a talajt erinti a tamasz, akkor rovidebb a talp miatt
+    if(i.e == -2 && yUpCorrection == 0){
+        y = minY + dDown *2;
+    }
+
+    /// Elso negyed pontjai
+    file << "v " << x + (dDown / 2) << " " << y << " " << z << "\n"; /// 1
+    file << "v " << x + deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 2
+    file << "v " << x + deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 3
+    file << "v " << x + deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 4
+    /// Masodik negyed pontjai
+    file << "v " << x << " " << y << " " << z + (dDown / 2) << "\n"; /// 5
+    file << "v " << x - deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 6
+    file << "v " << x - deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 7
+    file << "v " << x - deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 8
+    /// Harmadik negyed pontjai
+    file << "v " << x - (dDown / 2) << " " << y << " " << z << "\n"; /// 9
+    file << "v " << x - deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 10
+    file << "v " << x - deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 11
+    file << "v " << x - deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 12
+    /// Negyedik negyed pontjai
+    file << "v " << x << " " << y << " " << z - (dDown / 2) << "\n"; /// 13
+    file << "v " << x + deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 14
+    file << "v " << x + deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 15
+    file << "v " << x + deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 16
+
+    /// Kiszamoljuk a henger alapjanak szamito felso "kort", ami egy 16 szog lesz
+    x = i.p1.coordinates[0];
+    z = i.p1.coordinates[2];
+    zNull = i.p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 1)) * (dUp / 2);
+    xNull = i.p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 1)) * (dUp / 2);
+    deltaX1 = xNull - x;
+    deltaZ1 = zNull - z;
+    zNull = i.p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 2)) * (dUp / 2);
+    xNull = i.p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 2)) * (dUp / 2);
+    deltaX2 = xNull - x;
+    deltaZ2 = zNull - z;
+    zNull = i.p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 3)) * (dUp / 2);
+    xNull = i.p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dUp / 2);
+    deltaX3 = xNull - x;
+    deltaZ3 = zNull - z;
+    y = i.p1.coordinates[1] + yUpCorrection;
+
+    /// Elso negyed pontjai
+    file << "v " << x + (dUp / 2) << " " << y << " " << z << "\n"; /// 1
+    file << "v " << x + deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 2
+    file << "v " << x + deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 3
+    file << "v " << x + deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 4
+    /// Masodik negyed pontjai
+    file << "v " << x << " " << y << " " << z + (dUp / 2) << "\n"; /// 5
+    file << "v " << x - deltaX3 << " " << y << " " << z + deltaZ3 << "\n"; /// 6
+    file << "v " << x - deltaX2 << " " << y << " " << z + deltaZ2 << "\n"; /// 7
+    file << "v " << x - deltaX1 << " " << y << " " << z + deltaZ1 << "\n"; /// 8
+    /// Harmadik negyed pontjai
+    file << "v " << x - (dUp / 2) << " " << y << " " << z << "\n"; /// 9
+    file << "v " << x - deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 10
+    file << "v " << x - deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 11
+    file << "v " << x - deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 12
+    /// Negyedik negyed pontjai
+    file << "v " << x << " " << y << " " << z - (dUp / 2) << "\n"; /// 13
+    file << "v " << x + deltaX3 << " " << y << " " << z - deltaZ3 << "\n"; /// 14
+    file << "v " << x + deltaX2 << " " << y << " " << z - deltaZ2 << "\n"; /// 15
+    file << "v " << x + deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 16
+
+    for (int j = 1; j < 16; j++) {
+        file << "f " << j + n << " " << j + n + 16 << " " << j + n + 1 << "\n";
+        file << "f " << j + n + 1 + 16 << " " << j + n + 16 << " " << j + n + 1 << "\n";
+    }
+    file << "f " << n + 16 << " " << n + 32 << " " << n + 1 << "\n";
+    file << "f " << n + 1 + 16 << " " << n + 32 << " " << n + 1 << "\n";
+
+    n = n + 32;
+    return n;
+}
+
+/**
+ * A fa tamasz eleit megvastagitja es kiirja a fajlba
+ * @param outputFileName a kimeneti fajl neve
+ * @param inputFileName a bemeneti fajl neve
+ * @param supportTree a tamasz fa elei
+ * @param minDiameter a tamasz minimalis vastagsaga
+ * @param minY a legkisebb y ertek
+ * @since 3.1
+ */
+void writeSupportTreeDynamic(const std::string &outputFileName, const std::string &inputFileName,
+                             std::vector<Tree> &trees, double minY, double minDiameter) {
+
+    std::ofstream file(outputFileName);
+    if(!file){
+        std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
+        exit(1);
+    }
+    /// A kimeneti file fejlece
+    file << "# Support objects generated from " << inputFileName << " by BTMLYV\n";
+
+    int n = 0;
+
+    for (auto &tree : trees) {
+
+        double D = tree.height / 12;    /// Az also vastagsag
+        double H = tree.height;     /// A fa maximum magassaga
+        double del = D/10;   /// A minimalis atmero
+
+        for (auto &i: tree.edges) {
+            //TODO a henger szelessege nem mindig jo
+
+            double dUp = del + D - D * (i.p1.coordinates[1] - minY) / H;
+            double dDown = del + D - D * (i.p2.coordinates[1] - minY) / H;
+
+            /// A minimalis atmero
+            if (dUp < minDiameter) {
+                dUp = minDiameter;
+            }
+            if (dDown < minDiameter) {
+                dDown = minDiameter;
+            }
+
+            n = calculateAndWriteCylinder(file, i, dUp, dDown, n, 0, 0, minY);
+
+            if (i.e == -1) {    /// Ha nem metszi az alakzatot, es nem a talajra tamaszt
+                continue;
+            } else if(i.e == -2){   /// Ha a talajra tamaszt
+
+                dUp = del + D - D * (i.p2.coordinates[1] - minY) / H;
+                dDown = dDown * 2;
+
+                /// A minimalis atmero
+                if (dUp < minDiameter) {
+                    dUp = minDiameter;
+                }
+
+                n = calculateAndWriteCylinder(file, i, dUp, dDown, n, -i.p1.coordinates[1] + minY + dDown,
+                                              0, minY);
+
+            } else {    /// Azaz a tamasz metszi az alakzatot
+                //TODO alakzat metszese eseten a tamasz elvekonyitasa
+            }
+        }
+    }
+    file.close();
 }

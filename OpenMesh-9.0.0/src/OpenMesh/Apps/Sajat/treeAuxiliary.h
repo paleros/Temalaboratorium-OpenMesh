@@ -116,4 +116,32 @@ void dfs(const Point& node, const std::map<Point, std::vector<Edge>>& graph, std
  */
 void separateTree(std::vector<Edge>& supportTree, std::vector<Tree>& trees);
 
+/**
+ * A f atamasz henger elemeit generalja le es irja ki a fajlba
+ * @param file a kimeneti fajl
+ * @param i az aktualis el
+ * @param dUp a henger felso atmeroje
+ * @param dDown a henger also atmeroje
+ * @param n a mar kiirt pontok szama
+ * @param yUpCorrection a felso korlap pontjainak y koordinata korrigalasa
+ * @param yDownCorrection  az also korlap pontjainak y koordinata korrigalasa
+ * @param minY a targyasztal szintje
+ * @return a mar kiirt pontok szama
+ * @since 3.1
+ */
+int calculateAndWriteCylinder(std::ofstream &file, Edge i, double dUp, double dDown, int n,
+                              double yUpCorrection, double yDownCorrection, double minY);
+
+/**
+ * A fa tamasz eleit megvastagitja es kiirja a fajlba
+ * @param outputFileName a kimeneti fajl neve
+ * @param inputFileName a bemeneti fajl neve
+ * @param supportTree a tamasz fa elei
+ * @param minDiameter a tamasz minimalis vastagsaga
+ * @param minY a legkisebb y ertek
+ * @since 3.1
+ */
+void writeSupportTreeDynamic(const std::string &outputFileName, const std::string &inputFileName, std::vector<Tree> &trees,
+                        double minY, double minDiameter);
+
 #endif //OPENMESH_TREEAUXILIARY_H

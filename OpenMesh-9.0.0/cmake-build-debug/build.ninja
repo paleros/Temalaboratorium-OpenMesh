@@ -2170,6 +2170,22 @@ build src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/main.cpp.o: CXX_COMPILER__Saj
   OBJECT_DIR = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir
   OBJECT_FILE_DIR = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir
 
+build src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/rotationAuxiliary.cpp.o: CXX_COMPILER__Sajat_unscanned_Debug /mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/rotationAuxiliary.cpp || cmake_object_order_depends_target_Sajat
+  DEFINES = -DINCLUDE_TEMPLATES
+  DEP_FILE = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/rotationAuxiliary.cpp.o.d
+  FLAGS = -g -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG  -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG  -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG  -std=gnu++11 -fdiagnostics-color=always
+  INCLUDES = -I/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/../../.. -I/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat -I/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Tools/../..
+  OBJECT_DIR = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir
+  OBJECT_FILE_DIR = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir
+
+build src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/rotationMain.cpp.o: CXX_COMPILER__Sajat_unscanned_Debug /mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/rotationMain.cpp || cmake_object_order_depends_target_Sajat
+  DEFINES = -DINCLUDE_TEMPLATES
+  DEP_FILE = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/rotationMain.cpp.o.d
+  FLAGS = -g -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG  -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG  -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG  -std=gnu++11 -fdiagnostics-color=always
+  INCLUDES = -I/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/../../.. -I/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat -I/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Core/../.. -I/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Tools/../..
+  OBJECT_DIR = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir
+  OBJECT_FILE_DIR = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir
+
 build src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/supportPoints.cpp.o: CXX_COMPILER__Sajat_unscanned_Debug /mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/supportPoints.cpp || cmake_object_order_depends_target_Sajat
   DEFINES = -DINCLUDE_TEMPLATES
   DEP_FILE = src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/supportPoints.cpp.o.d
@@ -2202,7 +2218,7 @@ build src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/treeMain.cpp.o: CXX_COMPILER_
 #############################################
 # Link the executable Build/bin/Sajat
 
-build Build/bin/Sajat: CXX_EXECUTABLE_LINKER__Sajat_Debug src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/auxiliary.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/columnAuxiliary.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/columnMain.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/main.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/supportPoints.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/treeAuxiliary.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/treeMain.cpp.o | Build/lib/libOpenMeshToolsd.so.9.0 Build/lib/libOpenMeshCored.so.9.0 || Build/lib/libOpenMeshCored.so Build/lib/libOpenMeshToolsd.so Build/lib/libOpenMeshToolsd.so Build/lib/libOpenMeshCored.so
+build Build/bin/Sajat: CXX_EXECUTABLE_LINKER__Sajat_Debug src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/auxiliary.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/columnAuxiliary.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/columnMain.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/main.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/rotationAuxiliary.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/rotationMain.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/supportPoints.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/treeAuxiliary.cpp.o src/OpenMesh/Apps/Sajat/CMakeFiles/Sajat.dir/treeMain.cpp.o | Build/lib/libOpenMeshToolsd.so.9.0 Build/lib/libOpenMeshCored.so.9.0 || Build/lib/libOpenMeshCored.so Build/lib/libOpenMeshToolsd.so Build/lib/libOpenMeshToolsd.so Build/lib/libOpenMeshCored.so
   FLAGS = -g -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG  -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG  -DINCLUDE_TEMPLATES  -W  -Wall  -Wno-unused  -Wextra  -Wno-variadic-macros  -DDEBUG
   LINK_FLAGS = -rdynamic
   LINK_LIBRARIES = -Wl,-rpath,"\$$ORIGIN/../lib"  Build/lib/libOpenMeshToolsd.so.9.0  Build/lib/libOpenMeshCored.so.9.0

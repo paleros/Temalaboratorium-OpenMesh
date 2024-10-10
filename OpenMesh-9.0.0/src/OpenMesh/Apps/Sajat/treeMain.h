@@ -19,7 +19,8 @@
  * @param groupingValue a csoportositasi ertek
  * @since 3.0
  */
-void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll,
-                          std::vector<Point> &intersectPoints, double diameter, double l, double e, int groupingValue);
+void
+treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll, double diameter,
+                     double l, double e, int groupingValue);
 
 #endif //OPENMESH_TREEMAIN_H

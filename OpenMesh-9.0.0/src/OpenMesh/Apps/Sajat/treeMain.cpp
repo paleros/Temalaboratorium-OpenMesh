@@ -22,8 +22,9 @@
  * @param groupingValue a csoportositasi ertek
  * @since 3.1
  */
-void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll,
-                            std::vector<Point> &intersectPoints, double diameter, double l, double e, int groupingValue){
+void
+treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll, double diameter,
+                     double l, double e, int groupingValue) {
 
     /// Az aktualis ponnak minden iranyban az ennyi l -lel odébb lévő szomszédjai
     double angle = M_PI / 5;
@@ -140,16 +141,16 @@ void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vecto
                     Point intersectPoint;
                     intersectPoint = passTheModel(neighbourPoint, nextPoint, meshObject, e);
 
-                    if(intersectPoint.e == -1){
+                    if(intersectPoint.e == -1){     /// Az e erteke -1, ha nem metszi az alakzatot
                         /// Ha nem metszi az alakzatot, akkor hasznalja az eredeti also pontot
                         usedOriginalLowPoint = true;
+                        supportTree.emplace_back(neighbourPoint, nextPoint, 0, -1);
                     }else{
                         /// Ha metszi az alakzatot, akkor hasznalja a metszespontot
                         nextPoint = intersectPoint;
                         usedOriginalLowPoint = false;
+                        supportTree.emplace_back(neighbourPoint, nextPoint, 0, e);
                     }
-
-                    supportTree.emplace_back(neighbourPoint, nextPoint, 0, e);
 
                     /// Torli a mar alatamasztott pontokat
                     supportPointsAll.erase(std::remove(supportPointsAll.begin(),
@@ -177,14 +178,21 @@ void treeSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vecto
         nextPoint.coordinates[0] = i.coordinates[0];
         nextPoint.coordinates[1] = minY;
         nextPoint.coordinates[2] = i.coordinates[2];
-        nextPoint.e = e;
-        supportTree.emplace_back(i,nextPoint, 0, e);
+        nextPoint.e = e; /// Az e erteke -2, ha a talajt erinti a tamasz
+        Point intersect = passTheModel(i, nextPoint, meshObject, e);
+        if (intersect.e != -1){
+            nextPoint = intersect;
+        }
+        supportTree.emplace_back(i,nextPoint, 0, -2);
     }
 
 
     writeInputEdges("outputs/6-supportLineTree.obj", inputFile, supportTree);
     writeLog("\tTreeLineSupportObjects written to file");
 
-    writeSupportTree("outputs/7-supportTree.obj", inputFile, supportTree, diameter, minY);
+    //writeSupportTree("outputs/7-supportTree.obj", inputFile, supportTree, diameter, minY);
+    std::vector<Tree> trees;
+    separateTree(supportTree, trees);
+    writeSupportTreeDynamic("outputs/7-supportTree.obj", inputFile, trees, minY, diameter/8);
     writeLog("\tTreeSupportObjects written to file");
 }

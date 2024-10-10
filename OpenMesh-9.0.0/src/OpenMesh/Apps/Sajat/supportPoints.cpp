@@ -26,9 +26,9 @@
  * @param supportPointsAll az osszes alatamasztando pont
  * @param maxWeight a maximalis suly
  */
-void supportPointsGenerated(double diameter, double l, double e, const std::string& inputFile,
-                            std::vector<Point> &intersectPoints, int &count, MyMesh &meshObject, std::vector<Edge> &edges,
-                            std::vector<Point> &inputPoints, std::vector<Point> &supportPointsAll, double maxWeight) {
+void supportPointsGenerated(double l, double e, const std::string &inputFile, std::vector<Point> &intersectPoints,
+                            int &count, MyMesh &meshObject, std::vector<Edge> &edges, std::vector<Point> &inputPoints,
+                            std::vector<Point> &supportPointsAll, double maxWeight) {
 
     readMesh(inputFile, meshObject);
     writeStartLog(inputFile);

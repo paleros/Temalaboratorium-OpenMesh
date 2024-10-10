@@ -1,0 +1,8 @@
+//
+// Created by peros on 2024.10.08.
+//
+
+#ifndef OPENMESH_ROTATIONMAIN_H
+#define OPENMESH_ROTATIONMAIN_H
+
+#endif //OPENMESH_ROTATIONMAIN_H
