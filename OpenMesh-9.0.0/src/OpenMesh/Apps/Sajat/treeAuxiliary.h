@@ -123,14 +123,20 @@ void separateTree(std::vector<Edge>& supportTree, std::vector<Tree>& trees);
  * @param dUp a henger felso atmeroje
  * @param dDown a henger also atmeroje
  * @param n a mar kiirt pontok szama
- * @param yUpCorrection a felso korlap pontjainak y koordinata korrigalasa
- * @param yDownCorrection  az also korlap pontjainak y koordinata korrigalasa
- * @param minY a targyasztal szintje
  * @return a mar kiirt pontok szama
  * @since 3.1
  */
-int calculateAndWriteCylinder(std::ofstream &file, Edge i, double dUp, double dDown, int n,
-                              double yUpCorrection, double yDownCorrection, double minY);
+int calculateAndWriteCylinder(std::ofstream &file, Edge i, double dUp, double dDown, int n);
+
+/**
+ * A ket ponttal adott szakaszon halad feljebb
+ * @param A a felso pont a szakaszon
+ * @param B az also pont a szakaszon
+ * @param distance az uj pont tavolsaga a B ponttol
+ * @return az uj pont
+ * @since 3.1
+ */
+Point upAlongTheSection(Point A, Point B, double distance);
 
 /**
  * A fa tamasz eleit megvastagitja es kiirja a fajlba

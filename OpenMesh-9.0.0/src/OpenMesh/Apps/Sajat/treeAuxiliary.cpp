@@ -429,7 +429,6 @@ void separateTree(std::vector<Edge>& supportTree, std::vector<Tree>& trees){
             }
         }
         tree.height = max - min;
-        //TODO a magassagot szerintem nem jol szamolja
     }
 }
 
@@ -440,14 +439,10 @@ void separateTree(std::vector<Edge>& supportTree, std::vector<Tree>& trees){
  * @param dUp a henger felso atmeroje
  * @param dDown a henger also atmeroje
  * @param n a mar kiirt pontok szama
- * @param yUpCorrection a felso korlap pontjainak y koordinata korrigalasa
- * @param yDownCorrection  az also korlap pontjainak y koordinata korrigalasa
- * @param minY a targyasztal szintje
  * @return a mar kiirt pontok szama
  * @since 3.1
  */
-int calculateAndWriteCylinder(std::ofstream &file, Edge i, double dUp, double dDown, int n,
-                              double yUpCorrection, double yDownCorrection, double minY){
+int calculateAndWriteCylinder(std::ofstream &file, Edge i, double dUp, double dDown, int n) {
 /// A korlap pontjainak koordinata elterese a kozepponthoz kepest (elso negyed)
     double deltaX1, deltaX2, deltaX3, deltaZ1, deltaZ2, deltaZ3;
     /// A masodik korlap pont
@@ -470,12 +465,7 @@ int calculateAndWriteCylinder(std::ofstream &file, Edge i, double dUp, double dD
     xNull = i.p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dDown / 2);
     deltaX3 = xNull - x;
     deltaZ3 = zNull - z;
-    y = i.p2.coordinates[1] + yDownCorrection;
-
-    /// Ha a talajt erinti a tamasz, akkor rovidebb a talp miatt
-    if(i.e == -2 && yUpCorrection == 0){
-        y = minY + dDown *2;
-    }
+    y = i.p2.coordinates[1];
 
     /// Elso negyed pontjai
     file << "v " << x + (dDown / 2) << " " << y << " " << z << "\n"; /// 1
@@ -513,7 +503,7 @@ int calculateAndWriteCylinder(std::ofstream &file, Edge i, double dUp, double dD
     xNull = i.p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dUp / 2);
     deltaX3 = xNull - x;
     deltaZ3 = zNull - z;
-    y = i.p1.coordinates[1] + yUpCorrection;
+    y = i.p1.coordinates[1];
 
     /// Elso negyed pontjai
     file << "v " << x + (dUp / 2) << " " << y << " " << z << "\n"; /// 1
@@ -548,6 +538,27 @@ int calculateAndWriteCylinder(std::ofstream &file, Edge i, double dUp, double dD
 }
 
 /**
+ * A ket ponttal adott szakaszon halad feljebb
+ * @param A a felso pont a szakaszon
+ * @param B az also pont a szakaszon
+ * @param distance az uj pont tavolsaga a B ponttol
+ * @return az uj pont
+ * @since 3.1
+ */
+Point upAlongTheSection(Point A, Point B, double distance){
+    double ABDistance = getDistance(A, B);
+    double ux = -(B.coordinates[0] - A.coordinates[0]) / ABDistance;
+    double uy = -(B.coordinates[1] - A.coordinates[1]) / ABDistance;
+    double uz = -(B.coordinates[2] - A.coordinates[2]) / ABDistance;
+
+    Point C;
+    C.coordinates[0] = A.coordinates[0] + distance * ux;
+    C.coordinates[1] = A.coordinates[1] + distance * uy;
+    C.coordinates[2] = A.coordinates[2] + distance * uz;
+    return C;
+}
+
+/**
  * A fa tamasz eleit megvastagitja es kiirja a fajlba
  * @param outputFileName a kimeneti fajl neve
  * @param inputFileName a bemeneti fajl neve
@@ -576,7 +587,6 @@ void writeSupportTreeDynamic(const std::string &outputFileName, const std::strin
         double del = D/10;   /// A minimalis atmero
 
         for (auto &i: tree.edges) {
-            //TODO a henger szelessege nem mindig jo
 
             double dUp = del + D - D * (i.p1.coordinates[1] - minY) / H;
             double dDown = del + D - D * (i.p2.coordinates[1] - minY) / H;
@@ -589,25 +599,54 @@ void writeSupportTreeDynamic(const std::string &outputFileName, const std::strin
                 dDown = minDiameter;
             }
 
-            n = calculateAndWriteCylinder(file, i, dUp, dDown, n, 0, 0, minY);
+            /// Ha kozvetlenul tamasztja az alakzatot
+            if (i.p1.weight == -2 || i.p2.weight == -2){
+                dUp = minDiameter;
+            }
 
             if (i.e == -1) {    /// Ha nem metszi az alakzatot, es nem a talajra tamaszt
-                continue;
+
+                n = calculateAndWriteCylinder(file, i, dUp, dDown, n);
+
             } else if(i.e == -2){   /// Ha a talajra tamaszt
 
-                dUp = del + D - D * (i.p2.coordinates[1] - minY) / H;
                 dDown = dDown * 2;
+                Edge edge = i;
+                edge.p1 = upAlongTheSection(i.p2, i.p1, -dDown);
+                edge.p2 = i.p2;
+                edge.e = 0;
+                float dUpNew = del + D - D * (edge.p1.coordinates[1] - minY) / H;
 
                 /// A minimalis atmero
-                if (dUp < minDiameter) {
-                    dUp = minDiameter;
+                if (dUpNew < minDiameter) {
+                    dUpNew = minDiameter;
                 }
 
-                n = calculateAndWriteCylinder(file, i, dUp, dDown, n, -i.p1.coordinates[1] + minY + dDown,
-                                              0, minY);
+                i.p2 = edge.p1;
+                /// Kiirja a roviditett tamaszt
+                n = calculateAndWriteCylinder(file, i, dUp, dUpNew, n);
+                /// Kiirja a szelesitest
+                n = calculateAndWriteCylinder(file, edge, dUpNew, dDown, n);
 
             } else {    /// Azaz a tamasz metszi az alakzatot
-                //TODO alakzat metszese eseten a tamasz elvekonyitasa
+
+                dDown = dDown * 2;
+                Edge edge = i;
+                edge.p1 = upAlongTheSection(i.p2, i.p1, -dDown);
+                edge.p2 = i.p2;
+                edge.e = 0;
+                float dUpNew = del + D - D * (edge.p1.coordinates[1] - minY) / H;
+
+                /// A minimalis atmero
+                if (dUpNew < minDiameter) {
+                    dUpNew = minDiameter;
+                }
+
+                i.p2 = edge.p1;
+                /// Kiirja a roviditett tamaszt
+                n = calculateAndWriteCylinder(file, i, dUp, dUpNew, n);
+                /// Kiirja a szelesitest
+                n = calculateAndWriteCylinder(file, edge, dUpNew, minDiameter, n);
             }
         }
     }

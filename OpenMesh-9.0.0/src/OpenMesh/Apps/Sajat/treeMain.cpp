@@ -32,6 +32,10 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
 
     std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPointsYXZAll);
 
+    for (auto & i : supportPointsAll) {
+        i.weight = -2;   /// Az e erteke -1, ha a targyat kozvetlenul tamaszta
+    }
+
     /// Azok a pontok, amelyek kelloen kozel vannak egymashoz
     std::vector<Point> neighbourPoints;
     std::vector<Point> intersectPs;
