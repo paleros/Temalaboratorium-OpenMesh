@@ -534,3 +534,55 @@ double dotProduct(Point &p1, Point &p2){
             p1.coordinates[1] * p2.coordinates[1] +
             p1.coordinates[2] * p2.coordinates[2];
 }
+
+/**
+ * Megkeresi a minimum es a maximum ertekeket
+ * @param meshObject az alakzat
+ * @param coordinate melyik tengely menten keressen
+ * @return a minimum es a maximum ertekek egy vektorban
+ * @since 4.1
+ */
+std::vector<double> findMinMax(MyMesh &meshObject, const std::string& coordinate){
+    std::vector<double> vec;
+    vec.push_back(1000000);
+    vec.push_back(-1000000);
+
+    int k;
+    if (coordinate == "x" ){
+        k = 0;
+    } else if (coordinate == "z"){
+        k = 2;
+    } else if(coordinate == "y"){
+        k = 1;
+    } else {
+        std::cerr << "Error: Wrong coordinate!" << std::endl;
+        exit(1);
+    }
+
+    for(auto v_it = meshObject.vertices_begin(); v_it != meshObject.vertices_end(); ++v_it){
+        if(meshObject.point(*v_it)[k] < vec[0]){
+            vec[0] = meshObject.point(*v_it)[k];
+        }
+        if(meshObject.point(*v_it)[k] > vec[1]){
+            vec[1] = meshObject.point(*v_it)[k];
+        }
+    }
+    return vec;
+}
+
+/**
+ * Kiszamolja az alatamasztas ellenorzesi tavolsagat
+ * @param l az alatamasztas ellenorzesi tavolsaga
+ * @param diameter atamasz atmeroje
+ * @param meshObject az alakzat
+ * @since 4.1
+ */
+void calculateDiameterAndL(double &l, double &diameter, MyMesh &meshObject){
+    std::vector<double> X = findMinMax(meshObject, "x");
+    std::vector<double> Z = findMinMax(meshObject, "z");
+
+    double deltaX = X[1] - X[0];
+    double deltaZ = Z[1] - Z[0];
+    l = (deltaX * deltaZ) / 255;
+    diameter = 2 * l;
+}

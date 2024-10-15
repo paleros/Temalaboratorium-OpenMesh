@@ -298,4 +298,22 @@ struct Tree{
     double height;
 };
 
+/**
+ * Megkeresi a minimum es a maximum ertekeket
+ * @param meshObject az alakzat
+ * @param coordinate melyik tengely menten keressen
+ * @return a minimum es a maximum ertekek egy vektorban
+ * @since 4.1
+ */
+std::vector<double> findMinMax(MyMesh &meshObject, const std::string& coordinate);
+
+/**
+ * Kiszamolja az alatamasztas ellenorzesi tavolsagat
+ * @param l az alatamasztas ellenorzesi tavolsaga
+ * @param diameter atamasz atmeroje
+ * @param meshObject az alakzat
+ * @since 4.1
+ */
+void calculateDiameterAndL(double &l, double &diameter, MyMesh &meshObject);
+
 #endif //OPENMESH_AUXILIARY_H

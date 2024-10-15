@@ -16,38 +16,40 @@
 #include "columnMain.h"
 #include "treeMain.h"
 #include "rotationAuxiliary.h"
+#include <nelder-mead.hh>
+
+double getPoint(const std::vector<double> &angles) {
+
+    /// Az alatamasztas oszlopanak vastagsagahoz
+    double diameter;
+    /// A fa csoporitasi erteke
+    int groupingValue;
+
+
+
+
+
+    /// Az alakzat fogatasa
+    //rotateMesh(meshObject, angles[0], angles[1]);
+
+    //TODO a pontok kiszamitasa
+
+}
 
 
 /**
- * Az alakzat optimalis forgatasa
+ * Az alakzat optimalis forgatasat megkereso fuggveny
+ * Nelder-Mead algoritmussal
  * @param meshObject az alakzat
  * @since 4.1
  */
 void findOptimalSide(MyMesh &meshObject){
 
-    double optimalTheta;    /// A z tengely koruli forgatas optimalis szoge
-    double optimalPhi;      /// A y tengely koruli forgatas optimalis szoge
+    /// A kezdeti szogek
+    std::vector<double> angles = {0, 0};
 
-    MyMesh newMesh = meshObject;
+    //NelderMead::optimize(getPoint, angles, 10, 1e-5, 1);
 
-    double bestValue;   /// Az eddig legoptimalisabb forgatas erteke
-
-    for (int theta = 0; theta < 360; theta += 10){
-        for (int phi = 0; phi < 360; phi += 10){
-
-            rotateMesh(newMesh, theta, phi);
-
-            double value = calculateValue(newMesh);
-
-            if (value < bestValue){
-                bestValue = value;
-                optimalTheta = theta;
-                optimalPhi = phi;
-            }
-        }
-    }
-
-    /// Az optimalis forgatas elvegzese
-    rotateMesh(meshObject, optimalTheta, optimalPhi);
-    writeLog("\tFind optimal rotation.");
+        rotateMesh(meshObject, angles[0], angles[1]);
+        writeLog("\tFind optimal rotation.");
 }

@@ -112,48 +112,14 @@ int main(){
     std::string inputFile = "models/testObject.obj";
 #endif
 
+    /// Valtozok inicializalasa
+
     /// Az alatamasztas oszlopanak vastagsagahoz
     double diameter;
     /// A fa csoporitasi erteke
-    int groupingValue;
-
-/// A racspont osztas leptek merete es maximum kiterjedese
-#ifdef TEST_BUNNY
-    double l = 0.005; /// A sugarak kozti tavolsag
-    diameter = 0.002;
-#endif
-#ifdef TEST_DIAMOND
-    double l = 0.15;
-    diameter = 0.08;
-#endif
-#ifdef TEST_SPHERE
-    double l = 0.3;
-    diameter = 0.15;
-#endif
-
-#ifdef TEST_LUCY
-    double l = 40;
-    diameter = 20;
-    //swapYZ(meshObject);
-    //writeMesh("models/lucy.obj", meshObject);
-#endif
-#ifdef TEST_FANDISK
-    double l = 0.1;
-    diameter = 0.2;
-    groupingValue = 5;
-#endif
-#ifdef TEST_T
-    double l = 0.1;
-    diameter = 0.2;
-    groupingValue = 5;
-#endif
-#ifdef TEST_TESTOBJECT
-    double l = 1.0;
-    diameter = 2.0;
-    groupingValue = 5;
-#endif
-
-    /// Valtozok inicializalasa
+    int groupingValue = 5;
+    /// A racs tavolsaga
+    double l;
 
     /// Az alakzat
     MyMesh meshObject;
@@ -166,9 +132,6 @@ int main(){
 
     /// Szamlalo
     int count = 0;
-
-    /// A szamitasi hibak korrekcios erteke
-    double e = l / 100;
 
     /// A bemeneti pontpok kozotti elek tarolasara szolgalo tomb
     std::vector<Edge> edges;
@@ -183,6 +146,12 @@ int main(){
 
     /// Beolvassuk az alakzatot es kiszamoljuk az alatamasztando pontokat
     /// @since 2.2
+    readMesh(inputFile, meshObject);
+    calculateDiameterAndL(l, diameter, meshObject);
+
+    /// A szamitasi hibak korrekcios erteke
+    double e = l / 100;
+
     supportPointsGenerated(l, e, inputFile, intersectPoints, count, meshObject, edges,
                            inputPoints, supportPointsAll, maxWeight);
 
@@ -193,7 +162,6 @@ int main(){
 
     /// Az alatamasztas tipusa "fa"
 #ifdef TREE_SUPPORT
-
     treeSupportGenerated(meshObject, inputFile, supportPointsAll, diameter, l, e, groupingValue);
 #endif //TREE_SUPPORT
 

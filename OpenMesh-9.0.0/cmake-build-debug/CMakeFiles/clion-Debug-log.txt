@@ -13,8 +13,6 @@ CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
 QT not found.
 QT not found! Skipping some apps.
 OpengGL not found! Skipping some apps.
--- Found Doxygen: /usr/bin/doxygen (found version "1.9.8") found components: doxygen dot 
--- Found LATEX: /usr/bin/latex   
 
 ************************************************************
 * VCI Buildsystem                                          *
