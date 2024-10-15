@@ -21,6 +21,6 @@ OpengGL not found! Skipping some apps.
 * Version : 9.0.0                                          *
 * Type    : Debug                                          *
 ************************************************************
--- Configuring done (0.3s)
+-- Configuring done (0.2s)
 -- Generating done (0.1s)
 -- Build files have been written to: /mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/cmake-build-debug

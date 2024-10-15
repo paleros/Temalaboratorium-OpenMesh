@@ -68,8 +68,8 @@ bool isTreeSupport = true;    /// Fa alatamasztas
 /**
  * Optimalis fogatas keresese
  */
-bool findOptimalRotation = false;    /// Optimalis forgatas nelkul
-//bool findOptimalRotation = true;    /// Optimalis forgatassal
+//bool findOptimalRotation = false;    /// Optimalis forgatas nelkul
+bool findOptimalRotation = true;    /// Optimalis forgatassal
 /**
  * A demozhato alakzatok
  * FONTOS: csak akkor mukodik, ha az alakzat haromszogekbol epul fel!

@@ -341,4 +341,12 @@ double calculatePoint(std::vector<Point>& supportLines);
  */
 double calculatePoint(std::vector<Edge>& supportLines);
 
+/**
+ * Kiirja a mesht a megadott fileba
+ * @param meshObject az alakzat
+ * @param outputFileName a kimeneti file neve
+ * @since 4.1
+ */
+void writeMesh(MyMesh &meshObject, const std::string &outputFileName);
+
 #endif //OPENMESH_AUXILIARY_H

@@ -16,7 +16,7 @@
 #include "columnMain.h"
 #include "treeMain.h"
 #include "rotationAuxiliary.h"
-#include <nelder-mead.hh>
+#include "nelder-mead.hh"
 
 /**
  * Kiszamitja hogy a megadott elforgatassal mennyire jo a tamasztas
@@ -100,29 +100,32 @@ double getPoint(std::vector<double> &angles, std::string& inputFile, bool isTree
 std::vector<double> optimalSide(std::string& inputFile, bool isTreeSupport){
 
     /// Igy csak az elso parametert tudja valtoztatni
-    auto function = std::bind(getPoint, std::placeholders::_1, inputFile, isTreeSupport);
+    auto function = [&inputFile, isTreeSupport](const std::vector<double>& angles) {
+        return getPoint(const_cast<std::vector<double>&>(angles), inputFile, isTreeSupport);
+    };
 
     /// A kezdeti szogek
     std::vector<double> angles = {0, 0};
 
-    //NelderMead::optimize(function, angles, 10, 1e-5, 1);
+    NelderMead::optimize(function, angles, 100, 0, 1);
 
-    writeLog("\tFind optimal rotation.");
+    writeLog("\tFind optimal rotation");
     return angles;
 }
 
 /**
- * A program futtatasa
+ * A PROGRAM FUTTATASA
  * @param inputFile a bemeneti file
  * @param isTreeSupport az alatamasztas tipusa
  * @param findOptimalSide az optimalis oldal keresese
  * @since 4.1
  */
 void run(std::string inputFile, bool isTreeSupport, bool findOptimalSide) {
+    writeStartLog(inputFile);
 
     std::vector<double> angles = {0, 0};
     if (findOptimalSide){
-//        angles = optimalSide(inputFile, isTreeSupport);
+        angles = optimalSide(inputFile, isTreeSupport);
     }
     /// Valtozok inicializalasa
 
@@ -162,6 +165,8 @@ void run(std::string inputFile, bool isTreeSupport, bool findOptimalSide) {
 
     /// Az alakzat elforgatasa optimalis helyzetbe
     rotateMesh(meshObject, angles[0], angles[1]);
+
+    writeMesh(meshObject, "outputs/object.obj");
 
     calculateDiameterAndL(l, diameter, meshObject);
 

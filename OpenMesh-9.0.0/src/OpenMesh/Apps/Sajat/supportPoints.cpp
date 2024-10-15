@@ -30,8 +30,6 @@ void supportPointsGenerated(double l, double e, const std::string &inputFile, st
                             int &count, MyMesh &meshObject, std::vector<Edge> &edges, std::vector<Point> &inputPoints,
                             std::vector<Point> &supportPointsAll, double maxWeight) {
 
-    writeStartLog(inputFile);
-
     /// Vegigmegy az osszes tarolt haromszogon
     for(MyMesh::FaceIter fi = meshObject.faces_begin(); fi != meshObject.faces_end(); fi++){
         MyMesh::FaceHandle fh = *fi;

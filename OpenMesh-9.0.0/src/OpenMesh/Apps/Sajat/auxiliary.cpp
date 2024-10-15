@@ -583,7 +583,7 @@ void calculateDiameterAndL(double &l, double &diameter, MyMesh &meshObject){
 
     double deltaX = X[1] - X[0];
     double deltaZ = Z[1] - Z[0];
-    l = (deltaX * deltaZ) / 255;
+    l = (deltaX * deltaZ) / 256;
     diameter = 2 * l;
 }
 
@@ -626,4 +626,17 @@ double calculatePoint(std::vector<Edge>& supportLines){
         point += getDistance(supportLine.p1, supportLine.p2);
     }
     return point;
+}
+
+/**
+ * Kiirja a mesht a megadott fileba
+ * @param meshObject az alakzat
+ * @param outputFileName a kimeneti file neve
+ * @since 4.1
+ */
+void writeMesh(MyMesh &meshObject, const std::string &outputFileName) {
+    if(!OpenMesh::IO::write_mesh(meshObject, outputFileName)){
+        std::cerr << "Error: Cannot write mesh to " << outputFileName << std::endl;
+        exit(1);
+    }
 }
