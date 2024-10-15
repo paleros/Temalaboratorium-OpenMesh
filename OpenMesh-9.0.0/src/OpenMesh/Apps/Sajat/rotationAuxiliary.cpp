@@ -6,9 +6,9 @@
 #include <OpenMesh/Core/IO/MeshIO.hh>
 #include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
 #include "auxiliary.h"
-#include "supportPoints.h"
-#include "columnMain.h"
 #include "treeMain.h"
+#include "columnMain.h"
+#include "supportPoints.h"
 
 /**
  * Az alakzat forgatasa a z tengely korul
@@ -63,17 +63,4 @@ void rotateMesh(MyMesh &meshObject, double theta, double phi){
 
     /// Az alakzat forgatasa a y tengely korul
     rotateY(meshObject, phi);
-}
-
-/**
- * Az interpolacio ertekeinek kiszamolasa
- * @param meshObject az alakzat
- * @return az interpolacio erteke
- * @since 4.1
- */
-double calculateValue(MyMesh &meshObject){
-
-    //TODO az ertekeinek kiszamolasa
-
-    return 0.0;
 }

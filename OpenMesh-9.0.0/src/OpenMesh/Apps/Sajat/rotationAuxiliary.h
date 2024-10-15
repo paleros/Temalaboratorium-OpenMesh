@@ -31,12 +31,4 @@ void rotateY(MyMesh &meshObject, double phi);
  */
 void rotateMesh(MyMesh &meshObject, double theta, double phi);
 
-/**
- * Az interpolacio ertekeinek kiszamolasa
- * @param meshObject az alakzat
- * @return az interpolacio erteke
- * @since 4.1
- */
-double calculateValue(MyMesh &meshObject);
-
 #endif //OPENMESH_ROTATIONAUXILIARY_H

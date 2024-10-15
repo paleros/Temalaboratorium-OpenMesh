@@ -53,31 +53,33 @@
 #include <OpenMesh/Core/IO/MeshIO.hh>
 #include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
 #include "auxiliary.h"
-#include "supportPoints.h"
-#include "columnMain.h"
-#include "treeMain.h"
+#include "rotationMain.h"
 
 /**
- * Makrok definialasa --------------------------------------------------------------------------------------------------
+ * Alapbeallitasok definialasa --------------------------------------------------------------------------------------------------
  */
 /**
  * Az alatamasztas tipusanak beallitasa
  */
-//#define GRID_SUPPORT /// Oszlop alatamasztas
-#define TREE_SUPPORT /// Fa alatamasztas
+bool isTreeSupport = true;    /// Fa alatamasztas
+//bool isTreeSupport = false;    /// Oszlop alatamasztas
 
 
+/**
+ * Optimalis fogatas keresese
+ */
+bool findOptimalRotation = false;    /// Optimalis forgatas nelkul
+//bool findOptimalRotation = true;    /// Optimalis forgatassal
 /**
  * A demozhato alakzatok
  * FONTOS: csak akkor mukodik, ha az alakzat haromszogekbol epul fel!
  */
-//#define TEST_BUNNY
-//#define TEST_DIAMOND
-//#define TEST_SPHERE
-//#define TEST_LUCY
-#define TEST_FANDISK
-//#define TEST_T
-//#define TEST_TESTOBJECT
+//std::string inputFile = "models/bunny.obj";
+//std::string inputFile = "models/diamond.obj";
+//std::string inputFile = "models/sphere.obj";
+//std::string inputFile = "models/lucy.obj";
+std::string inputFile = "models/fandisk.obj";
+//std::string inputFile = "models/t.obj";
 /**
  * ---------------------------------------------------------------------------------------------------------------------
  */
@@ -89,81 +91,7 @@
  */
 int main(){
 
-    /// A be es kimeneti fileok nevei
-#ifdef TEST_BUNNY
-    std::string inputFile = "models/bunny.obj";
-#endif
-#ifdef TEST_DIAMOND
-    std::string inputFile = "models/diamond.obj";
-#endif
-#ifdef TEST_SPHERE
-    std::string inputFile = "models/sphere.obj";
-#endif
-#ifdef TEST_LUCY
-    std::string inputFile = "models/lucy.obj";
-#endif
-#ifdef TEST_FANDISK
-    std::string inputFile = "models/fandisk.obj";
-#endif
-#ifdef TEST_T
-    std::string inputFile = "models/t.obj";
-#endif
-#ifdef TEST_TESTOBJECT
-    std::string inputFile = "models/testObject.obj";
-#endif
-
-    /// Valtozok inicializalasa
-
-    /// Az alatamasztas oszlopanak vastagsagahoz
-    double diameter;
-    /// A fa csoporitasi erteke
-    int groupingValue = 5;
-    /// A racs tavolsaga
-    double l;
-
-    /// Az alakzat
-    MyMesh meshObject;
-
-    /// A maximalis suly
-    double maxWeight = M_PI / 4 * 3 *2;
-
-    /// A metszespontok x, y, es z koordinatait tarolja
-    std::vector<Point> intersectPoints;
-
-    /// Szamlalo
-    int count = 0;
-
-    /// A bemeneti pontpok kozotti elek tarolasara szolgalo tomb
-    std::vector<Edge> edges;
-
-    /// Az alatamasztando pontok kiszamitasa
-    /// @since 1.3
-    std::vector<Point> inputPoints;
-
-    std::vector<Point> supportPointsAll;
-
-    writeLog("\tBasic parameters set");
-
-    /// Beolvassuk az alakzatot es kiszamoljuk az alatamasztando pontokat
-    /// @since 2.2
-    readMesh(inputFile, meshObject);
-    calculateDiameterAndL(l, diameter, meshObject);
-
-    /// A szamitasi hibak korrekcios erteke
-    double e = l / 100;
-
-    supportPointsGenerated(l, e, inputFile, intersectPoints, count, meshObject, edges,
-                           inputPoints, supportPointsAll, maxWeight);
-
-    /// Az alatamasztas tipusa "oszlop"
-#ifdef GRID_SUPPORT
-    columnSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e);
-#endif //GRID_SUPPORT
-
-    /// Az alatamasztas tipusa "fa"
-#ifdef TREE_SUPPORT
-    treeSupportGenerated(meshObject, inputFile, supportPointsAll, diameter, l, e, groupingValue);
-#endif //TREE_SUPPORT
+    run(inputFile, isTreeSupport, findOptimalRotation);
 
     writeEndLog();
     return 0;

@@ -586,3 +586,44 @@ void calculateDiameterAndL(double &l, double &diameter, MyMesh &meshObject){
     l = (deltaX * deltaZ) / 255;
     diameter = 2 * l;
 }
+
+/**
+ * A ket kapott pont kozotti tavolsagot adja vissza
+ * @param p1 az elso pont
+ * @param p2 a masodik pont
+ * @return a ket pont kozotti tavolsag
+ * @since 3.1
+ */
+double getDistance(Point &p1, Point &p2){
+    return sqrt(pow(p1.coordinates[0] - p2.coordinates[0], 2) +
+                pow(p1.coordinates[1] - p2.coordinates[1], 2) +
+                pow(p1.coordinates[2] - p2.coordinates[2], 2));
+}
+
+/**
+ * Kiszamolja az elek ossztavolsagat
+ * @param supportLines az alatamasztasi elek
+ * @return az ossz tavolsag
+ * @since 4.1
+ */
+double calculatePoint(std::vector<Point>& supportLines){
+    double point = 0;
+    for (int i = 0; i < (int)supportLines.size(); i = i + 2){
+        point += getDistance(supportLines[i], supportLines[i + 1]);
+    }
+    return point;
+}
+
+/**
+ * Kiszamolja az elek ossztavolsagat
+ * @param supportLines az alatamasztasi elek
+ * @return az ossz tavolsag
+ * @since 4.1
+ */
+double calculatePoint(std::vector<Edge>& supportLines){
+    double point = 0;
+    for (auto & supportLine : supportLines){
+        point += getDistance(supportLine.p1, supportLine.p2);
+    }
+    return point;
+}

@@ -11,18 +11,8 @@
 #ifndef OPENMESH_TREEAUXILIARY_H
 #define OPENMESH_TREEAUXILIARY_H
 #include "auxiliary.h"
-#include "columnAuxiliary.h"
 #include <string>
 #include "OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh"
-
-/**
- * A ket kapott pont kozotti tavolsagot adja vissza
- * @param p1 az elso pont
- * @param p2 a masodik pont
- * @return a ket pont kozotti tavolsag
- * @since 3.1
- */
-double getDistance(Point &p1, Point &p2);
 
 /**
  * A parameterkent kapott pontokat osszehasonlitja az y, x es z koordinatak alapjan

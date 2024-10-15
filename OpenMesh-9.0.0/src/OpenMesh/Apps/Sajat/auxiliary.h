@@ -316,4 +316,29 @@ std::vector<double> findMinMax(MyMesh &meshObject, const std::string& coordinate
  */
 void calculateDiameterAndL(double &l, double &diameter, MyMesh &meshObject);
 
+/**
+ * A ket kapott pont kozotti tavolsagot adja vissza
+ * @param p1 az elso pont
+ * @param p2 a masodik pont
+ * @return a ket pont kozotti tavolsag
+ * @since 3.1
+ */
+double getDistance(Point &p1, Point &p2);
+
+/**
+ * Kiszamolja az elek ossztavolsagat
+ * @param supportLines az alatamasztasi elek
+ * @return az ossz tavolsag
+ * @since 4.1
+ */
+double calculatePoint(std::vector<Point>& supportLines);
+
+/**
+ * Kiszamolja az elek ossztavolsagat
+ * @param supportLines az alatamasztasi elek
+ * @return az ossz tavolsag
+ * @since 4.1
+ */
+double calculatePoint(std::vector<Edge>& supportLines);
+
 #endif //OPENMESH_AUXILIARY_H

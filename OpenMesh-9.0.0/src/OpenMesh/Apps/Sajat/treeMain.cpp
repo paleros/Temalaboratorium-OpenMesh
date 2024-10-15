@@ -20,9 +20,10 @@
  * @param l a racs tavolsaga
  * @param e a hibahatar
  * @param groupingValue a csoportositasi ertek
+ * @return az alatamasztas pontja
  * @since 3.1
  */
-void
+double
 treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll, double diameter,
                      double l, double e, int groupingValue) {
 
@@ -194,9 +195,11 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
     writeInputEdges("outputs/6-supportLineTree.obj", inputFile, supportTree);
     writeLog("\tTreeLineSupportObjects written to file");
 
-    //writeSupportTree("outputs/7-supportTree.obj", inputFile, supportTree, diameter, minY);
     std::vector<Tree> trees;
     separateTree(supportTree, trees);
     writeSupportTreeDynamic("outputs/7-supportTree.obj", inputFile, trees, minY, diameter/8);
     writeLog("\tTreeSupportObjects written to file");
+
+    double point = calculatePoint(supportTree);
+    return point;
 }

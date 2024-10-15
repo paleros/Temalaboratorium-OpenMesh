@@ -19,9 +19,10 @@
  * @param diameter az oszlop atmeroje
  * @param l a racs tavolsaga
  * @param e a hibahatar
+ * @return az alatamasztas pontja
  * @since 2.2
  */
-void columnSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll,
+double columnSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll,
                             std::vector<Point> &intersectPoints, double diameter, double l, double e){
 
     /// Az alatamasztando pontokbol egyeneseket huzunk a legalso pont y koordinataja szerinti sikra
@@ -73,4 +74,6 @@ void columnSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vec
     generateAndWriteSupportCrossBrace("outputs/7-diagonalSupportObjects.obj", inputFile, supportLines, diameter, l, meshObject);
     writeLog("\tDiagonalsupportObjects written to file");
 
+    /// @since 4.1
+    return calculatePoint(supportLines);
 }

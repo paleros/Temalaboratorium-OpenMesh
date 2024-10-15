@@ -15,19 +15,7 @@
 #include <set>
 #include "OpenMesh/Core/IO/MeshIO.hh"
 #include "treeAuxiliary.h"
-
-/**
- * A ket kapott pont kozotti tavolsagot adja vissza
- * @param p1 az elso pont
- * @param p2 a masodik pont
- * @return a ket pont kozotti tavolsag
- * @since 3.1
- */
-double getDistance(Point &p1, Point &p2){
-    return sqrt(pow(p1.coordinates[0] - p2.coordinates[0], 2) +
-                pow(p1.coordinates[1] - p2.coordinates[1], 2) +
-                pow(p1.coordinates[2] - p2.coordinates[2], 2));
-}
+#include "auxiliary.h"
 
 /**
  * A parameterkent kapott pontokat osszehasonlitja az y, x es z koordinatak alapjan
@@ -610,7 +598,7 @@ void writeSupportTreeDynamic(const std::string &outputFileName, const std::strin
 
             } else if(i.e == -2){   /// Ha a talajra tamaszt
 
-                dDown = dDown * 2;
+                dDown = dDown * 1.5;
                 Edge edge = i;
                 edge.p1 = upAlongTheSection(i.p2, i.p1, -dDown);
                 edge.p2 = i.p2;

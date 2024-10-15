@@ -17,9 +17,10 @@
  * @param l a racs tavolsaga
  * @param e a hibahatar
  * @param groupingValue a csoportositasi ertek
+ * @return az alatamasztas pontja
  * @since 3.0
  */
-void
+double
 treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll, double diameter,
                      double l, double e, int groupingValue);
 
