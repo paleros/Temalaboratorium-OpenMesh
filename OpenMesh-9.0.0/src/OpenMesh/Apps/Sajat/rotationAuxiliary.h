@@ -20,7 +20,7 @@ void rotateZ(MyMesh &meshObject, double theta);
  * @param phi szog a y tengely koruli forgatashoz
  * @since 4.1
  */
-void rotateY(MyMesh &meshObject, double phi);
+void rotateX(MyMesh &meshObject, double phi);
 
 /**
  * Az alakzat forgatasa a tengelyek korul

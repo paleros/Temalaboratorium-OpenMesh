@@ -77,18 +77,6 @@ void getNeigbourPoints(std::vector<Point> &supportPointsAll, Point &actualPoint,
 Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject, double e);
 
 /**
- * A fa tamasz eleit megvastagitja es kiirja a fajlba
- * @param outputFileName a kimeneti fajl neve
- * @param inputFileName a bemeneti fajl neve
- * @param supportTree a tamasz fa elei
- * @param diameter a tamasz vastagsaga
- * @param minY a legkisebb y ertek
- * @since 3.1
- */
-void writeSupportTree(const std::string &outputFileName, const std::string &inputFileName,
-                      std::vector<Edge> &supportTree, double diameter, double minY);
-
-/**
  * DFS algoritmus, ami bejarja a grafot
  * @param node a kezdo csucs
  * @param graph a graf
@@ -135,9 +123,11 @@ Point upAlongTheSection(Point A, Point B, double distance);
  * @param supportTree a tamasz fa elei
  * @param minDiameter a tamasz minimalis vastagsaga
  * @param minY a legkisebb y ertek
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
  * @since 3.1
  */
-void writeSupportTreeDynamic(const std::string &outputFileName, const std::string &inputFileName, std::vector<Tree> &trees,
-                        double minY, double minDiameter);
+void
+writeSupportTreeDynamic(const std::string &outputFileName, const std::string &inputFileName, std::vector<Tree> &trees,
+                        double minY, double minDiameter, bool isFinish);
 
 #endif //OPENMESH_TREEAUXILIARY_H

@@ -8,6 +8,7 @@
  * @since 2024.04.03.
  */
 
+#include <fstream>
 #include "treeMain.h"
 
 /**
@@ -21,14 +22,40 @@
  * @param e a hibahatar
  * @param groupingValue a csoportositasi ertek
  * @return az alatamasztas pontja
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
  * @since 3.1
  */
 double
 treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll, double diameter,
-                     double l, double e, int groupingValue) {
+                     double l, double e, int groupingValue, bool isFinish) {
 
     /// Az aktualis ponnak minden iranyban az ennyi l -lel odébb lévő szomszédjai
     double angle = M_PI / 5;
+
+    /// Ha nincs alatamasztando pont, akkor nem csinal semmit
+    if (supportPointsAll.empty()) {
+        writeLog("\tNo support points found");
+        /// A kimeneti fajlok uresek lesznek
+        std::ofstream file("outputs/6-supportLineTree.obj");
+        if (!file) {
+            std::cout << "Error: The file " << "outputs/6-supportLineTree.obj" << " cannot be opened!" << std::endl;
+            exit(1);
+        }
+        /// A kimeneti file fejlece
+        file << "# Input edges generated from " << inputFile << " by BTMLYV\n";
+        file.close();
+        std::ofstream file2("outputs/7-supportTree.obj");
+        if (!file2) {
+            std::cout << "Error: The file " << "outputs/7-supportTree.obj" << " cannot be opened!" << std::endl;
+            exit(1);
+        }
+        /// A kimeneti file fejlece
+        file2 << "# Support objects generated from " << inputFile << " by BTMLYV\n";
+        file2.close();
+
+        return 0;
+    }
+
     double minY = getMinY(supportPointsAll);
 
     std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPointsYXZAll);
@@ -191,14 +218,14 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
         supportTree.emplace_back(i,nextPoint, 0, -2);
     }
 
-
-    writeInputEdges("outputs/6-supportLineTree.obj", inputFile, supportTree);
-    writeLog("\tTreeLineSupportObjects written to file");
+    writeInputEdges("outputs/6-supportLineTree.obj", inputFile, supportTree, isFinish);
+    if (isFinish) {
+        writeLog("\tTreeLineSupportObjects written to file");
+    }
 
     std::vector<Tree> trees;
     separateTree(supportTree, trees);
-    writeSupportTreeDynamic("outputs/7-supportTree.obj", inputFile, trees, minY, diameter/8);
-    writeLog("\tTreeSupportObjects written to file");
+    writeSupportTreeDynamic("outputs/7-supportTree.obj", inputFile, trees, minY, diameter / 8, isFinish);
 
     double point = calculatePoint(supportTree);
     return point;

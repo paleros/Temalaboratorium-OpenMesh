@@ -39,47 +39,53 @@
  * Feladat leirasa: Fentrol indulva lefele huzunk tamaszokat ha bizonyos szogben metszik egymast, akkor osszekotjuk.
  * Csoportositani kell valahogyan.
  *
+ * 4.1. Feladatresz
+ * Feladat leirasa: az alakzatnak keresi a legjobb forgatasat, hogy minel kevesebb tamaszt kelljen hasznalni.
+ *
  * Felhasznalt anyagok: OpenMesh Documentation, gpytoolbox.org, digitalocean.com, w3schools.com, stackoverflow.com,
  *                      geeksforgeeks.org, GitHub Copilot, ChatGTP, Microsoft Copilot
  *                      [2020, Jang et al] Free-floating support structure generation
  *                      [2019, Zhang et al] Local barycenter based efficient tree-support generation for 3D printing
+ *                      [2015, Etair et al] Orientation analysis of 3D objects toward minimal support volume in 3D-printing
  *
  * @author Eros Pal
  * @consulant Dr. Salvi Peter
- * @since 2024.04.03.
+ * @since 2024.10.21.
  * ---------------------------------------------------------------------------------------------------------------------
 */
 
-#include <OpenMesh/Core/IO/MeshIO.hh>
-#include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
 #include "auxiliary.h"
 #include "rotationMain.h"
 
 /**
- * Alapbeallitasok definialasa --------------------------------------------------------------------------------------------------
+ * Alapbeallitasok definialasa -----------------------------------------------------------------------------------------
  */
 /**
  * Az alatamasztas tipusanak beallitasa
  */
-bool isTreeSupport = true;    /// Fa alatamasztas
-//bool isTreeSupport = false;    /// Oszlop alatamasztas
 
+SupportType supportType = SupportType::TREE;    /// Fa alatamasztas
+//SupportType supportType = SupportType::COLUMN;    /// Oszlop alatamasztas
 
 /**
  * Optimalis fogatas keresese
  */
-//bool findOptimalRotation = false;    /// Optimalis forgatas nelkul
-bool findOptimalRotation = true;    /// Optimalis forgatassal
+//AlgorithmType algorithmType = AlgorithmType::NELDERMEAD;      /// Nelder-Mead algoritmus
+//AlgorithmType algorithmType = AlgorithmType::DIRECT;          /// Direct algoritmus
+AlgorithmType algorithmType = AlgorithmType::NONE;            /// Forgatas nelkul
+
 /**
  * A demozhato alakzatok
- * FONTOS: csak akkor mukodik, ha az alakzat haromszogekbol epul fel!
+ * FONTOS: csak akkor mukodik, ha az alakzat haromszogekbol epul fel! (fontos hogy jo legyen az alakzat!)
  */
-//std::string inputFile = "models/bunny.obj";
-//std::string inputFile = "models/diamond.obj";
-//std::string inputFile = "models/sphere.obj";
-//std::string inputFile = "models/lucy.obj";
-std::string inputFile = "models/fandisk.obj";
-//std::string inputFile = "models/t.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/bunny.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/diamond.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/sphere.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/lucy.obj";
+std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/fandisk.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/t.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/T.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/cube.obj";
 /**
  * ---------------------------------------------------------------------------------------------------------------------
  */
@@ -87,11 +93,17 @@ std::string inputFile = "models/fandisk.obj";
 /**
  * A feladat megvalositasa
  * @return
- * @since 1.1
+ * @since 4.1
  */
 int main(){
+    /// A futtatasi ido kiirasa
+    auto start = std::chrono::high_resolution_clock::now();
 
-    run(inputFile, isTreeSupport, findOptimalRotation);
+    run(inputFile, supportType, algorithmType);
+
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> duration = end - start;
+    std::cout << "Program running time: " << duration.count() << " second" << std::endl;
 
     writeEndLog();
     return 0;

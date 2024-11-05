@@ -25,15 +25,18 @@
  * @param inputPoints a bemeneti pontok
  * @param supportPointsAll az osszes alatamasztando pont
  * @param maxWeight a maximalis suly
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
+ * @since 1.1
  */
 void supportPointsGenerated(double l, double e, const std::string &inputFile, std::vector<Point> &intersectPoints,
                             int &count, MyMesh &meshObject, std::vector<Edge> &edges, std::vector<Point> &inputPoints,
-                            std::vector<Point> &supportPointsAll, double maxWeight) {
-
+                            std::vector<Point> &supportPointsAll, double maxWeight, bool isFinish) {
+double idx = 0;
+    //TODO a T alakzatnál ne találja meg az összes rácsot mapd pedig nem talál támasztási pontokat
     /// Vegigmegy az osszes tarolt haromszogon
     for(MyMesh::FaceIter fi = meshObject.faces_begin(); fi != meshObject.faces_end(); fi++){
         MyMesh::FaceHandle fh = *fi;
-
+idx++;
         /// Az aktualis haromszog csucspontjai
         Point p1, p2, p3;
         p1.coordinates[0] = 0;
@@ -70,6 +73,12 @@ void supportPointsGenerated(double l, double e, const std::string &inputFile, st
             c++;
         }
 
+        /// A szamokat kerekitjuk hat tizedes jegyre
+        for (int i = 0; i < 3; i++) {
+            p1.coordinates[i] = round(p1.coordinates[i] * 1000000) / 1000000;
+            p2.coordinates[i] = round(p2.coordinates[i] * 1000000) / 1000000;
+            p3.coordinates[i] = round(p3.coordinates[i] * 1000000) / 1000000;
+        }
 
         /// Kiszamoljuk a haromszog maximum x es z koordinatait
         double maxX = fmax(fmax(p1.coordinates[0], p2.coordinates[0]), p3.coordinates[0]);
@@ -78,9 +87,9 @@ void supportPointsGenerated(double l, double e, const std::string &inputFile, st
         double minZ = fmin(fmin(p1.coordinates[2], p2.coordinates[2]), p3.coordinates[2]);
 
         /// Vegigmegyunk a potencialis racspontokon
-        double x = std::floor(minX / l) * l + e;
+        double x = std::floor(minX / l) * l;
         while(x <= maxX){
-            double z = std::floor(minZ / l) * l + e;
+            double z = std::floor(minZ / l) * l;
             while(z <= maxZ) {
                 /// Kiszamoljuk a haromszogek teruleteit
                 double A = area(p1.coordinates[0], p1.coordinates[2],
@@ -125,8 +134,9 @@ void supportPointsGenerated(double l, double e, const std::string &inputFile, st
     deleteWrongPoints(intersectPoints, e);
 
     /// A kiiras a fileba
-    writeInternalLines("outputs/1-internalLines.obj", inputFile, intersectPoints, "# Internal lines generated from ");
-    writeLog("\tInternal lines written to file");
+    writeInternalLines("outputs/1-internalLines.obj", inputFile, intersectPoints, "# Internal lines generated from ",
+                       isFinish);
+
 
     /// A bemeneti pontok kozotti elek kiszamitasa
     for(int i = 0; i < (int)intersectPoints.size(); i = i + 2){
@@ -216,14 +226,14 @@ void supportPointsGenerated(double l, double e, const std::string &inputFile, st
         }
     }
 
-    writeInputEdges("outputs/2-inputEdges.obj", inputFile, edges);
-    writeLog("\tInput edges written to file");
+    writeInputEdges("outputs/2-inputEdges.obj", inputFile, edges, isFinish);
 
     for(auto & edge : edges){
         inputPoints.push_back(edge.p1);
         inputPoints.push_back(edge.p2);
     }
     std::sort(inputPoints.begin(), inputPoints.end(), comparePoints);
+    /// Kiszuri az azonos pontokat
     for(int i = 0; i < (int)inputPoints.size(); i++){
         if(std::abs(inputPoints[i].coordinates[0] - inputPoints[i+1].coordinates[0]) <= e &&
            std::abs(inputPoints[i].coordinates[1] - inputPoints[i+1].coordinates[1]) <= e &&
@@ -270,6 +280,8 @@ void supportPointsGenerated(double l, double e, const std::string &inputFile, st
     }
 
     /// Kiirjuk az alatamasztando pontokat
-    writePoints("outputs/3-supportedPoints.obj", inputFile, 0, supportPointsAll);
-    writeLog("\tSupportedPoints written to file");
+    writePoints("outputs/3-supportedPoints.obj", inputFile, 0, supportPointsAll, isFinish);
+    if (isFinish){
+        writeLog("\tSupportedPoints written to file");
+    }
 }

@@ -23,9 +23,10 @@
  * @param l a racs tavolsaga
  * @param e a hibahatar
  * @return az alatamasztas pontja
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
  * @since 2.2
  */
-double columnSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll,
-                            std::vector<Point> &intersectPoints, double diameter, double l, double e);
+double columnSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll,
+                              std::vector<Point> &intersectPoints, double diameter, double l, double e, bool isFinish);
 
 #endif //OPENMESH_COLUMNMAIN_H

@@ -25,9 +25,11 @@
  * @param inputPoints a bemeneti pontok
  * @param supportPointsAll az osszes alatamasztando pont
  * @param maxWeight a maximalis suly
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
+ * @since 1.1
  */
 void supportPointsGenerated(double l, double e, const std::string &inputFile, std::vector<Point> &intersectPoints,
                             int &count, MyMesh &meshObject, std::vector<Edge> &edges, std::vector<Point> &inputPoints,
-                            std::vector<Point> &supportPointsAll, double maxWeight);
+                            std::vector<Point> &supportPointsAll, double maxWeight, bool isFinish);
 
 #endif //OPENMESH_SUPPORTPOINTS_H

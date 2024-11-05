@@ -21,10 +21,11 @@
  * @param points a pontok
  * @param diameter a haromszog merete
  * @param minY a legkisebb y koordinata
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
  * @since 1.5
  */
 void generateAndWriteSupportLines(const std::string &outputFileName, const std::string &inputFileName,
-                                  std::vector<Point> &points, double diameter, double minY);
+                                  std::vector<Point> &points, double diameter, double minY, bool isFinish);
 
 /**
  * A parameterkent kapott pontok kozott hengereket csinal es kiirja a .obj fileba
@@ -33,10 +34,11 @@ void generateAndWriteSupportLines(const std::string &outputFileName, const std::
  * @param points a pontok
  * @param diameter a henger atmeroje
  * @param minY a legkisebb y koordinata
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
  * @since 2.1
  */
 void generateAndWriteSupportCylinder(const std::string &outputFileName, const std::string &inputFileName,
-                                     std::vector<Point> &points, double diameter, double minY);
+                                     std::vector<Point> &points, double diameter, double minY, bool isFinish);
 
 /**
  * Ha egy atlo metszi az alakzatot, akkor azt torli
@@ -59,6 +61,6 @@ void deleteWrongDiagonals(std::vector<Edge>& edges, OpenMesh::PolyMesh_ArrayKern
  */
 void generateAndWriteSupportCrossBrace(const std::string &outputFileName, const std::string &inputFileName,
                                        std::vector<Point> &points, double diameter, double l,
-                                       OpenMesh::PolyMesh_ArrayKernelT<> meshObject);
+                                       OpenMesh::PolyMesh_ArrayKernelT<> meshObject, bool isFinish);
 
 #endif //OPENMESH_COLUMNAUXILIARY_H

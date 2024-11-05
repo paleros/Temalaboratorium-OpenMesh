@@ -11,23 +11,27 @@
 #include "rotationMain.h"
 #include <OpenMesh/Core/IO/MeshIO.hh>
 #include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
+#include <utility>
 #include "auxiliary.h"
 #include "supportPoints.h"
 #include "columnMain.h"
 #include "treeMain.h"
 #include "rotationAuxiliary.h"
 #include "nelder-mead.hh"
+#include "direct.hh"
 
 /**
  * Kiszamitja hogy a megadott elforgatassal mennyire jo a tamasztas
  * @param angles az elforgatas szoge
+ * @param mesh az alakzat
  * @param inputFile a bemeneti fajl
- * @param isTreeSupport az alatamasztas tipusa
+ * @param supportType az alatamasztas tipusa
+ * @param roundNumber a aktualis kor szama
  * @return
  */
-double getPoint(std::vector<double> &angles, std::string& inputFile, bool isTreeSupport) {
-
-    /// Valtozok inicializalasa
+double getOptimalValue(std::vector<double> &angles, MyMesh mesh, std::string &inputFile, SupportType supportType,
+                       int &roundNumber) {
+   /// Valtozok inicializalasa
 
     /// Az alatamasztas oszlopanak vastagsagahoz
     double diameter;
@@ -38,6 +42,7 @@ double getPoint(std::vector<double> &angles, std::string& inputFile, bool isTree
 
     /// Az alakzat
     MyMesh meshObject;
+    meshObject = std::move(mesh);
 
     /// A maximalis suly
     double maxWeight = M_PI / 4 * 3 *2;
@@ -57,8 +62,6 @@ double getPoint(std::vector<double> &angles, std::string& inputFile, bool isTree
 
     std::vector<Point> supportPointsAll;
 
-    writeLog("\tBasic parameters set");
-
     /// Beolvassuk az alakzatot es kiszamoljuk az alatamasztando pontokat
     /// @since 2.2
     readMesh(inputFile, meshObject);
@@ -71,43 +74,71 @@ double getPoint(std::vector<double> &angles, std::string& inputFile, bool isTree
     double e = l / 100;
 
     supportPointsGenerated(l, e, inputFile, intersectPoints, count, meshObject, edges,
-                           inputPoints, supportPointsAll, maxWeight);
+                           inputPoints, supportPointsAll, maxWeight, false);
 
     /// Az alatamasztas pontszamanak kiszamitasa
-    double point = 0;
+    double value;
 
     /// Az alatamasztas tipusa "oszlop"
-    if (!isTreeSupport){
-        point = columnSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e);
+    if (supportType == SupportType::COLUMN) {
+        value = columnSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e, false);
     }
 
     /// Az alatamasztas tipusa "fa"
-    if (isTreeSupport){
-        point = treeSupportGenerated(meshObject, inputFile, supportPointsAll, diameter, l, e, groupingValue);
+    if (supportType == SupportType::TREE) {
+        value = treeSupportGenerated(meshObject, inputFile, supportPointsAll, diameter, l, e, groupingValue, false);
+        //TODO tamasz elvekonyitas nem mindig jo
     }
 
-    return point;
+    /// Logolja a probalkozasok szamat es a forgatas szoget
+    std::string log = " Rotate object x: " + std::to_string(angles[0]) + "\tz:\t" + std::to_string(angles[1]) +
+                      "\t(rad)\tsumSupportLength: " + std::to_string(value) + "\t\tround: " + std::to_string(roundNumber);
+
+    writeLog(log);
+    roundNumber++;
+
+    return value;
 }
 
 /**
  * Az alakzat optimalis forgatasat megkereso fuggveny
- * Nelder-Mead algoritmussal
+ * Nelder-Mead vagy Direct algoritmussal
  * @param inputFile a bemeneti fajl
- * @param isTreeSupport az alatamasztas tipusa
+ * @param mesh az alakzat
+ * @param supportType az alatamasztas tipusa
+ * @param algorithmType az optimalizalasi algoritmus
  * @return az optimalis forgatas
  * @since 4.1
  */
-std::vector<double> optimalSide(std::string& inputFile, bool isTreeSupport){
+std::vector<double> optimalSide(std::string &inputFile, MyMesh &mesh, SupportType supportType, AlgorithmType algorithmType) {
+    int roundNumber = 1;
 
     /// Igy csak az elso parametert tudja valtoztatni
-    auto function = [&inputFile, isTreeSupport](const std::vector<double>& angles) {
-        return getPoint(const_cast<std::vector<double>&>(angles), inputFile, isTreeSupport);
+    auto function = [mesh, &inputFile, supportType, &roundNumber](const std::vector<double>& angles) {
+        return getOptimalValue(const_cast<std::vector<double> &>(angles), mesh, inputFile, supportType,
+                               roundNumber);
     };
 
     /// A kezdeti szogek
     std::vector<double> angles = {0, 0};
+    std::vector<double> maxAngles = {2*M_PI, 2*M_PI};
 
-    NelderMead::optimize(function, angles, 100, 0, 1);
+    if (algorithmType == AlgorithmType::NELDERMEAD) {
+
+        /// Nelder-Mead algoritmus
+        writeLog("\tUse Nelder-Mead algorithm");
+        NelderMead::optimize(function, angles, 100, 0.0001, M_PI);
+
+    }else if(algorithmType == AlgorithmType::DIRECT){
+
+        /// Direct algoritmus
+        writeLog("\tUse Direct algorithm");
+        angles = DIRECT::optimize(function, angles, maxAngles, 100, 0.0001);
+
+    }else{
+        std::cout << "Error: algorithm not found!" << std::endl;
+        exit(1);
+    }
 
     writeLog("\tFind optimal rotation");
     return angles;
@@ -116,16 +147,26 @@ std::vector<double> optimalSide(std::string& inputFile, bool isTreeSupport){
 /**
  * A PROGRAM FUTTATASA
  * @param inputFile a bemeneti file
- * @param isTreeSupport az alatamasztas tipusa
- * @param findOptimalSide az optimalis oldal keresese
+ * @param supportType az alatamasztas tipusa
+ * @param algorithmType az optimalis oldal keresese
  * @since 4.1
  */
-void run(std::string inputFile, bool isTreeSupport, bool findOptimalSide) {
+void run(std::string inputFile, SupportType supportType, AlgorithmType algorithmType) {
     writeStartLog(inputFile);
 
+    /// Az alakzat
+    MyMesh meshObject;
+
+    /// Beolvassuk az alakzatot es kiszamoljuk az alatamasztando pontokat
+    /// @since 2.2
+    readMesh(inputFile, meshObject);
+
     std::vector<double> angles = {0, 0};
-    if (findOptimalSide){
-        angles = optimalSide(inputFile, isTreeSupport);
+    if (algorithmType != AlgorithmType::NONE) {
+
+        angles = optimalSide(inputFile, meshObject, supportType, algorithmType);
+        writeLog("\tOptimal rotation found: x: " + std::to_string(angles[0]) + " z: " + std::to_string(angles[1]) +
+                 " (rad)");
     }
     /// Valtozok inicializalasa
 
@@ -135,9 +176,6 @@ void run(std::string inputFile, bool isTreeSupport, bool findOptimalSide) {
     int groupingValue = 5;
     /// A racs tavolsaga
     double l;
-
-    /// Az alakzat
-    MyMesh meshObject;
 
     /// A maximalis suly
     double maxWeight = M_PI / 4 * 3 *2;
@@ -165,6 +203,7 @@ void run(std::string inputFile, bool isTreeSupport, bool findOptimalSide) {
 
     /// Az alakzat elforgatasa optimalis helyzetbe
     rotateMesh(meshObject, angles[0], angles[1]);
+    //rotateMesh(meshObject, 0.19613888263702403, 0.1032662510871888);
 
     writeMesh(meshObject, "outputs/object.obj");
 
@@ -174,15 +213,16 @@ void run(std::string inputFile, bool isTreeSupport, bool findOptimalSide) {
     double e = l / 100;
 
     supportPointsGenerated(l, e, inputFile, intersectPoints, count, meshObject, edges,
-                           inputPoints, supportPointsAll, maxWeight);
+                           inputPoints, supportPointsAll, maxWeight, true);
 
     /// Az alatamasztas tipusa "oszlop"
-    if (!isTreeSupport){
-        columnSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e);
+    if (supportType == SupportType::COLUMN){
+        columnSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e, true);
     }
 
     /// Az alatamasztas tipusa "fa"
-    if (isTreeSupport){
-        treeSupportGenerated(meshObject, inputFile, supportPointsAll, diameter, l, e, groupingValue);
+    if (supportType == SupportType::TREE){
+        treeSupportGenerated(meshObject, inputFile, supportPointsAll, diameter, l, e, groupingValue, true);
+        //TODO a generalas végei sem teljesen jok
     }
 }

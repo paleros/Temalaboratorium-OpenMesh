@@ -153,7 +153,7 @@ PolyConnectivity::add_face(const VertexHandle* _vertex_handles, size_t _vhs_size
 
     if (!edgeData_[i].is_new && !is_boundary(edgeData_[i].halfedge_handle))
     {
-      omerr() << "PolyMeshT::add_face: complex edge\n";
+//      omerr() << "PolyMeshT::add_face: complex edge\n"; //TODO peros modositotta: csak a konzol kiiratast toroltem
       return make_smart(InvalidFaceHandle, this);
     }
   }

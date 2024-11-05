@@ -131,10 +131,11 @@ struct Edge{
  * @param inputFileName a bemeneti file neve
  * @param intersectPoints a metszespontok koordinatai
  * @param desc a leiras
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
  * @since 1.1
  */
 void writeInternalLines(const std::string &outputFileName, const std::string &inputFileName,
-                        std::vector<Point> &intersectPoints, const std::string &desc);
+                        std::vector<Point> &intersectPoints, const std::string &desc, bool isFinish);
 
 /**
  * Kiszamolja a haromszog teruletet
@@ -157,7 +158,7 @@ double area(double x1, double z1, double x2, double z2, double x3, double z3);
  * @return az elso elem elobbre valo-e vagy sem
  * @since 1.1
  */
-bool comparePoints(const Point& p1, const Point& p2);
+bool comparePoints(Point& p1, Point& p2);
 
 /**
  * Visszaadja a ket pont kozotti vektor sulyat
@@ -192,9 +193,11 @@ bool isIncluded(std::vector<Point> &intersectPoints, const Point &p, double l);
  * @param outputFileName a kimeneti file neve
  * @param inputFileName a bemeneti file neve
  * @param edges a kiirando elek
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
  * @since 1.2
  */
-void writeInputEdges(const std::string& outputFileName, const std::string& inputFileName, std::vector<Edge>& edges);
+void writeInputEdges(const std::string &outputFileName, const std::string &inputFileName, std::vector<Edge> &edges,
+                     bool isFinish);
 
 /**
  * Megnezi, hogy a parameterkent kapott pont benne van-e a tombben (csal x-t es z-t vizsgalja)
@@ -226,12 +229,19 @@ bool compareInputPointsYXZ(const Point &p1, const Point &p2);
 bool compareEdgesInputPoints(const Edge& e1, const Edge& e2);
 
 /**
+ * A parameterkent kapott eleket sorbarendezi a rendezo fuggveny alapjan
+ * @param edges az elek
+ * @param compare a rendezo fuggveny
+ * @since 4.1
+ */void sort(std::vector<Edge> &edges, std::function<bool(const Edge&, const Edge&)> compare);
+
+/**
  * Kikeresi az elek kozul a pontot és visszaadja az indexet
  * @param points a pontok halmaza
  * @param p a keresett pont
  * @return
  */
-int findPoint(std::vector<Point> &points, const Point &p);
+int findPoint(std::vector<Point> &points, Point &p);
 
 /**
  * Beallitja a pontoknak, hogy milyen a sulyuk
@@ -250,9 +260,12 @@ setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Poin
  * @param inputFileName az eredeti alakzat neve
  * @param count a szamlalo erteke
  * @param points a pontok
+  * @param isFinish igaz, ha a vegso kiiratasrol van szo
  * @since 1.3
  */
-void writePoints(const std::string& outputFileName, const std::string& inputFileName, int count, std::vector<Point>& points);
+void
+writePoints(const std::string &outputFileName, const std::string &inputFileName, int count, std::vector<Point> &points,
+            bool isFinish);
 
 /**
  * Kiirja a futtatas adatait a konzolra
@@ -348,5 +361,22 @@ double calculatePoint(std::vector<Edge>& supportLines);
  * @since 4.1
  */
 void writeMesh(MyMesh &meshObject, const std::string &outputFileName);
+
+/**
+ * Az alatamasztas tipusa
+ */
+enum class SupportType {
+    COLUMN,
+    TREE
+};
+
+/**
+ * Az optimalis forgatast kereso algoritmus tipusa
+ */
+enum class AlgorithmType {
+    NELDERMEAD,
+    DIRECT,
+    NONE
+};
 
 #endif //OPENMESH_AUXILIARY_H

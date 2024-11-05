@@ -18,10 +18,11 @@
  * @param e a hibahatar
  * @param groupingValue a csoportositasi ertek
  * @return az alatamasztas pontja
- * @since 3.0
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
+ * @since 3.1
  */
 double
 treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll, double diameter,
-                     double l, double e, int groupingValue);
+                     double l, double e, int groupingValue, bool isFinish);
 
 #endif //OPENMESH_TREEMAIN_H

@@ -33,26 +33,32 @@ void readMesh(const std::string& file, MyMesh& mesh){
  * @param inputFileName a bemeneti file neve
  * @param intersectPoints a metszespontok koordinatai
  * @param desc a leiras
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
  * @since 1.1
  */
 void writeInternalLines(const std::string &outputFileName, const std::string &inputFileName,
-                        std::vector<Point> &intersectPoints, const std::string &desc) {
-    std::ofstream file(outputFileName);
-    if(!file){
-        std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
-        exit(1);
+                        std::vector<Point> &intersectPoints, const std::string &desc, bool isFinish) {
+    if (isFinish) {
+        std::ofstream file(outputFileName);
+        if (!file) {
+            std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
+            exit(1);
+        }
+        /// A kimeneti file fejlece
+        file << desc << inputFileName << " by BTMLYV\n";
+        int k = 1;
+        for (int i = 0; i < (int) intersectPoints.size(); i++) {
+            file << "v " << intersectPoints[i].coordinates[0] << " " << intersectPoints[i].coordinates[1] << " "
+                 << intersectPoints[i].coordinates[2] << "\n";
+            i++;
+            file << "v " << intersectPoints[i].coordinates[0] << " " << intersectPoints[i].coordinates[1] << " "
+                 << intersectPoints[i].coordinates[2] << "\n";
+            file << "l " << k << " " << k + 1 << "\n";
+            k = k + 2;
+        }
+        file.close();
+        writeLog("\tInternal lines written to file");
     }
-    /// A kimeneti file fejlece
-    file << desc << inputFileName << " by BTMLYV\n";
-    int k = 1;
-    for(int i = 0; i < (int)intersectPoints.size(); i++){
-        file << "v " << intersectPoints[i].coordinates[0] << " " << intersectPoints[i].coordinates[1] << " " << intersectPoints[i].coordinates[2] << "\n";
-        i++;
-        file << "v " << intersectPoints[i].coordinates[0] << " " << intersectPoints[i].coordinates[1] << " " << intersectPoints[i].coordinates[2] << "\n";
-        file << "l " << k << " " << k+1 << "\n";
-        k = k + 2;
-    }
-    file.close();
 }
 
 /**
@@ -87,7 +93,13 @@ double area(double x1, double z1, double x2, double z2, double x3, double z3) {
  * @return az elso elem elobbre valo-e vagy sem
  * @since 1.1
  */
-bool comparePoints(const Point& p1, const Point& p2) {
+bool comparePoints(Point& p1, Point& p2) {
+    /// A szamokat kerekitjuk hat tizedes jegyre
+    for (int i = 0; i < 3; i++) {
+        p1.coordinates[i] = round(p1.coordinates[i] * 1000000) / 1000000;
+        p2.coordinates[i] = round(p2.coordinates[i] * 1000000) / 1000000;
+    }
+
     if(p2.coordinates[0] - p1.coordinates[0] > p1.e){
         return true;
     } else if(std::abs(p1.coordinates[0] - p2.coordinates[0]) <= p1.e){
@@ -263,29 +275,6 @@ bool compareInputPointsYXZ(const Point &p1, const Point &p2) {
 }
 
 /**
- * Osszehasonlitja a ket kapott pont koordinatait es visszadja az elobbre levot
- * Elsonek az x koordinata alapjan, majd az y, majd a z koordinata alapjan
- * @param p1 az eslo pont
- * @param p2 a masodik pont
- * @return az elso elem elobbre valo-e vagy sem
- * @since 3.1
- */
-bool compareInputPointsXYZ(const Point &p1, const Point &p2) {
-    if((p1.coordinates[0] - p2.coordinates[0]) < -p1.e){
-        return true;
-    } else if(std::abs(p1.coordinates[0] - p2.coordinates[0]) <= p1.e){
-        if((p1.coordinates[1] - p2.coordinates[1]) < -p1.e){
-            return true;
-        } else if(std::abs(p1.coordinates[1] - p2.coordinates[1]) <= p1.e){
-            if((p1.coordinates[2] - p2.coordinates[2]) < -p1.e){
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-/**
  * Osszehasonlitja a ket kapott el kezdopontjanak koordinatait es visszadja az elobbre levot
  * Elsonek az y koordinata alapjan, majd az x, majd a z koordinata alapjan
  * @param e1 az eslo el
@@ -317,13 +306,40 @@ bool compareEdgesInputPoints(const Edge& e1, const Edge& e2) {
 }
 
 /**
+ * A parameterkent kapott eleket sorbarendezi a rendezo fuggveny alapjan
+ * @param edges az elek
+ * @param compare a rendezo fuggveny
+ * @since 4.1
+ */
+void sort(std::vector<Edge> &edges, std::function<bool(const Edge&, const Edge&)> compare) {
+    for (int i = 0; i < (int)edges.size(); i++){
+        for (int j = i + 1; j < (int)edges.size(); j++){
+            if (compare(edges[i], edges[j])){
+                Edge temp = edges[i];
+                edges[i] = edges[j];
+                edges[j] = temp;
+            }
+        }
+    }
+}
+
+/**
  * Kikeresi az elek kozul a pontot és visszaadja az indexet
  * @param points a pontok halmaza
  * @param p a keresett pont
  * @return
  */
-int findPoint(std::vector<Point> &points, const Point &p) {
+int findPoint(std::vector<Point> &points, Point &p) {
+    /// A szamokat kerekitjuk hat tizedes jegyre
+    for (double & coordinate : p.coordinates) {
+        coordinate = round( coordinate * 1000000) / 1000000;
+    }
+
     for(int i = 0; i < (int)points.size(); i++){
+        /// A szamokat kerekitjuk hat tizedes jegyre
+        for (double & coordinate : points[i].coordinates) {
+            coordinate = round(coordinate * 1000000) / 1000000;
+        }
         if(points[i] == p){
             return i;
         }
@@ -341,30 +357,35 @@ int findPoint(std::vector<Point> &points, const Point &p) {
  */
 std::vector<Point>
 setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Point> &inputPoints, double maxWeight) {
-    std::sort(edges.begin(), edges.end(), compareEdgesInputPoints);
+
+    sort(edges, compareEdgesInputPoints);
+
     /// Kiszamolja minden pontra a sulyt
     for(auto & edge : edges){
-        if(findPoint(inputPoints, edge.p1) == -1 || findPoint(inputPoints, edge.p2) == -1){
+        int p1Index = findPoint(inputPoints, edge.p1);
+        int p2Index = findPoint(inputPoints, edge.p2);
+        if(p1Index == -1 || p2Index == -1){
             continue;
         }
-        double weightP2Actual = inputPoints[findPoint(inputPoints, edge.p2)].weight;
-        double weightP1Actual = inputPoints[findPoint(inputPoints, edge.p1)].weight;
-        double weightP2New = inputPoints[findPoint(inputPoints, edge.p1)].weight + edge.weight;
+
+        double weightP2Actual = inputPoints[p2Index].weight;
+        double weightP1Actual = inputPoints[p1Index].weight;
+        double weightP2New = inputPoints[p1Index].weight + edge.weight;
         double weightEdge = edge.weight;
         if(weightP2Actual == -1){
             if(weightP1Actual == -1){
-                inputPoints[findPoint(inputPoints, edge.p2)].weight = weightEdge;
-                inputPoints[findPoint(inputPoints, edge.p1)].weight = 0;
+                inputPoints[p2Index].weight = weightEdge;
+                inputPoints[p1Index].weight = 0;
             }else{
-                inputPoints[findPoint(inputPoints, edge.p2)].weight = weightP2New;
+                inputPoints[p2Index].weight = weightP2New;
             }
         }else{
             if(weightP1Actual == -1) {
-                inputPoints[findPoint(inputPoints, edge.p2)].weight = weightEdge;
-                inputPoints[findPoint(inputPoints, edge.p1)].weight = 0;
+                inputPoints[p2Index].weight = weightEdge;
+                inputPoints[p1Index].weight = 0;
             }else {
                 if (weightP2Actual - weightP2New > edge.p1.e) {
-                    inputPoints[findPoint(inputPoints, edge.p2)].weight = weightP2New;
+                    inputPoints[p2Index].weight = weightP2New;
                 }
             }
         }
@@ -373,11 +394,13 @@ setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Poin
     /// Felveszi a csucspontokat a listaba
     std::vector<Point> supportPoints;
     for(auto & edge : edges){
-        if(findPoint(inputPoints, edge.p1) == -1 || findPoint(inputPoints, edge.p2) == -1){
+        int p1Index = findPoint(inputPoints, edge.p1);
+        int p2Index = findPoint(inputPoints, edge.p2);
+        if(p1Index == -1 || p2Index == -1){
             continue;
         }
-        supportPoints.push_back(inputPoints[findPoint(inputPoints, edge.p1)]);
-        supportPoints.push_back(inputPoints[findPoint(inputPoints, edge.p2)]);
+        supportPoints.push_back(inputPoints[p1Index]);
+        supportPoints.push_back(inputPoints[p2Index]);
     }
     /// Kitorli a duplikatumokat
     std::sort(supportPoints.begin(), supportPoints.end(), compareInputPointsYXZ);
@@ -418,24 +441,31 @@ setWeightAllPointsAndGetSupportPoints(std::vector<Edge> &edges, std::vector<Poin
  * @param outputFileName a kimeneti file neve
  * @param inputFileName a bemeneti file neve
  * @param edges a kiirando elek
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
  * @since 1.2
  */
-void writeInputEdges(const std::string& outputFileName, const std::string& inputFileName, std::vector<Edge>& edges){
-    std::ofstream file(outputFileName);
-    if(!file){
-        std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
-        exit(1);
+void writeInputEdges(const std::string &outputFileName, const std::string &inputFileName, std::vector<Edge> &edges,
+                     bool isFinish) {
+    if (isFinish) {
+        std::ofstream file(outputFileName);
+        if (!file) {
+            std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
+            exit(1);
+        }
+        /// A kimeneti file fejlece
+        file << "# Input edges generated from " << inputFileName << " by BTMLYV\n";
+        int k = 1;
+        for (auto &edge: edges) {
+            file << "v " << edge.p1.coordinates[0] << " " << edge.p1.coordinates[1] << " " << edge.p1.coordinates[2]
+                 << "\n";
+            file << "v " << edge.p2.coordinates[0] << " " << edge.p2.coordinates[1] << " " << edge.p2.coordinates[2]
+                 << "\n";
+            file << "l " << k << " " << k + 1 << "\n";
+            k = k + 2;
+        }
+        file.close();
+        writeLog("\tInput edges written to file");
     }
-    /// A kimeneti file fejlece
-    file << "# Input edges generated from " << inputFileName << " by BTMLYV\n";
-    int k = 1;
-    for(auto & edge : edges){
-        file << "v " << edge.p1.coordinates[0] << " " << edge.p1.coordinates[1] << " " << edge.p1.coordinates[2] << "\n";
-        file << "v " << edge.p2.coordinates[0] << " " << edge.p2.coordinates[1] << " " << edge.p2.coordinates[2] << "\n";
-        file << "l " << k << " " << k+1 << "\n";
-        k = k + 2;
-    }
-    file.close();
 }
 
 /**
@@ -444,20 +474,25 @@ void writeInputEdges(const std::string& outputFileName, const std::string& input
  * @param inputFileName az eredeti alakzat neve
  * @param count a szamlalo erteke
  * @param points a pontok
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
  * @since 1.3
  */
-void writePoints(const std::string& outputFileName, const std::string& inputFileName, int count, std::vector<Point>& points){
-    std::ofstream file(outputFileName);
-    if(!file){
-        std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
-        exit(1);
+void
+writePoints(const std::string &outputFileName, const std::string &inputFileName, int count, std::vector<Point> &points,
+            bool isFinish) {
+    if (isFinish) {
+        std::ofstream file(outputFileName);
+        if (!file) {
+            std::cout << "Error: The file " << outputFileName << " cannot be opened!" << std::endl;
+            exit(1);
+        }
+        /// A kimeneti file fejlece
+        file << "# Supported points No. " << count << " generated from " << inputFileName << " by BTMLYV\n";
+        for (auto &point: points) {
+            file << "v " << point.coordinates[0] << " " << point.coordinates[1] << " " << point.coordinates[2] << "\n";
+        }
+        file.close();
     }
-    /// A kimeneti file fejlece
-    file << "# Supported points No. " << count << " generated from " << inputFileName << " by BTMLYV\n";
-    for(auto & point : points){
-        file << "v " << point.coordinates[0] << " " << point.coordinates[1] << " " << point.coordinates[2] << "\n";
-    }
-    file.close();
 }
 
 /**
@@ -579,11 +614,14 @@ std::vector<double> findMinMax(MyMesh &meshObject, const std::string& coordinate
  */
 void calculateDiameterAndL(double &l, double &diameter, MyMesh &meshObject){
     std::vector<double> X = findMinMax(meshObject, "x");
+    std::vector<double> Y = findMinMax(meshObject, "y");
     std::vector<double> Z = findMinMax(meshObject, "z");
 
     double deltaX = X[1] - X[0];
+    double deltaY = Y[1] - Y[0];
     double deltaZ = Z[1] - Z[0];
-    l = (deltaX * deltaZ) / 256;
+    double max = std::max(deltaX, std::max(deltaY, deltaZ));
+    l = max / 20;
     diameter = 2 * l;
 }
 

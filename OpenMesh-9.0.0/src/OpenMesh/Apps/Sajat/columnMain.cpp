@@ -20,10 +20,11 @@
  * @param l a racs tavolsaga
  * @param e a hibahatar
  * @return az alatamasztas pontja
+ * @param isFinish igaz, ha a vegso kiiratasrol van szo
  * @since 2.2
  */
-double columnSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll,
-                            std::vector<Point> &intersectPoints, double diameter, double l, double e){
+double columnSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Point> &supportPointsAll,
+                              std::vector<Point> &intersectPoints, double diameter, double l, double e, bool isFinish) {
 
     /// Az alatamasztando pontokbol egyeneseket huzunk a legalso pont y koordinataja szerinti sikra
     /// @since 1.4
@@ -60,18 +61,21 @@ double columnSupportGenerated(MyMesh& meshObject, std::string &inputFile, std::v
         supportLines.push_back(p);
     }
 
-    writeInternalLines("outputs/4-supportLines.obj", inputFile, supportLines, "# Support lines generated from ");
+    writeInternalLines("outputs/4-supportLines.obj", inputFile, supportLines, "# Support lines generated from ", isFinish);
     writeLog("\tSupportLines written to file");
 
 
     /// Az alatamasztando pontokat atalakitjuk alazatta, hogy nyomtathato legyen
     /// @since 1.5
-    generateAndWriteSupportLines("outputs/5-triangleSupportObjects.obj", inputFile, supportLines, diameter, minY);
+    generateAndWriteSupportLines("outputs/5-triangleSupportObjects.obj", inputFile, supportLines, diameter, minY,
+                                 isFinish);
     writeLog("\tTriangleSupportObjects written to file");
     /// @since 2.1
-    generateAndWriteSupportCylinder("outputs/6-cylinderSupportObjects.obj", inputFile, supportLines, diameter, minY);
+    generateAndWriteSupportCylinder("outputs/6-cylinderSupportObjects.obj", inputFile, supportLines, diameter, minY,
+                                    isFinish);
     writeLog("\tCylinderSupportObjects written to file");
-    generateAndWriteSupportCrossBrace("outputs/7-diagonalSupportObjects.obj", inputFile, supportLines, diameter, l, meshObject);
+    generateAndWriteSupportCrossBrace("outputs/7-diagonalSupportObjects.obj", inputFile, supportLines, diameter, l,
+                                      meshObject, isFinish);
     writeLog("\tDiagonalsupportObjects written to file");
 
     /// @since 4.1
