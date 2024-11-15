@@ -54,6 +54,14 @@ double getMaxY(std::vector<Point> &supportPointsAll);
 double getMinY(std::vector<Point> &supportPointsAll);
 
 /**
+* Visszaadja a legkisebb y erteket
+* @param mesh az alakzat
+* @return a legkisebb y erteke
+ * @since 4.1
+*/
+double getMinY(MyMesh &mesh);
+
+/**
  * Az aktualis ponnak minden negativ iranyban az l -lel odébb lévő szomszédjai adja vissza
  * @param supportPointsAll az osszes alatamasztando pont
  * @param actualPoint az aktualis pont
@@ -129,5 +137,27 @@ Point upAlongTheSection(Point A, Point B, double distance);
 void
 writeSupportTreeDynamic(const std::string &outputFileName, const std::string &inputFileName, std::vector<Tree> &trees,
                         double minY, double minDiameter, bool isFinish);
+
+/**
+ * Egy haromszog es egy szakasz metszespontjat adja vissza
+ * @param p1 a szakasz egyik pontja
+ * @param p2 a szakasz masik pontja
+ * @param a a haromszog egyik pontja
+ * @param b a haromszog masik pontja
+ * @param c a haromszog harmadik pontja
+ * @param intersect a metszespont
+ * @since 4.1
+ */
+void intersectRayTriangle(Point& p1, Point& p2, Point& a, Point& b, Point& c, Point& intersect);
+
+/**
+ * Megnezi, hogy az el az alakzaton belul fut-e
+ * @param meshObject az alakzat
+ * @param p1 az el elso pontja
+ * @param p2 az el masodik pontja
+ * @return belul fut-e az el az alakzaton
+ * @since 4.1
+ */
+bool isItInside(MyMesh &meshObject, Point &p1, Point &p2);
 
 #endif //OPENMESH_TREEAUXILIARY_H

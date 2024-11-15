@@ -56,7 +56,7 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
         return 0;
     }
 
-    double minY = getMinY(supportPointsAll);
+    double minY = getMinY(meshObject);
 
     std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPointsYXZAll);
 
@@ -166,7 +166,7 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
                 bool usedOriginalLowPoint = true;
 
                 /// Osszekoti a megfelelo pontokat, majd kitorli a mar alatamasztott pontokat
-                for (auto &neighbourPoint: neighbourPoints) {
+                for (auto & neighbourPoint : neighbourPoints) {
                     Point nextPoint;
                     nextPoint = lowestPoint;
 
@@ -176,12 +176,20 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
                     if(intersectPoint.e == -1){     /// Az e erteke -1, ha nem metszi az alakzatot
                         /// Ha nem metszi az alakzatot, akkor hasznalja az eredeti also pontot
                         usedOriginalLowPoint = true;
-                        supportTree.emplace_back(neighbourPoint, nextPoint, 0, -1);
+
+                        /// Ha az alakzaton belul van az el, akkor nem hozzuk letre, ha kivul, akkor pedig letrehozzuk
+                        if(!isItInside(meshObject, neighbourPoint, nextPoint)){
+                            supportTree.emplace_back(neighbourPoint, nextPoint, 0, -1);
+                        }
+
                     }else{
                         /// Ha metszi az alakzatot, akkor hasznalja a metszespontot
                         nextPoint = intersectPoint;
                         usedOriginalLowPoint = false;
-                        supportTree.emplace_back(neighbourPoint, nextPoint, 0, e);
+                        /// Ha az alakzaton belul van az el, akkor nem hozzuk letre, ha kivul, akkor pedig letrehozzuk
+                        if(!isItInside(meshObject, neighbourPoint, nextPoint)){
+                            supportTree.emplace_back(neighbourPoint, nextPoint, 0, e);
+                        }
                     }
 
                     /// Torli a mar alatamasztott pontokat
@@ -189,6 +197,7 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
                                                             supportPointsAll.end(), neighbourPoint),
                                                             supportPointsAll.end());
                 }
+
                 /// Ha nem hasznaljuk a regi also pontot, akkor toroljuk
                 if (!usedOriginalLowPoint) {
                     supportPointsAll.erase(std::remove(supportPointsAll.begin(),
@@ -215,7 +224,9 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
         if (intersect.e != -1){
             nextPoint = intersect;
         }
-        supportTree.emplace_back(i,nextPoint, 0, -2);
+        if(!isItInside(meshObject, i, nextPoint)){
+            supportTree.emplace_back(i, nextPoint, 0, -2);
+        }
     }
 
     writeInputEdges("outputs/6-supportLineTree.obj", inputFile, supportTree, isFinish);

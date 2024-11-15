@@ -203,7 +203,6 @@ void run(std::string inputFile, SupportType supportType, AlgorithmType algorithm
 
     /// Az alakzat elforgatasa optimalis helyzetbe
     rotateMesh(meshObject, angles[0], angles[1]);
-    //rotateMesh(meshObject, 0.19613888263702403, 0.1032662510871888);
 
     writeMesh(meshObject, "outputs/object.obj");
 

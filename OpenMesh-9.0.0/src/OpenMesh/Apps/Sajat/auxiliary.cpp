@@ -621,7 +621,7 @@ void calculateDiameterAndL(double &l, double &diameter, MyMesh &meshObject){
     double deltaY = Y[1] - Y[0];
     double deltaZ = Z[1] - Z[0];
     double max = std::max(deltaX, std::max(deltaY, deltaZ));
-    l = max / 20;
+    l = max / 20.3; /// Azert nem kerek szam, hatha igy kevesebb lesz a double ertekbol fakado hiba
     diameter = 2 * l;
 }
 

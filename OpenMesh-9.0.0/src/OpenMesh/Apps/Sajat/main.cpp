@@ -86,6 +86,7 @@ std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalabo
 //std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/t.obj";
 //std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/T.obj";
 //std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/cube.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/cow.obj";
 /**
  * ---------------------------------------------------------------------------------------------------------------------
  */

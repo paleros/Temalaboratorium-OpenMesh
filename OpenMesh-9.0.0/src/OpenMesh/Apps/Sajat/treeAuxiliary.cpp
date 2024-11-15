@@ -76,6 +76,22 @@ double getMinY(std::vector<Point> &supportPointsAll){
 }
 
 /**
+* Visszaadja a legkisebb y erteket
+* @param mesh az alakzat
+* @return a legkisebb y erteke
+ * @since 4.1
+*/
+double getMinY(MyMesh &mesh){
+    double minY = 1000000;
+    for(auto v_it = mesh.vertices_begin(); v_it != mesh.vertices_end(); ++v_it){
+        if(mesh.point(*v_it)[1] < minY){
+            minY = mesh.point(*v_it)[1];
+        }
+    }
+    return minY;
+}
+
+/**
  * Az aktualis ponnak minden negativ iranyban az l -lel odébb lévő szomszédjai adja vissza
  * @param supportPointsAll az osszes alatamasztando pont
  * @param actualPoint az aktualis pont
@@ -522,3 +538,123 @@ writeSupportTreeDynamic(const std::string &outputFileName, const std::string &in
         writeLog("\tTreeSupportObjects written to file");
     }
 }
+
+/**
+ * Egy haromszog es egy szakasz metszespontjat adja vissza
+ * @param p1 a szakasz egyik pontja
+ * @param p2 a szakasz masik pontja
+ * @param a a haromszog egyik pontja
+ * @param b a haromszog masik pontja
+ * @param c a haromszog harmadik pontja
+ * @param intersect a metszespont
+ * @since 4.1
+ */
+void intersectRayTriangle(Point& p1, Point& p2, Point& a, Point& b, Point& c, Point& intersect) {
+    Point normal = crossProduct(b - a, c - a);
+    double d = dotProduct(normal, a);
+
+    Point direction = p2 - p1;
+
+    double t = (d - dotProduct(normal, p1)) / dotProduct(normal, direction);
+
+    Point intersection = p1 + (direction * t);
+
+    Point AB = b - a;
+    Point BC = c - b;
+    Point CA = a - c;
+
+    Point AI = intersection - a;
+    Point BI = intersection - b;
+    Point CI = intersection - c;
+
+    Point cross1 = crossProduct(AB, AI);
+    Point cross2 = crossProduct(BC, BI);
+    Point cross3 = crossProduct(CA, CI);
+    //TODO az e hiányzik?
+
+    if (dotProduct(normal, cross1) >= 0 && dotProduct(normal, cross2) >= 0 && dotProduct(normal, cross3) >= 0) {
+        intersection.weight = 0;
+        intersect = intersection;
+    } else {
+        Point badPoint;
+        badPoint.coordinates[0] = 0;
+        badPoint.coordinates[1] = 0;
+        badPoint.coordinates[2] = 0;
+        badPoint.weight = -1;
+        intersect = badPoint;
+    }
+}
+
+/**
+ * Megnezi, hogy az el az alakzaton belul fut-e
+ * @param meshObject az alakzat
+ * @param p1 az el elso pontja
+ * @param p2 az el masodik pontja
+ * @return belul fut-e az el az alakzaton
+ * @since 4.1
+ */
+bool isItInside(MyMesh &meshObject, Point &p1, Point &p2) {
+    std::vector<Point> intersectPoints;
+
+    for (auto f_it = meshObject.faces_begin(); f_it != meshObject.faces_end(); ++f_it) {
+        /// A haromszog csucspontjainak kinyerese
+        MyMesh::FaceVertexIter fv_it = meshObject.fv_iter(*f_it);
+        Point a;
+        a.coordinates[0] = meshObject.point(*fv_it)[0];
+        a.coordinates[1] = meshObject.point(*fv_it)[1];
+        a.coordinates[2] = meshObject.point(*fv_it)[2];
+        ++fv_it;
+        Point b;
+        b.coordinates[0] = meshObject.point(*fv_it)[0];
+        b.coordinates[1] = meshObject.point(*fv_it)[1];
+        b.coordinates[2] = meshObject.point(*fv_it)[2];
+        ++fv_it;
+        Point c;
+        c.coordinates[0] = meshObject.point(*fv_it)[0];
+        c.coordinates[1] = meshObject.point(*fv_it)[1];
+        c.coordinates[2] = meshObject.point(*fv_it)[2];
+
+        /// Metszespont szamitasa
+        Point intersect;
+        intersectRayTriangle(p1, p2, a, b, c, intersect);
+        if (intersect.weight == 0) {
+            intersectPoints.push_back(intersect);
+        }
+    }
+
+
+    int counter1 = 0;
+    int counter2 = 0;
+
+    /// Kiszamolja, hogy az adott szakasz hany ponton metszi az alakzatot es azt milyen aranyban elosztva a szakaszon
+    for (auto & intersectPoint : intersectPoints){
+        Point v, w;
+        v.coordinates[0] = p2.coordinates[0] - p1.coordinates[0];
+        v.coordinates[1] = p2.coordinates[1] - p1.coordinates[1];
+        v.coordinates[2] = p2.coordinates[2] - p1.coordinates[2];
+        w.coordinates[0] = intersectPoint.coordinates[0] - p1.coordinates[0];
+        w.coordinates[1] = intersectPoint.coordinates[1] - p1.coordinates[1];
+        w.coordinates[2] = intersectPoint.coordinates[2] - p1.coordinates[2];
+
+        double dot = dotProduct(v, w);
+        double len_sq = dotProduct(v, v);
+
+        double t = dot / len_sq;
+
+        double e = p1.e;
+        if (t <= e) { //TODO még a t -vel lehetne játszani
+            counter1++;
+        } else if (t >= 1 -e) {
+            counter2++;
+        }
+    }
+
+    /// Ha paros a metszespontok szama  a ket ponton kivul egy oldalt, akkor kivul van a szakasz, kulonben belul
+    if (counter1 % 2 == 0 && counter2 % 2 == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+//v -0.890486 5.49017 0.00936974
+//v -0.890486 -0.0448766 0.00936974
