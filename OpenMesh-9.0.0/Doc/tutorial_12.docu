@@ -11,12 +11,12 @@ With their help you can for example count all boundary vertices:
 \skipline Count boundary vertices
 \until boundary vertices
 
-Predicates can be composed using the operators ||, &&, and !. This enables you to specify precisely which elements you want process in your loop, e.g. inner vertices that are selected:
+Predicates can be composed using the operators ||, &&, and !. This enables you to specify precisely which elements you want process in your loop, _e.g. inner vertices that are selected:
 
 \skipline Selected inner vertices
 \until std::cout << std::endl
 
-As mentioned above, the filter argument can be anything returning a bool for a given input, e.g. a function pointer:
+As mentioned above, the filter argument can be anything returning a bool for a given input, _e.g. a function pointer:
 
 \skipline Faces whose id is divisible by 3
 \until faces whose id is divisible by 3

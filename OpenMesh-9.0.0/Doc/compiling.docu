@@ -45,7 +45,7 @@ Install the following external libraries / frameworks if you want to use the inc
 
 \subsection linux_using_cmake Compiling OpenMesh using CMake
 
-In order to compile %OpenMesh, create a directory named e.g. "build" in
+In order to compile %OpenMesh, create a directory named _e.g. "build" in
 OpenMesh's root directory. <b>Change to the newly created directory</b> and type
 <br/><br/>
 <tt>
@@ -99,7 +99,7 @@ Building OpenMesh on Windows requires cmake to generate the project files for Vi
 <li> Get all required libraries and install them ( including headers! ).</li>
 <li> Download and install cmake:  <a href="https://cmake.org/download/">www.cmake.org</a>.<br> </li>
 <li> Start the cmake gui and open the %OpenMesh toplevel directory as source directory </li>
-<li> Choose a build directory (e.g. create a directory called "build" in OpenMesh's root folder) </li>
+<li> Choose a build directory (_e.g. create a directory called "build" in OpenMesh's root folder) </li>
 <li> Click on configure .... If any libraries are left unconfigured, you can adjust the path manually. Rerun configure until everything is configured correctly. <br>
      Attention: Some build variables are only visible in advanced view mode. Select Visual Studio 9 (2008), Visual Studio 10(2010), Visual Studio 11 (2012), Visual Studio 12 (2013)  (Depending on your version) as
      generator. </li>
@@ -140,7 +140,7 @@ We recommend you to use CMake >= 3.7 as build system. This can also easily be in
 via Homebrew as well as the Qt >= 6.2 library which is used for some example applications
 in %OpenMesh.<br/>
 Once installed, change to %OpenMesh's root directory and create a directory
-named e.g. "buildDebug" (assuming you want to build with debug symbols).<br/>
+named _e.g. "buildDebug" (assuming you want to build with debug symbols).<br/>
 Then type in the following command to initially set up the build environment:
 <br/><br/>
 <tt>

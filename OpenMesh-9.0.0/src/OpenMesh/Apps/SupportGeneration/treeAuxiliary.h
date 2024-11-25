@@ -47,14 +47,6 @@ double getMaxY(std::vector<Point> &supportPointsAll);
 
 /**
 * Visszaadja a legkisebb y erteket
-* @param supportPointsAll a pontok
-* @return a legkisebb y erteke
- * @since 3.1
-*/
-double getMinY(std::vector<Point> &supportPointsAll);
-
-/**
-* Visszaadja a legkisebb y erteket
 * @param mesh az alakzat
 * @return a legkisebb y erteke
  * @since 4.1

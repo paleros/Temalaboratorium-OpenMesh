@@ -63,9 +63,9 @@
   This framework allows to use more than one decimation module with
   some restrictions. Since the error value is always normalized and
   sometimes very difficult to compare to other metrics, the framework
-  allows only one non-binary module, i.e. a module computing a float
+  allows only one non-binary module, i._e. a module computing a float
   value. Every further module must be a binary module,
-  i.e. collapse_prioerity() returns
+  i._e. collapse_prioerity() returns
   OpenMesh::Decimater::ModBaseT::LEGAL_COLLAPSE or
   OpenMesh::Decimater::ModBaseT::ILLEGAL_COLLAPSE. In the algorithm
   the binary modules are evaluated first. If the evaluated collapse
@@ -73,7 +73,7 @@
   decision step.
 
   In some cases the module does not contribute anything to the
-  decision engine of the decimater, but instead, e.g. simply collects
+  decision engine of the decimater, but instead, _e.g. simply collects
   information, while the decimater does it's work. For instance the
   module OpenMesh::Decimater::ModProgMeshT collects information from
   all collapses that have been done. This information can be used to

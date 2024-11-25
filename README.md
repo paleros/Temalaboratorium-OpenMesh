@@ -1,4 +1,4 @@
-# 3D nyomtatáshoz külső alátámasztás generálása
+# Támaszstruktúra generálása additív megmunkáláshoz
 
 ## Készült
 
@@ -12,6 +12,8 @@
 Témalaboratórium 2023/2024-1
 
 Önálló laboratórium 2023/2024-2
+
+Szakdolgozat készítés 2024/2025-1
 
 keretei között.
 
@@ -35,7 +37,9 @@ volt cél, hogy egy teljesen új algoritmust dolgozzak ki, vagy hogy hibátlanul
 a gyakorlatban bármilyen modellen. Ez azért jóval komolyabb feladat lett volna. Azt
 szerettük volna elérni, hogy egy 3D modellre a program kiszámolja azokat a pontokat,
 amiket alá kellene támaszani egy éles nyomtatás során. Ezt követően a programunk le is generálja 
-az alátámasztásokat, melyek "oszlop" vagy "fa" formájában jelennek meg a modell alatt.
+az alátámasztásokat, melyek "oszlop" vagy "fa" formájában jelennek meg a modell alatt. 
+Lehetőség van megkeresni az optimális forgatását az alakzatnak, amely esetén a lehető legkevesebb
+alátámasztásra van szükség.
 
 ## Beszámoló
 A Témalaboratórium tantárgyra készített projekt beszámolója [itt](ErosPal_BTMLYV_TemalabBeszam.pdf) található.
@@ -44,25 +48,25 @@ A Témalaboratórium tantárgyra készített projekt beszámolója [itt](ErosPal
 A main.cpp fájlban a következő sorokat kell módosítani:
 ```cpp
 /**
+ * Alapbeallitasok definialasa -----------------------------------------------------------------------------------------
+ */
+/**
  * Az alatamasztas tipusanak beallitasa
  */
-#define GRID_SUPPORT /// Oszlop alatamasztas
-//#define TREE_SUPPORT /// Fa alatamasztas
 
+SupportType supportType = SupportType::TREE;    /// Fa alatamasztas
+//SupportType supportType = SupportType::COLUMN;    /// Oszlop alatamasztas
 
 /**
- * A demozhato alakzatok
- * FONTOS: csak akkor mukodik, ha az alakzat haromszogekbol epul fel!
+ * Optimalis fogatas keresese
  */
-#define TEST_BUNNY
-//#define TEST_DIAMOND
-//#define TEST_SPHERE
-//#define TEST_LUCY
+//AlgorithmType algorithmType = AlgorithmType::NELDERMEAD;      /// Nelder-Mead algoritmus
+//AlgorithmType algorithmType = AlgorithmType::DIRECT;          /// Direct algoritmus
+AlgorithmType algorithmType = AlgorithmType::NONE;            /// Forgatas nelkul
 ```
 
 ## Eredmények
-Az egyik demó fájl végeredménye:
-![Bunny](Eredmeny.png)
+//Még nincsen részletezve//
 
 ## Demó
 Lehetőség van demózni a programot. A demózható alakzatok a következők:
@@ -70,9 +74,13 @@ Lehetőség van demózni a programot. A demózható alakzatok a következők:
 * Gyémánt (Diamond)
 * Gömb (Sphere)
 * Angyal-szobor (Lucy)
+* Alkatrész (Fandisk)
+* T elem (T)
+* Kocka (Cube)
+* Tehén (Cow)
 
 ## Felépítés
-A projekt három fő részből áll.
+A projekt több fő részből áll.
 1. A 3D modell beolvasása és az alátámasztandó pontok kiszámítása
    * supportPoints.cpp
    * supportPoints.h
@@ -86,11 +94,21 @@ A projekt három fő részből áll.
    * treeMain.h
    * treeAuxiliary.cpp
    * treeAuxiliary.h
-4. Az egyéb kiegészítő fájlok
+4. A forgatás optimalizálása
+   * rotationMain.cpp
+   * rotationMain.h
+   * rotationAuxiliary.cpp
+   * rotationAuxiliary.h
+5. Az egyéb kiegészítő fájlok
     * main.cpp
     * auxiliary.cpp
     * auxiliary.h
-5. A modellek
+6. Kereső algoritmusok
+    * nelderMead.cpp
+    * nelderMead.h
+    * direct.cpp
+    * direct.h
+7. A modellek
     * models/
     * output/
 

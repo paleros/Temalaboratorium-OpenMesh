@@ -22,7 +22,7 @@ if ( BUILD_APPS )
     add_subdirectory (VDProgMesh/mkbalancedpm)
     add_subdirectory (VDProgMesh/Analyzer)
 
-    add_subdirectory (Sajat)
+    add_subdirectory (SupportGeneration)
 
     # Add non ui apps as dependency before fixbundle 
     if ( WIN32 )

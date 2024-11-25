@@ -187,7 +187,7 @@ $(document).ready(function(){initNavTree('a00209_source.html',''); initResizable
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="comment">//</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <span class="comment">// The usage of data types who differ in size</span></div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="comment">// on different pc architectures (32/64 bit) and/or</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  <span class="comment">// operating systems, e.g. (unsigned) long, size_t,</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  <span class="comment">// operating systems, _e.g. (unsigned) long, size_t,</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <span class="comment">// is not recommended because of inconsistencies</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <span class="comment">// in case of cross writing and reading.</span></div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  <span class="comment">//</span></div>
@@ -556,7 +556,7 @@ $(document).ready(function(){initNavTree('a00209_source.html',''); initResizable
 <div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;  std::string as_string(uint8 version);</div>
 <div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160; </div>
 <div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *as_string(Chunk::Type t);</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *as_string(Chunk::Entity e);</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *as_string(Chunk::Entity _e);</div>
 <div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *as_string(Chunk::Dim d);</div>
 <div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *as_string(Chunk::Integer_Size d);</div>
 <div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">char</span> *as_string(Chunk::Float_Size d);</div>

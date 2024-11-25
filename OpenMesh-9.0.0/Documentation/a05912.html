@@ -91,8 +91,8 @@ $(document).ready(function(){initNavTree('a05912.html',''); initResizable(); });
 <div class="image">
 <img src="inheritance-simple.scaled.png" alt=""/>
 </div>
-<p>The basis for all meshes is the corresponding <code>MeshKernel</code>, taking care of the internal storage of the mesh items (vertices, (half-)edges, faces). This kernel is inherited by the <code>PolyMeshT</code>, i.e. the general polygonal mesh, adding higher level functionality. For specialization purposes the class <code>TriMeshT</code> is derived from <code>PolyMeshT</code> and overrides some member functions or adds functions only suitable for pure triangle meshes.</p>
-<p>In most cases a class (e.g. <code>PolyMeshT</code>) gets the class it should derive from (e.g. the mesh kernel) as a template parameter. The documentation class OpenMesh::Concepts::MeshKernel::KernelT lists the minimal interface a mesh kernel must provide. Special kernels may provide some more functionality, in this case refer to this kernel's documentation (see <a class="el" href="a01259.html">Mesh Kernels</a>). Therefore your mesh provides the pubic member functions of</p>
+<p>The basis for all meshes is the corresponding <code>MeshKernel</code>, taking care of the internal storage of the mesh items (vertices, (half-)edges, faces). This kernel is inherited by the <code>PolyMeshT</code>, i._e. the general polygonal mesh, adding higher level functionality. For specialization purposes the class <code>TriMeshT</code> is derived from <code>PolyMeshT</code> and overrides some member functions or adds functions only suitable for pure triangle meshes.</p>
+<p>In most cases a class (_e.g. <code>PolyMeshT</code>) gets the class it should derive from (_e.g. the mesh kernel) as a template parameter. The documentation class OpenMesh::Concepts::MeshKernel::KernelT lists the minimal interface a mesh kernel must provide. Special kernels may provide some more functionality, in this case refer to this kernel's documentation (see <a class="el" href="a01259.html">Mesh Kernels</a>). Therefore your mesh provides the pubic member functions of</p>
 <ul>
 <li>
 The mesh kernel. </li>

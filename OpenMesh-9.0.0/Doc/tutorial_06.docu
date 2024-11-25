@@ -5,14 +5,14 @@ this example shows how to change the data type for positions, normals, colors, a
 In the previous tutorial (\ref tutorial_05) we learned to use standard
 properties by calling the appropriate \c request method.
 Unlike the custom properties, where the user specifies the
-data type by passing the type to the handle (e.g. \c
+data type by passing the type to the handle (_e.g. \c
 MyMesh::FPropHandleT< <b>int</b>>), the data types of the standard
 properties are defined by so-called mesh traits. With traits we can
 customize and extend the mesh data structure. We can do this by
 changing two important features
 
 -# changing data type for positions, normals, colors, and texture
-   coordinates 
+   _coordinates
 -# extend mesh entities Vertex, Face, Edge, and Halfedge
    (see tutorial '\ref tutorial_07')
 

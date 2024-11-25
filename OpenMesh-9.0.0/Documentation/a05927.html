@@ -88,9 +88,9 @@ $(document).ready(function(){initNavTree('a05927.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>this example shows how to change the data type for positions, normals, colors, and texture,</p>
-<p>In the previous tutorial (<a class="el" href="a05926.html">Using standard properties</a>) we learned to use standard properties by calling the appropriate <code>request</code> method. Unlike the custom properties, where the user specifies the data type by passing the type to the handle (e.g. <code>MyMesh::FPropHandleT&lt;</code> <b>int</b>&gt;), the data types of the standard properties are defined by so-called mesh traits. With traits we can customize and extend the mesh data structure. We can do this by changing two important features</p>
+<p>In the previous tutorial (<a class="el" href="a05926.html">Using standard properties</a>) we learned to use standard properties by calling the appropriate <code>request</code> method. Unlike the custom properties, where the user specifies the data type by passing the type to the handle (_e.g. <code>MyMesh::FPropHandleT&lt;</code> <b>int</b>&gt;), the data types of the standard properties are defined by so-called mesh traits. With traits we can customize and extend the mesh data structure. We can do this by changing two important features</p>
 <ol type="1">
-<li>changing data type for positions, normals, colors, and texture coordinates</li>
+<li>changing data type for positions, normals, colors, and texture _coordinates</li>
 <li>extend mesh entities Vertex, Face, Edge, and Halfedge (see tutorial '<a class="el" href="a05928.html">Extending the mesh using traits</a>')</li>
 </ol>
 <p>Let's start. Every custom traits should derive from the default traits</p>

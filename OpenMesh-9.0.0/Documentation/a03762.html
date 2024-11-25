@@ -169,7 +169,7 @@ virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="heading"><td colspan="2"><h2 class="groupheader">Overload theses methods</h2></td></tr>
 <tr class="memitem:a83f6bde97d824c799cc3a2ee4f137ffb"><td class="memItemLeft" align="right" valign="top"><a id="a83f6bde97d824c799cc3a2ee4f137ffb"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a03762.html#a83f6bde97d824c799cc3a2ee4f137ffb">prepare</a> (MeshType &amp;_m)=0</td></tr>
-<tr class="memdesc:a83f6bde97d824c799cc3a2ee4f137ffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare mesh, e.g. add properties. <br /></td></tr>
+<tr class="memdesc:a83f6bde97d824c799cc3a2ee4f137ffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare mesh, _e.g. add properties. <br /></td></tr>
 <tr class="separator:a83f6bde97d824c799cc3a2ee4f137ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacf8b2b63d1512d3c174fbe1781ee311"><td class="memItemLeft" align="right" valign="top"><a id="aacf8b2b63d1512d3c174fbe1781ee311"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a03762.html#aacf8b2b63d1512d3c174fbe1781ee311">subdivide</a> (MeshType &amp;_m, size_t _n, const bool _update_points=true)=0</td></tr>
@@ -177,7 +177,7 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="separator:aacf8b2b63d1512d3c174fbe1781ee311"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0538a5d4d1a38d3cf88796ed41776651"><td class="memItemLeft" align="right" valign="top"><a id="a0538a5d4d1a38d3cf88796ed41776651"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a03762.html#a0538a5d4d1a38d3cf88796ed41776651">cleanup</a> (MeshType &amp;_m)=0</td></tr>
-<tr class="memdesc:a0538a5d4d1a38d3cf88796ed41776651"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleanup mesh after usage, e.g. remove added properties. <br /></td></tr>
+<tr class="memdesc:a0538a5d4d1a38d3cf88796ed41776651"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleanup mesh after usage, _e.g. remove added properties. <br /></td></tr>
 <tr class="separator:a0538a5d4d1a38d3cf88796ed41776651"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -187,9 +187,9 @@ class OpenMesh::Subdivider::Uniform::SubdividerT&lt; MeshType, RealType &gt;</h3
 <p>Abstract base class for uniform subdivision algorithms. </p>
 <p>A derived class must overload the following functions:</p><ol type="1">
 <li>const char* <a class="el" href="a03762.html#ab841456af600904618a0146e2ab65010" title="Return name of subdivision algorithm.">name() const</a></li>
-<li>void <a class="el" href="a03762.html#a83f6bde97d824c799cc3a2ee4f137ffb" title="Prepare mesh, e.g. add properties.">prepare(MeshType&amp;)</a></li>
+<li>void <a class="el" href="a03762.html#a83f6bde97d824c799cc3a2ee4f137ffb" title="Prepare mesh, _e.g. add properties.">prepare(MeshType&amp;)</a></li>
 <li>void <a class="el" href="a03762.html#aacf8b2b63d1512d3c174fbe1781ee311" title="Subdivide mesh _m _n times.">subdivide(MeshType&amp;, size_t, bool)</a></li>
-<li>void <a class="el" href="a03762.html#a0538a5d4d1a38d3cf88796ed41776651" title="Cleanup mesh after usage, e.g. remove added properties.">cleanup(MeshType&amp;)</a> </li>
+<li>void <a class="el" href="a03762.html#a0538a5d4d1a38d3cf88796ed41776651" title="Cleanup mesh after usage, _e.g. remove added properties.">cleanup(MeshType&amp;)</a> </li>
 </ol>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a89341e7a735352adbb76f6842d3fab12"></a>

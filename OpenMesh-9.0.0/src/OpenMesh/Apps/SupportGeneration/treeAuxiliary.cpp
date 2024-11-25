@@ -26,13 +26,13 @@
  * @since 3.1
  */
 bool compareInputPointsYXZAll(const Point &p1, const Point &p2){
-    if (p1.coordinates[1] > p2.coordinates[1]) {
+    if (p1._coordinates[1] > p2._coordinates[1]) {
         return true;
-    } else if (p1.coordinates[1] == p2.coordinates[1]) {
-        if (p1.coordinates[0] > p2.coordinates[0]) {
+    } else if (p1._coordinates[1] == p2._coordinates[1]) {
+        if (p1._coordinates[0] > p2._coordinates[0]) {
             return true;
-        } else if (p1.coordinates[0] == p2.coordinates[0]) {
-            return p1.coordinates[2] > p2.coordinates[2];
+        } else if (p1._coordinates[0] == p2._coordinates[0]) {
+            return p1._coordinates[2] > p2._coordinates[2];
         }
     }
     return false;
@@ -61,18 +61,7 @@ double dot(double Ax, double Ay, double Az, double Bx, double By, double Bz){
  */
 double getMaxY(std::vector<Point> &supportPointsAll){
     std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPointsYXZAll);
-    return supportPointsAll[0].coordinates[1];
-}
-
-/**
- * Visszaadja a legkisebb y erteket
- * @param supportPointsAll a pontok
- * @return a legkisebb y erteke
- * @since 3.1
- */
-double getMinY(std::vector<Point> &supportPointsAll){
-    std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPointsYXZAll);
-    return supportPointsAll[supportPointsAll.size()-1].coordinates[1];
+    return supportPointsAll[0]._coordinates[1];
 }
 
 /**
@@ -104,12 +93,12 @@ void getNeigbourPoints(std::vector<Point> &supportPointsAll, Point &actualPoint,
                        double l, double groupingValue){
 
     for (auto & i : supportPointsAll){
-        if (i.coordinates[0] <= actualPoint.coordinates[0] &&
-            i.coordinates[0] >= actualPoint.coordinates[0] - l * groupingValue &&
+        if (i._coordinates[0] <= actualPoint._coordinates[0] &&
+            i._coordinates[0] >= actualPoint._coordinates[0] - l * groupingValue &&
             //i.coordinates[1] <= actualPoint.coordinates[1] &&
-            i.coordinates[1] > actualPoint.coordinates[1] - l *groupingValue &&
-            i.coordinates[2] <= actualPoint.coordinates[2] &&
-            i.coordinates[2] >= actualPoint.coordinates[2] - l * groupingValue) {
+            i._coordinates[1] > actualPoint._coordinates[1] - l * groupingValue &&
+            i._coordinates[2] <= actualPoint._coordinates[2] &&
+            i._coordinates[2] >= actualPoint._coordinates[2] - l * groupingValue) {
             neighbourPoints.push_back(i);
         }
     }
@@ -127,8 +116,8 @@ void getNeigbourPoints(std::vector<Point> &supportPointsAll, Point &actualPoint,
  * @since 3.1
  */
 Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject, double e){
-    neighbourPoint.e = e;
-    lowestPoint.e = e;
+    neighbourPoint._e = e;
+    lowestPoint._e = e;
 
     std::vector<Point> intersectPoints;
 
@@ -147,20 +136,20 @@ Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject
             MyMesh::VertexHandle vh = *fvi;
             // Biztos van elegansabb megoldas, nekem ez jutott most eszembe
             if (counter == 0) {
-                a.coordinates[0] = meshObject.point(vh)[0];
-                a.coordinates[1] = meshObject.point(vh)[1];
-                a.coordinates[2] = meshObject.point(vh)[2];
-                a.e = e;
+                a._coordinates[0] = meshObject.point(vh)[0];
+                a._coordinates[1] = meshObject.point(vh)[1];
+                a._coordinates[2] = meshObject.point(vh)[2];
+                a._e = e;
             } else if (counter == 1) {
-                b.coordinates[0] = meshObject.point(vh)[0];
-                b.coordinates[1] = meshObject.point(vh)[1];
-                b.coordinates[2] = meshObject.point(vh)[2];
-                b.e = e;
+                b._coordinates[0] = meshObject.point(vh)[0];
+                b._coordinates[1] = meshObject.point(vh)[1];
+                b._coordinates[2] = meshObject.point(vh)[2];
+                b._e = e;
             } else if (counter == 2) {
-                c.coordinates[0] = meshObject.point(vh)[0];
-                c.coordinates[1] = meshObject.point(vh)[1];
-                c.coordinates[2] = meshObject.point(vh)[2];
-                c.e = e;
+                c._coordinates[0] = meshObject.point(vh)[0];
+                c._coordinates[1] = meshObject.point(vh)[1];
+                c._coordinates[2] = meshObject.point(vh)[2];
+                c._e = e;
             }
             counter++;
         }
@@ -176,7 +165,7 @@ Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject
         /// A szakasz iranyvektora
         Point direction;
         direction = lowestPoint - neighbourPoint;
-        direction.e = e;
+        direction._e = e;
 
         /// Az egyenes parametere ahol metszi a haromszog sikjat
         double t = (d - dotProduct(normal, neighbourPoint)) / dotProduct(normal, direction);
@@ -187,7 +176,7 @@ Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject
             /// Az metszespont kiszamitasa
             Point intersection;
             intersection = neighbourPoint + (direction * t);
-            intersection.e = e;
+            intersection._e = e;
 
             /// A metszespont a haromszogon belul van-e
             Point AB = b - a;
@@ -203,7 +192,7 @@ Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject
             Point cross3 = crossProduct(CA, CI);
 
             if (dotProduct(normal, cross1) >= 0 && dotProduct(normal, cross2) >= 0 && dotProduct(normal, cross3) >= 0) {
-                if (intersection.coordinates[1] > lowestPoint.coordinates[1]) {
+                if (intersection._coordinates[1] > lowestPoint._coordinates[1]) {
                     intersectPoints.push_back(intersection);
                 }
             }
@@ -220,10 +209,10 @@ Point passTheModel(Point& neighbourPoint, Point& lowestPoint, MyMesh& meshObject
         }
     }
     Point badPoint;
-    badPoint.coordinates[0] = 0;
-    badPoint.coordinates[1] = 0;
-    badPoint.coordinates[2] = 0;
-    badPoint.e = -1;
+    badPoint._coordinates[0] = 0;
+    badPoint._coordinates[1] = 0;
+    badPoint._coordinates[2] = 0;
+    badPoint._e = -1;
     return badPoint;
 
 }
@@ -298,15 +287,15 @@ void separateTree(std::vector<Edge>& supportTree, std::vector<Tree>& trees){
             tree.height = 0;
             continue;
         }
-        double max = tree.edges[0].p1.coordinates[1];
-        double min = tree.edges[0].p2.coordinates[1];
+        double max = tree.edges[0].p1._coordinates[1];
+        double min = tree.edges[0].p2._coordinates[1];
 
         for (auto & edge : tree.edges){
-            if (edge.p1.coordinates[1] > max){
-                max = edge.p1.coordinates[1];
+            if (edge.p1._coordinates[1] > max){
+                max = edge.p1._coordinates[1];
             }
-            if (edge.p2.coordinates[1] < min){
-                min = edge.p2.coordinates[1];
+            if (edge.p2._coordinates[1] < min){
+                min = edge.p2._coordinates[1];
             }
         }
         tree.height = max - min;
@@ -332,21 +321,21 @@ int calculateAndWriteCylinder(std::ofstream &file, Edge i, double dUp, double dD
     double x, y, z;
 
     /// Kiszamoljuk a henger alapjanak szamito also "kort", ami egy 16 szog lesz
-    x = i.p2.coordinates[0];
-    z = i.p2.coordinates[2];
-    zNull = i.p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 1)) * (dDown / 2);
-    xNull = i.p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 1)) * (dDown / 2);
+    x = i.p2._coordinates[0];
+    z = i.p2._coordinates[2];
+    zNull = i.p2._coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 1)) * (dDown / 2);
+    xNull = i.p2._coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 1)) * (dDown / 2);
     deltaX1 = xNull - x;
     deltaZ1 = zNull - z;
-    zNull = i.p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 2)) * (dDown / 2);
-    xNull = i.p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 2)) * (dDown / 2);
+    zNull = i.p2._coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 2)) * (dDown / 2);
+    xNull = i.p2._coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 2)) * (dDown / 2);
     deltaX2 = xNull - x;
     deltaZ2 = zNull - z;
-    zNull = i.p2.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 3)) * (dDown / 2);
-    xNull = i.p2.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dDown / 2);
+    zNull = i.p2._coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 3)) * (dDown / 2);
+    xNull = i.p2._coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dDown / 2);
     deltaX3 = xNull - x;
     deltaZ3 = zNull - z;
-    y = i.p2.coordinates[1];
+    y = i.p2._coordinates[1];
 
     /// Elso negyed pontjai
     file << "v " << x + (dDown / 2) << " " << y << " " << z << "\n"; /// 1
@@ -370,21 +359,21 @@ int calculateAndWriteCylinder(std::ofstream &file, Edge i, double dUp, double dD
     file << "v " << x + deltaX1 << " " << y << " " << z - deltaZ1 << "\n"; /// 16
 
     /// Kiszamoljuk a henger alapjanak szamito felso "kort", ami egy 16 szog lesz
-    x = i.p1.coordinates[0];
-    z = i.p1.coordinates[2];
-    zNull = i.p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 1)) * (dUp / 2);
-    xNull = i.p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 1)) * (dUp / 2);
+    x = i.p1._coordinates[0];
+    z = i.p1._coordinates[2];
+    zNull = i.p1._coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 1)) * (dUp / 2);
+    xNull = i.p1._coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 1)) * (dUp / 2);
     deltaX1 = xNull - x;
     deltaZ1 = zNull - z;
-    zNull = i.p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 2)) * (dUp / 2);
-    xNull = i.p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 2)) * (dUp / 2);
+    zNull = i.p1._coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 2)) * (dUp / 2);
+    xNull = i.p1._coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 2)) * (dUp / 2);
     deltaX2 = xNull - x;
     deltaZ2 = zNull - z;
-    zNull = i.p1.coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 3)) * (dUp / 2);
-    xNull = i.p1.coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dUp / 2);
+    zNull = i.p1._coordinates[2] + std::cos(M_PI / 2 - (M_PI / 8 * 3)) * (dUp / 2);
+    xNull = i.p1._coordinates[0] + std::sin(M_PI / 2 - (M_PI / 8 * 3)) * (dUp / 2);
     deltaX3 = xNull - x;
     deltaZ3 = zNull - z;
-    y = i.p1.coordinates[1];
+    y = i.p1._coordinates[1];
 
     /// Elso negyed pontjai
     file << "v " << x + (dUp / 2) << " " << y << " " << z << "\n"; /// 1
@@ -428,14 +417,14 @@ int calculateAndWriteCylinder(std::ofstream &file, Edge i, double dUp, double dD
  */
 Point upAlongTheSection(Point A, Point B, double distance){
     double ABDistance = getDistance(A, B);
-    double ux = -(B.coordinates[0] - A.coordinates[0]) / ABDistance;
-    double uy = -(B.coordinates[1] - A.coordinates[1]) / ABDistance;
-    double uz = -(B.coordinates[2] - A.coordinates[2]) / ABDistance;
+    double ux = -(B._coordinates[0] - A._coordinates[0]) / ABDistance;
+    double uy = -(B._coordinates[1] - A._coordinates[1]) / ABDistance;
+    double uz = -(B._coordinates[2] - A._coordinates[2]) / ABDistance;
 
     Point C;
-    C.coordinates[0] = A.coordinates[0] + distance * ux;
-    C.coordinates[1] = A.coordinates[1] + distance * uy;
-    C.coordinates[2] = A.coordinates[2] + distance * uz;
+    C._coordinates[0] = A._coordinates[0] + distance * ux;
+    C._coordinates[1] = A._coordinates[1] + distance * uy;
+    C._coordinates[2] = A._coordinates[2] + distance * uz;
     return C;
 }
 
@@ -472,8 +461,8 @@ writeSupportTreeDynamic(const std::string &outputFileName, const std::string &in
 
             for (auto &i: tree.edges) {
 
-                double dUp = del + D - D * (i.p1.coordinates[1] - minY) / H;
-                double dDown = del + D - D * (i.p2.coordinates[1] - minY) / H;
+                double dUp = del + D - D * (i.p1._coordinates[1] - minY) / H;
+                double dDown = del + D - D * (i.p2._coordinates[1] - minY) / H;
 
                 /// A minimalis atmero
                 if (dUp < minDiameter) {
@@ -484,7 +473,7 @@ writeSupportTreeDynamic(const std::string &outputFileName, const std::string &in
                 }
 
                 /// Ha kozvetlenul tamasztja az alakzatot
-                if (i.p1.weight == -2 || i.p2.weight == -2) {
+                if (i.p1._weight == -2 || i.p2._weight == -2) {
                     dUp = minDiameter;
                 }
 
@@ -499,7 +488,7 @@ writeSupportTreeDynamic(const std::string &outputFileName, const std::string &in
                     edge.p1 = upAlongTheSection(i.p2, i.p1, -dDown);
                     edge.p2 = i.p2;
                     edge.e = 0;
-                    double dUpNew = del + D - D * (edge.p1.coordinates[1] - minY) / H;
+                    double dUpNew = del + D - D * (edge.p1._coordinates[1] - minY) / H;
 
                     /// A minimalis atmero
                     if (dUpNew < minDiameter) {
@@ -519,7 +508,7 @@ writeSupportTreeDynamic(const std::string &outputFileName, const std::string &in
                     edge.p1 = upAlongTheSection(i.p2, i.p1, -dDown);
                     edge.p2 = i.p2;
                     edge.e = 0;
-                    double dUpNew = del + D - D * (edge.p1.coordinates[1] - minY) / H;
+                    double dUpNew = del + D - D * (edge.p1._coordinates[1] - minY) / H;
 
                     /// A minimalis atmero
                     if (dUpNew < minDiameter) {
@@ -570,17 +559,16 @@ void intersectRayTriangle(Point& p1, Point& p2, Point& a, Point& b, Point& c, Po
     Point cross1 = crossProduct(AB, AI);
     Point cross2 = crossProduct(BC, BI);
     Point cross3 = crossProduct(CA, CI);
-    //TODO az e hiányzik?
 
     if (dotProduct(normal, cross1) >= 0 && dotProduct(normal, cross2) >= 0 && dotProduct(normal, cross3) >= 0) {
-        intersection.weight = 0;
+        intersection._weight = 0;
         intersect = intersection;
     } else {
         Point badPoint;
-        badPoint.coordinates[0] = 0;
-        badPoint.coordinates[1] = 0;
-        badPoint.coordinates[2] = 0;
-        badPoint.weight = -1;
+        badPoint._coordinates[0] = 0;
+        badPoint._coordinates[1] = 0;
+        badPoint._coordinates[2] = 0;
+        badPoint._weight = -1;
         intersect = badPoint;
     }
 }
@@ -600,24 +588,24 @@ bool isItInside(MyMesh &meshObject, Point &p1, Point &p2) {
         /// A haromszog csucspontjainak kinyerese
         MyMesh::FaceVertexIter fv_it = meshObject.fv_iter(*f_it);
         Point a;
-        a.coordinates[0] = meshObject.point(*fv_it)[0];
-        a.coordinates[1] = meshObject.point(*fv_it)[1];
-        a.coordinates[2] = meshObject.point(*fv_it)[2];
+        a._coordinates[0] = meshObject.point(*fv_it)[0];
+        a._coordinates[1] = meshObject.point(*fv_it)[1];
+        a._coordinates[2] = meshObject.point(*fv_it)[2];
         ++fv_it;
         Point b;
-        b.coordinates[0] = meshObject.point(*fv_it)[0];
-        b.coordinates[1] = meshObject.point(*fv_it)[1];
-        b.coordinates[2] = meshObject.point(*fv_it)[2];
+        b._coordinates[0] = meshObject.point(*fv_it)[0];
+        b._coordinates[1] = meshObject.point(*fv_it)[1];
+        b._coordinates[2] = meshObject.point(*fv_it)[2];
         ++fv_it;
         Point c;
-        c.coordinates[0] = meshObject.point(*fv_it)[0];
-        c.coordinates[1] = meshObject.point(*fv_it)[1];
-        c.coordinates[2] = meshObject.point(*fv_it)[2];
+        c._coordinates[0] = meshObject.point(*fv_it)[0];
+        c._coordinates[1] = meshObject.point(*fv_it)[1];
+        c._coordinates[2] = meshObject.point(*fv_it)[2];
 
         /// Metszespont szamitasa
         Point intersect;
         intersectRayTriangle(p1, p2, a, b, c, intersect);
-        if (intersect.weight == 0) {
+        if (intersect._weight == 0) {
             intersectPoints.push_back(intersect);
         }
     }
@@ -629,20 +617,20 @@ bool isItInside(MyMesh &meshObject, Point &p1, Point &p2) {
     /// Kiszamolja, hogy az adott szakasz hany ponton metszi az alakzatot es azt milyen aranyban elosztva a szakaszon
     for (auto & intersectPoint : intersectPoints){
         Point v, w;
-        v.coordinates[0] = p2.coordinates[0] - p1.coordinates[0];
-        v.coordinates[1] = p2.coordinates[1] - p1.coordinates[1];
-        v.coordinates[2] = p2.coordinates[2] - p1.coordinates[2];
-        w.coordinates[0] = intersectPoint.coordinates[0] - p1.coordinates[0];
-        w.coordinates[1] = intersectPoint.coordinates[1] - p1.coordinates[1];
-        w.coordinates[2] = intersectPoint.coordinates[2] - p1.coordinates[2];
+        v._coordinates[0] = p2._coordinates[0] - p1._coordinates[0];
+        v._coordinates[1] = p2._coordinates[1] - p1._coordinates[1];
+        v._coordinates[2] = p2._coordinates[2] - p1._coordinates[2];
+        w._coordinates[0] = intersectPoint._coordinates[0] - p1._coordinates[0];
+        w._coordinates[1] = intersectPoint._coordinates[1] - p1._coordinates[1];
+        w._coordinates[2] = intersectPoint._coordinates[2] - p1._coordinates[2];
 
         double dot = dotProduct(v, w);
         double len_sq = dotProduct(v, v);
 
         double t = dot / len_sq;
 
-        double e = p1.e;
-        if (t <= e) { //TODO még a t -vel lehetne játszani
+        double e = p1._e;
+        if (t <= e) {
             counter1++;
         } else if (t >= 1 -e) {
             counter2++;

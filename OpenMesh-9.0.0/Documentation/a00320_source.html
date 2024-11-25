@@ -575,7 +575,7 @@ $(document).ready(function(){initNavTree('a00320_source.html',''); initResizable
 <div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;  <span class="keywordtype">void</span> request_edge_status()</div>
 <div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;  {</div>
 <div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;    <span class="keywordflow">if</span> (!refcount_estatus_++)</div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;      add_property( edge_status_, <span class="stringliteral">&quot;e:status&quot;</span> );</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;      add_property( edge_status_, <span class="stringliteral">&quot;_e:status&quot;</span> );</div>
 <div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;  }</div>
 <div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160; </div>
 <div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;  <span class="keywordtype">void</span> request_face_status()</div>
@@ -915,7 +915,7 @@ $(document).ready(function(){initNavTree('a00320_source.html',''); initResizable
 <div class="ttc" id="aa02770_html_a5654423dfe8d145bb41cec0879f50651"><div class="ttname"><a href="a02770.html#a5654423dfe8d145bb41cec0879f50651">OpenMesh::Attributes::StatusInfo::set_bit</a></div><div class="ttdeci">void set_bit(unsigned int _s)</div><div class="ttdoc">set a certain bit</div><div class="ttdef"><b>Definition:</b> Status.hh:159</div></div>
 <div class="ttc" id="aa02770_html_ab95b6d356942d383a170fdfb73c42c91"><div class="ttname"><a href="a02770.html#ab95b6d356942d383a170fdfb73c42c91">OpenMesh::Attributes::StatusInfo::unset_bit</a></div><div class="ttdeci">void unset_bit(unsigned int _s)</div><div class="ttdoc">unset a certain bit</div><div class="ttdef"><b>Definition:</b> Status.hh:161</div></div>
 <div class="ttc" id="aa02910_html"><div class="ttname"><a href="a02910.html">OpenMesh::PropertyT</a></div><div class="ttdoc">Default property class for any type T.</div><div class="ttdef"><b>Definition:</b> Property.hh:93</div></div>
-<div class="ttc" id="aa02910_html_ab71162b8f060386c75d8af9df942a874"><div class="ttname"><a href="a02910.html#ab71162b8f060386c75d8af9df942a874">OpenMesh::PropertyT::data_vector</a></div><div class="ttdeci">vector_type &amp; data_vector()</div><div class="ttdoc">Get reference to property vector (be careful, improper usage, e.g. resizing, may crash OpenMesh!...</div><div class="ttdef"><b>Definition:</b> Property.hh:185</div></div>
+<div class="ttc" id="aa02910_html_ab71162b8f060386c75d8af9df942a874"><div class="ttname"><a href="a02910.html#ab71162b8f060386c75d8af9df942a874">OpenMesh::PropertyT::data_vector</a></div><div class="ttdeci">vector_type &amp; data_vector()</div><div class="ttdoc">Get reference to property vector (be careful, improper usage, _e.g. resizing, may crash OpenMesh!...</div><div class="ttdef"><b>Definition:</b> Property.hh:185</div></div>
 <div class="ttc" id="aa02922_html"><div class="ttname"><a href="a02922.html">OpenMesh::VPropHandleT&lt; StatusInfo &gt;</a></div></div>
 <div class="ttc" id="aa02926_html"><div class="ttname"><a href="a02926.html">OpenMesh::HPropHandleT&lt; StatusInfo &gt;</a></div></div>
 <div class="ttc" id="aa02930_html"><div class="ttname"><a href="a02930.html">OpenMesh::EPropHandleT&lt; StatusInfo &gt;</a></div></div>

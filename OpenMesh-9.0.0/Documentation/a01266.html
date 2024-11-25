@@ -653,12 +653,12 @@ template&lt;class Mesh &gt; </div>
 
 <p>Get binary size of data. </p>
 <p>This function calls the corresponding writer which calculates the size of the data that would be written to a binary file</p>
-<p>The file format is determined by parameter _ext. _ext has to include ".[format]" in order to work properly (e.g. ".OFF")</p>
+<p>The file format is determined by parameter _ext. _ext has to include ".[format]" in order to work properly (_e.g. ".OFF")</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_mesh</td><td>Mesh to write </td></tr>
     <tr><td class="paramname">_ext</td><td>extension of the file (used to determine the writing module) </td></tr>
-    <tr><td class="paramname">_opt</td><td>Writer options (e.g. writing of normals ... depends on the writer capabilities)</td></tr>
+    <tr><td class="paramname">_opt</td><td>Writer options (_e.g. writing of normals ... depends on the writer capabilities)</td></tr>
   </table>
   </dd>
 </dl>
@@ -755,7 +755,7 @@ template&lt;class Mesh &gt; </div>
   <table class="params">
     <tr><td class="paramname">_mesh</td><td>The target mesh that will be filled with the read data </td></tr>
     <tr><td class="paramname">_filename</td><td>fill to load </td></tr>
-    <tr><td class="paramname">_opt</td><td>Reader options (e.g. skip loading of normals ... depends on the reader capabilities). Note that simply passing an <a class="el" href="a02334.html#a9f4f797b08c045b611eaa6f8d149da21" title="Definitions of Options for reading and writing.">Options::Flag</a> enum is not sufficient. </td></tr>
+    <tr><td class="paramname">_opt</td><td>Reader options (_e.g. skip loading of normals ... depends on the reader capabilities). Note that simply passing an <a class="el" href="a02334.html#a9f4f797b08c045b611eaa6f8d149da21" title="Definitions of Options for reading and writing.">Options::Flag</a> enum is not sufficient. </td></tr>
     <tr><td class="paramname">_clear</td><td>Clear the target data before filling it (allows to load multiple files into one Mesh). If you only want to read a mesh without clearing set _clear to false. Providing a default <a class="el" href="a02334.html" title="Set options for reader/writer modules.">Options</a> object is sufficient in this case.</td></tr>
   </table>
   </dd>
@@ -811,14 +811,14 @@ template&lt;class Mesh &gt; </div>
 </div><div class="memdoc">
 
 <p>Read a mesh from file open std::istream. </p>
-<p>The file format is determined by parameter _ext. _ext has to include ".[format]" in order to work properly (e.g. ".OFF")</p>
+<p>The file format is determined by parameter _ext. _ext has to include ".[format]" in order to work properly (_e.g. ".OFF")</p>
 <dl class="section note"><dt>Note</dt><dd>If you link statically against <a class="el" href="a01263.html" title="Contains all the mesh ingredients like the polygonal mesh, the triangle mesh, different mesh kernels ...">OpenMesh</a>, you have to add the define OM_STATIC_BUILD to your application. This will ensure that readers and writers get initialized correctly.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_mesh</td><td>The target mesh that will be filled with the read data </td></tr>
     <tr><td class="paramname">_is</td><td>stream to load the data from </td></tr>
     <tr><td class="paramname">_ext</td><td>The file format that is written to the stream </td></tr>
-    <tr><td class="paramname">_opt</td><td>Reader options (e.g. skip loading of normals ... depends on the reader capabilities) </td></tr>
+    <tr><td class="paramname">_opt</td><td>Reader options (_e.g. skip loading of normals ... depends on the reader capabilities) </td></tr>
     <tr><td class="paramname">_clear</td><td>Clear the target data before filling it (allows to load multiple files into one Mesh)</td></tr>
   </table>
   </dd>
@@ -874,7 +874,7 @@ template&lt;class Mesh &gt; </div>
   <table class="params">
     <tr><td class="paramname">_mesh</td><td>The mesh that will be written to file </td></tr>
     <tr><td class="paramname">_filename</td><td>output filename </td></tr>
-    <tr><td class="paramname">_opt</td><td>Writer options (e.g. writing of normals ... depends on the writer capabilities) </td></tr>
+    <tr><td class="paramname">_opt</td><td>Writer options (_e.g. writing of normals ... depends on the writer capabilities) </td></tr>
     <tr><td class="paramname">_precision</td><td>specifies stream precision for ascii files</td></tr>
   </table>
   </dd>
@@ -930,14 +930,14 @@ template&lt;class Mesh &gt; </div>
 </div><div class="memdoc">
 
 <p>Write a mesh to an open std::ostream. </p>
-<p>The file format is determined by parameter _ext. _ext has to include ".[format]" in order to work properly (e.g. ".OFF")</p>
+<p>The file format is determined by parameter _ext. _ext has to include ".[format]" in order to work properly (_e.g. ".OFF")</p>
 <dl class="section note"><dt>Note</dt><dd>If you link statically against <a class="el" href="a01263.html" title="Contains all the mesh ingredients like the polygonal mesh, the triangle mesh, different mesh kernels ...">OpenMesh</a>, you have to add the define OM_STATIC_BUILD to your application. This will ensure that readers and writers get initialized correctly.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_mesh</td><td>The mesh that will be written to file </td></tr>
     <tr><td class="paramname">_os</td><td>output stream to write into </td></tr>
     <tr><td class="paramname">_ext</td><td>extension defining the type of output </td></tr>
-    <tr><td class="paramname">_opt</td><td>Writer options (e.g. writing of normals ... depends on the writer capabilities) </td></tr>
+    <tr><td class="paramname">_opt</td><td>Writer options (_e.g. writing of normals ... depends on the writer capabilities) </td></tr>
     <tr><td class="paramname">_precision</td><td>specifies stream precision for ascii files</td></tr>
   </table>
   </dd>

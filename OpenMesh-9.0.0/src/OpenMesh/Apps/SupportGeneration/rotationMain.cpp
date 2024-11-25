@@ -9,8 +9,7 @@
  */
 
 #include "rotationMain.h"
-#include <OpenMesh/Core/IO/MeshIO.hh>
-#include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
+#include "OpenMesh/Core/IO/MeshIO.hh"
 #include <utility>
 #include "auxiliary.h"
 #include "supportPoints.h"
@@ -87,7 +86,6 @@ double getOptimalValue(std::vector<double> &angles, MyMesh mesh, std::string &in
     /// Az alatamasztas tipusa "fa"
     if (supportType == SupportType::TREE) {
         value = treeSupportGenerated(meshObject, inputFile, supportPointsAll, diameter, l, e, groupingValue, false);
-        //TODO tamasz elvekonyitas nem mindig jo
     }
 
     /// Logolja a probalkozasok szamat es a forgatas szoget
@@ -114,9 +112,8 @@ std::vector<double> optimalSide(std::string &inputFile, MyMesh &mesh, SupportTyp
     int roundNumber = 1;
 
     /// Igy csak az elso parametert tudja valtoztatni
-    auto function = [mesh, &inputFile, supportType, &roundNumber](const std::vector<double>& angles) {
-        return getOptimalValue(const_cast<std::vector<double> &>(angles), mesh, inputFile, supportType,
-                               roundNumber);
+    auto function = [mesh, &inputFile, supportType, &roundNumber](std::vector<double> angles) {
+        return getOptimalValue(angles, mesh, inputFile, supportType, roundNumber);
     };
 
     /// A kezdeti szogek
@@ -127,7 +124,7 @@ std::vector<double> optimalSide(std::string &inputFile, MyMesh &mesh, SupportTyp
 
         /// Nelder-Mead algoritmus
         writeLog("\tUse Nelder-Mead algorithm");
-        NelderMead::optimize(function, angles, 100, 0.0001, M_PI);
+        NelderMead::optimize(function, angles, 100, 0.0001, M_PI-0.4);
 
     }else if(algorithmType == AlgorithmType::DIRECT){
 
@@ -216,12 +213,11 @@ void run(std::string inputFile, SupportType supportType, AlgorithmType algorithm
 
     /// Az alatamasztas tipusa "oszlop"
     if (supportType == SupportType::COLUMN){
-        columnSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter, l, e, true);
+        columnSupportGenerated(meshObject, inputFile, supportPointsAll, intersectPoints, diameter/2, l, e, true);
     }
 
     /// Az alatamasztas tipusa "fa"
     if (supportType == SupportType::TREE){
         treeSupportGenerated(meshObject, inputFile, supportPointsAll, diameter, l, e, groupingValue, true);
-        //TODO a generalas végei sem teljesen jok
     }
 }

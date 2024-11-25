@@ -108,7 +108,7 @@ $(document).ready(function(){initNavTree('a05926.html',''); initResizable(); });
 <tr>
 <td>TexCoord </td><td>X </td><td>&#160; </td><td>&#160; </td><td>X  </td></tr>
 </table>
-<p>To add a standard property to an entity simply use the appropriate request method, e.g. <code>request_face_normals()</code>. The only exception is the position <sup>(*)</sup>. It cannot be added because it is permanently available, hence it cannot be removed as well.</p>
+<p>To add a standard property to an entity simply use the appropriate request method, _e.g. <code>request_face_normals()</code>. The only exception is the position <sup>(*)</sup>. It cannot be added because it is permanently available, hence it cannot be removed as well.</p>
 <p>In this example we</p><ol type="1">
 <li>add vertex normals to a mesh object</li>
 <li>load a file</li>
@@ -242,7 +242,7 @@ has_vertex_texcoords2D() </li>
 has_vertex_texcoords3D() </li>
 </ul>
 <p>which return true if a property has been requested before and is available.</p>
-<p>The status property is used for marking geometry elements i.e. as selected or deleted. See <a class="el" href="a05929.html">Deleting geometry elements</a> for further information.</p>
+<p>The status property is used for marking geometry elements i._e. as selected or deleted. See <a class="el" href="a05929.html">Deleting geometry elements</a> for further information.</p>
 <p>Now we know how to add and remove standard properties, but how do we access them? Again we need the mesh object. Unlike the custom properties, where we accessed one with the mesh member function <code>property()</code>, for each standard property the mesh provides a get and a set method. We have used one pair of get/set methods already in the previous three tutorials, where we computed a new location for the vertex position. Here we move all vertices a unit length along their normal direction:</p>
  <div class="fragment"><div class="line">  <span class="keywordflow">for</span> (<a class="code" href="a02694.html#afb18d53e36e53e024c8506cd3c961096">MyMesh::VertexIter</a> v_it = mesh.vertices_begin();</div>
 <div class="ttc" id="aa02694_html_afb18d53e36e53e024c8506cd3c961096"><div class="ttname"><a href="a02694.html#afb18d53e36e53e024c8506cd3c961096">OpenMesh::PolyMeshT::VertexIter</a></div><div class="ttdeci">Kernel::VertexIter VertexIter</div><div class="ttdoc">Scalar type.</div><div class="ttdef"><b>Definition:</b> PolyMeshT.hh:143</div></div>
@@ -250,7 +250,7 @@ has_vertex_texcoords3D() </li>
 <div class="line">  {</div>
 <div class="line">    mesh.set_point( *v_it, mesh.point(*v_it)+mesh.normal(*v_it) );</div>
 <div class="line">  }</div>
-</div><!-- fragment --><p> The get-methods take an entity handle and return the value of the desired property, and the set-methods require an additional parameter to pass the new value to the property. According to the table not every pair of get/set-methods apply to every entity. For example a face has normally no texture coordinates, hence a call to <code>mesh.texcoord2D( _face_handle )</code> will result in an error when compiling the code.</p>
+</div><!-- fragment --><p> The get-methods take an entity handle and return the value of the desired property, and the set-methods require an additional parameter to pass the new value to the property. According to the table not every pair of get/set-methods apply to every entity. For example a face has normally no texture _coordinates, hence a call to <code>mesh.texcoord2D( _face_handle )</code> will result in an error when compiling the code.</p>
 <p>Since we know how to add/remove/access standard properties, one further question remains. What data types do they have? And are there more hidden secrets? The next tutorial (<a class="el" href="a05927.html">Using mesh attributes and traits</a>) will give the answer.</p>
 <p>The complete source looks like this:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>

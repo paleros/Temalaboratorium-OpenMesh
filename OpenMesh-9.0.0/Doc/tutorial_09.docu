@@ -34,7 +34,7 @@ add_property function:
 
 Accessing to the property is available via the property function.
 This function gets the property handle (created above) and a
-handle (e.g. to a vertex or a face):
+handle (_e.g. to a vertex or a face):
 
 \code
   // Write something to a face property:

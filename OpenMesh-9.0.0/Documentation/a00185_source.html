@@ -191,10 +191,10 @@ $(document).ready(function(){initNavTree('a00185_source.html',''); initResizable
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  <span class="comment">// add a face with incident halfedge</span></div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="a02562.html">FaceHandle</a> add_face(<a class="code" href="a02554.html">HalfedgeHandle</a> _heh) = 0;</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  <span class="comment">// add texture coordinates per face, _vh references the first texcoord</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  <span class="comment">// add texture _coordinates per face, _vh references the first texcoord</span></div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> add_face_texcoords( <a class="code" href="a02562.html">FaceHandle</a> _fh, <a class="code" href="a02550.html">VertexHandle</a> _vh, <span class="keyword">const</span> std::vector&lt;Vec2f&gt;&amp; _face_texcoords) = 0;</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  <span class="comment">// add texture 3d coordinates per face, _vh references the first texcoord</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  <span class="comment">// add texture 3d _coordinates per face, _vh references the first texcoord</span></div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> add_face_texcoords( <a class="code" href="a02562.html">FaceHandle</a> _fh, <a class="code" href="a02550.html">VertexHandle</a> _vh, <span class="keyword">const</span> std::vector&lt;Vec3f&gt;&amp; _face_texcoords) = 0;</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  <span class="comment">// Set the texture index for a face</span></div>

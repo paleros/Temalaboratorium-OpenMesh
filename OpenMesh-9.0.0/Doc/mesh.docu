@@ -63,11 +63,11 @@ The goals/features of the C++ implementation are:
 <ul>
 <li> Flexibility:
     <ul>
-    <li>  Choose suitable types for scalars and coordinates (e.g. float,
+    <li>  Choose suitable types for scalars and _coordinates (_e.g. float,
 	  double, exact arithmetic and two-, three-, or n-dimensional
 	  points).</li>
     <li>  Enhance each item type by your own attributes/properties, like
-          e.g. adding a normal vector or a \c FaceHandle to class \c
+          _e.g. adding a normal vector or a \c FaceHandle to class \c
           Vertex.</li>
     </ul>
 </li>
@@ -76,7 +76,7 @@ The goals/features of the C++ implementation are:
     <li>  Avoid the overhead of virtual inheritance and virtual function calls.</li>
     <li>  Resolve as many type/attribute dependencies as possible at
           compile-time instead of testing for attributes at run-time
-          (e.g. normal vectors for faces).</li>
+          (_e.g. normal vectors for faces).</li>
     </ul>
 </li>
 <li> Type-safety for handles, <b>no type-casting (*)</b>: Vertices,
@@ -144,7 +144,7 @@ their connectivity in faces referencing their vertices and neighbors,
 <em> edge-based </em> structures put the connectivity information into
 the edges. Each edge references its two vertices, the faces it belongs
 to and the two next edges in these faces. If one now splits the edges
-(i.e. an edge connecting vertex \c A and vertex \c B becomes two <em>
+(i._e. an edge connecting vertex \c A and vertex \c B becomes two <em>
 directed halfeges </em> from \c A to \c B and vice versa) one gets a
 <em> halfedge-based </em> data structure. The following figure
 illustrates the way connectivity is stored in this structure:
@@ -154,7 +154,7 @@ illustrates the way connectivity is stored in this structure:
   <td> \image html halfedge_structure3.png
   <td>
 <ul>
-<li> Each \b vertex references one outgoing halfedge, i.e. a halfedge that
+<li> Each \b vertex references one outgoing halfedge, i._e. a halfedge that
   starts at this vertex (1).
 <li> Each \b face references one of the halfedges bounding it (2).
 <li> Each \b halfedge provides a handle to
@@ -314,7 +314,7 @@ example at the end of this page.
 
 This decision is quite simple: Whenever possible choose the triangle
 mesh. The restriction to triangular faces usually leads to more
-efficient algorithms (e.g. rendering triangles is much faster than
+efficient algorithms (_e.g. rendering triangles is much faster than
 rendering arbitrary polygons). Additionally some algorithms are only
 implemented for triangle meshes while triangle meshes inherit the full
 functionality of polygonal meshes. For a list of them refer to the
@@ -333,7 +333,7 @@ The mesh kernel specifies how the mesh entities (vertices,
 (half-)edges, faces) are internally stored. In fact the entities are kept in
 so-called properties. A property itself provides an array like interface.
 The kernel defines the corresponding handle types,
-i.e. the way items reference each other. Since the properties have an
+i._e. the way items reference each other. Since the properties have an
 array like interface the handles are represented internally as indices.
 
 The default kernel is \c ArrayKernelT. Which is good for most
@@ -375,13 +375,13 @@ by a so-called \em traits class. Using this mechanism one can
 <li> change the normal type \c MyMesh::Normal
 <li> change the color type \c MyMesh::Color
 <li> use predefined attributes like normal vector, color, texture
-     coordinates, ... for the
+     _coordinates, ... for the
      mesh items.
 <li> add arbitrary classes to the mesh items.
 </ol>
 
 All these customizations are encapsulated in one class \c MyTraits,
-that is used as template argument to the mesh, e.g.
+that is used as template argument to the mesh, _e.g.
 \code
 struct MyTraits {
   // your customization
@@ -393,7 +393,7 @@ The rest of this section explains the construction of this traits
 class, its application to the mesh will be the topic of the next section.
 
 For each mesh entity one can control the predefined attributes to be
-attached by a traits class using some convenience macros, e.g.  \c
+attached by a traits class using some convenience macros, _e.g.  \c
 OpenMesh::VertexAttributes and \c OpenMesh::VertexTraits for
 vertices. The default traits class looks like this:
 
@@ -414,7 +414,7 @@ only have to define the classes or types you want to override or substitute.
 <br>
 \subsection sec_change_point Changing the Point type
 
-Changing the type that is used to store the point coordinates as well
+Changing the type that is used to store the point _coordinates as well
 as the normal vectors can simply be done by defining this type in the
 traits class. The following code changes the coordinate type in order
 to use \c double instead of \c float.
@@ -422,7 +422,7 @@ to use \c double instead of \c float.
 \include traits1.cc
 
 Using the OpenMesh::VectorT class you can easily plug in any scalar
-type for the use in point coordinates, e.g. some exact arithmetic. You
+type for the use in point _coordinates, _e.g. some exact arithmetic. You
 can also exchange the whole class representing points as long as it
 provides the same interface as the OpenMesh::VectorT class.
 
@@ -436,7 +436,7 @@ OpenMesh::Attributes. The advantage of these attributes is that
 they are registered at the items they are added to. Therefore
 algorithms can check for these attributes at run-time as well as at
 compile-time. This is important if you want to implement algorithms
-acting on different meshes, that may or may not have e.g. normal
+acting on different meshes, that may or may not have _e.g. normal
 vectors per vertex/face.
 
 Adding these predefined attributes is quite simple. You provide an
@@ -548,8 +548,8 @@ All mesh-kernel combinations are predefined in the directory
 complete list of them. For our example we use the \c
 TriMesh_ArrayKernelT and parameterize it by our \c MyTraits class.
 
-We will need face and vertex normals and e.g. for color coding vertex
-curvature, i.e. vertex color.
+We will need face and vertex normals and _e.g. for color coding vertex
+curvature, i._e. vertex color.
 
 \include mymesh.cc
 
@@ -611,13 +611,13 @@ diagram for the %OpenMesh classes.
 The basis for all meshes is the corresponding \c MeshKernel, taking
 care of the internal storage of the mesh items (vertices,
 (half-)edges, faces). This kernel is inherited by the \c PolyMeshT,
-i.e. the general polygonal mesh, adding higher level
+i._e. the general polygonal mesh, adding higher level
 functionality. For specialization purposes the class \c TriMeshT is
 derived from \c PolyMeshT and overrides some member functions or adds
 functions only suitable for pure triangle meshes.
 
-In most cases a class (e.g. \c PolyMeshT) gets the class it should
-derive from (e.g. the mesh kernel) as a template parameter. The
+In most cases a class (_e.g. \c PolyMeshT) gets the class it should
+derive from (_e.g. the mesh kernel) as a template parameter. The
 documentation class OpenMesh::Concepts::MeshKernel::KernelT lists the
 minimal interface a mesh kernel must provide. Special kernels may
 provide some more functionality, in this case refer to this kernel's
@@ -663,7 +663,7 @@ For a quick start you can copy the following code directly to your project.
 OM_STATIC_BUILD to your application. This will ensure that readers and writers
 get initialized correctly.</li>
 <li>IOManager uses the filename extension to determine which reader/writer
-to use. I.e. if passing "inputmesh.obj" as filename parameter, the OBJ-File
+to use. I._e. if passing "inputmesh.obj" as filename parameter, the OBJ-File
 reader/writer will be used to parse/write the file.</li>
 </ul>
 
@@ -771,7 +771,7 @@ version \c ConstXYZIter.
 All iterators are defined in the namespace
 OpenMesh::Iterators. They are template classes that expect a mesh as
 template argument to be fully specified. You should use the
-iterator types provided by the mesh itself, i.e. \c MyMesh::VertexIter instead of \c
+iterator types provided by the mesh itself, i._e. \c MyMesh::VertexIter instead of \c
 OpenMesh::Iterators::VertexIterT<MyMesh>.
 
 The iterators are:
@@ -863,7 +863,7 @@ a skipping iterator by calling one of the following functions:
 \arg \c halfedges_sbegin(),
 \arg \c faces_sbegin()
 
-The ends for these iterators are equal to the standard iterator ends (e.g. \c vertices_end() ).
+The ends for these iterators are equal to the standard iterator ends (_e.g. \c vertices_end() ).
 
 \section it_circs Circulators
 
@@ -871,7 +871,7 @@ The ends for these iterators are equal to the standard iterator ends (e.g. \c ve
 provide means to enumerate items adjacent to
 another item of the same or another type.
 For example, a \c VertexVertexIter allows to enumerate all vertices
-immediately adjacent to a (center) vertex (i.e. it allows
+immediately adjacent to a (center) vertex (i._e. it allows
 to enumerate the so-called 1-ring of the center vertex).
 Analogously, a \c FaceHalfedgeIter enumerates all the
 halfedges belonging to a face.
@@ -881,7 +881,7 @@ around a given center item.
 
 The constructor of a circulator is of the form
 \c Circulator(MeshType mesh, TargetHandle center_handle),
-i.e. it takes a mesh and the handle of the item to circulate
+i._e. it takes a mesh and the handle of the item to circulate
 around.
 
 The circulators around a vertex are:
@@ -959,7 +959,7 @@ ConstVertexVertexIter cvvit = mesh.cvv_iter(some_vertex_handle);
 \endcode
 
 \note When constructing Circulators from iterators, make sure you don't create
-a circulator of an deleted element(e.g. FaceVertexiter of a deleted Face), as
+a circulator of an deleted element(_e.g. FaceVertexiter of a deleted Face), as
 this will lead to unpredictable behaviour. Using skipping iterators for iterating over
 the elements and creating circulators from them is safe as they don't contain
 deleted elements.
@@ -1028,7 +1028,7 @@ methods see OpenMesh::Concepts::KernelT.
 
 /** \defgroup mesh_types_group Predefined Mesh Types
 
-This group holds all the predefind mesh types, i.e. all combinations
+This group holds all the predefind mesh types, i._e. all combinations
 of triangle/polygonal mesh and the set of kernels.
 
 */
@@ -1042,7 +1042,7 @@ of triangle/polygonal mesh and the set of kernels.
 Since for many classes no virtual inheritace is used one can't enforce
 a specific interface by pure virtual functions. Therefore these
 interfaces will be described in this group. Everyone implementing
-e.g. a new mesh kernel should at least implement the
+_e.g. a new mesh kernel should at least implement the
 OpenMesh::Concepts::Kernel concept.
 
 */

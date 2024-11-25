@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('a05908.html',''); initResizable(); });
 <div class="contents">
 <div class="textblock"><p>This section describes the underlying data structure that is used to store the mesh entities (items) vertices, edges, faces, and their connectivity information.</p>
 <p>There are many popular data structures used to represent polygonal meshes. For a detailed comparison of them refer to the papers at the end of this section.</p>
-<p>The data structure used in this project is the so called <em> halfedge data structure </em>. While <em> face-based </em> structures store their connectivity in faces referencing their vertices and neighbors, <em> edge-based </em> structures put the connectivity information into the edges. Each edge references its two vertices, the faces it belongs to and the two next edges in these faces. If one now splits the edges (i.e. an edge connecting vertex <code>A</code> and vertex <code>B</code> becomes two <em> directed halfeges </em> from <code>A</code> to <code>B</code> and vice versa) one gets a <em> halfedge-based </em> data structure. The following figure illustrates the way connectivity is stored in this structure:</p>
+<p>The data structure used in this project is the so called <em> halfedge data structure </em>. While <em> face-based </em> structures store their connectivity in faces referencing their vertices and neighbors, <em> edge-based </em> structures put the connectivity information into the edges. Each edge references its two vertices, the faces it belongs to and the two next edges in these faces. If one now splits the edges (i._e. an edge connecting vertex <code>A</code> and vertex <code>B</code> becomes two <em> directed halfeges </em> from <code>A</code> to <code>B</code> and vice versa) one gets a <em> halfedge-based </em> data structure. The following figure illustrates the way connectivity is stored in this structure:</p>
 <table class="doxtable">
 <tr valign="top">
 <td><div class="image">
@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('a05908.html',''); initResizable(); });
 </div>
  </td><td><ul>
 <li>
-Each <b>vertex</b> references one outgoing halfedge, i.e. a halfedge that starts at this vertex (1). </li>
+Each <b>vertex</b> references one outgoing halfedge, i._e. a halfedge that starts at this vertex (1). </li>
 <li>
 Each <b>face</b> references one of the halfedges bounding it (2). </li>
 <li>

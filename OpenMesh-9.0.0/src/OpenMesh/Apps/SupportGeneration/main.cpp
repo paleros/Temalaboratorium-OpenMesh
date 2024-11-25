@@ -78,15 +78,15 @@ AlgorithmType algorithmType = AlgorithmType::NONE;            /// Forgatas nelku
  * A demozhato alakzatok
  * FONTOS: csak akkor mukodik, ha az alakzat haromszogekbol epul fel! (fontos hogy jo legyen az alakzat!)
  */
-//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/bunny.obj";
-//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/diamond.obj";
-//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/sphere.obj";
-//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/lucy.obj";
-std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/fandisk.obj";
-//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/t.obj";
-//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/T.obj";
-//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/cube.obj";
-//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/Sajat/models/cow.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/SupportGeneration/models/bunny.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/SupportGeneration/models/diamond.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/SupportGeneration/models/sphere.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/SupportGeneration/models/lucy.obj";
+std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/SupportGeneration/models/fandisk.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/SupportGeneration/models/t.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/SupportGeneration/models/T.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/SupportGeneration/models/cube.obj";
+//std::string inputFile = "/mnt/Storage/Storage/projekt/CLionProjects/C++/Temalaboratorium/Temalaboratorium-OpenMesh/OpenMesh-9.0.0/src/OpenMesh/Apps/SupportGeneration/models/cow.obj";
 /**
  * ---------------------------------------------------------------------------------------------------------------------
  */

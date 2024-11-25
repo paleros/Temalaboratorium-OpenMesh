@@ -141,7 +141,7 @@ Additionally, the OBJ loader writes the texture index per face, if the property 
 <th>VTK ***)</th><td>x</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 </table>
 <p>*) can <em>read</em> the non-standard extension vertex colors (floats only): </p><ul>
-<li>defined with vc (e.g. used by meshlab) </li>
+<li>defined with vc (_e.g. used by meshlab) </li>
 <li>colors encoded in a vertex line (v followed by 6 values)</li>
 </ul>
 <p>**) only vertex and face properties with fundamental types. Take into account, that you don't have to request these custom properties before loading.</p>
@@ -153,7 +153,7 @@ Additionally, the OBJ loader writes the texture index per face, if the property 
 </div><!-- fragment --><p> Further on we can ask the reader two swap the byte-order.</p>
 <div class="fragment"><div class="line">        ropt += IO::Options::Swap; </div>
 </div><!-- fragment --><p> (Both can be done via the command line with the options -b and -s, respectively.)</p>
-<p>By default the geometry and the topology is restored from the file. The file might contain more, especially it could provide normals or texture coordinates. We can examine the property bits after reading to find out what else is available:</p>
+<p>By default the geometry and the topology is restored from the file. The file might contain more, especially it could provide normals or texture _coordinates. We can examine the property bits after reading to find out what else is available:</p>
  <div class="fragment"><div class="line">                ropt.check(IO::Options::VertexNormal) </div>
 </div><!-- fragment --><p> If a property bit is set it does not mean, that it has been restored as well. The property must have been requested prior reading the file. (The demo program offers the command line option <code>-Xv</code>[nct] and <code>-Xf</code>[nc] to request vertex and face properties.)</p>
 <h5>Writing meshes</h5>
@@ -484,7 +484,7 @@ Additionally, the OBJ loader writes the texture index per face, if the property 
 <div class="ttc" id="aa02334_html_a9f4f797b08c045b611eaa6f8d149da21a5cb7f45e7ba928e0a23e4a676d10fa8a"><div class="ttname"><a href="a02334.html#a9f4f797b08c045b611eaa6f8d149da21a5cb7f45e7ba928e0a23e4a676d10fa8a">OpenMesh::IO::Options::Binary</a></div><div class="ttdeci">@ Binary</div><div class="ttdoc">Set binary mode for r/w.</div><div class="ttdef"><b>Definition:</b> Options.hh:100</div></div>
 <div class="ttc" id="aa02334_html_a9f4f797b08c045b611eaa6f8d149da21ac53f41d3b8306a764e7382372d56b7ec"><div class="ttname"><a href="a02334.html#a9f4f797b08c045b611eaa6f8d149da21ac53f41d3b8306a764e7382372d56b7ec">OpenMesh::IO::Options::LSB</a></div><div class="ttdeci">@ LSB</div><div class="ttdoc">Assume little endian byte ordering.</div><div class="ttdef"><b>Definition:</b> Options.hh:102</div></div>
 <div class="ttc" id="aa02334_html_a9f4f797b08c045b611eaa6f8d149da21ad989c6d671050e12953b648c4c72dded"><div class="ttname"><a href="a02334.html#a9f4f797b08c045b611eaa6f8d149da21ad989c6d671050e12953b648c4c72dded">OpenMesh::IO::Options::VertexNormal</a></div><div class="ttdeci">@ VertexNormal</div><div class="ttdoc">Has (r) / store (w) vertex normals.</div><div class="ttdef"><b>Definition:</b> Options.hh:104</div></div>
-<div class="ttc" id="aa02334_html_a9f4f797b08c045b611eaa6f8d149da21ae9e664738c4c48ac057770fb08a723f0"><div class="ttname"><a href="a02334.html#a9f4f797b08c045b611eaa6f8d149da21ae9e664738c4c48ac057770fb08a723f0">OpenMesh::IO::Options::VertexTexCoord</a></div><div class="ttdeci">@ VertexTexCoord</div><div class="ttdoc">Has (r) / store (w) texture coordinates.</div><div class="ttdef"><b>Definition:</b> Options.hh:106</div></div>
+<div class="ttc" id="aa02334_html_a9f4f797b08c045b611eaa6f8d149da21ae9e664738c4c48ac057770fb08a723f0"><div class="ttname"><a href="a02334.html#a9f4f797b08c045b611eaa6f8d149da21ae9e664738c4c48ac057770fb08a723f0">OpenMesh::IO::Options::VertexTexCoord</a></div><div class="ttdeci">@ VertexTexCoord</div><div class="ttdoc">Has (r) / store (w) texture _coordinates.</div><div class="ttdef"><b>Definition:</b> Options.hh:106</div></div>
 <div class="ttc" id="aa02334_html_a9f4f797b08c045b611eaa6f8d149da21af7b6bb87f12fdfe5c9a8f8e1ce9325c7"><div class="ttname"><a href="a02334.html#a9f4f797b08c045b611eaa6f8d149da21af7b6bb87f12fdfe5c9a8f8e1ce9325c7">OpenMesh::IO::Options::VertexColor</a></div><div class="ttdeci">@ VertexColor</div><div class="ttdoc">Has (r) / store (w) vertex colors.</div><div class="ttdef"><b>Definition:</b> Options.hh:105</div></div>
 <div class="ttc" id="aa02690_html"><div class="ttname"><a href="a02690.html">OpenMesh::PolyMesh_ArrayKernelT</a></div><div class="ttdoc">Polygonal mesh based on the ArrayKernel.</div><div class="ttdef"><b>Definition:</b> PolyMesh_ArrayKernelT.hh:96</div></div>
 </div><!-- fragment --> </div></div><!-- contents -->

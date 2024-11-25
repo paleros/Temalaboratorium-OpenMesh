@@ -61,7 +61,7 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
     std::sort(supportPointsAll.begin(), supportPointsAll.end(), compareInputPointsYXZAll);
 
     for (auto & i : supportPointsAll) {
-        i.weight = -2;   /// Az e erteke -1, ha a targyat kozvetlenul tamaszta
+        i._weight = -2;   /// Az e erteke -1, ha a targyat kozvetlenul tamaszta
     }
 
     /// Azok a pontok, amelyek kelloen kozel vannak egymashoz
@@ -86,12 +86,12 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
                     continue;
                 }
                 /// Az alatamasztando szomszedos ket pont
-                double Ax = actualNeighbourPoint.coordinates[0];
-                double Ay = actualNeighbourPoint.coordinates[1];
-                double Az = actualNeighbourPoint.coordinates[2];
-                double Bx = neighbourPoint.coordinates[0];
-                double By = neighbourPoint.coordinates[1];
-                double Bz = neighbourPoint.coordinates[2];
+                double Ax = actualNeighbourPoint._coordinates[0];
+                double Ay = actualNeighbourPoint._coordinates[1];
+                double Az = actualNeighbourPoint._coordinates[2];
+                double Bx = neighbourPoint._coordinates[0];
+                double By = neighbourPoint._coordinates[1];
+                double Bz = neighbourPoint._coordinates[2];
                 double X, Y, Z;
 
                 /// A ket pont tavolsaga es a megfelelo szoghoz tartozo magassag
@@ -126,10 +126,10 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
                     Z = Az;
 
                     Point newPoint;
-                    newPoint.coordinates[0] = X;
-                    newPoint.coordinates[1] = Y;
-                    newPoint.coordinates[2] = Z;
-                    newPoint.e = e;
+                    newPoint._coordinates[0] = X;
+                    newPoint._coordinates[1] = Y;
+                    newPoint._coordinates[2] = Z;
+                    newPoint._e = e;
 
                     intersectPs.push_back(newPoint);
                     continue;
@@ -145,10 +145,10 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
                 Z = Az;
 
                 Point newPoint;
-                newPoint.coordinates[0] = X;
-                newPoint.coordinates[1] = Y;
-                newPoint.coordinates[2] = Z;
-                newPoint.e = e;
+                newPoint._coordinates[0] = X;
+                newPoint._coordinates[1] = Y;
+                newPoint._coordinates[2] = Z;
+                newPoint._e = e;
 
                 intersectPs.push_back(newPoint);
             }
@@ -160,7 +160,7 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
             std::sort(intersectPs.begin(), intersectPs.end(), compareInputPointsYXZ);
             lowestPoint = intersectPs[0];
             /// Ha nem log ki alul az alatamasztas
-            if(lowestPoint.coordinates[1] > minY){
+            if(lowestPoint._coordinates[1] > minY){
                 supportPointsAll.push_back(lowestPoint);
                 k = -1;
                 bool usedOriginalLowPoint = true;
@@ -173,7 +173,7 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
                     Point intersectPoint;
                     intersectPoint = passTheModel(neighbourPoint, nextPoint, meshObject, e);
 
-                    if(intersectPoint.e == -1){     /// Az e erteke -1, ha nem metszi az alakzatot
+                    if(intersectPoint._e == -1){     /// Az e erteke -1, ha nem metszi az alakzatot
                         /// Ha nem metszi az alakzatot, akkor hasznalja az eredeti also pontot
                         usedOriginalLowPoint = true;
 
@@ -216,12 +216,12 @@ treeSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::vector<Poi
     /// A tamaszfa vegpontjaibol egyeneseket huzuk a legalso pontig
     for (auto & i : supportPointsAll) {
         Point nextPoint;
-        nextPoint.coordinates[0] = i.coordinates[0];
-        nextPoint.coordinates[1] = minY;
-        nextPoint.coordinates[2] = i.coordinates[2];
-        nextPoint.e = e; /// Az e erteke -2, ha a talajt erinti a tamasz
+        nextPoint._coordinates[0] = i._coordinates[0];
+        nextPoint._coordinates[1] = minY;
+        nextPoint._coordinates[2] = i._coordinates[2];
+        nextPoint._e = e; /// Az e erteke -2, ha a talajt erinti a tamasz
         Point intersect = passTheModel(i, nextPoint, meshObject, e);
-        if (intersect.e != -1){
+        if (intersect._e != -1){
             nextPoint = intersect;
         }
         if(!isItInside(meshObject, i, nextPoint)){

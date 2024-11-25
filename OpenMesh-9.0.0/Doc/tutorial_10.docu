@@ -13,7 +13,7 @@ name "vprop_float". The name of a property, that we want to make
 persistent, must follow a few rules
 
 -# max. 256 characters long
--# The prefixes \c "v:", \c "h:", \c "e:", \c "f:" and \c "m:" are reserved.
+-# The prefixes \c "v:", \c "h:", \c "_e:", \c "f:" and \c "m:" are reserved.
 
 If we stick to this rules we are fine. Furthermore we have to
 consider, that the names are handled case-sensitive.

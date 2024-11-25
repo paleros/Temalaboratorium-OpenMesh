@@ -23,7 +23,7 @@
 <li>Add halfedge loop range corresponding to hl_iter()</li>
 <li>Smart handles now give read access to status fields (feature(), selected(), deleted(), tagged(), tagged2(), hidden(), locked()</li>
 <li>Add predicates that can be used as smart range filters. There are default predicates to test the status fields and whether an elements is boundary. Predicates can be composed via operators ||, && and !</li>
-<li>Add make_predicate to create a predicate from anything containing a bool operator(T), e.g. a PropertyManager, a lambda, or a function pointer.</li>
+<li>Add make_predicate to create a predicate from anything containing a bool operator(T), _e.g. a PropertyManager, a lambda, or a function pointer.</li>
 <li>Added CW and CCW ranges.</li>
 <li>Vertex incoming/outgoing halfedge circulators can be started for a given halfedge.</li>
 </ul>
@@ -34,7 +34,7 @@
 <li>OM Writer: Removed debug output</li>
 <li>OM Writer/Reader: Added support for (re)storing properties of type vector<T></li>
 <li>OM Reader: Properties can now be restored from files without the need to create the properties beforehand. Custom types need to be registered for this to work using the OM_REGISTER_PROPERTY_TYPE macro.</li>
-<li>PLY writer: Added option to choose if we want to write texture coordinates as uv or st (Thanks to Ossi Saukko from Centria Research and Development for the patch)</li>
+<li>PLY writer: Added option to choose if we want to write texture _coordinates as uv or st (Thanks to Ossi Saukko from Centria Research and Development for the patch)</li>
 <li>OBJ Reader: Fix material reader, when starting with spaces</li>
 </ul>
 
@@ -207,7 +207,7 @@
 <li>Don't return invalid iterators for empty element ranges</li>
 <li>Mark halfedges as deleted after collapse</li>
 <li>Let default range-based for skip deleted elements and add a version that includes deleted elements</li>
-<li>Moved length() by norm() to external functions. This allows us to support other vector types instead of Vec3d (e.g. via Eigen) </li>
+<li>Moved length() by norm() to external functions. This allows us to support other vector types instead of Vec3d (_e.g. via Eigen) </li>
 </ul>
 
 <b>Utils</b>
@@ -240,7 +240,7 @@
 <li>OBJ Writer: Fail if vertex color export was requested (Thanks to Manuel Massing)</li>
 <li>OBJ Writer: Added functionality to store FaceTexCoords to objwriter</li>
 <li>OBJ Writer: Applied fix for bad or missing vertex tex coords (Thanks to Gero Müller for the patch)</li>
-<li>OBJ Writer: Fix vertex texture coordinates export in OBJ writer</li>
+<li>OBJ Writer: Fix vertex texture _coordinates export in OBJ writer</li>
 <li>OBJ Loader: range check for vertex colors and normals in OBJ loader</li>
 <li>OBJ Loader: fixed handling of negative indices in OBJ loader</li>
 <li>OM Writer: Fixed OMWriter when no faces are available (Thanks to Jamie Kydd for the patch)</li>
@@ -476,7 +476,7 @@
 
 <b>General</b>
 <ul>
-<li>Fixed bug preventing from building with 2 dimensional vectors (e.g. vec2i) </li>
+<li>Fixed bug preventing from building with 2 dimensional vectors (_e.g. vec2i) </li>
 <li>Heap: Minor cleanup (some consts)</li>
 <li>Added static versions of ArrayKernel::edge_handle and ...::halfedge_handle</li>
 <li>Reduced number of includes</li>
@@ -663,12 +663,12 @@
 <li>Added unit test for bool PropertyManager::set_range.</li>
 <li>Added write unittest for binary stl files</li>
 <li>Added c++11 test file</li>
-<li>Use the acg macro to add the unittests to make sure flags are passed through (e.g. to enable c++11)</li>
+<li>Use the acg macro to add the unittests to make sure flags are passed through (_e.g. to enable c++11)</li>
 </ul>
 
 <b>Build System</b>
 <ul>
-<li>Python Bindings: strip pythonlibs version string of possible other characters than 0-9 and .  (e.g. '+')</li>
+<li>Python Bindings: strip pythonlibs version string of possible other characters than 0-9 and .  (_e.g. '+')</li>
 <li>Python Bindings: don't require boost-python</li>
 <li>Python Bindings: updated the cmake file so that cmake finds boost python installations with the names python2 and python3</li>
 <li>Python Bindings: fixed a cmake warning on os x (Policy CMP0042: MACOSX_RPATH)</li>
@@ -929,7 +929,7 @@
 <b>IO</b>
 <ul>
 <li>Try to get rid of memory leak in IOManager(Changes the pointer used for IOManager to a static IOManager in the getter function)</li>
-<li>Fixed writing face indices in different configurations regarding vertex texture coordinates and vertex normals (Thanks to Robert Luo for the patch)</li>
+<li>Fixed writing face indices in different configurations regarding vertex texture _coordinates and vertex normals (Thanks to Robert Luo for the patch)</li>
 <li>Fixed a bug with OBJReader that prevented the material color to be loaded correctlyi(Thanks to Karthik Nathan for the patch)</li>
 <li>Made STL Reader work, with the clear = false flag and Redundant lookup removed. ( Thanks to Peter Newman for the patch)</li>
 <li>Missing include, preventing build on VS2012 (Thanks to Mageri Filali Maltouf for the patch)</li>
@@ -1082,7 +1082,7 @@
 
 <b>Unittests</b>
 <ul>
-<li>Added unittest for OBJ texture coordinates.</li>
+<li>Added unittest for OBJ texture _coordinates.</li>
 <li>Added unittests for add_face.</li>
 <li>Added unittest for getting handles and faces from the iterator.</li>
 <li>Added unittest for creating a cube with 6 quads in a poly mesh.</li>
@@ -1449,11 +1449,11 @@
 <b>Readers/Writers</b>
 <ul>
 <li> Fixed reading ply files with unknown properties</li>
-<li> Added support for texture coordinates in ply files</li>
+<li> Added support for texture _coordinates in ply files</li>
 <li> Add additional interface to readers/writers to use streams directly (allows direct writing to a streams)</li>
 <li> OMFromat -> Fixed empty template parameter issue under msvc</li>
 <li> OBJReader -> fixed loading multiple objs with material files</li>
-<li> OBJWriter -> Fixed writing of normals, Missing / when skipping texture coordinates</li>
+<li> OBJWriter -> Fixed writing of normals, Missing / when skipping texture _coordinates</li>
 </ul>
 
 <b>Build system</b>
@@ -1525,7 +1525,7 @@
 <b>Other</b>
 <ul>
 <li> Fixed some warnings with latest gcc </li>
-<li> Per halfedge texture coordinates added </li>
+<li> Per halfedge texture _coordinates added </li>
 <li> Extended functions to get available properties </li>
 </ul>
 
@@ -1539,7 +1539,7 @@
 
 <tr valign=top><td><b>2.0-RC2</b> (2009/02/17)</td><td> 
 <ul>
-<li>Fix for OBJ reader not reading texture coordinates correctly ( Thanks to Kamalneet Singh )</li>
+<li>Fix for OBJ reader not reading texture _coordinates correctly ( Thanks to Kamalneet Singh )</li>
 <li>Fixed included Visual Studio files</li>
 </ul>
 </tr>
@@ -1685,7 +1685,7 @@ The beta3 fixes only the known bugs in beta2.
 <li>Improved coordinate class OpenMesh::VectorT:
   <ul>
     <li> <tt>VectorT::vectorize(Scalar)</tt> is no longer static, now 
-          it changes the vector. Use it e.g. to clear vector values. 
+          it changes the vector. Use it _e.g. to clear vector values.
     </li>
     <li> Casts between two vector classes of the same dimension are now
          explicit. This avoids unwanted and expensive casts. 
@@ -2027,7 +2027,7 @@ The beta3 fixes only the known bugs in beta2.
 <li>Changed the main namespace from ACG to OpenMesh.
 </li>
 
-<li>Added invalid handle constants, e.g. PolyMeshT::InvalidVertexHandle.
+<li>Added invalid handle constants, _e.g. PolyMeshT::InvalidVertexHandle.
 </li>
 
 <li>Mesh provides circulators: PolyMeshT::vv_iter(VertexHandle).

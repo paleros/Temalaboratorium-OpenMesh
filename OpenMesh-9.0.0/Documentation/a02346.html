@@ -161,7 +161,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>check_extension</b> (
 <p>VertexNormal VertexColor VertexTexCoord FaceColor ColorAlpha [only when reading binary]</p>
 <p>These options define if the corresponding data should be read (if available) or if it should be omitted.</p>
 <p>After execution of the read function. The options object contains information about what was actually read.</p>
-<p>e.g. if VertexNormal was true when the read function was called, but the file did not contain vertex normals then it is false afterwards.</p>
+<p>_e.g. if VertexNormal was true when the read function was called, but the file did not contain vertex normals then it is false afterwards.</p>
 <p>When reading a binary off with Color Flag in the header it is assumed that all vertices and faces have colors in the format "int int int". If ColorAlpha is set the format "int int int int" is assumed. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a0204e3fe1867bd1086e6e962f381e0b6"></a>
@@ -189,7 +189,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>check_extension</b> (
 </div><div class="memdoc">
 
 <p>Returns true if writer can parse _filename (checks extension). </p>
-<p>_filename can also provide an extension without a name for a file e.g. _filename == "om" checks, if the reader can read the "om" extension </p><dl class="params"><dt>Parameters</dt><dd>
+<p>_filename can also provide an extension without a name for a file _e.g. _filename == "om" checks, if the reader can read the "om" extension </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_filename</td><td>complete name of a file or just the extension </td></tr>
   </table>

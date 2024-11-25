@@ -3,8 +3,8 @@
 //
 
 #include "rotationAuxiliary.h"
-#include <OpenMesh/Core/IO/MeshIO.hh>
-#include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
+#include "OpenMesh/Core/IO/MeshIO.hh"
+#include "OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh"
 #include "auxiliary.h"
 #include "treeMain.h"
 #include "columnMain.h"

@@ -164,24 +164,24 @@ $(document).ready(function(){initNavTree('a00146_source.html',''); initResizable
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  {</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">//return pow(3.0 / 2.0 + cos(2.0 * M_PI / _valence), 2) / 2.0 - 1.0;</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">double</span> denom = (3.0 + 2.0*cos(2.0*M_PI/(<span class="keywordtype">double</span>)_valence));</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">double</span> weight = (64.0*_valence)/(40.0 - denom*denom) - _valence;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">return</span> (Scalar) weight;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">double</span> _weight = (64.0*_valence)/(40.0 - denom*denom) - _valence;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">return</span> (Scalar) _weight;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  }</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <span class="keyword">inline</span> <span class="keyword">static</span> Scalar                      compute_limit_weight(uint _valence)</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  {</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">double</span> proj_weight_value = compute_proj_weight(_valence);</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    proj_weight_value = proj_weight_value/(proj_weight_value + _valence);<span class="comment">//normalize the proj_weight</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">double</span> weight = (3.0/8.0)/(1.0 - proj_weight_value + (3.0/8.0));</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">return</span> (Scalar)weight;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">double</span> _weight = (3.0/8.0)/(1.0 - proj_weight_value + (3.0/8.0));</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">return</span> (Scalar)_weight;</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  }</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keyword">inline</span> <span class="keyword">static</span> Scalar                      compute_step_weight(uint _valence)</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  {</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">double</span> proj_weight_value = compute_proj_weight(_valence);</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    proj_weight_value = proj_weight_value/(proj_weight_value + _valence);<span class="comment">//normalize the proj_weight</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">double</span> weight = proj_weight_value - (3.0/8.0);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">return</span> (Scalar)weight;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">double</span> _weight = proj_weight_value - (3.0/8.0);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">return</span> (Scalar)_weight;</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  }</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <span class="keyword">inline</span> <span class="keyword">static</span> Scalar                      compute_tang0_weight(uint _valence, uint _ver_id)</div>

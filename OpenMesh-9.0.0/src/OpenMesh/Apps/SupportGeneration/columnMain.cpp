@@ -42,19 +42,19 @@ double columnSupportGenerated(MyMesh &meshObject, std::string &inputFile, std::v
 
     for (const auto & supportPoint : supportPointsAll) {
         Point p;
-        p.coordinates[0] = supportPoint.coordinates[0];
-        p.coordinates[1] = supportPoint.coordinates[1];
-        p.coordinates[2] = supportPoint.coordinates[2];
-        p.e = supportPoint.e;
+        p._coordinates[0] = supportPoint._coordinates[0];
+        p._coordinates[1] = supportPoint._coordinates[1];
+        p._coordinates[2] = supportPoint._coordinates[2];
+        p._e = supportPoint._e;
         supportLines.push_back(p);
-        p.coordinates[1] = minY;
+        p._coordinates[1] = minY;
 
         /// Ha a metszespontok kozott van olyan kimeno pont, amelyik alacsonyabb, akkor azt a pontot csak addig huzzuk le
         for(int i = 1; i < (int)intersectPoints.size(); i = i + 2){
-            if(std::abs(intersectPoints[i].coordinates[0] - supportPoint.coordinates[0]) <= e &&
-               std::abs(intersectPoints[i].coordinates[2] - supportPoint.coordinates[2]) <= e){
-                if(intersectPoints[i].coordinates[1] > p.coordinates[1] && intersectPoints[i].coordinates[1] < supportPoint.coordinates[1]){
-                    p.coordinates[1] = intersectPoints[i].coordinates[1];
+            if(std::abs(intersectPoints[i]._coordinates[0] - supportPoint._coordinates[0]) <= e &&
+               std::abs(intersectPoints[i]._coordinates[2] - supportPoint._coordinates[2]) <= e){
+                if(intersectPoints[i]._coordinates[1] > p._coordinates[1] && intersectPoints[i]._coordinates[1] < supportPoint._coordinates[1]){
+                    p._coordinates[1] = intersectPoints[i]._coordinates[1];
                 }
             }
         }

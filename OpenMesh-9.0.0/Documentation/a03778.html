@@ -197,7 +197,7 @@ HeapInterface&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 class OpenMesh::Utils::HeapT&lt; HeapEntry, HeapInterface &gt;</h3>
 
 <p>An efficient, highly customizable heap. </p>
-<p>The main difference (and performance boost) of this heap compared to e.g. the heap of the STL is that here the positions of the heap's elements are accessible from the elements themself. Therefore if one changes the priority of an element one does not have to remove and re-insert this element, but can just call the <a class="el" href="a03778.html#a5a4198bf734a87481ee5fedc46f2eebd" title="update an entry: change the key and update the position to reestablish the heap property.">update(HeapEntry)</a> method.</p>
+<p>The main difference (and performance boost) of this heap compared to _e.g. the heap of the STL is that here the positions of the heap's elements are accessible from the elements themself. Therefore if one changes the priority of an element one does not have to remove and re-insert this element, but can just call the <a class="el" href="a03778.html#a5a4198bf734a87481ee5fedc46f2eebd" title="update an entry: change the key and update the position to reestablish the heap property.">update(HeapEntry)</a> method.</p>
 <p>This heap class is parameterized by two template arguments: </p><ul>
 <li>the class <code>HeapEntry</code>, that will be stored in the heap </li>
 <li>the HeapInterface telling the heap how to compare heap entries and how to store the heap positions in the heap entries.</li>

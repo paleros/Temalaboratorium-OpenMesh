@@ -62,7 +62,7 @@ ASCII is not a real option and will be selected, if binary was not defined.
 </TABLE>
 
 \*) can <i>read</i> the non-standard extension vertex colors (floats only): 
-\li defined with vc (e.g. used by meshlab)
+\li defined with vc (_e.g. used by meshlab)
 \li colors encoded in a vertex line (v followed by 6 values)
 
 \**) only vertex and face properties with fundamental types. Take into account, that you don't have to request these custom properties before loading.
@@ -95,7 +95,7 @@ respectively.)
 
 By default the geometry and the topology is restored from the
 file. The file might contain more, especially it could provide normals
-or texture coordinates.  We can examine the property bits after
+or texture _coordinates.  We can examine the property bits after
 reading to find out what else is available:
 
 \dontinclude 08-io_options/io_options.cc

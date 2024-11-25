@@ -10,18 +10,6 @@
 #include "auxiliary.h"
 
 /**
- * Kiszamitja hogy a megadott elforgatassal mennyire jo a tamasztas
- * @param angles az elforgatas szoge
- * @param mesh az alakzat
- * @param inputFile a bemeneti fajl
- * @param isTreeSupport az alatamasztas tipusa
- * @param roundNumber a aktualis kor szama
- * @return
- */
-double getOptimalValue(std::vector<double> &angles, MyMesh &mesh, std::string &inputFile, bool isTreeSupport,
-                       int &roundNumber);
-
-/**
  * Az alakzat optimalis forgatasat megkereso fuggveny
  * Nelder-Mead algoritmussal
  * @param inputFile a bemeneti fajl

@@ -326,7 +326,7 @@ template&lt;typename PROPTYPE , typename MeshT  = int&gt; </div>
   <table class="params">
     <tr><td class="paramname">mesh</td><td>The mesh on which to create the property. </td></tr>
     <tr><td class="paramname">propname</td><td>The name of the property. </td></tr>
-    <tr><td class="paramname">existing</td><td>If false, a new property is created and its lifecycle is managed (i.e. the property is deleted upon destruction of the <a class="el" href="a03302.html" title="This class is intended to manage the lifecycle of properties.">PropertyManager</a> instance). If true, the instance merely acts as a convenience wrapper around an existing property with no lifecycle management whatsoever.</td></tr>
+    <tr><td class="paramname">existing</td><td>If false, a new property is created and its lifecycle is managed (i._e. the property is deleted upon destruction of the <a class="el" href="a03302.html" title="This class is intended to manage the lifecycle of properties.">PropertyManager</a> instance). If true, the instance merely acts as a convenience wrapper around an existing property with no lifecycle management whatsoever.</td></tr>
   </table>
   </dd>
 </dl>
@@ -772,7 +772,7 @@ template&lt;typename PROPTYPE , typename MeshT  = int&gt; </div>
 <p>For a usage example see this class' documentation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>A handle of the appropriate handle type. (I.e. <code><a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a></code> for <code><a class="el" href="a02922.html" title="Handle representing a vertex property.">VPropHandleT</a></code>, etc.) </td></tr>
+    <tr><td class="paramname">handle</td><td>A handle of the appropriate handle type. (I._e. <code><a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a></code> for <code><a class="el" href="a02922.html" title="Handle representing a vertex property.">VPropHandleT</a></code>, etc.) </td></tr>
   </table>
   </dd>
 </dl>
@@ -809,7 +809,7 @@ template&lt;typename PROPTYPE , typename MeshT  = int&gt; </div>
 <p>For a usage example see this class' documentation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>A handle of the appropriate handle type. (I.e. <code><a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a></code> for <code><a class="el" href="a02922.html" title="Handle representing a vertex property.">VPropHandleT</a></code>, etc.) </td></tr>
+    <tr><td class="paramname">handle</td><td>A handle of the appropriate handle type. (I._e. <code><a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a></code> for <code><a class="el" href="a02922.html" title="Handle representing a vertex property.">VPropHandleT</a></code>, etc.) </td></tr>
   </table>
   </dd>
 </dl>
@@ -842,7 +842,7 @@ template&lt;typename PROPTYPE , typename MeshT  = int&gt; </div>
 </div><div class="memdoc">
 
 <p>Get the mesh corresponding to the property. </p>
-<p>If you use <a class="el" href="a03302.html" title="This class is intended to manage the lifecycle of properties.">PropertyManager</a> without second template parameter (recommended) you need to specify the actual mesh type when using this function, e.g.: </p><div class="fragment"><div class="line">   {</div>
+<p>If you use <a class="el" href="a03302.html" title="This class is intended to manage the lifecycle of properties.">PropertyManager</a> without second template parameter (recommended) you need to specify the actual mesh type when using this function, _e.g.: </p><div class="fragment"><div class="line">   {</div>
 <div class="line">       TriMesh mesh;</div>
 <div class="line">       <span class="keyword">auto</span> visited = VProp&lt;bool&gt;(mesh);</div>
 <div class="line">       TriMesh&amp; mesh_ref = visited.getMesh&lt;TriMesh&gt;();</div>
@@ -983,7 +983,7 @@ template&lt;typename PROPTYPE , typename MeshT  = int&gt; </div>
 <p>For a usage example see this class' documentation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>A handle of the appropriate handle type. (I.e. <code><a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a></code> for <code><a class="el" href="a02922.html" title="Handle representing a vertex property.">VPropHandleT</a></code>, etc.) </td></tr>
+    <tr><td class="paramname">handle</td><td>A handle of the appropriate handle type. (I._e. <code><a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a></code> for <code><a class="el" href="a02922.html" title="Handle representing a vertex property.">VPropHandleT</a></code>, etc.) </td></tr>
   </table>
   </dd>
 </dl>
@@ -1020,7 +1020,7 @@ template&lt;typename PROPTYPE , typename MeshT  = int&gt; </div>
 <p>For a usage example see this class' documentation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>A handle of the appropriate handle type. (I.e. <code><a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a></code> for <code><a class="el" href="a02922.html" title="Handle representing a vertex property.">VPropHandleT</a></code>, etc.) </td></tr>
+    <tr><td class="paramname">handle</td><td>A handle of the appropriate handle type. (I._e. <code><a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a></code> for <code><a class="el" href="a02922.html" title="Handle representing a vertex property.">VPropHandleT</a></code>, etc.) </td></tr>
   </table>
   </dd>
 </dl>
@@ -1194,8 +1194,8 @@ template&lt;typename ElementT , typename T &gt; </div>
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">ElementT</td><td>Element type of the created property, e.g. <a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a>, <a class="el" href="a02554.html" title="Handle for a halfedge entity.">HalfedgeHandle</a>, etc. </td></tr>
-    <tr><td class="paramname">T</td><td>Value type of the created property, e.g., <code>double</code>, <code>int</code>, etc. </td></tr>
+    <tr><td class="paramname">ElementT</td><td>Element type of the created property, _e.g. <a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a>, <a class="el" href="a02554.html" title="Handle for a halfedge entity.">HalfedgeHandle</a>, etc. </td></tr>
+    <tr><td class="paramname">T</td><td>Value type of the created property, _e.g., <code>double</code>, <code>int</code>, etc. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1246,7 +1246,7 @@ template&lt;typename ElementT , typename T &gt; </div>
 <div class="line">        <span class="keyword">auto</span> is_quad = getProperty&lt;FaceHandle, bool&gt;(m, <span class="stringliteral">&quot;is_quad&quot;</span>);</div>
 <div class="line">        <span class="comment">// Use is_quad here.</span></div>
 <div class="line">    }</div>
-<div class="line">    <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::runtime_error&amp; e) {</div>
+<div class="line">    <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::runtime_error&amp; _e) {</div>
 <div class="line">        <span class="comment">// There is no is_quad face property on the mesh.</span></div>
 <div class="line">    }</div>
 <div class="line">}</div>
@@ -1266,8 +1266,8 @@ template&lt;typename ElementT , typename T &gt; </div>
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">ElementT</td><td>Element type of the created property, e.g. <a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a>, <a class="el" href="a02554.html" title="Handle for a halfedge entity.">HalfedgeHandle</a>, etc. </td></tr>
-    <tr><td class="paramname">T</td><td>Value type of the created property, e.g., <code>double</code>, <code>int</code>, etc. </td></tr>
+    <tr><td class="paramname">ElementT</td><td>Element type of the created property, _e.g. <a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a>, <a class="el" href="a02554.html" title="Handle for a halfedge entity.">HalfedgeHandle</a>, etc. </td></tr>
+    <tr><td class="paramname">T</td><td>Value type of the created property, _e.g., <code>double</code>, <code>int</code>, etc. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1330,8 +1330,8 @@ template&lt;typename ElementT , typename T &gt; </div>
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">ElementT</td><td>Element type of the expected property, e.g. <a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a>, <a class="el" href="a02554.html" title="Handle for a halfedge entity.">HalfedgeHandle</a>, etc. </td></tr>
-    <tr><td class="paramname">T</td><td>Value type of the expected property, e.g., <code>double</code>, <code>int</code>, etc. </td></tr>
+    <tr><td class="paramname">ElementT</td><td>Element type of the expected property, _e.g. <a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a>, <a class="el" href="a02554.html" title="Handle for a halfedge entity.">HalfedgeHandle</a>, etc. </td></tr>
+    <tr><td class="paramname">T</td><td>Value type of the expected property, _e.g., <code>double</code>, <code>int</code>, etc. </td></tr>
     <tr><td class="paramname">MeshT</td><td>Type of the mesh. Can often be inferred from <code>mesh</code> </td></tr>
   </table>
   </dd>
@@ -1629,8 +1629,8 @@ template&lt;typename ElementT , typename T &gt; </div>
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">ElementT</td><td>Element type of the created property, e.g. <a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a>, <a class="el" href="a02554.html" title="Handle for a halfedge entity.">HalfedgeHandle</a>, etc. </td></tr>
-    <tr><td class="paramname">T</td><td>Value type of the created property, e.g., <code>double</code>, <code>int</code>, etc. </td></tr>
+    <tr><td class="paramname">ElementT</td><td>Element type of the created property, _e.g. <a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a>, <a class="el" href="a02554.html" title="Handle for a halfedge entity.">HalfedgeHandle</a>, etc. </td></tr>
+    <tr><td class="paramname">T</td><td>Value type of the created property, _e.g., <code>double</code>, <code>int</code>, etc. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1693,8 +1693,8 @@ template&lt;typename ElementT , typename T &gt; </div>
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">ElementT</td><td>Element type of the created property, e.g. <a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a>, <a class="el" href="a02554.html" title="Handle for a halfedge entity.">HalfedgeHandle</a>, etc. </td></tr>
-    <tr><td class="paramname">T</td><td>Value type of the created property, e.g., <code>double</code>, <code>int</code>, etc. </td></tr>
+    <tr><td class="paramname">ElementT</td><td>Element type of the created property, _e.g. <a class="el" href="a02550.html" title="Handle for a vertex entity.">VertexHandle</a>, <a class="el" href="a02554.html" title="Handle for a halfedge entity.">HalfedgeHandle</a>, etc. </td></tr>
+    <tr><td class="paramname">T</td><td>Value type of the created property, _e.g., <code>double</code>, <code>int</code>, etc. </td></tr>
   </table>
   </dd>
 </dl>

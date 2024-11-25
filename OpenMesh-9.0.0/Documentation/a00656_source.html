@@ -196,10 +196,10 @@ $(document).ready(function(){initNavTree('a00656_source.html',''); initResizable
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;      <span class="comment">// compute umbrella</span></div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;      u = zero;</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;      <span class="keywordflow">for</span> (voh_it = Base::mesh_.cvoh_iter(*v_it); voh_it.is_valid(); ++voh_it) {</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        w = this-&gt;weight(Base::mesh_.edge_handle(*voh_it));</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        w = this-&gt;_weight(Base::mesh_.edge_handle(*voh_it));</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        u += vector_cast&lt;typename Mesh::Normal&gt;(Base::mesh_.point(Base::mesh_.to_vertex_handle(*voh_it))) * w;</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;      }</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;      u *= this-&gt;weight(*v_it);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;      u *= this-&gt;_weight(*v_it);</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;      u -= vector_cast&lt;typename Mesh::Normal&gt;(Base::mesh_.point(*v_it));</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;      <span class="comment">// damping</span></div>
@@ -233,10 +233,10 @@ $(document).ready(function(){initNavTree('a00656_source.html',''); initResizable
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;  {</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    u = zero;</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">for</span> (voh_it = Base::mesh_.cvoh_iter(*v_it); voh_it.is_valid(); ++voh_it) {</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;      w  = this-&gt;weight(Base::mesh_.edge_handle(*voh_it));</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;      w  = this-&gt;_weight(Base::mesh_.edge_handle(*voh_it));</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;      u -= vector_cast&lt;typename Mesh::Normal&gt;(Base::mesh_.point(Base::mesh_.to_vertex_handle(*voh_it)))*w;</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    }</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    u *= this-&gt;weight(*v_it);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    u *= this-&gt;_weight(*v_it);</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    u += vector_cast&lt;typename Mesh::Normal&gt;(Base::mesh_.point(*v_it));</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    Base::mesh_.property(umbrellas_, *v_it) = u;</div>
@@ -251,12 +251,12 @@ $(document).ready(function(){initNavTree('a00656_source.html',''); initResizable
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;      uu   = zero;</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;      diag = 0.0;   </div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;      <span class="keywordflow">for</span> (voh_it = Base::mesh_.cvoh_iter(*v_it); voh_it.is_valid(); ++voh_it) {</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        w  = this-&gt;weight(Base::mesh_.edge_handle(*voh_it));</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        w  = this-&gt;_weight(Base::mesh_.edge_handle(*voh_it));</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        uu   -= Base::mesh_.property(umbrellas_, Base::mesh_.to_vertex_handle(*voh_it));</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        diag += (w * this-&gt;weight(Base::mesh_.to_vertex_handle(*voh_it)) + <span class="keyword">static_cast&lt;</span>typename Mesh::Scalar<span class="keyword">&gt;</span>(1.0) ) * w;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        diag += (w * this-&gt;_weight(Base::mesh_.to_vertex_handle(*voh_it)) + <span class="keyword">static_cast&lt;</span>typename Mesh::Scalar<span class="keyword">&gt;</span>(1.0) ) * w;</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;      }</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;      uu   *= this-&gt;weight(*v_it);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;      diag *= this-&gt;weight(*v_it);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;      uu   *= this-&gt;_weight(*v_it);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;      diag *= this-&gt;_weight(*v_it);</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;      uu   += Base::mesh_.property(umbrellas_, *v_it);</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;      <span class="keywordflow">if</span> (diag) uu *= <span class="keyword">static_cast&lt;</span>typename Mesh::Scalar<span class="keyword">&gt;</span>(1.0) / diag;</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>

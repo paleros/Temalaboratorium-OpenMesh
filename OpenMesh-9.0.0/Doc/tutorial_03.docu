@@ -13,11 +13,11 @@ dynamically to the mesh.
 
 Custom properties can be conveniently created and attached to meshes by creating an object of type OpenMesh::PropertyManager. A PropertyManager manages the lifetime of the property and provides read / write access to its values.
 
-You can use the typedefs VProp, HProp, EProp, FProp, and MProp in order to create a PropertyManager attached to vertices, halfedge, edges, faces and the mesh respectively. Each of these takes as template argument the type of the property value that is attached to each element (e.g., \p int, \p double, etc.).
+You can use the typedefs VProp, HProp, EProp, FProp, and MProp in order to create a PropertyManager attached to vertices, halfedge, edges, faces and the mesh respectively. Each of these takes as template argument the type of the property value that is attached to each element (_e.g., \p int, \p double, etc.).
 
 We differentiate between two kinds of properties. <em>Named</em> and <em>temporary</em> properties. Temporary properties are created by just providing the constructor with a mesh on which the property should be created. These properties will be removed as soon as the PropertyManager goes out of scope. If in addition to the mesh a property name is provided, a named property will be created which will stay alive even after the PropertyManager goes out of scope. If a PropertyManager is given a name of an already existing property, it will provide read and write access to the same property.
 
-Finally, an optional first parameter can be given containing a value that will be used to initialize the property for all elements if the property is freshly created (i.e. always for temporary properties, and only the first time a specific name is used).
+Finally, an optional first parameter can be given containing a value that will be used to initialize the property for all elements if the property is freshly created (i._e. always for temporary properties, and only the first time a specific name is used).
 
 
 Here are a few examples of how to create and access mesh properties:

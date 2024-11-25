@@ -59,7 +59,7 @@ In this example, we will use bi-laplacian smoothing on a mesh. We store the \c l
 \skipline laplace
 \skipline laplace
 
-To compute the center of gravity, i.e. the average position, we use the avg() method of the range of 1-ring vertices and pass in a PropertyManager acting as functor returning the corresponding point of a vertex.
+To compute the center of gravity, i._e. the average position, we use the avg() method of the range of 1-ring vertices and pass in a PropertyManager acting as functor returning the corresponding point of a vertex.
 
 \skipline points
 \until avg(points)

@@ -178,10 +178,10 @@ $(document).ready(function(){initNavTree('a00659_source.html',''); initResizable
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="comment">// misc helpers</span></div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  Scalar weight(VertexHandle _vh)<span class="keyword"> const </span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  Scalar _weight(VertexHandle _vh)<span class="keyword"> const </span></div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keyword">  </span>{ <span class="keywordflow">return</span> Base::mesh_.property(vertex_weights_, _vh); }</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  Scalar weight(EdgeHandle _eh)<span class="keyword"> const </span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  Scalar _weight(EdgeHandle _eh)<span class="keyword"> const </span></div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">  </span>{ <span class="keywordflow">return</span> Base::mesh_.property(edge_weights_, _eh); }</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>

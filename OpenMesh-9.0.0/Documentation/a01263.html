@@ -924,7 +924,7 @@ return&#160;</td><td class="memItemRight" valign="bottom"><b>is</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains all the mesh ingredients like the polygonal mesh, the triangle mesh, different mesh kernels and mesh traits. </p>
-<p>Martin, 26.12.2004: 1) replaced resize(size()-1) with pop_back(), since the later is more efficient 2) replaced interface_.set_heap_position(entry(0), -1); with reset_heap_position() 3) added const modifier to various functions TODO: in the moment the heap does not conform to the HeapInterface specification, i.e., copies are passed instead of references.</p>
+<p>Martin, 26.12.2004: 1) replaced resize(size()-1) with pop_back(), since the later is more efficient 2) replaced interface_.set_heap_position(entry(0), -1); with reset_heap_position() 3) added const modifier to various functions TODO: in the moment the heap does not conform to the HeapInterface specification, i._e., copies are passed instead of references.</p>
 <p>Get an internal name for a type Important, this is depends on compilers and versions, do NOT use in file formats! This provides property type safety when only limited RTTI is available Solution adapted from OpenVolumeMesh.</p>
 <p>This file contains all code required to use Eigen3 vectors as Mesh vectors.</p>
 <p>This is especially important for set_heap_position(), where the reference argument is non-const. The specification should be changed to reflect that the heap actually (only?) works when the heap entry is nothing more but a handle. TODO: change the specification of HeapInterface to make less(), greater() and get_heap_position() const. Needs changing DecimaterT. Might break someone's code. </p>

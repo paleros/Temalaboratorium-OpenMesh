@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('a05914.html',''); initResizable(); });
 <h1><a class="anchor" id="it_iters"></a>
 Iterators</h1>
 <p>The mesh provides linear iterators (that enumerate vertices, halfedges, edges, and faces). These can be used to easily navigate through a mesh. Each iterator <code>XYZIter</code> also exists in a const version <code>ConstXYZIter</code>.</p>
-<p>All iterators are defined in the namespace <a class="el" href="a01265.html" title="Contains all mesh iterators and circulators.">OpenMesh::Iterators</a>. They are template classes that expect a mesh as template argument to be fully specified. You should use the iterator types provided by the mesh itself, i.e. <code><a class="el" href="a02694.html#afb18d53e36e53e024c8506cd3c961096" title="Scalar type.">MyMesh::VertexIter</a></code> instead of <code>OpenMesh::Iterators::VertexIterT&lt;MyMesh&gt;</code>.</p>
+<p>All iterators are defined in the namespace <a class="el" href="a01265.html" title="Contains all mesh iterators and circulators.">OpenMesh::Iterators</a>. They are template classes that expect a mesh as template argument to be fully specified. You should use the iterator types provided by the mesh itself, i._e. <code><a class="el" href="a02694.html#afb18d53e36e53e024c8506cd3c961096" title="Scalar type.">MyMesh::VertexIter</a></code> instead of <code>OpenMesh::Iterators::VertexIterT&lt;MyMesh&gt;</code>.</p>
 <p>The iterators are:</p>
 <div class="fragment"><div class="line"><a class="code" href="a02690.html">MyMesh</a> mesh;</div>
 <div class="line"> </div>
@@ -166,11 +166,11 @@ Skipping Iterators</h1>
 <li><code>halfedges_sbegin()</code>, </li>
 <li><code>faces_sbegin()</code> </li>
 </ul>
-<p>The ends for these iterators are equal to the standard iterator ends (e.g. <code>vertices_end()</code> ).</p>
+<p>The ends for these iterators are equal to the standard iterator ends (_e.g. <code>vertices_end()</code> ).</p>
 <h1><a class="anchor" id="it_circs"></a>
 Circulators</h1>
-<p>OpenMesh also provides so called Circulators that provide means to enumerate items adjacent to another item of the same or another type. For example, a <code>VertexVertexIter</code> allows to enumerate all vertices immediately adjacent to a (center) vertex (i.e. it allows to enumerate the so-called 1-ring of the center vertex). Analogously, a <code>FaceHalfedgeIter</code> enumerates all the halfedges belonging to a face. In general, <code>CenterItem_AuxiliaryInformation_TargetItem_Iter</code> designates a circulator that enumerates all the target items around a given center item.</p>
-<p>The constructor of a circulator is of the form <code>Circulator(MeshType mesh, TargetHandle center_handle)</code>, i.e. it takes a mesh and the handle of the item to circulate around.</p>
+<p>OpenMesh also provides so called Circulators that provide means to enumerate items adjacent to another item of the same or another type. For example, a <code>VertexVertexIter</code> allows to enumerate all vertices immediately adjacent to a (center) vertex (i._e. it allows to enumerate the so-called 1-ring of the center vertex). Analogously, a <code>FaceHalfedgeIter</code> enumerates all the halfedges belonging to a face. In general, <code>CenterItem_AuxiliaryInformation_TargetItem_Iter</code> designates a circulator that enumerates all the target items around a given center item.</p>
+<p>The constructor of a circulator is of the form <code>Circulator(MeshType mesh, TargetHandle center_handle)</code>, i._e. it takes a mesh and the handle of the item to circulate around.</p>
 <p>The circulators around a vertex are:</p>
 <ul>
 <li><code>VertexVertexIter:</code> iterate over all neighboring vertices. </li>
@@ -250,7 +250,7 @@ The conversion is only valid for valid circulators. The resulting circulator fro
  "Const" to the type specifier and add the prefix "c" to the function used to request the circulator of an item. Example:<br  />
 </dd></dl>
 <div class="fragment"><div class="line">ConstVertexVertexIter cvvit = mesh.cvv_iter(some_vertex_handle);</div>
-</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>When constructing Circulators from iterators, make sure you don't create a circulator of an deleted element(e.g. FaceVertexiter of a deleted Face), as this will lead to unpredictable behaviour. Using skipping iterators for iterating over the elements and creating circulators from them is safe as they don't contain deleted elements.</dd></dl>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>When constructing Circulators from iterators, make sure you don't create a circulator of an deleted element(_e.g. FaceVertexiter of a deleted Face), as this will lead to unpredictable behaviour. Using skipping iterators for iterating over the elements and creating circulators from them is safe as they don't contain deleted elements.</dd></dl>
 <h1><a class="anchor" id="it_circs_h"></a>
 How to use circulators in OpenMesh</h1>
 <p>The following code example now shows how to enumerate the 1-ring of each vertex:</p>
@@ -262,7 +262,7 @@ How to use circulators in OpenMesh</h1>
 <div class="line">  <span class="comment">// circulate around the current vertex</span></div>
 <div class="line">  <span class="keywordflow">for</span> (<a class="code" href="a02694.html#adc7d422e2ce13141e8291f7d29f7ecef">MyMesh::VertexVertexIter</a> vv_it=mesh.vv_iter(*v_it); vv_it.is_valid(); ++vv_it)</div>
 <div class="line">  {</div>
-<div class="line">    <span class="comment">// do something with e.g. mesh.point(*vv_it)</span></div>
+<div class="line">    <span class="comment">// do something with _e.g. mesh.point(*vv_it)</span></div>
 <div class="line">  }</div>
 <div class="line">}</div>
 <div class="ttc" id="aa02694_html_adc7d422e2ce13141e8291f7d29f7ecef"><div class="ttname"><a href="a02694.html#adc7d422e2ce13141e8291f7d29f7ecef">OpenMesh::PolyMeshT::VertexVertexIter</a></div><div class="ttdeci">Kernel::VertexVertexIter VertexVertexIter</div><div class="ttdoc">Circulator.</div><div class="ttdef"><b>Definition:</b> PolyMeshT.hh:162</div></div>

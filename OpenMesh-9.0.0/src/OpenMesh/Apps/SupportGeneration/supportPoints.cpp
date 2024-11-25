@@ -38,18 +38,18 @@ double idx = 0;
 idx++;
         /// Az aktualis haromszog csucspontjai
         Point p1, p2, p3;
-        p1.coordinates[0] = 0;
-        p1.coordinates[1] = 0;
-        p1.coordinates[2] = 0;
-        p1.e = e;
-        p2.coordinates[0] = 0;
-        p2.coordinates[1] = 0;
-        p2.coordinates[2] = 0;
-        p2.e = e;
-        p3.coordinates[0] = 0;
-        p3.coordinates[1] = 0;
-        p3.coordinates[2] = 0;
-        p3.e = e;
+        p1._coordinates[0] = 0;
+        p1._coordinates[1] = 0;
+        p1._coordinates[2] = 0;
+        p1._e = e;
+        p2._coordinates[0] = 0;
+        p2._coordinates[1] = 0;
+        p2._coordinates[2] = 0;
+        p2._e = e;
+        p3._coordinates[0] = 0;
+        p3._coordinates[1] = 0;
+        p3._coordinates[2] = 0;
+        p3._e = e;
         int c =0;
 
         /// Kiaszamoljuk az aktualis haromszog csucspontjait
@@ -57,33 +57,33 @@ idx++;
             MyMesh::VertexHandle vh = *fvi;
             // Biztos van elegansabb megoldas, nekem ez jutott most eszembe
             if(c == 0) {
-                p1.coordinates[0] = meshObject.point(vh)[0];
-                p1.coordinates[1] = meshObject.point(vh)[1];
-                p1.coordinates[2] = meshObject.point(vh)[2];
+                p1._coordinates[0] = meshObject.point(vh)[0];
+                p1._coordinates[1] = meshObject.point(vh)[1];
+                p1._coordinates[2] = meshObject.point(vh)[2];
             } else if(c == 1) {
-                p2.coordinates[0] = meshObject.point(vh)[0];
-                p2.coordinates[1] = meshObject.point(vh)[1];
-                p2.coordinates[2] = meshObject.point(vh)[2];
+                p2._coordinates[0] = meshObject.point(vh)[0];
+                p2._coordinates[1] = meshObject.point(vh)[1];
+                p2._coordinates[2] = meshObject.point(vh)[2];
             } else if(c == 2) {
-                p3.coordinates[0] = meshObject.point(vh)[0];
-                p3.coordinates[1] = meshObject.point(vh)[1];
-                p3.coordinates[2] = meshObject.point(vh)[2];
+                p3._coordinates[0] = meshObject.point(vh)[0];
+                p3._coordinates[1] = meshObject.point(vh)[1];
+                p3._coordinates[2] = meshObject.point(vh)[2];
             }
             c++;
         }
 
         /// A szamokat kerekitjuk hat tizedes jegyre
         for (int i = 0; i < 3; i++) {
-            p1.coordinates[i] = round(p1.coordinates[i] * 1000000) / 1000000;
-            p2.coordinates[i] = round(p2.coordinates[i] * 1000000) / 1000000;
-            p3.coordinates[i] = round(p3.coordinates[i] * 1000000) / 1000000;
+            p1._coordinates[i] = round(p1._coordinates[i] * 1000000) / 1000000;
+            p2._coordinates[i] = round(p2._coordinates[i] * 1000000) / 1000000;
+            p3._coordinates[i] = round(p3._coordinates[i] * 1000000) / 1000000;
         }
 
         /// Kiszamoljuk a haromszog maximum x es z koordinatait
-        double maxX = fmax(fmax(p1.coordinates[0], p2.coordinates[0]), p3.coordinates[0]);
-        double maxZ = fmax(fmax(p1.coordinates[2], p2.coordinates[2]), p3.coordinates[2]);
-        double minX = fmin(fmin(p1.coordinates[0], p2.coordinates[0]), p3.coordinates[0]);
-        double minZ = fmin(fmin(p1.coordinates[2], p2.coordinates[2]), p3.coordinates[2]);
+        double maxX = fmax(fmax(p1._coordinates[0], p2._coordinates[0]), p3._coordinates[0]);
+        double maxZ = fmax(fmax(p1._coordinates[2], p2._coordinates[2]), p3._coordinates[2]);
+        double minX = fmin(fmin(p1._coordinates[0], p2._coordinates[0]), p3._coordinates[0]);
+        double minZ = fmin(fmin(p1._coordinates[2], p2._coordinates[2]), p3._coordinates[2]);
 
         /// Vegigmegyunk a potencialis racspontokon
         double x = std::floor(minX / l) * l;
@@ -91,19 +91,19 @@ idx++;
             double z = std::floor(minZ / l) * l;
             while(z <= maxZ) {
                 /// Kiszamoljuk a haromszogek teruleteit
-                double A = area(p1.coordinates[0], p1.coordinates[2],
-                                p2.coordinates[0], p2.coordinates[2],
-                                p3.coordinates[0], p3.coordinates[2]);
+                double A = area(p1._coordinates[0], p1._coordinates[2],
+                                p2._coordinates[0], p2._coordinates[2],
+                                p3._coordinates[0], p3._coordinates[2]);
 
                 if (A != 0) {
                     double A1 = area(x, z,
-                                     p2.coordinates[0], p2.coordinates[2],
-                                     p3.coordinates[0], p3.coordinates[2]);
-                    double A2 = area(p1.coordinates[0], p1.coordinates[2],
+                                     p2._coordinates[0], p2._coordinates[2],
+                                     p3._coordinates[0], p3._coordinates[2]);
+                    double A2 = area(p1._coordinates[0], p1._coordinates[2],
                                      x, z,
-                                     p3.coordinates[0], p3.coordinates[2]);
-                    double A3 = area(p1.coordinates[0], p1.coordinates[2],
-                                     p2.coordinates[0], p2.coordinates[2],
+                                     p3._coordinates[0], p3._coordinates[2]);
+                    double A3 = area(p1._coordinates[0], p1._coordinates[2],
+                                     p2._coordinates[0], p2._coordinates[2],
                                      x, z);
 
                     /// A b ertekek szamitasa
@@ -112,11 +112,11 @@ idx++;
                     double b3 = A3 / A;
                     /// Ha nem negativ akkor a haromszogon belul van, tehat metszi
                     if (b1 >= 0 && b2 >= 0 && b3 >= 0) {
-                        double y = p1.coordinates[1] * b1 + p2.coordinates[1] * b2 + p3.coordinates[1] * b3;
+                        double y = p1._coordinates[1] * b1 + p2._coordinates[1] * b2 + p3._coordinates[1] * b3;
                         Point p;
-                        p.coordinates[0] = x;
-                        p.coordinates[1] = y;
-                        p.coordinates[2] = z;
+                        p._coordinates[0] = x;
+                        p._coordinates[1] = y;
+                        p._coordinates[2] = z;
                         intersectPoints.push_back(p);
                         count++;
                     }
@@ -143,81 +143,81 @@ idx++;
         /// Vegigmegyunk az osszes lehetseges szomszedos ponton
         Point adjacentPoint{};
         double weight;
-        adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] - l;
-        adjacentPoint.coordinates[1] = intersectPoints[i].coordinates[1];
-        adjacentPoint.coordinates[2] = intersectPoints[i].coordinates[2] - l;
+        adjacentPoint._coordinates[0] = intersectPoints[i]._coordinates[0] - l;
+        adjacentPoint._coordinates[1] = intersectPoints[i]._coordinates[1];
+        adjacentPoint._coordinates[2] = intersectPoints[i]._coordinates[2] - l;
         if(isIncluded(intersectPoints, adjacentPoint, l)) {
-            adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
+            adjacentPoint._coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
                 edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
-        adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0];
-        adjacentPoint.coordinates[1] = intersectPoints[i].coordinates[1];
-        adjacentPoint.coordinates[2] = intersectPoints[i].coordinates[2] - l;
+        adjacentPoint._coordinates[0] = intersectPoints[i]._coordinates[0];
+        adjacentPoint._coordinates[1] = intersectPoints[i]._coordinates[1];
+        adjacentPoint._coordinates[2] = intersectPoints[i]._coordinates[2] - l;
         if(isIncluded(intersectPoints, adjacentPoint, l)) {
-            adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
+            adjacentPoint._coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
                 edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
-        adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] + l;
-        adjacentPoint.coordinates[1] = intersectPoints[i].coordinates[1];
-        adjacentPoint.coordinates[2] = intersectPoints[i].coordinates[2] - l;
+        adjacentPoint._coordinates[0] = intersectPoints[i]._coordinates[0] + l;
+        adjacentPoint._coordinates[1] = intersectPoints[i]._coordinates[1];
+        adjacentPoint._coordinates[2] = intersectPoints[i]._coordinates[2] - l;
         if(isIncluded(intersectPoints, adjacentPoint, l)) {
-            adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
+            adjacentPoint._coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
                 edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
-        adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] - l;
-        adjacentPoint.coordinates[1] = intersectPoints[i].coordinates[1];
-        adjacentPoint.coordinates[2] = intersectPoints[i].coordinates[2];
+        adjacentPoint._coordinates[0] = intersectPoints[i]._coordinates[0] - l;
+        adjacentPoint._coordinates[1] = intersectPoints[i]._coordinates[1];
+        adjacentPoint._coordinates[2] = intersectPoints[i]._coordinates[2];
         if(isIncluded(intersectPoints, adjacentPoint, l)) {
-            adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
+            adjacentPoint._coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
                 edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
-        adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] + l;
-        adjacentPoint.coordinates[1] = intersectPoints[i].coordinates[1];
-        adjacentPoint.coordinates[2] = intersectPoints[i].coordinates[2];
+        adjacentPoint._coordinates[0] = intersectPoints[i]._coordinates[0] + l;
+        adjacentPoint._coordinates[1] = intersectPoints[i]._coordinates[1];
+        adjacentPoint._coordinates[2] = intersectPoints[i]._coordinates[2];
         if(isIncluded(intersectPoints, adjacentPoint, l)) {
-            adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
+            adjacentPoint._coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
                 edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
-        adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] - l;
-        adjacentPoint.coordinates[1] = intersectPoints[i].coordinates[1];
-        adjacentPoint.coordinates[2] = intersectPoints[i].coordinates[2] + l;
+        adjacentPoint._coordinates[0] = intersectPoints[i]._coordinates[0] - l;
+        adjacentPoint._coordinates[1] = intersectPoints[i]._coordinates[1];
+        adjacentPoint._coordinates[2] = intersectPoints[i]._coordinates[2] + l;
         if(isIncluded(intersectPoints, adjacentPoint, l)) {
-            adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
+            adjacentPoint._coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
                 edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
-        adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0];
-        adjacentPoint.coordinates[1] = intersectPoints[i].coordinates[1];
-        adjacentPoint.coordinates[2] = intersectPoints[i].coordinates[2] + l;
+        adjacentPoint._coordinates[0] = intersectPoints[i]._coordinates[0];
+        adjacentPoint._coordinates[1] = intersectPoints[i]._coordinates[1];
+        adjacentPoint._coordinates[2] = intersectPoints[i]._coordinates[2] + l;
         if(isIncluded(intersectPoints, adjacentPoint, l)) {
-            adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
+            adjacentPoint._coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
                 edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
             }
         }
-        adjacentPoint.coordinates[0] = intersectPoints[i].coordinates[0] + l;
-        adjacentPoint.coordinates[1] = intersectPoints[i].coordinates[1];
-        adjacentPoint.coordinates[2] = intersectPoints[i].coordinates[2] + l;
+        adjacentPoint._coordinates[0] = intersectPoints[i]._coordinates[0] + l;
+        adjacentPoint._coordinates[1] = intersectPoints[i]._coordinates[1];
+        adjacentPoint._coordinates[2] = intersectPoints[i]._coordinates[2] + l;
         if(isIncluded(intersectPoints, adjacentPoint, l)) {
-            adjacentPoint.coordinates[1] = getY(intersectPoints, adjacentPoint, l);
+            adjacentPoint._coordinates[1] = getY(intersectPoints, adjacentPoint, l);
             weight = thisEdgeLeadsToPoint(intersectPoints[i], adjacentPoint, l);
             if (weight != -1 && weight != 0) {
                 edges.emplace_back(intersectPoints[i], adjacentPoint, weight, e);
@@ -234,9 +234,9 @@ idx++;
     std::sort(inputPoints.begin(), inputPoints.end(), comparePoints);
     /// Kiszuri az azonos pontokat
     for(int i = 0; i < (int)inputPoints.size(); i++){
-        if(std::abs(inputPoints[i].coordinates[0] - inputPoints[i+1].coordinates[0]) <= e &&
-           std::abs(inputPoints[i].coordinates[1] - inputPoints[i+1].coordinates[1]) <= e &&
-           std::abs(inputPoints[i].coordinates[2] - inputPoints[i+1].coordinates[2]) <= e){
+        if(std::abs(inputPoints[i]._coordinates[0] - inputPoints[i + 1]._coordinates[0]) <= e &&
+           std::abs(inputPoints[i]._coordinates[1] - inputPoints[i + 1]._coordinates[1]) <= e &&
+           std::abs(inputPoints[i]._coordinates[2] - inputPoints[i + 1]._coordinates[2]) <= e){
             inputPoints.erase(inputPoints.begin() + i);
             i--;
         }
@@ -258,7 +258,7 @@ idx++;
         }
 
         for(int i = 0; i < (int) supportPoints.size(); i++){
-            if(supportPoints[i].weight != 0){
+            if(supportPoints[i]._weight != 0){
                 supportPoints.erase(supportPoints.begin() + i);
                 i--;
             }
@@ -266,7 +266,7 @@ idx++;
 
         /// A pontok sulyait nullazza (illetve -1-eli)
         for (auto &inputPoint : inputPoints) {
-            inputPoint.weight = -1;
+            inputPoint._weight = -1;
         }
 
         if((int)supportPoints.size() == 0){

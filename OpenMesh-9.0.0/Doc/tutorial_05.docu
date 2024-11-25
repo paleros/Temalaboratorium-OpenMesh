@@ -60,7 +60,7 @@ entity for which it can be used.
 </table>
 
 To add a standard property to an entity simply use the appropriate
-request method, e.g. \c request_face_normals(). The only exception is
+request method, _e.g. \c request_face_normals(). The only exception is
 the position <sup>(*)</sup>. It cannot be added because it is
 permanently available, hence it cannot be removed as well.
 
@@ -172,7 +172,7 @@ A property's existance can be tested with
 
 which return true if a property has been requested before and is available.
 
-The status property is used for marking geometry elements i.e. as selected or deleted.
+The status property is used for marking geometry elements i._e. as selected or deleted.
 See \ref tutorial_07b for further information.
 
 Now we know how to add and remove standard properties, but how do we
@@ -194,7 +194,7 @@ The get-methods take an entity handle and return the value of
 the desired property, and the set-methods require an additional
 parameter to pass the new value to the property. According to the
 table not every pair of get/set-methods apply to every entity. For
-example a face has normally no texture coordinates, hence a call to \c
+example a face has normally no texture _coordinates, hence a call to \c
 mesh.texcoord2D( _face_handle ) will result in an error when compiling
 the code.
 

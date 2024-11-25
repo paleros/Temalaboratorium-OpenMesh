@@ -51,7 +51,7 @@ most important topics of %OpenMesh in the following sections:
 \li \ref mesh_hierarchy
 
 The %OpenMeshTools library that contains some useful tools
-for i.e. mesh processing:
+for i._e. mesh processing:
     
 \li \subpage tools_docu
     
